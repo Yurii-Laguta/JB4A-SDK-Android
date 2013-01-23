@@ -1,2 +1,3 @@
-MobilePushSDK-Android
-=====================
+ExactTarget MobilePush SDK for Android
+======================================
+
