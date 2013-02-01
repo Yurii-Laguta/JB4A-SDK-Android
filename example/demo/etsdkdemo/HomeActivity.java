@@ -39,11 +39,11 @@ public class HomeActivity extends AnalyticActivity {
 
 		ETPush pushManager = ETPush.pushManager();
 		pushManager.configureSDKWithAppIdAndClientIdAndClientSecret(
-				"7df096f6-03a2-469a-a881-f34e2d6df695",
-				"3uqenkaku8juh7tnz3bharxz", 
-				"KkWbySjnymEtMwPfe9cz5J9N");
+				"",
+				"", 
+				"");
 		pushManager.setNotificationRecipientClass(HomeActivity.class);
-		pushManager.setGcmSenderID("1072910018575");
+		pushManager.setGcmSenderID("");
 		pushManager.registerForRemoteNotifications();
 		pushManager.enablePush();
 		
