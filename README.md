@@ -1,5 +1,13 @@
-# Public Demo
+# MobilePush-SDK-Android
 
-This is the public demo app of the ExactTarget MobilePush SDK. It is meant to demonstrate usage of the SDK, but is not completely functional as-is. 
+## About
+This is the MobilePush SDK for Android. It serves two purposes: 
 
-If you have questions around usage, please email MobilePush@ExactTarget.com
+- Active development of the Push SDK
+- Provide a UI for testing various features of the SDK, as well as feedback as to what it's doing. 
+
+This project is also cleaned up and distributed as the sample app alongside the SDK. 
+
+## Really Important Things That The Next Guy/Gal Should Know
+
+** coming soon **
