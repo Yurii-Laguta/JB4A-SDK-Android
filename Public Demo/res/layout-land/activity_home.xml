@@ -1,0 +1,76 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray" >
+
+    <Button
+        android:id="@+id/btnUpdateET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_x="400dp"
+        android:layout_y="59dp"
+        android:inputType="textCapWords"
+        android:text="Update ET" />
+
+    <EditText
+        android:id="@+id/txtFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_x="20dp"
+        android:layout_y="50dp"
+        android:ems="10"
+        android:hint="First Name"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txtLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_x="22dp"
+        android:layout_y="89dp"
+        android:ems="10"
+        android:hint="Last Name"
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_x="23dp"
+        android:layout_y="130dp"
+        android:ems="10"
+        android:hint="Email Address"
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/btnSecondActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_x="360dp"
+        android:layout_y="120dp"
+        android:inputType="textCapWords"
+        android:text="Second Activity" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_x="120dp"
+        android:layout_y="13dp"
+        android:text="@string/app_header"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</AbsoluteLayout>
