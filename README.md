@@ -1,13 +1,24 @@
-# MobilePush-SDK-Android
+# ExactTarget MobilePush SDK for Android
 
-## About
-This is the MobilePush SDK for Android. It serves two purposes: 
+This is the git repository for the ET MobilePush SDK for Android. 
 
-- Active development of the Push SDK
-- Provide a UI for testing various features of the SDK, as well as feedback as to what it's doing. 
+For more information, please see [Code@ExactTarget](http://code.exacttarget.com).
 
-This project is also cleaned up and distributed as the sample app alongside the SDK. 
+## Release History
 
-## Really Important Things That The Next Guy/Gal Should Know
+### Version 2.0
 
-** coming soon **
+#### Major Notes
+* Support for Access Tokens in place of Client ID/Secret. Access Token is provided by Code@ExactTarget during app registrations. 
+* Fixed a bug related delivery of payload to notification recipient.
+* Added support for setting Subscriber ID to the record
+* Reworked persistent store internally to better handle pushState
+* Signficant rework of sample app to better demonstrate and comment code.
+
+#### Deprecations
+* **configureSDKWithAppIdAndClientIdAndClientSecret(String etAppId, String clientId, String clientSecret)** - Use **configureSDKWithAppIdAndAccessToken(String etAppId, String accessToken)** instead.
+* **ETPush.pushEnabled** - Use **isPushEnabled()** in conjunction with **enablePush()** or **disablePush()** instead.
+
+### Version 1.0
+
+* First public version
