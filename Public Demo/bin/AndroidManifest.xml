@@ -1,106 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.exacttarget.demo.etsdkdemo"
-    android:versionCode="1"
-    android:versionName="1.0" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0-SNAPSHOT" package="com.exacttarget.demo.etsdkdemo">
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="18"/>
 
-    <!-- Urban Airship / ExactTarget required permissions -->
-    <!-- Permissions for GCM -->
-    
-    <!-- CHANGE ME - Creates localized permission to receive. Change everything before ".permission.C2D_Message" -->
-    <permission android:name="com.example.mypackage.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-     
-    <!-- CHANGE ME - Localized permission to receive messages. Change everything before ".permission.C2D_Message" -->
-    <uses-permission android:name="com.example.mypackage.permission.C2D_MESSAGE" /> 
-    
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> <!-- Base permission to receive GCM messages. -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- GCM connects to Google Services. -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- GCM requires a Google account. -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Keeps the processor from sleeping when a message is received. -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Need to know network state prior to making calls to ET/UA -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Launch services on boot -->
-    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Permission to buzz when a push comes in -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--   END Urban Airship / ExactTarget Required Permissions -->
+    <!-- ExactTarget required permissions -->
+    <permission android:name="com.exacttarget.demo.etsdkdemo.permission.C2D_MESSAGE" android:protectionLevel="signature"/> <!-- CHANGE ME - Creates localized permission to receive -->
+    <uses-permission android:name="com.exacttarget.demo.etsdkdemo.permission.C2D_MESSAGE"/> <!-- CHANGE ME - Localized permission to receive messages -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/> <!-- Base permission to receive GCM messages. -->
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/> <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/> <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- END ExactTarget Required Permissions -->
 
-    <application
-        android:name="com.exacttarget.etpushsdk.PushEnabledApplication"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:allowBackup="false" >
+    <application android:allowBackup="true" android:debuggable="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:name="com.exacttarget.demo.etsdkdemo.PushEnabledApplication" android:theme="@style/AppTheme">
 
-        <!-- GCM Related stuff here -->
-        <!-- UA Required includes -->
+        <!-- ET Broadcast Receiver for handling push messages. You can use the ET_GenericReceiver directly, or extend it to customize notifications -->
+        <receiver android:name="com.exacttarget.etpushsdk.ET_GenericReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+
+                <category android:name="com.exacttarget.demo.etsdkdemo"/>
+            </intent-filter>
+        </receiver>
         
-        <receiver android:name="com.urbanairship.CoreReceiver" />
-        <receiver
-            android:name="com.urbanairship.push.GCMPushReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+        <!-- ET Service handlers (required) -->
+		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETSendDataIntentService"/>
+		
+		<!-- ET Demo Activities -->
+        <activity android:label="@string/title_activity_home" android:name="com.exacttarget.demo.etsdkdemo.HomeActivity">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <!--  CHANGE ME - Make this the same as your package name -->
-                <category android:name="com.example.mypackage" />
-                
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name="com.urbanairship.push.PushService"
-            android:label="Push Notification Service" />
-        <service
-            android:name="com.urbanairship.push.PushWorkerService"
-            android:label="Push Notification Worker Service" />
-        <service
-            android:name="com.urbanairship.analytics.EventService"
-            android:label="Event Service" />
-
-        <provider
-            android:name="com.urbanairship.UrbanAirshipProvider"
-            android:authorities="com.exacttarget.demo.etsdkdemo.urbanairship.provider"
-            android:exported="false"
-            android:multiprocess="true" />
-
-
-        <receiver
-            android:name="com.exacttarget.etpushsdk.ET_GenericReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-                <!-- CHANGE ME - Make this the same as your package name -->
-                <category android:name="com.example.mypackage" />
-            </intent-filter>
-        </receiver>
-
-        <activity
-            android:name="com.exacttarget.demo.etsdkdemo.HomeActivity"
-            android:label="@string/title_activity_home" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.exacttarget.demo.etsdkdemo.SecondActivity"
-            android:label="@string/title_activity_second" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.exacttarget.etpushsdk.AnalyticActivity" />
+        <activity android:label="@string/title_activity_second" android:name="com.exacttarget.demo.etsdkdemo.SecondActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.exacttarget.etpushsdk.AnalyticActivity"/>
         </activity>
-        <activity
-            android:name="com.exacttarget.demo.etsdkdemo.OpenDirectDemo"
-            android:label="@string/title_activity_open_direct_demo" >
+        <activity android:label="@string/title_activity_open_direct_demo" android:name="com.exacttarget.demo.etsdkdemo.OpenDirectDemo">
+        </activity>
+        <activity android:label="Landing Page" android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter">
         </activity>
     </application>
 

@@ -6,6 +6,19 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 
 ## Release History
 
+### Version 3.0
+
+#### Major Notes
+* Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
+* Support for Action/Uri type of Intents when notification is tapped.
+* Ability to customize the notification and Intent by extending ET_GenericReceiver.
+* ETAnalytics changes to use onPause() and onResume() for more accurate time tracking.
+* Internal stability enhancements for returning data to ExactTarget.
+
+#### Deprecations
+* **AnalyticsActivity** - Use ETAnalytics directly from each of your Activity's onPause() and onResume()
+* **PushEnabledApplication** - Call ETPush.readyAimFire(this) from your Application's onCreate() to bootstrap instead of extending PushEnabledApplication.
+
 ### Version 2.1
 * Providing a URL in the OpenDirect field through MobilePush will cause the provided URL to load when the notification is selected from the tray. This will *only* work if you have not specified a recipient for OpenDirect payloads. 
 

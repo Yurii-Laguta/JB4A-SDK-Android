@@ -1,5 +1,6 @@
 package com.exacttarget.demo.etsdkdemo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,11 +19,12 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.ToggleButton;
 
-import com.exacttarget.etpushsdk.AnalyticActivity;
+import com.exacttarget.etpushsdk.ETAnalytics;
+import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
 
-public class HomeActivity extends AnalyticActivity {
-	private static final String TAG = "Home Activity";
+public class HomeActivity extends Activity {
+	private static final String TAG = "HomeActivity";
 
 	private static String FirstNameKey = "FirstName";
 	private static String LastNameKey = "LastName";
@@ -40,35 +42,40 @@ public class HomeActivity extends AnalyticActivity {
 		
 		final ToggleButton tglPushEnabled = (ToggleButton) findViewById(R.id.togglePushEnabled);		
 
-		ETPush pushManager = ETPush.pushManager();
-
-		pushManager.configureSDKWithAppIdAndAccessToken("", "");
-		pushManager.setNotificationRecipientClass(HomeActivity.class);
-		pushManager.setOpenDirectRecipient(OpenDirectDemo.class);
-		pushManager.setGcmSenderID("");
-
-		
-		pushManager.addTag("Android");
-		pushManager.addTag("6.0");
-
-		tglPushEnabled.setChecked(pushManager.isPushEnabled());
-		
-		if (getPreferenceForKey(FirstNameKey) != null) {
-			pushManager.addAtributeNamedValue("FirstName",
-					getPreferenceForKey(FirstNameKey));
-			txtFirstName.setText(getPreferenceForKey(FirstNameKey));
+		try {
+			ETPush pushManager = ETPush.pushManager();
+	
+			pushManager.configureSDKWithAppIdAndAccessToken("1b83b32a-ea05-48ec-a1c7-69afa81afab9", "n4twywndzq3yrxk5ku4t4zsp");
+			pushManager.setNotificationRecipientClass(HomeActivity.class);
+	//		pushManager.setOpenDirectRecipient(OpenDirectDemo.class);
+			pushManager.setGcmSenderID("1072910018575");
+	
+			
+			pushManager.addTag("Android");
+			pushManager.addTag("6.0");
+	
+			tglPushEnabled.setChecked(pushManager.isPushEnabled());
+			
+			if (getPreferenceForKey(FirstNameKey) != null) {
+				pushManager.addAtributeNamedValue("FirstName",
+						getPreferenceForKey(FirstNameKey));
+				txtFirstName.setText(getPreferenceForKey(FirstNameKey));
+			}
+	  
+			if (getPreferenceForKey(LastNameKey) != null) {
+				pushManager.addAtributeNamedValue("LastName",
+						getPreferenceForKey(LastNameKey));
+				txtLastName.setText(getPreferenceForKey(LastNameKey));
+			}
+	
+			if (getPreferenceForKey(EmailAddressKey) != null) {
+				// pushManager.addAtributeNamedValue("FirstName",
+				// getPreferenceForKey(FirstNameKey));
+				txtEmailAddress.setText(getPreferenceForKey(EmailAddressKey));
+			}
 		}
-
-		if (getPreferenceForKey(LastNameKey) != null) {
-			pushManager.addAtributeNamedValue("LastName",
-					getPreferenceForKey(LastNameKey));
-			txtLastName.setText(getPreferenceForKey(LastNameKey));
-		}
-
-		if (getPreferenceForKey(EmailAddressKey) != null) {
-			// pushManager.addAtributeNamedValue("FirstName",
-			// getPreferenceForKey(FirstNameKey));
-			txtEmailAddress.setText(getPreferenceForKey(EmailAddressKey));
+		catch(ETException e) {
+			Log.e(TAG, e.getMessage(), e);
 		}
 
 		txtEmailAddress.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -94,6 +101,7 @@ public class HomeActivity extends AnalyticActivity {
 		});
 
 		txtFirstName.setOnFocusChangeListener(new OnFocusChangeListener() {
+
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				updatePreferencesForKey(FirstNameKey, txtFirstName.getText()
@@ -102,6 +110,7 @@ public class HomeActivity extends AnalyticActivity {
 		});
 
 		txtLastName.setOnFocusChangeListener(new OnFocusChangeListener() {
+
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				updatePreferencesForKey(LastNameKey, txtLastName.getText()
@@ -109,12 +118,34 @@ public class HomeActivity extends AnalyticActivity {
 			}
 		});
 
+		/**
+		 * End developers don't need to call updateET. This is just useful for internal testing by
+		 * the ET development team.
+		 */
 		Button btnUpdateET = (Button) findViewById(R.id.btnUpdateET);
 		btnUpdateET.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ETPush.pushManager().registerForRemoteNotifications();
-				ETPush.pushManager().updateET();
+				try {
+					ETPush.pushManager().registerForRemoteNotifications();
+					ETPush.pushManager().updateET();
+				}
+				catch(ETException e) {
+					Log.e(TAG, e.getMessage(), e);
+				}
+			}
+		});
+	
+		Button btnUnregister = (Button) findViewById(R.id.btnUnregister);
+		btnUnregister.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					ETPush.pushManager().unregisterForRemoteNotifications();
+				}
+				catch(ETException e) {
+					Log.e(TAG, e.getMessage(), e);
+				}
 			}
 		});
 
@@ -122,8 +153,7 @@ public class HomeActivity extends AnalyticActivity {
 		btnSecondActivity.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent newIntent = new Intent(getBaseContext(),
-						SecondActivity.class);
+				Intent newIntent = new Intent(getBaseContext(), SecondActivity.class);
 				startActivity(newIntent);
 			}
 		});
@@ -132,13 +162,19 @@ public class HomeActivity extends AnalyticActivity {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked) {
-					Log.d(TAG, "Push enabled");
-					ETPush.pushManager().enablePush();
-				} else {
-					Log.d(TAG, "Push disabled");
-					ETPush.pushManager().disablePush();
-				}				
+				try {
+					if (isChecked) {
+						Log.d(TAG, "Push enabled");
+						ETPush.pushManager().enablePush();
+					} else {
+						Log.d(TAG, "Push disabled");
+						ETPush.pushManager().disablePush();
+					}	
+				}
+				catch(ETException e) {
+					Log.e(TAG, e.getMessage(), e);
+				}
+
 			}
 		});
 
@@ -176,12 +212,24 @@ public class HomeActivity extends AnalyticActivity {
 		return preferences.getString(key, null);
 	}
 	
-	private void doRegistration() {
-		ETPush.pushManager().registerForRemoteNotifications();
-		ETPush.pushManager().enablePush();
+	@Override
+	protected void onResume() {
+		Log.i(TAG, "onResume()");
+		super.onResume();
+
+		// To use ETAnalytics, you should override onResume and call this method
+		// It ensures proper tracking of time-in-app analytics.
+		ETAnalytics.engine().activityResumed(this);
 	}
-	
-	private void doUnregistration() {
-		ETPush.pushManager().unregisterForRemoteNotifications();
+
+	@Override
+	protected void onPause() {
+		Log.i(TAG, "onPause()");
+		super.onPause();
+
+		// To use ETAnalytics, you should override onPause and call this method
+		// It ensures proper tracking of time-in-app analytics.
+		ETAnalytics.engine().activityPaused(this);
 	}
+
 }
