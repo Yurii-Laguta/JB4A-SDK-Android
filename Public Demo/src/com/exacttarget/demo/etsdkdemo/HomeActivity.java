@@ -127,7 +127,7 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
-					ETPush.pushManager().registerForRemoteNotifications();
+					ETPush.pushManager().registerForRemoteNotifications(HomeActivity.this);
 					ETPush.pushManager().updateET();
 				}
 				catch(ETException e) {
@@ -141,7 +141,7 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				try {
-					ETPush.pushManager().unregisterForRemoteNotifications();
+					ETPush.pushManager().unregisterForRemoteNotifications(HomeActivity.this);
 				}
 				catch(ETException e) {
 					Log.e(TAG, e.getMessage(), e);
@@ -165,10 +165,10 @@ public class HomeActivity extends Activity {
 				try {
 					if (isChecked) {
 						Log.d(TAG, "Push enabled");
-						ETPush.pushManager().enablePush();
+						ETPush.pushManager().enablePush(HomeActivity.this);
 					} else {
 						Log.d(TAG, "Push disabled");
-						ETPush.pushManager().disablePush();
+						ETPush.pushManager().disablePush(HomeActivity.this);
 					}	
 				}
 				catch(ETException e) {
