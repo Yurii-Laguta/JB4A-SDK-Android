@@ -1,163 +1,102 @@
 package com.exacttarget.demo.etsdkdemo;
 
-import android.app.Activity;
+import java.util.Date;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.ToggleButton;
 
-import com.exacttarget.etpushsdk.ETAnalytics;
 import com.exacttarget.etpushsdk.ETException;
+import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
+import com.exacttarget.etpushsdk.event.LastKnownLocationEvent;
+import com.exacttarget.etpushsdk.util.EventBus;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends FragmentActivity {
 	private static final String TAG = "HomeActivity";
 
-	private static String FirstNameKey = "FirstName";
-	private static String LastNameKey = "LastName";
-	private static String EmailAddressKey = "EmailAddress";
-	private static String PreferencesKey = "ETDemoPreferences";
+	private static final String FirstNameKey = "FirstName";
+	private static final String LastNameKey = "LastName";
+	private static final String EmailAddressKey = "EmailAddress";
+	private static final String PreferencesKey = "ETDemoPreferences";
+	
+	private SharedPreferences prefs;
+	
+	private TextView locationText;
+	private GoogleMap map;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
+		prefs = getSharedPreferences(PreferencesKey, MODE_PRIVATE);
 
 		final EditText txtFirstName = (EditText) findViewById(R.id.txtFirstName);
 		final EditText txtLastName = (EditText) findViewById(R.id.txtLastName);
 		final EditText txtEmailAddress = (EditText) findViewById(R.id.txtEmailAddress);
 		
-		final ToggleButton tglPushEnabled = (ToggleButton) findViewById(R.id.togglePushEnabled);		
+		final ToggleButton tglPushEnabled = (ToggleButton) findViewById(R.id.togglePushEnabled);
+		final ToggleButton tglGeoEnabled = (ToggleButton) findViewById(R.id.toggleGeoEnabled);
+		
+		locationText = (TextView) findViewById(R.id.locationText); 
+		
+		FragmentManager fmanager = getSupportFragmentManager();
+        Fragment fragment = fmanager.findFragmentById(R.id.map);
+        SupportMapFragment supportmapfragment = (SupportMapFragment)fragment;
+        map = supportmapfragment.getMap();
+		
+		EventBus.getDefault().register(this);
 
 		try {
-			ETPush pushManager = ETPush.pushManager();
-	
-			pushManager.configureSDKWithAppIdAndAccessToken("1b83b32a-ea05-48ec-a1c7-69afa81afab9", "n4twywndzq3yrxk5ku4t4zsp");
-			pushManager.setNotificationRecipientClass(HomeActivity.class);
-	//		pushManager.setOpenDirectRecipient(OpenDirectDemo.class);
-			pushManager.setGcmSenderID("1072910018575");
-	
+			ETPush.pushManager().setNotificationRecipientClass(HomeActivity.class);
+	//		ETPush.pushManager().setOpenDirectRecipient(OpenDirectDemo.class);
 			
-			pushManager.addTag("Android");
-			pushManager.addTag("6.0");
-	
-			tglPushEnabled.setChecked(pushManager.isPushEnabled());
-			
-			if (getPreferenceForKey(FirstNameKey) != null) {
-				pushManager.addAtributeNamedValue("FirstName",
-						getPreferenceForKey(FirstNameKey));
-				txtFirstName.setText(getPreferenceForKey(FirstNameKey));
+			//restore saved user preference attributes to the screen and pushmanager
+			String firstName = getPreferenceForKey(FirstNameKey);
+			if (firstName != null && firstName.length() > 0) {
+				ETPush.pushManager().addAtributeNamedValue("FirstName",	firstName);
+				txtFirstName.setText(firstName);
 			}
 	  
-			if (getPreferenceForKey(LastNameKey) != null) {
-				pushManager.addAtributeNamedValue("LastName",
-						getPreferenceForKey(LastNameKey));
-				txtLastName.setText(getPreferenceForKey(LastNameKey));
+			String lastName = getPreferenceForKey(LastNameKey);
+			if (lastName != null && lastName.length() > 0) {
+				ETPush.pushManager().addAtributeNamedValue("LastName", lastName);
+				txtLastName.setText(lastName);
 			}
 	
-			if (getPreferenceForKey(EmailAddressKey) != null) {
-				// pushManager.addAtributeNamedValue("FirstName",
-				// getPreferenceForKey(FirstNameKey));
-				txtEmailAddress.setText(getPreferenceForKey(EmailAddressKey));
+			String emailAddress = getPreferenceForKey(EmailAddressKey);
+			if (emailAddress != null && emailAddress.length() > 0) {
+				ETPush.pushManager().setSubscriberKey(emailAddress);
+				txtEmailAddress.setText(emailAddress);
 			}
+			
+			//set buttons to their proper state
+			tglPushEnabled.setChecked(ETPush.pushManager().isPushEnabled());
+			tglGeoEnabled.setChecked(ETLocationManager.locationManager().isWatchingLocation());
+
 		}
 		catch(ETException e) {
 			Log.e(TAG, e.getMessage(), e);
 		}
 
-		txtEmailAddress.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				updatePreferencesForKey(EmailAddressKey, txtEmailAddress.getText().toString());
-			}
-		});
-		
-		txtEmailAddress.setOnEditorActionListener(new OnEditorActionListener() {
-			
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		        if (actionId == EditorInfo.IME_ACTION_NEXT) {
-		        	updatePreferencesForKey(EmailAddressKey, txtEmailAddress.getText().toString());
-		            return true;
-		        }
-		        else {
-		            return false;
-		        }
-			}
-		});
-
-		txtFirstName.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				updatePreferencesForKey(FirstNameKey, txtFirstName.getText()
-						.toString());
-			}
-		});
-
-		txtLastName.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				updatePreferencesForKey(LastNameKey, txtLastName.getText()
-						.toString());
-			}
-		});
-
-		/**
-		 * End developers don't need to call updateET. This is just useful for internal testing by
-		 * the ET development team.
-		 */
-		Button btnUpdateET = (Button) findViewById(R.id.btnUpdateET);
-		btnUpdateET.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					ETPush.pushManager().registerForRemoteNotifications(HomeActivity.this);
-					ETPush.pushManager().updateET();
-				}
-				catch(ETException e) {
-					Log.e(TAG, e.getMessage(), e);
-				}
-			}
-		});
-	
-		Button btnUnregister = (Button) findViewById(R.id.btnUnregister);
-		btnUnregister.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					ETPush.pushManager().unregisterForRemoteNotifications(HomeActivity.this);
-				}
-				catch(ETException e) {
-					Log.e(TAG, e.getMessage(), e);
-				}
-			}
-		});
-
-		Button btnSecondActivity = (Button) findViewById(R.id.btnSecondActivity);
-		btnSecondActivity.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent newIntent = new Intent(getBaseContext(), SecondActivity.class);
-				startActivity(newIntent);
-			}
-		});
-		
 		tglPushEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			
 			@Override
@@ -165,6 +104,22 @@ public class HomeActivity extends Activity {
 				try {
 					if (isChecked) {
 						Log.d(TAG, "Push enabled");
+						if(txtFirstName.getText() != null && txtFirstName.getText().toString().length() > 0) {
+							String firstName = txtFirstName.getText().toString();
+							updatePreferencesForKey(FirstNameKey, firstName);
+							ETPush.pushManager().addAtributeNamedValue("FirstName", firstName);
+						}
+						if(txtLastName.getText() != null && txtLastName.getText().toString().length() > 0) {
+							String lastName = txtLastName.getText().toString();
+							updatePreferencesForKey(LastNameKey, lastName);
+							ETPush.pushManager().addAtributeNamedValue("LastName", lastName);
+						}
+						if(txtEmailAddress.getText() != null && txtEmailAddress.getText().toString().length() > 0) {
+							String emailAddress = txtEmailAddress.getText().toString();
+							updatePreferencesForKey(EmailAddressKey, emailAddress);
+							ETPush.pushManager().setSubscriberKey(emailAddress);
+						}
+
 						ETPush.pushManager().enablePush(HomeActivity.this);
 					} else {
 						Log.d(TAG, "Push disabled");
@@ -177,7 +132,33 @@ public class HomeActivity extends Activity {
 
 			}
 		});
+		
+		tglGeoEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				try {
+					if(isChecked) {
+						Log.d(TAG, "Geo enabled");
+						ETLocationManager.locationManager().startWatchingLocation();
+					}
+					else {
+						Log.d(TAG, "Geo disabled");
+						ETLocationManager.locationManager().stopWatchingLocation();
+					}
+				}
+				catch(ETException e) {
+					Log.e(TAG, e.getMessage(), e);
+				}
+			}
+		});
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
 	}
 
 	@Override
@@ -192,24 +173,22 @@ public class HomeActivity extends Activity {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		case R.id.cloudpages:
+			Intent intent = new Intent(this, CloudPageActivity.class);
+			startActivity(intent);
+			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 
 	private void updatePreferencesForKey(String key, String value) {
-		Log.d(TAG, "Setting " + key + " for " + value);
-		SharedPreferences preferences = this.getSharedPreferences(
-				PreferencesKey, MODE_PRIVATE);
-		SharedPreferences.Editor editor = preferences.edit();
-		editor.putString(key, value);
-		editor.commit();
-
+		Log.i(TAG, "Setting " + key + " for " + value);
+		prefs.edit().putString(key, value).apply();
 	}
 
 	private String getPreferenceForKey(String key) {
-		SharedPreferences preferences = this.getSharedPreferences(
-				PreferencesKey, MODE_PRIVATE);
-		return preferences.getString(key, null);
+		return prefs.getString(key, null);
 	}
 	
 	@Override
@@ -217,9 +196,13 @@ public class HomeActivity extends Activity {
 		Log.i(TAG, "onResume()");
 		super.onResume();
 
-		// To use ETAnalytics, you should override onResume and call this method
-		// It ensures proper tracking of time-in-app analytics.
-		ETAnalytics.engine().activityResumed(this);
+		try {
+			// Let ExactTarget know when each activity resumed
+			ETPush.pushManager().activityResumed(this);
+		}
+		catch (ETException e) {
+			Log.e(TAG, e.getMessage(), e);
+		}
 	}
 
 	@Override
@@ -227,9 +210,45 @@ public class HomeActivity extends Activity {
 		Log.i(TAG, "onPause()");
 		super.onPause();
 
-		// To use ETAnalytics, you should override onPause and call this method
-		// It ensures proper tracking of time-in-app analytics.
-		ETAnalytics.engine().activityPaused(this);
+		try {
+			// Let ExactTarget know when each activity paused
+			ETPush.pushManager().activityPaused(this);
+		}
+		catch (ETException e) {
+			Log.e(TAG, e.getMessage(), e);
+		}
+	}
+	
+	/**
+	 * Example of registering with the EventBus to send us events we might care about. In this case, we get notified each time ETLocationManager
+	 * finds a new current location (about every 15 minutes)
+	 * @param event
+	 */
+	private Marker me = null;
+	public void onEventLocationChanged(final LastKnownLocationEvent event) {
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				//update text
+				locationText.setText("Provider: "+event.getLocation().getProvider()+", Lat: "+event.getLocation().getLatitude()+", Lon: "+event.getLocation().getLongitude()+", Accuracy: "+event.getLocation().getAccuracy()+", Timestamp: "+new Date(event.getLocation().getTime()));
+			}
+		});
+		
+		updateMapMarker(event.getLocation().getLatitude(), event.getLocation().getLongitude());
 	}
 
+	public void updateMapMarker(final double latitude, final double longitude) {
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				//show where we are on the map
+				if(me != null) {
+					me.remove();
+				}
+				LatLng location = new LatLng(latitude, longitude);
+				me = map.addMarker(new MarkerOptions().position(location));
+				map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15.0f), 5000, null);
+			}
+		});
+	}
 }

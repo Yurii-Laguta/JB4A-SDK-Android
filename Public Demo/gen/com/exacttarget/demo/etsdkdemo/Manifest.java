@@ -12,5 +12,8 @@ public final class Manifest {
         /**  ExactTarget required permissions 
          */
         public static final String C2D_MESSAGE="com.exacttarget.demo.etsdkdemo.permission.C2D_MESSAGE";
+        /**  Stuff for test app's map display 
+         */
+        public static final String MAPS_RECEIVE="com.exacttarget.demo.etsdkdemo.permission.MAPS_RECEIVE";
     }
 }

@@ -141,8 +141,9 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f050006;
         public static final int common_signin_btn_light_text_focused=0x7f050007;
         public static final int common_signin_btn_light_text_pressed=0x7f050005;
-        public static final int common_signin_btn_text_dark=0x7f05000b;
-        public static final int common_signin_btn_text_light=0x7f05000c;
+        public static final int common_signin_btn_text_dark=0x7f05000c;
+        public static final int common_signin_btn_text_light=0x7f05000d;
+        public static final int darkgray=0x7f05000b;
         public static final int gray=0x7f05000a;
     }
     public static final class drawable {
@@ -177,28 +178,41 @@ containing a value of this type.
         public static final int ic_plusone_standard_off_client=0x7f02001c;
         public static final int ic_plusone_tall_off_client=0x7f02001d;
         public static final int opendirect=0x7f02001e;
+        public static final int read=0x7f02001f;
+        public static final int unread=0x7f020020;
     }
     public static final class id {
-        public static final int btnSecondActivity=0x7f060009;
-        public static final int btnUnregister=0x7f06000c;
-        public static final int btnUpdateET=0x7f06000a;
+        public static final int addCloudPage=0x7f060009;
+        public static final int cloudPageListView=0x7f06000a;
+        public static final int cloudpageSubject=0x7f060015;
+        public static final int cloudpages=0x7f060017;
+        public static final int filterAll=0x7f060006;
+        public static final int filterRadioGroup=0x7f060005;
+        public static final int filterRead=0x7f060008;
+        public static final int filterUnread=0x7f060007;
         public static final int hybrid=0x7f060004;
-        public static final int imageView1=0x7f06000d;
-        public static final int menu_settings=0x7f06000e;
+        public static final int imageView1=0x7f060013;
+        public static final int locationText=0x7f060011;
+        public static final int map=0x7f060012;
+        public static final int menu_settings=0x7f060018;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
+        public static final int readUnreadIcon=0x7f060014;
         public static final int satellite=0x7f060002;
         public static final int terrain=0x7f060003;
-        public static final int textView1=0x7f060005;
-        public static final int togglePushEnabled=0x7f06000b;
-        public static final int txtEmailAddress=0x7f060008;
-        public static final int txtFirstName=0x7f060006;
-        public static final int txtLastName=0x7f060007;
+        public static final int textView1=0x7f06000b;
+        public static final int timeTextView=0x7f060016;
+        public static final int toggleGeoEnabled=0x7f060010;
+        public static final int togglePushEnabled=0x7f06000f;
+        public static final int txtEmailAddress=0x7f06000e;
+        public static final int txtFirstName=0x7f06000c;
+        public static final int txtLastName=0x7f06000d;
     }
     public static final class layout {
-        public static final int activity_home=0x7f030000;
-        public static final int activity_open_direct_demo=0x7f030001;
-        public static final int activity_second=0x7f030002;
+        public static final int activity_cloudpage=0x7f030000;
+        public static final int activity_home=0x7f030001;
+        public static final int activity_open_direct_demo=0x7f030002;
+        public static final int cloudpage_list_item=0x7f030003;
     }
     public static final class menu {
         public static final int activity_home=0x7f090000;
@@ -209,7 +223,7 @@ containing a value of this type.
         public static final int custom=0x7f040000;
     }
     public static final class string {
-        public static final int app_header=0x7f07001d;
+        public static final int app_header=0x7f07001e;
         public static final int app_name=0x7f070019;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -302,12 +316,15 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f070012;
         public static final int hello_world=0x7f07001a;
+        public static final int menu_cloudpages=0x7f07001c;
         public static final int menu_settings=0x7f07001b;
-        public static final int strPushDisabled=0x7f070021;
-        public static final int strPushEnabled=0x7f070020;
-        public static final int title_activity_home=0x7f07001c;
-        public static final int title_activity_open_direct_demo=0x7f07001f;
-        public static final int title_activity_second=0x7f07001e;
+        public static final int strGeoDisabled=0x7f070024;
+        public static final int strGeoEnabled=0x7f070023;
+        public static final int strPushDisabled=0x7f070022;
+        public static final int strPushEnabled=0x7f070021;
+        public static final int title_activity_home=0x7f07001d;
+        public static final int title_activity_open_direct_demo=0x7f070020;
+        public static final int title_cloudpages=0x7f07001f;
     }
     public static final class style {
         public static final int AppTheme=0x7f080000;

@@ -1,11 +1,12 @@
 package com.exacttarget.demo.etsdkdemo;
 
-import com.exacttarget.etpushsdk.ETAnalytics;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+
+import com.exacttarget.etpushsdk.ETException;
+import com.exacttarget.etpushsdk.ETPush;
 
 public class OpenDirectDemo extends Activity {
 	
@@ -29,9 +30,13 @@ public class OpenDirectDemo extends Activity {
 		Log.i(TAG, "onResume()");
 		super.onResume();
 
-		// To use ETAnalytics, you should override onResume and call this method
-		// It ensures proper tracking of time-in-app analytics.
-		ETAnalytics.engine().activityResumed(this);
+		try {
+			// Let ExactTarget know when each activity resumed
+			ETPush.pushManager().activityResumed(this);
+		}
+		catch (ETException e) {
+			Log.e(TAG, e.getMessage(), e);
+		}
 	}
 
 	@Override
@@ -39,9 +44,15 @@ public class OpenDirectDemo extends Activity {
 		Log.i(TAG, "onPause()");
 		super.onPause();
 
-		// To use ETAnalytics, you should override onPause and call this method
-		// It ensures proper tracking of time-in-app analytics.
-		ETAnalytics.engine().activityPaused(this);
+		try {
+			// Let ExactTarget know when each activity paused
+			ETPush.pushManager().activityPaused(this);
+		}
+		catch (ETException e) {
+			Log.e(TAG, e.getMessage(), e);
+		}
 	}
+
+
 
 }
