@@ -6,6 +6,14 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 
 ## Release History
 
+### Version 3.1
+
+#### Major Notes
+* Added Support for Geofence messaging
+* Added Support for CloudPage messages. Both retrieved from the server (inbox) as well as a push message.
+* Centralized support for how app backgrounding was handled.
+* Add ability to turn on/off features in the call to ETPush.readyAimFire().
+
 ### Version 3.0
 
 #### Major Notes
