@@ -4,6 +4,7 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
 
 import android.app.Application;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
 
 public class PushEnabledApplication extends Application {
@@ -28,11 +29,19 @@ public class PushEnabledApplication extends Application {
 			ETPush pushManager = ETPush.pushManager();
 			
 			pushManager.setGcmSenderID("1072910018575");
-			pushManager.addTag("6.2");
 			
-		} catch (ETException e) {
+			//A good practice is to add the versionName of your app from the manifest as a tag
+			//so you can target specific app versions with a push message later if necessary.
+			String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+			pushManager.addTag(versionName);
+		} 
+		catch (ETException e) {
 			Log.e(TAG, e.getMessage(), e);
 		}
+		catch (NameNotFoundException e) {
+			Log.e(TAG, e.getMessage(), e);
+		}
+
 	}
 
 }
