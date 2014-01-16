@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_header"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/txtFirstName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView1"
+        android:ems="10"
+        android:hint="First Name"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtLastName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtFirstName"
+        android:ems="10"
+        android:hint="Last Name"
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/txtEmailAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLastName"
+        android:ems="10"
+        android:hint="Email Address"
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress" />
+
+    <ToggleButton
+        android:id="@+id/togglePushEnabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtEmailAddress"
+        android:layout_alignParentLeft="true"
+        android:text="@string/strPushEnabled"
+        android:textOff="@string/strPushDisabled"
+        android:textOn="@string/strPushEnabled" />
+    
+    <ToggleButton 
+        android:id="@+id/toggleGeoEnabled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtEmailAddress"
+        android:layout_alignParentRight="true"
+        android:text="@string/strGeoEnabled"
+        android:textOff="@string/strGeoDisabled"
+        android:textOn="@string/strGeoEnabled"/>
+    
+    <TextView android:id="@+id/locationText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="No Location, Waiting..."/>
+    
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/togglePushEnabled"
+        android:layout_above="@id/locationText"
+        class="com.google.android.gms.maps.SupportMapFragment" />
+    
+</RelativeLayout>

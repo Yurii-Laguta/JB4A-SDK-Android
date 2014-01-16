@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="3.1.0" package="com.exacttarget.demo.etsdkdemo">
+
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
+    
+    <!-- Stuff for test app's map display -->
+    <permission android:name="com.exacttarget.demo.etsdkdemo.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+    <uses-permission android:name="com.exacttarget.demo.etsdkdemo.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
+    <!-- ExactTarget required permissions -->
+    <permission android:name="com.exacttarget.demo.etsdkdemo.permission.C2D_MESSAGE" android:protectionLevel="signature"/> <!-- CHANGE ME - Creates localized permission to receive -->
+    <uses-permission android:name="com.exacttarget.demo.etsdkdemo.permission.C2D_MESSAGE"/> <!-- CHANGE ME to match your package name - Localized permission to receive messages -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/> <!-- Base permission to receive GCM messages. -->
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/> <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/> <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- END ExactTarget Required Permissions -->
+    
+    <!-- ExactTarget Permissions for location and region monitoring -->
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<!-- END ExactTarget location and region monitoring Permissions -->
+	
+	<!-- ExactTarget INTERNAL Only for testing purposes -->
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+	<!-- END ExactTarget INTERNAL Only for testing purposes -->
+	
+    <application android:allowBackup="true" android:debuggable="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:name="com.exacttarget.demo.etsdkdemo.PushEnabledApplication" android:theme="@style/AppTheme">
+
+        <!-- ET Broadcast Receiver for handling push messages. You can use the ET_GenericReceiver directly, or extend it to customize notifications -->
+        <receiver android:name="com.exacttarget.etpushsdk.ET_GenericReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+
+                <category android:name="com.exacttarget.demo.etsdkdemo"/>
+            </intent-filter>
+        </receiver>
+        
+		<!-- ET Broadcast Receivers for handling location updates -->
+		<receiver android:name="com.exacttarget.etpushsdk.location.receiver.LocationChangedReceiver"/> <!-- Get location ourselves -->
+		<receiver android:name="com.exacttarget.etpushsdk.location.receiver.PassiveLocationChangedReceiver"/> <!-- piggyback and listen in on other apps that request location updates -->
+		<receiver android:name="com.exacttarget.etpushsdk.location.receiver.PowerStateChangedReceiver"> <!-- Don't kill their battery using gps if it's low -->
+			<intent-filter>
+				<action android:name="android.intent.action.ACTION_BATTERY_LOW"/>
+				<action android:name="android.intent.action.ACTION_BATTERY_OKAY"/>
+			</intent-filter>
+		</receiver>
+		
+		<receiver android:name="com.exacttarget.etpushsdk.ETLocationTimeoutReceiver"/>
+		<receiver android:name="com.exacttarget.etpushsdk.ETLocationWakeupReceiver"/>
+		<receiver android:name="com.exacttarget.etpushsdk.ETGeofenceReceiver"/>
+				
+		<!-- figure out where they are if they just turned on their phone (e.g. plane trip) -->
+		<receiver android:name="com.exacttarget.etpushsdk.location.receiver.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>  
+        
+		<!-- ET Broadcast Receivers for for sending data (required) -->
+		<receiver android:name="com.exacttarget.etpushsdk.ETSendDataReceiver"/>
+        
+		<!-- ET Service handlers for handling location updates -->
+		<service android:name="com.exacttarget.etpushsdk.ETLocationTimeoutService"/>
+		<service android:name="com.exacttarget.etpushsdk.ETLocationWakeupService"/>
+		<service android:name="com.exacttarget.etpushsdk.ETGeofenceIntentService"/>
+		
+        <!-- ET Service handlers for sending data (required) -->
+		<service android:name="com.exacttarget.etpushsdk.ETSendDataIntentService"/>
+		
+		<!-- ET Demo Activities -->
+        <activity android:label="@string/title_activity_home" android:name="com.exacttarget.demo.etsdkdemo.HomeActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_cloudpages" android:name="com.exacttarget.demo.etsdkdemo.CloudPageActivity" android:screenOrientation="portrait">
+        </activity>
+        <activity android:label="@string/title_activity_open_direct_demo" android:name="com.exacttarget.demo.etsdkdemo.OpenDirectDemo">
+        </activity>
+        <activity android:label="Landing Page" android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter">
+        </activity>
+        
+        <!-- Stuff for google maps in test app -->
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyACQ1AHeP1imLH4KFZK8TiFdoVN41Iq1-U"/>
+        
+    </application>
+
+</manifest>
