@@ -72,13 +72,13 @@ public class HomeActivity extends FragmentActivity {
 			//restore saved user preference attributes to the screen and pushmanager
 			String firstName = getPreferenceForKey(FirstNameKey);
 			if (firstName != null && firstName.length() > 0) {
-				ETPush.pushManager().addAtributeNamedValue("FirstName",	firstName);
+				ETPush.pushManager().addAttribute("FirstName",	firstName);
 				txtFirstName.setText(firstName);
 			}
 	  
 			String lastName = getPreferenceForKey(LastNameKey);
 			if (lastName != null && lastName.length() > 0) {
-				ETPush.pushManager().addAtributeNamedValue("LastName", lastName);
+				ETPush.pushManager().addAttribute("LastName", lastName);
 				txtLastName.setText(lastName);
 			}
 	
@@ -107,12 +107,12 @@ public class HomeActivity extends FragmentActivity {
 						if(txtFirstName.getText() != null && txtFirstName.getText().toString().length() > 0) {
 							String firstName = txtFirstName.getText().toString();
 							updatePreferencesForKey(FirstNameKey, firstName);
-							ETPush.pushManager().addAtributeNamedValue("FirstName", firstName);
+							ETPush.pushManager().addAttribute("FirstName", firstName);
 						}
 						if(txtLastName.getText() != null && txtLastName.getText().toString().length() > 0) {
 							String lastName = txtLastName.getText().toString();
 							updatePreferencesForKey(LastNameKey, lastName);
-							ETPush.pushManager().addAtributeNamedValue("LastName", lastName);
+							ETPush.pushManager().addAttribute("LastName", lastName);
 						}
 						if(txtEmailAddress.getText() != null && txtEmailAddress.getText().toString().length() > 0) {
 							String emailAddress = txtEmailAddress.getText().toString();
