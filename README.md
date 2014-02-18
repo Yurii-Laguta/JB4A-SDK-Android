@@ -6,6 +6,12 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 
 ## Release History
 
+### Version 3.1.1
+
+#### Major Notes
+* Add Interfaces for EventBus Listeners. Helps ensure that listener methods are implemented properly.
+* Add checks to readyAimFire() to ensure the required permissions, receivers, and services exist in the ApplicationManifest.xml. Throws ETException if they don't.
+
 ### Version 3.1
 
 #### Major Notes

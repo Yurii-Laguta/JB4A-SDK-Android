@@ -21,6 +21,7 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
 import com.exacttarget.etpushsdk.event.LastKnownLocationEvent;
+import com.exacttarget.etpushsdk.event.LastKnownLocationEventListener;
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,7 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends FragmentActivity implements LastKnownLocationEventListener {
 	private static final String TAG = "HomeActivity";
 
 	private static final String FirstNameKey = "FirstName";
@@ -225,7 +226,8 @@ public class HomeActivity extends FragmentActivity {
 	 * @param event
 	 */
 	private Marker me = null;
-	public void onEventLocationChanged(final LastKnownLocationEvent event) {
+	@Override
+	public void onEvent(final LastKnownLocationEvent event) {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
