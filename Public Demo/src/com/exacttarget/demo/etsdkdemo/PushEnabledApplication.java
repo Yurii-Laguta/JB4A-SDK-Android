@@ -24,12 +24,11 @@ public class PushEnabledApplication extends Application {
 			//ETPush.readyAimFire(this, "373466d1-4fe3-48bf-a57b-6ceec7a5aed5", "b6tdbz9rm6jbyq7yydk3wrrw", true, true);
 			
 			//Automated Testing app
+			ETPush.setLogLevel(Log.WARN);
 			ETPush.readyAimFire(this, "02f60bbe-ccbb-4043-b4f7-144c9ddbba54", "qqsu6htzqw6yh36rqgwskmk5", true, true, true);
-
 			ETPush pushManager = ETPush.pushManager();
-			
 			pushManager.setGcmSenderID("1072910018575");
-			
+
 			//A good practice is to add the versionName of your app from the manifest as a tag
 			//so you can target specific app versions with a push message later if necessary.
 			String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
@@ -41,7 +40,6 @@ public class PushEnabledApplication extends Application {
 		catch (NameNotFoundException e) {
 			Log.e(TAG, e.getMessage(), e);
 		}
-
 	}
 
 }
