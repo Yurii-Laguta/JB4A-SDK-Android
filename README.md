@@ -9,12 +9,12 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 ### Version 3.1.2
 
 #### Major Notes
-MPUSH-1941 - Fix expectation of no message per period (geofences)
-MPUSH-1926 - Sometimes geofences aren't monitored after device reboot
-MPUSH-1858 - Don't use ORMLite's built-in reference counting so developers can still use it.
-MPUSH-1725 - VACUUM internal SQLite DB to keep size small.
-MPUSH-1697 - Validate AndroidManifest.xml on startup and throw ETException if missing required options.
-MPUSH-1556 - fenceID was not being sent with Stats.
+* MPUSH-1941 - Fix expectation of no message per period (geofences)
+* MPUSH-1926 - Sometimes geofences aren't monitored after device reboot
+* MPUSH-1858 - Don't use ORMLite's built-in reference counting so developers can still use it.
+* MPUSH-1725 - VACUUM internal SQLite DB to keep size small.
+* MPUSH-1697 - Validate AndroidManifest.xml on startup and throw ETException if missing required options.
+* MPUSH-1556 - fenceID was not being sent with Stats.
 
 ### Version 3.1.1 (internal release)
 
