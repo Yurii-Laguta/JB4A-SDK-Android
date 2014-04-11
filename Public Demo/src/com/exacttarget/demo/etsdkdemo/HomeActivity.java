@@ -21,6 +21,11 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
 import com.exacttarget.etpushsdk.event.LastKnownLocationEvent;
+import com.exacttarget.etpushsdk.event.LastKnownLocationEventListener;
+import com.exacttarget.etpushsdk.event.RegistrationEvent;
+import com.exacttarget.etpushsdk.event.RegistrationEventListener;
+import com.exacttarget.etpushsdk.event.ServerErrorEvent;
+import com.exacttarget.etpushsdk.event.ServerErrorEventListener;
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,7 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends FragmentActivity implements RegistrationEventListener, ServerErrorEventListener, LastKnownLocationEventListener {
 	private static final String TAG = "HomeActivity";
 
 	private static final String FirstNameKey = "FirstName";
@@ -220,12 +225,30 @@ public class HomeActivity extends FragmentActivity {
 	}
 	
 	/**
+	 * Example to listen on the event bus for successful registrations with ET. Print out the deviceId and token for reference.
+	 * @param event
+	 */
+	public void onEvent(final RegistrationEvent event) {
+		Log.i(TAG, "DeviceId: " + event.getDeviceId());
+		Log.i(TAG, "GCM Token: " + event.getDeviceToken());
+	}
+	
+	/**
+	 * If the ExactTarget server sends us an error code containing a response message, we can capture and display it here.
+	 * @param event
+	 */
+	public void onEvent(final ServerErrorEvent event) {
+		Log.e(TAG, "ServerErrorEvent: " + event.getMessage());
+	}
+	
+	/**
 	 * Example of registering with the EventBus to send us events we might care about. In this case, we get notified each time ETLocationManager
 	 * finds a new current location (about every 15 minutes)
 	 * @param event
 	 */
 	private Marker me = null;
-	public void onEventLocationChanged(final LastKnownLocationEvent event) {
+	@Override
+	public void onEvent(final LastKnownLocationEvent event) {
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
