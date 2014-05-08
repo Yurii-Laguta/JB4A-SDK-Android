@@ -1,5 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/EatActionBar</item>
+    </style>
+    
+    <!-- general styles for the action bar -->
+    <style name="EatActionBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@drawable/actionbar_background</item>
+    </style>
 
 </resources>

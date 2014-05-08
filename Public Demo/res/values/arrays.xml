@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="nfl_teamNames">
+        <item>Dallas Cowboys</item>
+        <item>Green Bay Packers</item>
+        <item>New York Giants</item>
+        <item>Pittsburg Steelers</item>
+        <item>Indianapolis Colts</item>
+    </array>
+
+    <array name="nfl_teamKeys">
+        <item>cowboys</item>
+        <item>packers</item>
+        <item>giants</item>
+        <item>steelers</item>
+        <item>colts</item>
+    </array>
+
+    <array name="fc_teamNames">
+        <item>Arsenal FC</item>
+        <item>Chelsea FC</item>
+        <item>Manchester United FC</item>
+        <item>Real Madrid FC</item>
+        <item>FC Barcelona</item>
+    </array>
+
+    <array name="fc_teamKeys">
+        <item>arsenal</item>
+        <item>chelsea</item>
+        <item>manu</item>
+        <item>rmadrid</item>
+        <item>fcbarc</item>
+    </array>
+
+
+</resources>

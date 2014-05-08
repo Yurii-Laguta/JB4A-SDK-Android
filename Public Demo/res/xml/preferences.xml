@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+            android:title="@string/pref_personal_info_title"
+            android:key="pref_personal_info_settings">
+
+        <EditTextPreference
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:defaultValue=""
+                android:key="pref_first_name"
+                android:dialogMessage="@string/pref_first_name_summ"
+                android:summary="@string/pref_first_name_summ"
+                android:title="@string/pref_first_name"/>
+
+        <EditTextPreference
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:defaultValue=""
+                android:key="pref_last_name"
+                android:dialogMessage="@string/pref_last_name_summ"
+                android:summary="@string/pref_last_name_summ"
+                android:title="@string/pref_last_name"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="@string/pref_notify_category_title"
+            android:key="pref_key_notify_settings">
+        <CheckBoxPreference
+                android:key="pref_push"
+                android:title="@string/pref_push"
+                android:summary="@string/pref_push_summ"
+                android:defaultValue="false"/>
+
+        <CheckBoxPreference
+                android:key="pref_geo"
+                android:title="@string/pref_geo"
+                android:summary="@string/pref_geo_summ"
+                android:defaultValue="false"/>
+
+        <CheckBoxPreference
+                android:key="pref_use_custom_ringtone"
+                android:title="@string/pref_use_custom_ringtone"
+                android:summaryOn="@string/pref_use_custom_ringtone_summ_on"
+                android:summaryOff="@string/pref_use_custom_ringtone_summ_off"
+                android:defaultValue="false"/>
+
+        <RingtonePreference
+                android:dependency="pref_use_custom_ringtone"
+                android:key="pref_custom_ringtone"
+                android:title="@string/pref_custom_ringtone"
+                android:summary="@string/pref_custom_ringtone_summ"
+                android:ringtoneType="notification"
+                android:showDefault="true"
+                android:showSilent="true"/>
+
+        <CheckBoxPreference
+                android:key="pref_vibrate"
+                android:title="@string/pref_vibrate"
+                android:summaryOn="@string/pref_vibrate_summ_on"
+                android:summaryOff="@string/pref_vibrate_summ_off"
+                android:defaultValue="false"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>
