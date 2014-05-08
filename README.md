@@ -1,66 +1,45 @@
-# ExactTarget MobilePush SDK for Android
+# PublicDemo App
 
-This is the git repository for the ET MobilePush SDK for Android. 
+## About
+This is the PublicDemo App for Android. It serves two purposes:
 
-For more information, please see [Code@ExactTarget](http://code.exacttarget.com).
+- Provide an example or template for creating Android apps that use the Exact Target Android SDK.
+- Provide a UI for testing various features of the SDK, as well as feedback as to what it's doing. 
 
-## Release History
+## Fully Functional APK
+The APKFiles folder contains et-publicdemo-x.x.x-RELEASE.apk (where x.x.x is the current version of the PublicDemo App) which can be downloaded to experience the Android SDK immediately before writing any code.
 
-### Version 3.1.2
+This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
-#### Major Notes
-* MPUSH-1941 - Fix expectation of no message per period (geofences)
-* MPUSH-1926 - Sometimes geofences aren't monitored after device reboot
-* MPUSH-1858 - Don't use ORMLite's built-in reference counting so developers can still use it.
-* MPUSH-1725 - VACUUM internal SQLite DB to keep size small.
-* MPUSH-1697 - Validate AndroidManifest.xml on startup and throw ETException if missing required options.
-* MPUSH-1556 - fenceID was not being sent with Stats.
+To test the Location (Geo Fencing) aspects of the SDK, you can use an app on your device that will mock locations (for example Fake GPS, found here: https://play.google.com/store/apps/details?id=com.lexa.fakegps.  After installing (it will require you to set your device to allow Mock Locations), once you set a location to any of the stadiums of the teams found in the Settings Page of the app, you should receive a notification welcoming you to that stadium.  The Notification, when clicked, will open to the webpage for that team.
 
-### Version 3.1.1 (internal release)
+Not only can you see how the SDK works, but you can initiate messages from within this app.  Normally, you wouldn't include sending features within your app, however, this app provides a closed loop to allow you to initiate and receive messages within the same app.  This will allow you to put all the pieces together to see how the SDK works.
 
-#### Major Notes
-* Add Interfaces for EventBus Listeners. Helps ensure that listener methods are implemented properly.
-* Add checks to readyAimFire() to ensure the required permissions, receivers, and services exist in the ApplicationManifest.xml. Throws ETException if they don't.
+## Code
+The code in this repository includes all of the code used to run the fully functional apk.  However, the API keys have been removed.  If you would like to debug the app or make any adjustments to create your own demo, you will need to provide several keys within the CONSTS_API class, as follows:
 
-### Version 3.1
+You can save both Development and Production keys in the CONSTS_API class, but for a debugging/test app, you only need to define the development keys.
 
-#### Major Notes
-* Added Support for Geofence messaging
-* Added Support for CloudPage messages. Both retrieved from the server (inbox) as well as a push message.
-* Centralized support for how app backgrounding was handled.
-* Add ability to turn on/off features in the call to ETPush.readyAimFire().
+The following keys are keys you normally use to create an app that uses the Android SDK:
 
-### Version 3.0
+1. ET_APP_ID_DEV - the AppId for your development app as defined in the AppCenter section of the Marketing Cloud
+2. ET_ACCESS_TOKEN_DEV - the Access Token for your development app as defined in the AppCenter section of the Marketing Cloud
+3. GCM_SENDER_ID_DEV - the Google Cloud Messaging ID as defined in the Google Cloud Developers Console for your app
 
-#### Major Notes
-* Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
-* Support for Action/Uri type of Intents when notification is tapped.
-* Ability to customize the notification and Intent by extending ET_GenericReceiver.
-* ETAnalytics changes to use onPause() and onResume() for more accurate time tracking.
-* Internal stability enhancements for returning data to ExactTarget.
-* Removed deprecated GoogleCloudMessaging gcm.jar in favor of GoogleCloudMessaging included in Google Play Services
+The following keys are keys you need if you want to initiate messages within your customized demo:
 
-#### Deprecations
-* **AnalyticsActivity** - Use ETAnalytics directly from each of your Activity's onPause() and onResume()
-* **PushEnabledApplication** - Call ETPush.readyAimFire(this) from your Application's onCreate() to bootstrap instead of extending PushEnabledApplication.
-* **gcm.jar** - Instead of gcm.jar, include GooglePlayServices support in your application. see: http://developer.android.com/google/play-services/setup.html
+1. ET_CLIENT_ID_DEV - the clientId for your development server to server app as defined in the AppCenter section of the Marketing Cloud
+2. ET_CLIENT_SECRET_DEV -  the clientSecret for your development server to server app as defined in the AppCenter section of the Marketing Cloud
+3. ET_MESSAGE_ID_DEV - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud
 
-### Version 2.1
-* Providing a URL in the OpenDirect field through MobilePush will cause the provided URL to load when the notification is selected from the tray. This will *only* work if you have not specified a recipient for OpenDirect payloads. 
+## Marketing Cloud
+To create a development version of the PublicDemo App, you will need to have your app defined within the Exact Target Marketing Cloud
 
-### Version 2.0
+1. Setup your App in the App Center.
+2. Send a request to connect the Google Cloud Messaging project to this app.
+3. Create a Server to Server App to process messages within the demo
+4. Create a template (API Triggered) Message for the app in order to send messages from the demo.
+5. Create messages for your app for each location you'd like to test Geo Fencing.
 
-#### Major Notes
-* Support for Access Tokens in place of Client ID/Secret. Access Token is provided by Code@ExactTarget during app registrations. 
-* Fixed a bug related delivery of payload to notification recipient.
-* Added support for setting Subscriber ID to the record
-* Reworked persistent store internally to better handle pushState
-* Signficant rework of sample app to better demonstrate and comment code.
 
-#### Deprecations
-* **configureSDKWithAppIdAndClientIdAndClientSecret(String etAppId, String clientId, String clientSecret)** - Use **configureSDKWithAppIdAndAccessToken(String etAppId, String accessToken)** instead.
-* **ETPush.pushEnabled** - Use **isPushEnabled()** in conjunction with **enablePush()** or **disablePush()** instead.
 
-### Version 1.0
-
-* First public version
