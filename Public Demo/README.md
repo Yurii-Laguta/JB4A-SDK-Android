@@ -11,6 +11,8 @@ The APKFiles folder contains et-publicdemo-x.x.x-RELEASE.apk (where x.x.x is the
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
+To test the Location (Geo Fencing) aspects of the SDK, you can use an app on your device that will mock locations (for example Fake GPS, found here: https://play.google.com/store/apps/details?id=com.lexa.fakegps.  After installing (it will require you to set your device to allow Mock Locations), once you set a location to any of the stadiums of the teams found in the Settings Page of the app, you should receive a notification welcoming you to that stadium.  The Notification, when clicked, will open to the webpage for that team.
+
 Not only can you see how the SDK works, but you can initiate messages from within this app.  Normally, you wouldn't include sending features within your app, however, this app provides a closed loop to allow you to initiate and receive messages within the same app.  This will allow you to put all the pieces together to see how the SDK works.
 
 ## Code
