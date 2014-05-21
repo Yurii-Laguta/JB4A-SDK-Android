@@ -6,6 +6,14 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 
 ## Release History
 
+### Version 3.1.3
+
+#### Major Notes
+* MPUSH-2041 - Log GPS Failure in LocationManager
+* MPUSH-2166 - Show Notification when GooglePlayServices is out of date instead of dialog box.
+* MPUSH-1859 - Create a modern and more realistic Public Demo app that uses all SDK features. 
+* MPUSH-2167 - Public Demo should show how to use proguard.cfg to be compatible with SDK and it's jar dependencies.
+
 ### Version 3.1.2
 
 #### Major Notes
