@@ -3,7 +3,8 @@
 
     <!-- GENERAL -->
     <string name="app_name">ET Public Demo</string>
-    <string name="menu_discount">Current Discount</string>
+    <string name="menu_discount">Last Discount Received</string>
+    <string name="menu_notification">Last Notification Received</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_debug_settings">Debug Settings</string>
     <string name="menu_about">About</string>
@@ -28,17 +29,6 @@
     <string name="pref_geo">Location Notifications</string>
     <string name="pref_geo_summ">Receive alerts when you are located near your favorite teams</string>
 
-    <string name="pref_use_custom_ringtone">Use Custom Alert Sound</string>
-    <string name="pref_use_custom_ringtone_summ_off">Whistle alert sound will be used</string>
-    <string name="pref_use_custom_ringtone_summ_on">Custom alert sound will be used</string>
-
-    <string name="pref_custom_ringtone">Custom Alert Sound</string>
-    <string name="pref_custom_ringtone_summ">Choose a custom sound to play for alerts.</string>
-    
-    <string name="pref_vibrate">Vibrate</string>
-    <string name="pref_vibrate_summ_off">No vibration when alerts arrive.</string>
-    <string name="pref_vibrate_summ_on">Vibrate when alerts arrive.</string>
-
     <!-- DEBUG SETTINGS -->
     <string name="debug_pref_settings_title">Debug Settings</string>
 
@@ -46,8 +36,8 @@
     <string name="debug_pref_enable_debug_summ_off">Debug logging is off.</string>
     <string name="debug_pref_enable_debug_summ_on">Debug logging is on.</string>
 
-    <string name="debug_pref_collect_logcat">Collect Logcat</string>
-    <string name="debug_pref_collect_logcat_summ">Click to collect debug statements from the device logcat.</string>
+    <string name="debug_pref_collect_logcat">Email Log Data</string>
+    <string name="debug_pref_collect_logcat_summ">Click to email log data.</string>
 
     <!-- Activities -->
     <string name="public_demo_home_activity_title">ET Public Demo Home</string>

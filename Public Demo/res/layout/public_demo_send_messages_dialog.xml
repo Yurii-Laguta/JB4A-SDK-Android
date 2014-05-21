@@ -1,114 +1,186 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarFadeDuration="0">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/demoDisclaimerTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="A disclaimer about why this is here."/>
+
+        <TextView
+                android:id="@+id/messageDescTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/demoDisclaimerTV"
+                android:layout_alignParentLeft="true"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Message: "/>
+
+        <EditText
+                android:id="@+id/messageET"
                 android:layout_width="match_parent"
-                android:layout_height="450dp">
-
-    <TextView
-            android:id="@+id/demoDisclaimerTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="A disclaimer about why this is here."/>
-
-    <TextView
-            android:id="@+id/messageDescTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/demoDisclaimerTV"
-            android:layout_alignParentLeft="true"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Message: "/>
-
-    <EditText
-            android:id="@+id/messageET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/messageDescTV"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:singleLine="true"/>
-
-    <TextView
-            android:id="@+id/tagDescriptor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/messageET"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Team:"/>
-
-    <Spinner
-            android:id="@+id/tagSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/tagDescriptor"/>
-
-    <TextView
-            android:id="@+id/discountDescriptor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tagSpinner"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:text="Discount code:"/>
-
-    <Spinner
-            android:id="@+id/discountSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/discountDescriptor"/>
-
-    <TextView
-            android:id="@+id/separator"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_above="@+id/buttonsLL"
-            android:background="@color/gray"
-            android:padding="0dp"
-            android:paddingTop="5dp"/>
-
-    <LinearLayout
-            android:id="@+id/buttonsLL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="2dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:orientation="horizontal">
-
-        <Button
-                android:id="@+id/sendButton"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Send"/>
+                android:layout_below="@+id/messageDescTV"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:singleLine="true"/>
 
-        <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="100dp"
+        <TextView
+                android:id="@+id/soundDescriptor"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Cancel"/>
-    </LinearLayout>
+                android:layout_below="@+id/messageET"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Sound:"/>
 
-</RelativeLayout>
+        <RadioGroup
+                android:id="@+id/soundRG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/soundDescriptor">
+
+            <RadioButton
+                    android:id="@+id/soundDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Device Default"
+                    android:tag="default"
+                    android:checked="true"/>
+
+            <RadioButton
+                    android:id="@+id/soundCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Custom"
+                    android:tag="custom.caf"/>
+
+            <RadioButton
+                    android:id="@+id/soundNone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="None"
+                    android:tag="none"/>
+
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/openDirectDescriptor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/soundRG"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Open Direct:"/>
+
+        <EditText
+                android:id="@+id/openDirectET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/openDirectDescriptor"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="http:// or https:// required."
+                android:singleLine="true"/>
+
+        <TextView
+                android:id="@+id/discountDescriptor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/openDirectET"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Custom Keys (Discount code):"/>
+
+        <Spinner
+                android:id="@+id/discountSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/discountDescriptor"/>
+
+        <TextView
+                android:id="@+id/tagDescriptor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/discountSpinner"
+                android:textSize="18sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Tag:"/>
+
+        <Spinner
+                android:id="@+id/tagSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/tagDescriptor"/>
+
+        <TextView
+                android:id="@+id/separator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/tagSpinner"
+                android:background="@android:color/black"
+                android:padding="0dp"
+                android:paddingTop="5dp"/>
+
+        <LinearLayout
+                android:id="@+id/buttonsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/separator"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Send"/>
+
+            <Button
+                    android:id="@+id/cancelButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Cancel"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

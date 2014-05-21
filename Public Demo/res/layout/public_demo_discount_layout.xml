@@ -13,16 +13,6 @@
             android:text="@string/placeholder_long"
             android:textIsSelectable="true" />
 
-    <TextView
-            android:id="@+id/expiresTV"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="@string/placeholder_long"
-            android:textIsSelectable="true" />
-
-
     <ImageView
             android:id="@+id/QRcodeIV"
             android:layout_width="fill_parent"

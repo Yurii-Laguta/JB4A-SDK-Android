@@ -39,28 +39,5 @@
                 android:summary="@string/pref_geo_summ"
                 android:defaultValue="false"/>
 
-        <CheckBoxPreference
-                android:key="pref_use_custom_ringtone"
-                android:title="@string/pref_use_custom_ringtone"
-                android:summaryOn="@string/pref_use_custom_ringtone_summ_on"
-                android:summaryOff="@string/pref_use_custom_ringtone_summ_off"
-                android:defaultValue="false"/>
-
-        <RingtonePreference
-                android:dependency="pref_use_custom_ringtone"
-                android:key="pref_custom_ringtone"
-                android:title="@string/pref_custom_ringtone"
-                android:summary="@string/pref_custom_ringtone_summ"
-                android:ringtoneType="notification"
-                android:showDefault="true"
-                android:showSilent="true"/>
-
-        <CheckBoxPreference
-                android:key="pref_vibrate"
-                android:title="@string/pref_vibrate"
-                android:summaryOn="@string/pref_vibrate_summ_on"
-                android:summaryOff="@string/pref_vibrate_summ_off"
-                android:defaultValue="false"/>
-
     </PreferenceCategory>
 </PreferenceScreen>

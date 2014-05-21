@@ -1,12 +1,12 @@
 package com.exacttarget.publicdemo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,9 +43,7 @@ import com.exacttarget.etpushsdk.util.EventBus;
  * @author pvandyk
  */
 
-public class PublicDemoHomeActivity extends Activity {
-
-	private SharedPreferences sp;
+public class PublicDemoHomeActivity extends ActionBarActivity {
 
 	private static final int currentPage = CONSTS.HOME_ACTIVITY;
 	private static final String TAG = PublicDemoHomeActivity.class.getName();
@@ -55,7 +53,7 @@ public class PublicDemoHomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.public_demo_home_layout);
 
-		getActionBar().setTitle(R.string.public_demo_home_activity_title);
+		getSupportActionBar().setTitle(R.string.public_demo_home_activity_title);
 
 		// EventBus.getDefault()
 		//
@@ -70,7 +68,7 @@ public class PublicDemoHomeActivity extends Activity {
 				//
 				//		GCM requires each app to opt in when a version changes.
 				//		This will be handled by the SDK, so calling enablePush at the start of this activity ensures no one drops off without intentionally requesting to be removed
-				ETPush.pushManager().enablePush(this);
+				ETPush.pushManager().enablePush();
 			}
 		}
 		catch (ETException e) {
@@ -78,9 +76,6 @@ public class PublicDemoHomeActivity extends Activity {
 				Log.e(TAG, e.getMessage(), e);
 			}
 		}
-
-		sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
-
 	}
 
 	@Override
@@ -185,6 +180,7 @@ public class PublicDemoHomeActivity extends Activity {
 		}
 		sb.append("<br/><br/>");
 
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
 		if (!sp.getString(CONSTS.KEY_PREF_FIRST_NAME, "").isEmpty() && !sp.getString(CONSTS.KEY_PREF_LAST_NAME, "").isEmpty()) {
 			// have settings!
 			// the settings activity ensures that no other settings can be set until the first and last name are set.
@@ -228,26 +224,6 @@ public class PublicDemoHomeActivity extends Activity {
 				}
 				sb.append("Error determining if Location (Geo Fencing) is enabled.");
 			}
-
-			// CUSTOM SOUND REQUESTED
-			sb.append("<br/>");
-			sb.append("<i>Custom Sound Requested:</i>  ");
-
-			boolean customSoundRequested = sp.getBoolean(CONSTS.KEY_PREF_USE_CUSTOM_RINGTONE, false);
-			sb.append(customSoundRequested);
-
-			if (customSoundRequested) {
-				// custom sound requested, so show the custom sound
-				// CUSTOM SOUND
-				sb.append("<br/>");
-				sb.append("<i>Custom Sound:</i>  ");
-				sb.append(Utils.getRingtoneName(sp.getString(CONSTS.KEY_PREF_CUSTOM_RINGTONE, "")));
-			}
-
-			// VIBRATION REQUESTED
-			sb.append("<br/>");
-			sb.append("<i>Vibration Requested:</i>  ");
-			sb.append(sp.getBoolean(CONSTS.KEY_PREF_VIBRATE, false));
 
 			if (pushEnabled | locationEnabled) {
 				// NFL SUBSCRIPTIONS
@@ -315,12 +291,13 @@ public class PublicDemoHomeActivity extends Activity {
 
 			// no settings have been set, show that message and ask if they want to set them.
 			// Show Settings set so far
-			sb.append("You have not setup this app yet.  Please open the Settings to set the teams you are interested in.");
+			String message = "Please open Settings to add attributes, enable Push Notifications, and add teams to be notified about.";
+			sb.append(message);
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setIcon(android.R.drawable.ic_dialog_info);
 			builder.setTitle("Add Settings");
-			builder.setMessage("You haven't subscribed to any team notifications. Open Settings to subscribe.");
+			builder.setMessage(message);
 			builder.setNegativeButton("Cancel", null);
 			builder.setPositiveButton("Open Settings", new DialogInterface.OnClickListener() {
 				@Override

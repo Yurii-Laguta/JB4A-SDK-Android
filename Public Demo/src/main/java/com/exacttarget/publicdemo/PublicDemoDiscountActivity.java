@@ -1,10 +1,11 @@
 package com.exacttarget.publicdemo;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,9 +16,8 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
 
 import java.io.InputStream;
-import java.util.Calendar;
 
-public class PublicDemoDiscountActivity extends Activity {
+public class PublicDemoDiscountActivity extends ActionBarActivity {
 	private int currentPage = CONSTS.DISCOUNT_ACTIVITY;
 
 	private SharedPreferences sp;
@@ -31,8 +31,8 @@ public class PublicDemoDiscountActivity extends Activity {
 
 		sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
 
-		getActionBar().setTitle(R.string.public_demo_discount_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setTitle(R.string.public_demo_discount_activity_title);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 	}
 
@@ -109,43 +109,29 @@ public class PublicDemoDiscountActivity extends Activity {
 
 	private void prepareDisplay() {
 
-		if (sp.contains(CONSTS.KEY_PREF_DISCOUNT_END_DATE)) {
-			Calendar currDate = Calendar.getInstance();
-			Calendar discountEndDate = Calendar.getInstance();
-			discountEndDate.setTimeInMillis(sp.getLong(CONSTS.KEY_PREF_DISCOUNT_END_DATE, currDate.getTimeInMillis()));
+		if (sp.contains(CONSTS.KEY_PREF_DISCOUNT)) {
+			String message = sp.getString(CONSTS.KEY_PREF_DISCOUNT_MESSAGE, "");
+			String imageFile = sp.getString(CONSTS.KEY_PREF_DISCOUNT_IMAGE_FILE, "");
 
-			Utils.setToMidnight(currDate);
-			Utils.setToMidnight(discountEndDate);
-
-			if (discountEndDate.before(currDate)) {
+			if (message.isEmpty() | imageFile.isEmpty()) {
 				showNoDiscounts();
 			}
 			else {
-				String message = sp.getString(CONSTS.KEY_PREF_DISCOUNT_MESSAGE, "");
-				String imageFile = sp.getString(CONSTS.KEY_PREF_DISCOUNT_IMAGE_FILE, "");
 
-				if (message.isEmpty() | imageFile.isEmpty()) {
-					showNoDiscounts();
+				TextView messageTV = (TextView) findViewById((R.id.messageTV));
+				messageTV.setText(message + "\n\n" + "Custom Keys (Discount Code):  " + sp.getInt(CONSTS.KEY_PREF_DISCOUNT, -1));
+
+				try {
+					InputStream ims = getAssets().open(imageFile);
+					// load image as Drawable
+					Drawable d = Drawable.createFromStream(ims, null);
+
+					ImageView qrIV = (ImageView) findViewById(R.id.QRcodeIV);
+					qrIV.setImageDrawable(d);
 				}
-				else {
-					TextView messageTV = (TextView) findViewById((R.id.messageTV));
-					messageTV.setText(message);
-
-					TextView expiresTV = (TextView) findViewById((R.id.expiresTV));
-					expiresTV.setText(("Expires TODAY!"));
-
-					try {
-						InputStream ims = getAssets().open(imageFile);
-						// load image as Drawable
-						Drawable d = Drawable.createFromStream(ims, null);
-
-						ImageView qrIV = (ImageView) findViewById(R.id.QRcodeIV);
-						qrIV.setImageDrawable(d);
-					}
-					catch (Exception e) {
-						if (ETPush.getLogLevel() <= Log.ERROR) {
-							Log.e(TAG, e.getMessage(), e);
-						}
+				catch (Exception e) {
+					if (ETPush.getLogLevel() <= Log.ERROR) {
+						Log.e(TAG, e.getMessage(), e);
 					}
 				}
 			}
@@ -154,13 +140,11 @@ public class PublicDemoDiscountActivity extends Activity {
 			showNoDiscounts();
 		}
 
-
 	}
 
 	private void showNoDiscounts() {
 		TextView messageTV = (TextView) findViewById((R.id.messageTV));
-		messageTV.setText("No discounts at this time.  Stay tuned!");
-		TextView expiresTV = (TextView) findViewById((R.id.expiresTV));
-		expiresTV.setText("");
+		messageTV.setText("Problem finding discount information.");
+		messageTV.setTypeface(null, Typeface.BOLD);
 	}
 }

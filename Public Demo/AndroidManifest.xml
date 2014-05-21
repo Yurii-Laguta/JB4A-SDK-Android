@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1000042" android:versionName="1.0.0-SNAPSHOT" package="com.exacttarget.publicdemo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1000055" android:versionName="1.0.0-SNAPSHOT" package="com.exacttarget.publicdemo">
 
-    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="19"/>
-    
+   	<!-- Android version. Your project can support any versions.  But minimum is version 10 and maximum is 19. -->
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
+	<!-- Android version. -->
+	   
     <!-- ExactTarget required permissions -->
     <permission android:name="com.exacttarget.publicdemo.permission.C2D_MESSAGE" android:protectionLevel="signature"/> <!-- CHANGE ME - Creates localized permission to receive -->
     <uses-permission android:name="com.exacttarget.publicdemo.permission.C2D_MESSAGE"/> <!-- CHANGE ME to match your package name - Localized permission to receive messages -->
@@ -42,7 +44,8 @@
                 <category android:name="com.exacttarget.publicdemo"/>
             </intent-filter>
         </receiver>
-
+        <!-- ET Broadcast Receiver -->
+       
 		<!-- ET Broadcast Receivers for handling location updates -->
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.location.receiver.LocationChangedReceiver"/>
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.location.receiver.PassiveLocationChangedReceiver"/>
@@ -55,6 +58,12 @@
 		
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.ETLocationTimeoutReceiver"/>
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.ETLocationWakeupReceiver"/>
+        <receiver android:name="com.exacttarget.etpushsdk.ETLocationProviderChangeReceiver">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.ETGeofenceReceiver"/>
 				
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.location.receiver.BootReceiver">
@@ -62,22 +71,26 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>  
+		<!-- ET Broadcast Receivers for handling location updates -->
 
 		<!-- ET Broadcast Receivers for for sending data (required) -->
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.ETSendDataReceiver"/>
-        
+ 		<!-- ET Broadcast Receivers for for sending data (required) -->
+       
 		<!-- ET Service handlers for handling location updates -->
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETLocationTimeoutService"/>
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETLocationWakeupService"/>
+        <service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETLocationProviderChangeService"/>
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETGeofenceIntentService"/>
+		<!-- ET Service handlers for handling location updates -->
 
         <!-- ET Service handlers for sending data (required) -->
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETSendDataIntentService"/>
         <!-- ET Service handlers for sending data (required) -->
 
-        <!-- ET Activity required for Cloud Page or Open Direct URLs sent from Code@ -->
+        <!-- ET Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
         <activity android:label="Landing Page" android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter"/>
-        <!-- ET Activity required for Cloud Page or Open Direct URLs sent from Code@ -->
+        <!-- ET Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
 
         <!-- ET Demo Activities -->
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name=".PublicDemoHomeActivity" android:screenOrientation="portrait">
@@ -93,9 +106,13 @@
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name=".PublicDemoAboutActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name=".PublicDemoSettingsActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name=".PublicDemoDebugSettingsActivity" android:screenOrientation="portrait"/>
+        <!-- ET Demo Activities -->
 
-         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-
+        <!-- Google Play Services version.  Using the resource file will require your project contain the Google Play services project. -->
+        <!-- See Google documentation for more information -->
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <!-- Google Play Services version. -->
+        
     </application>
 
 </manifest>

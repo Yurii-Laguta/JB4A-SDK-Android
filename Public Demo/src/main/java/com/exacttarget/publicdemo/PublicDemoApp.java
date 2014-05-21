@@ -2,7 +2,9 @@ package com.exacttarget.publicdemo;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
@@ -62,6 +64,16 @@ public class PublicDemoApp extends Application {
 				// Production values are used by default.  So, only call setDevelopment() for your testing.  To Test Your Production app settings, you can comment this line out.
 				//
 				CONSTS_API.setDevelopment();
+			}
+			else {
+				// A production build, which normally doesn't have debugging turned on.
+				// However, PublicDemoDebugSettingsActivity allows you to override the debug level.  Set it now.
+				SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
+				boolean enableDebug = sp.getBoolean(CONSTS.KEY_DEBUG_PREF_ENABLE_DEBUG, false);
+
+				if (enableDebug) {
+					ETPush.setLogLevel(Log.DEBUG);
+				}
 			}
 
 			// ETPush.readyAimFire

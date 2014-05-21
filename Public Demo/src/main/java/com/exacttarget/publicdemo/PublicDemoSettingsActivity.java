@@ -1,17 +1,8 @@
 package com.exacttarget.publicdemo;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.preference.*;
 import android.util.Log;
 import android.view.Menu;
@@ -85,8 +76,10 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getActionBar().setTitle(R.string.public_demo_settings_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		if (android.os.Build.VERSION.SDK_INT >= 11) {
+			getActionBar().setTitle(R.string.public_demo_settings_activity_title);
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 
 		sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
 
@@ -142,10 +135,10 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 	protected void onStop() {
 		super.onStop();
 
-		//re-register with ET to send the subscription tags that changed.
+		//re-register with ET to send the subscription tags and attributes that changed.
 		try {
 			if (ETPush.pushManager().isPushEnabled()) {
-				ETPush.pushManager().enablePush(this);
+				ETPush.pushManager().enablePush();
 			}
 		}
 		catch (ETException e) {
@@ -351,11 +344,11 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 
 				try {
 					if (newPrefPush) {
-						ETPush.pushManager().enablePush(PublicDemoSettingsActivity.this);
 						addAttributes();
+						ETPush.pushManager().enablePush();
 					}
 					else {
-						ETPush.pushManager().disablePush(PublicDemoSettingsActivity.this);
+						ETPush.pushManager().disablePush();
 					}
 
 					enablePushDependentPrefs();
@@ -398,7 +391,6 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 				try {
 					if (newPrefGeo) {
 						ETLocationManager.locationManager().startWatchingLocation();
-						addAttributes();
 					}
 					else {
 						ETLocationManager.locationManager().stopWatchingLocation();
@@ -409,86 +401,6 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 				catch (ETException e) {
 					if (ETPush.getLogLevel() <= Log.ERROR) {
 						Log.e(TAG, e.getMessage(), e);
-					}
-				}
-				return true;
-			}
-		});
-
-		//
-		// ENABLE CUSTOM RINGTONE PREFERENCE
-		//
-		final Preference crPref = findPreference(CONSTS.KEY_PREF_CUSTOM_RINGTONE);
-		assert crPref != null;
-
-		CheckBoxPreference ucrPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_USE_CUSTOM_RINGTONE);
-		assert ucrPref != null;
-
-		ucrPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-			@Override
-			public boolean onPreferenceChange(Preference pref, Object newValue) {
-				if ((Boolean) newValue && !sp.contains(CONSTS.KEY_PREF_CUSTOM_RINGTONE)) {
-					// want to use custom sound, but none set yet, so set to default sound
-					String customRingtoneStr = "content://settings/system/notification_sound";
-					SharedPreferences.Editor spEdit = sp.edit();
-					spEdit.putString(CONSTS.KEY_PREF_CUSTOM_RINGTONE, customRingtoneStr);
-					spEdit.commit();
-
-					setCustomSoundSummary(crPref, true, customRingtoneStr);
-				}
-				else {
-
-					if (!(Boolean) newValue) {
-						AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-						switch (am.getRingerMode()) {
-							case AudioManager.RINGER_MODE_SILENT:
-								break;
-							case AudioManager.RINGER_MODE_VIBRATE:
-								break;
-							default:
-								// a custom sound will not be used, so play the sound that will be used.
-								MediaPlayer mPlayer = MediaPlayer.create(PublicDemoApp.context(), R.raw.custom);
-								mPlayer.start();
-								break;
-						}
-					}
-
-					setCustomSoundSummary(crPref, (Boolean) newValue, null);
-				}
-
-				return true;
-			}
-		});
-
-		//
-		// CUSTOM NOTIFICATION PREFERENCE
-		//
-		setCustomSoundSummary(crPref, null, null);
-
-		crPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference pref, Object newValue) {
-
-				setCustomSoundSummary(crPref, null, (String) newValue);
-				return true;
-			}
-		});
-
-		CheckBoxPreference cvPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_VIBRATE);
-		assert cvPref != null;
-		cvPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference pref, Object newValue) {
-
-				AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-				if ((Boolean) newValue) {
-					if (am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-						Vibrator v = (Vibrator) PublicDemoApp.context().getSystemService(Context.VIBRATOR_SERVICE);
-						v.vibrate(CONSTS.NOTIFICATION_CUSTOM_VIBRATE_PATTERN, -1);
 					}
 				}
 				return true;
@@ -566,50 +478,6 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 		});
 
 		prefCat.addPreference(cbp);
-	}
-
-	//
-	// setCustomSoundSummary
-	//
-	// Set the summary for the custom sound based on the the sound selected and whether the user has selected to use a custom ringtone.
-	//
-	private void setCustomSoundSummary(Preference crPref, Boolean useCustomRingtone, String ringtoneStr) {
-
-		if (useCustomRingtone == null) {
-			useCustomRingtone = sp.getBoolean(CONSTS.KEY_PREF_USE_CUSTOM_RINGTONE, false);
-		}
-
-		if (ringtoneStr == null) {
-			if (sp.contains(CONSTS.KEY_PREF_CUSTOM_RINGTONE)) {
-				ringtoneStr = sp.getString(CONSTS.KEY_PREF_CUSTOM_RINGTONE, null);
-			}
-		}
-
-		if (ringtoneStr == null | !useCustomRingtone) {
-			crPref.setSummary(getString(R.string.pref_custom_ringtone_summ));
-		}
-		else {
-			try {
-
-				Uri defaultRingtoneUri = RingtoneManager.getActualDefaultRingtoneUri(PublicDemoApp.context(), RingtoneManager.TYPE_NOTIFICATION);
-				String name;
-
-				if (ringtoneStr.equals(defaultRingtoneUri.getPath())) {
-					Ringtone defaultRingtone = RingtoneManager.getRingtone(PublicDemoApp.context(), defaultRingtoneUri);
-					name = defaultRingtone.getTitle(getApplicationContext());
-				}
-				else {
-					name = Utils.getRingtoneName(ringtoneStr);
-				}
-				crPref.setSummary(name);
-			}
-			catch (Exception e) {
-				if (ETPush.getLogLevel() <= Log.ERROR) {
-					Log.e(TAG, e.getMessage(), e);
-				}
-				crPref.setSummary(getString(R.string.pref_custom_ringtone_summ));
-			}
-		}
 	}
 
 	//

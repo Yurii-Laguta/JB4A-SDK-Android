@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * MessageContact to provide data to Middle Tier to send a message to a list of devices or subscribers.
@@ -13,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author awestberg
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MessageContact implements Serializable {
-	private static final long serialVersionUID = 1L;
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class MessageContact {
 
 	@JsonProperty("InclusionTags")
 	private ArrayList<String> inclusionTags;
@@ -31,11 +32,11 @@ public class MessageContact implements Serializable {
 	@JsonProperty("MessageText")
 	private String messageText;
 
-	@JsonProperty("SendTime")
-	private String sendTime = "2012-10-31 09:00";
-
 	@JsonProperty("Sound")
-	private String sound = "custom.caf";
+	private String sound;
+
+	@JsonProperty("OpenDirect")
+	private String openDirect;
 
 	@JsonProperty("CustomKeys")
 	private HashMap<String,String> customKeys;
@@ -80,20 +81,20 @@ public class MessageContact implements Serializable {
 		this.messageText = messageText;
 	}
 
-	public String getSendTime() {
-		return sendTime;
-	}
-
-	public void setSendTime(String sendTime) {
-		this.sendTime = sendTime;
-	}
-
 	public String getSound() {
 		return sound;
 	}
 
 	public void setSound(String sound) {
 		this.sound = sound;
+	}
+
+	public String getOpenDirect() {
+		return openDirect;
+	}
+
+	public void setOpenDirect(String openDirect) {
+		this.openDirect = openDirect;
 	}
 
 	public HashMap<String, String> getCustomKeys() {

@@ -2,13 +2,17 @@ package com.exacttarget.publicdemo;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.*;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
+
+import java.io.File;
 
 /**
  * PublicDemoDebugSettingsActivity is a settings activity to manage debug options within the PublicDemo App.
@@ -42,8 +46,10 @@ public class PublicDemoDebugSettingsActivity extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getActionBar().setTitle(R.string.public_demo_settings_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		if (android.os.Build.VERSION.SDK_INT >= 11) {
+			getActionBar().setTitle(R.string.public_demo_settings_activity_title);
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 
 		sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
 
@@ -163,7 +169,27 @@ public class PublicDemoDebugSettingsActivity extends PreferenceActivity {
 
 		clPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override public boolean onPreferenceClick(Preference preference) {
-				Utils.createLogcatFile();
+
+				try {
+
+					// create attachments:
+					//		1) logcat
+					//		2) ET Database
+					//
+					//	copy to temp location so that the email program can find them.
+					File logcat = Utils.createLogcatFile();
+					File[] attachments = new File[] {Utils.copyFileToTemp(logcat), Utils.copyFileToTemp(PublicDemoApp.context().getDatabasePath("etdb.db"))};
+					Utils.sendEmailToEmailAddress(PublicDemoDebugSettingsActivity.this, "Android Public Demo Debug Info", Html.fromHtml(Utils.formatAboutPage().toString()), attachments);
+
+					// delete file as it has been copied to temp location
+					logcat.delete();
+
+				}
+				catch (Exception e) {
+					if (ETPush.getLogLevel() <= Log.ERROR) {
+						Log.e(TAG, e.getMessage(), e);
+					}
+				}
 				return true;
 			}
 		});

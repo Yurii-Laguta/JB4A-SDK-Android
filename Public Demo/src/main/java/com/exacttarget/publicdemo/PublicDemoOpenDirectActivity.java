@@ -1,19 +1,15 @@
 package com.exacttarget.publicdemo;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import com.exacttarget.etpushsdk.ETException;
-import com.exacttarget.etpushsdk.ETLandingPagePresenter;
 import com.exacttarget.etpushsdk.ETPush;
-
-import java.util.Calendar;
 
 /**
  * PublicDemoOpenDirectActivity is an activity that will display the URL sent with the payload
@@ -26,7 +22,7 @@ import java.util.Calendar;
  * @author pvandyk
  */
 
-public class PublicDemoOpenDirectActivity extends ETLandingPagePresenter {
+public class PublicDemoOpenDirectActivity extends ActionBarActivity {
 	private int currentPage = CONSTS.OPENDIRECT_ACTIVITY;
 	private static final String TAG = PublicDemoOpenDirectActivity.class.getName();
 
@@ -43,7 +39,9 @@ public class PublicDemoOpenDirectActivity extends ETLandingPagePresenter {
 		//
 		this.getIntent().putExtra("loadURL", this.getIntent().getExtras().getString("open_direct_payload"));
 		super.onCreate(savedInstanceState);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		prepareDisplay();
 	}
 
 	@Override
@@ -90,5 +88,28 @@ public class PublicDemoOpenDirectActivity extends ETLandingPagePresenter {
 				Log.e(TAG, e.getMessage(), e);
 			}
 		}
+	}
+
+	private void prepareDisplay() {
+		getSupportActionBar().setTitle("Loading");
+
+		LinearLayout ll = new LinearLayout(this);
+		ll.setOrientation(LinearLayout.VERTICAL);
+		ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+		ll.setGravity(Gravity.CENTER);
+
+		WebView webView = new WebView(this);
+		webView.loadUrl(this.getIntent().getExtras().getString("loadURL"));
+		ll.addView(webView);
+
+		webView.setWebViewClient(new WebViewClient() {
+
+			public void onPageFinished(WebView view, String url) {
+				getSupportActionBar().setTitle(view.getTitle());
+			}
+		});
+
+		setContentView(ll);
+
 	}
 }
