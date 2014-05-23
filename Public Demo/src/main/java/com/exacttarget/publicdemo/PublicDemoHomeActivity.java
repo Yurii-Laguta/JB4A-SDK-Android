@@ -3,9 +3,7 @@ package com.exacttarget.publicdemo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -18,8 +16,12 @@ import android.widget.TextView;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
+import com.exacttarget.etpushsdk.data.Attribute;
 import com.exacttarget.etpushsdk.event.RegistrationEvent;
 import com.exacttarget.etpushsdk.util.EventBus;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * PublicDemoHomeActivity is the primary activity in the PublicDemo App.
@@ -180,8 +182,22 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 		}
 		sb.append("<br/><br/>");
 
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PublicDemoApp.context());
-		if (!sp.getString(CONSTS.KEY_PREF_FIRST_NAME, "").isEmpty() && !sp.getString(CONSTS.KEY_PREF_LAST_NAME, "").isEmpty()) {
+		// get the Attributes saved with Exact Target registration for this device
+		ArrayList<Attribute> attributes;
+		try {
+			attributes = ETPush.pushManager().getAttributes();
+		}
+		catch (ETException e) {
+			if (ETPush.getLogLevel() <= Log.ERROR) {
+				Log.e(TAG, e.getMessage(), e);
+			}
+			attributes = new ArrayList<Attribute>();
+		}
+
+		Attribute firstNameAttrib = getAttribute(attributes, CONSTS.KEY_ATTRIB_FIRST_NAME);
+		Attribute lastNameAttrib = getAttribute(attributes, CONSTS.KEY_ATTRIB_LAST_NAME);
+
+		if (firstNameAttrib != null && lastNameAttrib != null) {
 			// have settings!
 			// the settings activity ensures that no other settings can be set until the first and last name are set.
 
@@ -193,12 +209,12 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 			// FIRST NAME
 			sb.append("<br/>");
 			sb.append("<i>First Name:</i>  ");
-			sb.append(sp.getString(CONSTS.KEY_PREF_FIRST_NAME, ""));
+			sb.append(firstNameAttrib.getValue());
 
 			// LAST NAME
 			sb.append("<br/>");
 			sb.append("<i>Last Name:</i>  ");
-			sb.append(sp.getString(CONSTS.KEY_PREF_LAST_NAME, ""));
+			sb.append(lastNameAttrib.getValue());
 
 			// NOTIFICATION SETTINGS
 			sb.append("<br/><br/>");
@@ -225,6 +241,18 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 				sb.append("Error determining if Location (Geo Fencing) is enabled.");
 			}
 
+			// get the tags that have been saved with Exact Target registration for this device
+			HashSet<String> tags;
+			try {
+				tags = ETPush.pushManager().getTags();
+			}
+			catch (ETException e) {
+				if (ETPush.getLogLevel() <= Log.ERROR) {
+					Log.e(TAG, e.getMessage(), e);
+				}
+				tags = new HashSet<String>();
+			}
+
 			if (pushEnabled | locationEnabled) {
 				// NFL SUBSCRIPTIONS
 				sb.append("<br/><br/>");
@@ -235,7 +263,7 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 
 				int num_NFL_subs = 0;
 				for (int i = 0; i < nflTeamNames.length; i++) {
-					if (sp.getBoolean(nflTeamKeys[i], false)) {
+					if (tags.contains(nflTeamKeys[i])) {
 						setSubLine(sb, nflTeamNames[i]);
 						num_NFL_subs++;
 					}
@@ -255,7 +283,7 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 
 				int numSoccerSubs = 0;
 				for (int i = 0; i < fcTeamNames.length; i++) {
-					if (sp.getBoolean(fcTeamKeys[i], false)) {
+					if (tags.contains(fcTeamKeys[i])) {
 						setSubLine(sb, fcTeamNames[i]);
 						numSoccerSubs++;
 					}
@@ -315,6 +343,15 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 	private void setSubLine(StringBuilder sb, String teamName) {
 		sb.append("<br/>");
 		sb.append(teamName);
+	}
+
+	private Attribute getAttribute(ArrayList<Attribute> attributes, String key) {
+		for (Attribute attribute : attributes) {
+			if (attribute.getKey().equals(key)) {
+				return attribute;
+			}
+		}
+		return null;
 	}
 
 	// onEvent(RegistrationEvent event)

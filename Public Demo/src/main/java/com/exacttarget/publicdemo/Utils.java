@@ -137,8 +137,11 @@ public class Utils {
 			webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
 		}
 		webView.setBackgroundColor(0x00000000);
-
 		webView.setScrollbarFadingEnabled(false);
+
+		if (android.os.Build.VERSION.SDK_INT >= 11) {
+			webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+		}
 	}
 
 	public static void flashError(final EditText et, String message) {
