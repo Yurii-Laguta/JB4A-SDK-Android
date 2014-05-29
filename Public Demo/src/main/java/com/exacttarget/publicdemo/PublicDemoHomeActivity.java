@@ -182,7 +182,7 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 		}
 		sb.append("<br/><br/>");
 
-		// get the Attributes saved with Exact Target registration for this device
+		// get the Attributes saved with ExactTarget registration for this device
 		ArrayList<Attribute> attributes;
 		try {
 			attributes = ETPush.pushManager().getAttributes();
@@ -241,7 +241,7 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 				sb.append("Error determining if Location (Geo Fencing) is enabled.");
 			}
 
-			// get the tags that have been saved with Exact Target registration for this device
+			// get the tags that have been saved with ExactTarget registration for this device
 			HashSet<String> tags;
 			try {
 				tags = ETPush.pushManager().getTags();
@@ -325,7 +325,7 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 			sb.append("<br/>");
 			sb.append("This App serves the following purposes:<br/>");
 			sb.append("<ul>");
-			sb.append("<li>Provides an example or template for creating Android apps that use the Exact Target MobilePush SDK.</li><br/>");
+			sb.append("<li>Provides an example or template for creating Android apps that use the ExactTarget MobilePush SDK.</li><br/>");
 			sb.append("<li>Provides a UI for testing various features of the MobilePush SDK.</li><br/>");
 			sb.append("<li>Provides a mechanism to collect and send debugging information.</li>");
 			sb.append("</ul>");
