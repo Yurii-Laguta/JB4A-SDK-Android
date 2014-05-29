@@ -1,13 +1,16 @@
-# PublicDemo App
+# PublicDemo App for MobilePush SDK
 
 ## About
-This is the PublicDemo App for Android. It serves two purposes:
+This is the PublicDemo App for the MobilePush SDK. It serves these purposes:
 
-- Provide an example or template for creating Android apps that use the Exact Target Android SDK.
-- Provide a UI for testing various features of the SDK, as well as feedback as to what it's doing. 
+- Provides an example or template for creating Android apps that use the ExactTarget MobilePush SDK.
+- Provides a UI for testing various features of the MobilePush SDK.
+- Provides a mechanism to collect and send debugging information.
 
 ## Fully Functional APK
 The APKFiles folder contains et-publicdemo-x.x.x-RELEASE.apk (where x.x.x is the current version of the PublicDemo App) which can be downloaded to experience the Android SDK immediately before writing any code.
+
+If you would rather download the Public Demo from the Play Store under the name ET Developer Public Demo.
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
@@ -42,7 +45,7 @@ We have included the most recent version of Google Play Services, which is requi
 We have also included the most recent version of the Android Compatiblity Library, which is required in order to use PublicDemoApp on older versions of Android.  You should check the documentation for using the Compatiblity Library in your project and make the necessary adjustments needed based on the development environment you use.
 
 ## Marketing Cloud
-To create a development version of the PublicDemo App, you will need to have your app defined within the Exact Target Marketing Cloud:
+To create a development version of the PublicDemo App, you will need to have your app defined within the ExactTarget Marketing Cloud:
 
 1. Setup your App in the App Center.
 2. Send a request to connect the Google Cloud Messaging project to this app.
