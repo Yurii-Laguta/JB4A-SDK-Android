@@ -317,17 +317,44 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 			sendMessages.setVisibility(View.GONE);
 			sep.setVisibility(View.GONE);
 
+			// show information about this demo app
+			sb.append("<b>ET Public Demo App for MobilePush SDK</b><br/>");
+			sb.append("<br/>");
+			sb.append("This is the PublicDemo App for the MobilePush SDK a key component of ");
+			sb.append("<a href=\"http://www.exacttarget.com/products/mobile-marketing\">Mobile Marketing</a> for your company.<br/>");
+			sb.append("<br/>");
+			sb.append("This App serves the following purposes:<br/>");
+			sb.append("<ul>");
+			sb.append("<li>Provides an example or template for creating Android apps that use the Exact Target MobilePush SDK.</li><br/>");
+			sb.append("<li>Provides a UI for testing various features of the MobilePush SDK.</li><br/>");
+			sb.append("<li>Provides a mechanism to collect and send debugging information.</li>");
+			sb.append("</ul>");
+			sb.append("For more information about the MobilePush SDK, see ");
+			sb.append("<a href=\"https://code.exacttarget.com/api/mobilepush-sdks\">Code@</a><br/>");
+			sb.append("<br/>");
+			sb.append("To see the code for this Public Demo, please see the gitHub repository for the Android MobilePush SDK found ");
+			sb.append("<a href=\"https://github.com/ExactTarget/MobilePushSDK-Android\">here</a>");
+			sb.append(" and then open the Public Demo folder.<br/>");
+			sb.append("<br/>");
+			sb.append("In order to use this app, you will need to open the Settings screen.  Add your name and then enable Push and Location Settings.  Then add several teams to your subscription list.<br/>");
+			sb.append("<br/>");
+			sb.append("It will take approximately 15 minutes for your Push registration to take effect.  Once you have waited at least 15 minutes, you can click on the Send Messages button which will appear on the bottom of this screen once Settings are completed.<br/>");
+			sb.append("<br/>");
+			sb.append("Normally, sending messages to devices is done from the Marketing Cloud.  However, in order to provide a fully functional demo, you are able to send a message to yourself (as if you had sent it from the Marketing Cloud).<br/>");
+			sb.append("<br/>");
+			sb.append("You may also want to be notified about entering or exiting specific locations.  See the Public Demo README file on ");
+			sb.append("<a href=\"https://github.com/ExactTarget/MobilePushSDK-Android\">gitHub</a> for more information.<br/>");
+
 			// no settings have been set, show that message and ask if they want to set them.
 			// Show Settings set so far
-			String message = "Please open Settings to add attributes, enable Push Notifications, and add teams to be notified about.";
-			sb.append(message);
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setIcon(android.R.drawable.ic_dialog_info);
 			builder.setTitle("Add Settings");
+			String message = "This is the ET Public Demo App for the MobilePush SDK.\n\nPress Cancel for further information.\n\nOtherwise, press Settings to add attributes, enable Push and Location Notifications, and add teams to your subscription list.";
 			builder.setMessage(message);
 			builder.setNegativeButton("Cancel", null);
-			builder.setPositiveButton("Open Settings", new DialogInterface.OnClickListener() {
+			builder.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					Intent settingsActivity = new Intent(PublicDemoHomeActivity.this, PublicDemoSettingsActivity.class);
