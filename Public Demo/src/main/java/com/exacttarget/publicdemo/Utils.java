@@ -20,13 +20,16 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
+import com.exacttarget.etpushsdk.data.Attribute;
 import com.exacttarget.etpushsdk.data.DeviceData;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * UTILS
@@ -118,7 +121,7 @@ public class Utils {
 				return true;
 
 			case R.id.menu_about:
-				intent = new Intent(activity, PublicDemoAboutActivity.class);
+				intent = new Intent(activity, PublicDemoInfoActivity.class);
 				activity.startActivity(intent);
 				return true;
 		}
@@ -255,7 +258,7 @@ public class Utils {
 		return dst;
 	}
 
-	public static StringBuilder formatAboutPage() {
+	public static StringBuilder formatInfoPage() {
 		StringBuilder sb = new StringBuilder();
 
 		// APP TITLE
@@ -268,8 +271,11 @@ public class Utils {
 			PackageInfo packageInfo = PublicDemoApp.context().getPackageManager()
 					.getPackageInfo(PublicDemoApp.context().getPackageName(), 0);
 			sb.append("<br/>");
-			sb.append("<i>App Version:</i> ");
+			sb.append("<i>App Version Name:</i> ");
 			sb.append(packageInfo.versionName);
+			sb.append("<br/>");
+			sb.append("<i>App Version Code:</i> ");
+			sb.append(packageInfo.versionCode);
 		}
 		catch (Exception e) {
 			if (ETPush.getLogLevel() <= Log.ERROR) {
@@ -290,10 +296,10 @@ public class Utils {
 		// PRODUCTION OR DEVELOPMENT??
 		sb.append("<br/><br/>");
 		if (CONSTS_API.isDevelopment()) {
-			sb.append("<b>Using Development App Keys</b>");
+			sb.append("<b>Development App Keys</b>");
 		}
 		else {
-			sb.append("<b>Using Production App Keys</b>");
+			sb.append("<b>Production App Keys</b>");
 		}
 
 		// App ID
@@ -326,15 +332,15 @@ public class Utils {
 		sb.append("<i>Message Id:</i> ");
 		sb.append(Utils.obfuscateString(CONSTS_API.getMessageId()));
 
-		// PUSH SETTINGS
 		sb.append("<br/>");
 		sb.append("<br/>");
-		sb.append("<b>Push Settings</b> ");
 
 		ETPush pushManager = null;
+		boolean pushEnabled = false;
 
 		try {
 			pushManager = ETPush.pushManager();
+			pushEnabled = pushManager.isPushEnabled();
 		}
 		catch (Exception e) {
 			if (ETPush.getLogLevel() <= Log.ERROR) {
@@ -342,87 +348,161 @@ public class Utils {
 			}
 		}
 
-		if (pushManager == null) {
-			sb.append("<br/>");
-			sb.append("PushManager not available.");
-		}
-		else {
-
-			// PUSH ENABLED
-			sb.append("<br/>");
-			sb.append("<i>Push Enabled:</i> ");
-			sb.append(pushManager.isPushEnabled());
-
-			if (pushManager.isPushEnabled()) {
-
-				// DEVICE TOKEN
-				sb.append("<br/>");
-				sb.append("<i>Device Token:</i> ");
-
-				try {
-					sb.append(pushManager.getDeviceToken());
-				}
-				catch (Exception e) {
-					sb.append("None.");
-				}
-
-				// DEVICE Id
-				sb.append("<br/>");
-				sb.append("<i>Device Id:</i> ");
-				sb.append(new DeviceData().uniqueDeviceIdentifier(PublicDemoApp.context()));
-
-				// OPEN DEVICE RECIPIENT
-				sb.append("<br/>");
-				sb.append("<i>Open Direct Recipient:</i> ");
-
-				try {
-					sb.append(pushManager.getOpenDirectRecipient().getName());
-				}
-				catch (Exception e) {
-					sb.append("None");
-				}
-
-				// NOTIFICATION RECIPIENT
-				sb.append("<br/>");
-				sb.append("<i>Notification Recipient:</i> ");
-
-				try {
-					sb.append(pushManager.getNotificationRecipientClass().getName());
-				}
-				catch (Exception e) {
-					sb.append("None");
-				}
-			}
-		}
-
-		// LOCATION SETTINGS
-		sb.append("<br/>");
-		sb.append("<br/>");
-		sb.append("<b>Location Settings</b> ");
-
-		ETLocationManager locationManager = null;
-
+		// show the settings that have been set
+		// get the Attributes saved with ExactTarget registration for this device
+		ArrayList<Attribute> attributes;
 		try {
-			locationManager = ETLocationManager.locationManager();
+			attributes = ETPush.pushManager().getAttributes();
 		}
-		catch (Exception e) {
+		catch (ETException e) {
 			if (ETPush.getLogLevel() <= Log.ERROR) {
 				Log.e(TAG, e.getMessage(), e);
 			}
+			attributes = new ArrayList<Attribute>();
 		}
 
-		if (locationManager == null) {
-			sb.append("<br/>");
-			sb.append("Geo Fencing not available.");
+		Attribute firstNameAttrib = Utils.getAttribute(attributes, CONSTS.KEY_ATTRIB_FIRST_NAME);
+		Attribute lastNameAttrib = Utils.getAttribute(attributes, CONSTS.KEY_ATTRIB_LAST_NAME);
+
+		// PERSONAL SETTINGS
+		sb.append("<b>Attributes</b>");
+
+		// FIRST NAME
+		sb.append("<br/>");
+		sb.append("<i>First Name:</i>  ");
+		sb.append(firstNameAttrib.getValue());
+
+		// LAST NAME
+		sb.append("<br/>");
+		sb.append("<i>Last Name:</i>  ");
+		sb.append(lastNameAttrib.getValue());
+
+		// NOTIFICATION SETTINGS
+		sb.append("<br/><br/>");
+		sb.append("<b>Notification Settings</b>");
+
+		// PUSH ENABLED
+		sb.append("<br/>");
+		sb.append("<i>Push Enabled:</i>  ");
+		sb.append(pushEnabled);
+
+		// LOCATION ENABLED
+		sb.append("<br/>");
+		sb.append("<i>Location (Geo Fencing) Enabled:</i>  ");
+
+		boolean locationEnabled = false;
+		try {
+			locationEnabled = ETLocationManager.locationManager().isWatchingLocation();
+			sb.append(locationEnabled);
 		}
-		else {
-			// LOCATION MANAGEMENT ENABLED
+		catch (ETException e) {
+			if (ETPush.getLogLevel() <= Log.ERROR) {
+				Log.e(TAG, e.getMessage(), e);
+			}
+			sb.append("Error determining if Location (Geo Fencing) is enabled.");
+		}
+
+		if (pushManager.isPushEnabled()) {
+
+			// DEVICE TOKEN
 			sb.append("<br/>");
-			sb.append("<i>Geo Fencing Enabled:</i> ");
-			sb.append(locationManager.isWatchingLocation());
+			sb.append("<i>Device Token:</i> ");
+
+			try {
+				sb.append(pushManager.getDeviceToken());
+			}
+			catch (Exception e) {
+				sb.append("None.");
+			}
+
+			// DEVICE Id
+			sb.append("<br/>");
+			sb.append("<i>Device Id:</i> ");
+			sb.append(new DeviceData().uniqueDeviceIdentifier(PublicDemoApp.context()));
+
+			// OPEN DEVICE RECIPIENT
+			sb.append("<br/>");
+			sb.append("<i>Open Direct Recipient:</i> ");
+
+			try {
+				sb.append(pushManager.getOpenDirectRecipient().getName());
+			}
+			catch (Exception e) {
+				sb.append("None");
+			}
+
+			// NOTIFICATION RECIPIENT
+			sb.append("<br/>");
+			sb.append("<i>Notification Recipient:</i> ");
+
+			try {
+				sb.append(pushManager.getNotificationRecipientClass().getName());
+			}
+			catch (Exception e) {
+				sb.append("None");
+			}
+		}
+
+		// get the tags that have been saved with ExactTarget registration for this device
+		HashSet<String> tags;
+		try {
+			tags = ETPush.pushManager().getTags();
+		}
+		catch (ETException e) {
+			if (ETPush.getLogLevel() <= Log.ERROR) {
+				Log.e(TAG, e.getMessage(), e);
+			}
+			tags = new HashSet<String>();
+		}
+
+		if (pushEnabled | locationEnabled) {
+			// NFL TEAM TAGS
+			sb.append("<br/><br/>");
+			sb.append("<b>NFL Team Tags</b>");
+
+			String[] nflTeamNames = PublicDemoApp.context().getResources().getStringArray(R.array.nfl_teamNames);
+			String[] nflTeamKeys = PublicDemoApp.context().getResources().getStringArray(R.array.nfl_teamKeys);
+
+			int num_NFL_subs = 0;
+			for (int i = 0; i < nflTeamNames.length; i++) {
+				if (tags.contains(nflTeamKeys[i])) {
+					setSubLine(sb, nflTeamNames[i]);
+					num_NFL_subs++;
+				}
+			}
+
+			if (num_NFL_subs == 0) {
+				sb.append("<br/>");
+				sb.append("No NFL team tags.");
+			}
+
+			// SOCCER TEAM TAGS
+			sb.append("<br/><br/>");
+			sb.append("<b>FC Team Tags</b>");
+
+			String[] fcTeamNames = PublicDemoApp.context().getResources().getStringArray(R.array.fc_teamNames);
+			String[] fcTeamKeys = PublicDemoApp.context().getResources().getStringArray(R.array.fc_teamKeys);
+
+			int numSoccerSubs = 0;
+			for (int i = 0; i < fcTeamNames.length; i++) {
+				if (tags.contains(fcTeamKeys[i])) {
+					setSubLine(sb, fcTeamNames[i]);
+					numSoccerSubs++;
+				}
+			}
+
+			if (numSoccerSubs == 0) {
+				sb.append("<br/>");
+				sb.append("No FC team tags.");
+			}
 		}
 
 		return sb;
+	}
+
+	private static void setSubLine(StringBuilder sb, String teamName) {
+		sb.append("<br/>");
+		sb.append(teamName);
 	}
 
 	public static String getLoglevelText(int loglevel) {
@@ -485,5 +565,14 @@ public class Utils {
 
 			}
 		});
+	}
+
+	public static Attribute getAttribute(ArrayList<Attribute> attributes, String key) {
+		for (Attribute attribute : attributes) {
+			if (attribute.getKey().equals(key)) {
+				return attribute;
+			}
+		}
+		return null;
 	}
 }

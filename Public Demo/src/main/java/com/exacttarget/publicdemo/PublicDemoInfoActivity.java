@@ -11,18 +11,18 @@ import com.exacttarget.etpushsdk.ETPush;
 import com.exacttarget.etpushsdk.util.EventBus;
 
 /**
- * PublicDemoAboutActivity will display information about the PublicDemo App.
+ * PublicDemoInfoActivity will display information about the PublicDemo App.
  *
  * This activity extends Activity to provide key information about the app that is running.
  * *
  * @author pvandyk
  */
 
-public class PublicDemoAboutActivity extends ActionBarActivity {
+public class PublicDemoInfoActivity extends ActionBarActivity {
 
 	private int currentPage = CONSTS.ABOUT_ACTIVITY;
 
-	private static final String TAG = PublicDemoAboutActivity.class.getName();
+	private static final String TAG = PublicDemoInfoActivity.class.getName();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -101,6 +101,6 @@ public class PublicDemoAboutActivity extends ActionBarActivity {
 	}
 
 	private void prepareDisplay() {
-		Utils.setWebView (this, R.id.aboutWV, Utils.formatAboutPage(), true);
+		Utils.setWebView (this, R.id.aboutWV, Utils.formatInfoPage(), true);
 	}
 }

@@ -51,8 +51,8 @@ import com.exacttarget.etpushsdk.ETPush;
  *
  * 	       All of this work is done locally and not through the SDK.
  *
- * 		5) Subscriptions
- * 	       These show examples of using Tags to allow your customers to select which type of notification they are interested in
+ * 		5) Team Tags
+ * 	       The Team Tags show examples of using Tags to allow your customers to select which type of notification they are interested in
  * 	       receiving.  The example within this PublicDemo App are sports teams.  The tags are sent to the Marketing Cloud and can
  * 	       be used to select customers to send the notification to.
  *
@@ -91,7 +91,7 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setIcon(android.R.drawable.ic_dialog_info);
 		builder.setTitle("Delayed Update");
-		builder.setMessage("Any updates to these Settings will take approximately 15 minutes to take effect.  Before sending a message, you should wait 15 minutes for the new values to take effect.");
+		builder.setMessage("Any updates to any of these Preferences will take approximately 15 minutes to take effect.  Before sending a message, you should wait 15 minutes for the new values to take effect.");
 		builder.setPositiveButton("OK", null);
 		builder.create().show();
 
@@ -135,7 +135,7 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 	protected void onStop() {
 		super.onStop();
 
-		//re-register with ET to send the subscription tags and attributes that changed.
+		//re-register with ET to send the tags and attributes that changed.
 		try {
 			if (ETPush.pushManager().isPushEnabled()) {
 				ETPush.pushManager().enablePush();
@@ -412,7 +412,7 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 		//
 		PreferenceScreen ps = getPreferenceScreen();
 		PreferenceCategory nfl_prefCat = new PreferenceCategory(this);
-		nfl_prefCat.setTitle("NFL Subscriptions");
+		nfl_prefCat.setTitle("NFL Team Tags");
 		nfl_prefCat.setKey(CONSTS.KEY_PREF_CAT_NFL);
 		ps.addPreference(nfl_prefCat);
 
@@ -426,7 +426,7 @@ public class PublicDemoSettingsActivity extends PreferenceActivity {
 		// SOCCER TEAMS PREFERENCE
 		//
 		PreferenceCategory fc_prefCat = new PreferenceCategory(this);
-		fc_prefCat.setTitle("FC Subscriptions");
+		fc_prefCat.setTitle("FC Team Tags");
 		fc_prefCat.setKey(CONSTS.KEY_PREF_CAT_FC);
 		ps.addPreference(fc_prefCat);
 

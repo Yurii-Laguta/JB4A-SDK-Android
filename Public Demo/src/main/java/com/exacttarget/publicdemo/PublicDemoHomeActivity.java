@@ -25,22 +25,22 @@ import java.util.HashSet;
 
 /**
  * PublicDemoHomeActivity is the primary activity in the PublicDemo App.
- *
+ * <p/>
  * This activity extends Activity to provide the primary interface for user interaction.
- *
+ * <p/>
  * It calls several methods in order to link to the ET Android SDK:
- *
- * 		1) To get notified of events that occur within the SDK, call
- * 	       EventBus.getDefault().register() in onCreate() and
- * 	       EventBus.getDefault().unregister(); in onDestroy()
- *
- * 	    2) To ensure that registrations stay current with Google Cloud Messaging,
- * 	       call ETPush.pushManager().enablePush() if push is enabled for this
- * 	       device.  You would call ETPush.pushManager().isPushEnabled() to determine
- * 	       if push is enabled.
- *
- * 	    3) To provide analytics about the usage of your app, call ETPush.pushManager().activityResumed();
- * 	       in onResume() and ETPush.pushManager().activityPaused() in onPause().
+ * <p/>
+ * 1) To get notified of events that occur within the SDK, call
+ * EventBus.getDefault().register() in onCreate() and
+ * EventBus.getDefault().unregister(); in onDestroy()
+ * <p/>
+ * 2) To ensure that registrations stay current with Google Cloud Messaging,
+ * call ETPush.pushManager().enablePush() if push is enabled for this
+ * device.  You would call ETPush.pushManager().isPushEnabled() to determine
+ * if push is enabled.
+ * <p/>
+ * 3) To provide analytics about the usage of your app, call ETPush.pushManager().activityResumed();
+ * in onResume() and ETPush.pushManager().activityPaused() in onPause().
  *
  * @author pvandyk
  */
@@ -163,16 +163,6 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 		Button sendMessages = (Button) findViewById(R.id.sendMessagesButton);
 		TextView sep = (TextView) findViewById(R.id.separator);
 
-		boolean pushEnabled = false;
-		try {
-			pushEnabled = ETPush.pushManager().isPushEnabled();
-		}
-		catch (ETException e) {
-			if (ETPush.getLogLevel() <= Log.ERROR) {
-				Log.e(TAG, e.getMessage(), e);
-			}
-		}
-
 		// PRODUCTION OR DEVELOPMENT??
 		if (CONSTS_API.isDevelopment()) {
 			sb.append("<b>Using Development App Keys</b>");
@@ -181,6 +171,39 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 			sb.append("<b>Using Production App Keys</b>");
 		}
 		sb.append("<br/><br/>");
+
+		sendMessages.setVisibility(View.GONE);
+		sep.setVisibility(View.GONE);
+
+		// show information about this demo app
+		sb.append("<b>ET Public Demo App for MobilePush SDK</b><br/>");
+		sb.append("<br/>");
+		sb.append("This is the PublicDemo App for the MobilePush SDK a key component of ");
+		sb.append("<a href=\"http://www.exacttarget.com/products/mobile-marketing\">Mobile Marketing</a> for your company.<br/>");
+		sb.append("<br/>");
+		sb.append("This App serves the following purposes:<br/>");
+		sb.append("<ul>");
+		sb.append("<li>Provides an example or template for creating Android apps that use the ExactTarget MobilePush SDK.</li><br/>");
+		sb.append("<li>Provides a UI for testing various features of the MobilePush SDK.</li><br/>");
+		sb.append("<li>Provides a mechanism to collect and send debugging information.</li>");
+		sb.append("</ul>");
+		sb.append("For more information about the MobilePush SDK, see ");
+		sb.append("<a href=\"https://code.exacttarget.com/api/mobilepush-sdks\">Code@</a><br/>");
+		sb.append("<br/>");
+		sb.append("To see the code for this Public Demo, please see the gitHub repository for the Android MobilePush SDK found ");
+		sb.append("<a href=\"https://github.com/ExactTarget/MobilePushSDK-Android\">here</a>");
+		sb.append(" and then open the Public Demo folder.<br/>");
+		sb.append("<br/>");
+		sb.append("In order to use this app, you will need to open the Preferences screen.  Add your name and then enable Push and Location Settings.  Then add several teams to the team tag list.<br/>");
+		sb.append("<br/>");
+		sb.append("If you enable Location Settings, you can receive a notification when you enter or leave the vicinity of any team stadium in the team tag list.<br/>");
+		sb.append("<br/>");
+		sb.append("It will take approximately 15 minutes for your Push registration to take effect.  Once you have waited at least 15 minutes, you can click on the Send Messages button which will show at the bottom of this screen (when Preferences are complete).<br/>");
+		sb.append("<br/>");
+		sb.append("Normally, sending messages to devices is done from the Marketing Cloud.  However, in order to provide a fully functional demo, you are able to send a message to yourself (as if you had sent it from the Marketing Cloud).<br/>");
+		sb.append("<br/>");
+		sb.append("You may also want to use this demo app to test Location notifications.  You can do this by entering or exiting stadium locations for the teams listed in Preferences.  If you don't live near one of these stadiums, there are programs available on Google Play that will fake your location.  See the Public Demo README file on ");
+		sb.append("<a href=\"https://github.com/ExactTarget/MobilePushSDK-Android\">gitHub</a> for more information.<br/>");
 
 		// get the Attributes saved with ExactTarget registration for this device
 		ArrayList<Attribute> attributes;
@@ -194,191 +217,59 @@ public class PublicDemoHomeActivity extends ActionBarActivity {
 			attributes = new ArrayList<Attribute>();
 		}
 
-		Attribute firstNameAttrib = getAttribute(attributes, CONSTS.KEY_ATTRIB_FIRST_NAME);
-		Attribute lastNameAttrib = getAttribute(attributes, CONSTS.KEY_ATTRIB_LAST_NAME);
+		Attribute firstNameAttrib = Utils.getAttribute(attributes, CONSTS.KEY_ATTRIB_FIRST_NAME);
+		Attribute lastNameAttrib = Utils.getAttribute(attributes, CONSTS.KEY_ATTRIB_LAST_NAME);
 
-		if (firstNameAttrib != null && lastNameAttrib != null) {
-			// have settings!
-			// the settings activity ensures that no other settings can be set until the first and last name are set.
-
-			// show the settings that have been set
-
-			// PERSONAL SETTINGS
-			sb.append("<b>Attributes</b>");
-
-			// FIRST NAME
-			sb.append("<br/>");
-			sb.append("<i>First Name:</i>  ");
-			sb.append(firstNameAttrib.getValue());
-
-			// LAST NAME
-			sb.append("<br/>");
-			sb.append("<i>Last Name:</i>  ");
-			sb.append(lastNameAttrib.getValue());
-
-			// NOTIFICATION SETTINGS
-			sb.append("<br/><br/>");
-			sb.append("<b>Notification Settings</b>");
-
-			// PUSH ENABLED
-			sb.append("<br/>");
-			sb.append("<i>Push Enabled:</i>  ");
-			sb.append(pushEnabled);
-
-			// LOCATION ENABLED
-			sb.append("<br/>");
-			sb.append("<i>Location (Geo Fencing) Enabled:</i>  ");
-
-			boolean locationEnabled = false;
-			try {
-				locationEnabled = ETLocationManager.locationManager().isWatchingLocation();
-				sb.append(locationEnabled);
-			}
-			catch (ETException e) {
-				if (ETPush.getLogLevel() <= Log.ERROR) {
-					Log.e(TAG, e.getMessage(), e);
-				}
-				sb.append("Error determining if Location (Geo Fencing) is enabled.");
-			}
-
-			// get the tags that have been saved with ExactTarget registration for this device
-			HashSet<String> tags;
-			try {
-				tags = ETPush.pushManager().getTags();
-			}
-			catch (ETException e) {
-				if (ETPush.getLogLevel() <= Log.ERROR) {
-					Log.e(TAG, e.getMessage(), e);
-				}
-				tags = new HashSet<String>();
-			}
-
-			if (pushEnabled | locationEnabled) {
-				// NFL SUBSCRIPTIONS
-				sb.append("<br/><br/>");
-				sb.append("<b>NFL Subscriptions (Tags)</b>");
-
-				String[] nflTeamNames = getResources().getStringArray(R.array.nfl_teamNames);
-				String[] nflTeamKeys = getResources().getStringArray(R.array.nfl_teamKeys);
-
-				int num_NFL_subs = 0;
-				for (int i = 0; i < nflTeamNames.length; i++) {
-					if (tags.contains(nflTeamKeys[i])) {
-						setSubLine(sb, nflTeamNames[i]);
-						num_NFL_subs++;
-					}
-				}
-
-				if (num_NFL_subs == 0) {
-					sb.append("<br/>");
-					sb.append("No NFL subscriptions.");
-				}
-
-				// SOCCER SUBSCRIPTIONS
-				sb.append("<br/><br/>");
-				sb.append("<b>FC Subscriptions (Tags)</b>");
-
-				String[] fcTeamNames = getResources().getStringArray(R.array.fc_teamNames);
-				String[] fcTeamKeys = getResources().getStringArray(R.array.fc_teamKeys);
-
-				int numSoccerSubs = 0;
-				for (int i = 0; i < fcTeamNames.length; i++) {
-					if (tags.contains(fcTeamKeys[i])) {
-						setSubLine(sb, fcTeamNames[i]);
-						numSoccerSubs++;
-					}
-				}
-
-				if (numSoccerSubs == 0) {
-					sb.append("<br/>");
-					sb.append("No FC subscriptions.");
-				}
-			}
-
-			if (pushEnabled) {
-				sendMessages.setVisibility(View.VISIBLE);
-				sep.setVisibility(View.VISIBLE);
-
-				sendMessages.setOnClickListener(new View.OnClickListener() {
-					@Override public void onClick(View v) {
-						PublicDemoSendMessagesDialog smDialog = new PublicDemoSendMessagesDialog(PublicDemoHomeActivity.this);
-						smDialog.setCancelable(true);
-						smDialog.show();
-					}
-				});
-			}
-			else {
-				sendMessages.setVisibility(View.GONE);
-				sep.setVisibility(View.GONE);
-			}
-		}
-		else {
-
-			sendMessages.setVisibility(View.GONE);
-			sep.setVisibility(View.GONE);
-
-			// show information about this demo app
-			sb.append("<b>ET Public Demo App for MobilePush SDK</b><br/>");
-			sb.append("<br/>");
-			sb.append("This is the PublicDemo App for the MobilePush SDK a key component of ");
-			sb.append("<a href=\"http://www.exacttarget.com/products/mobile-marketing\">Mobile Marketing</a> for your company.<br/>");
-			sb.append("<br/>");
-			sb.append("This App serves the following purposes:<br/>");
-			sb.append("<ul>");
-			sb.append("<li>Provides an example or template for creating Android apps that use the ExactTarget MobilePush SDK.</li><br/>");
-			sb.append("<li>Provides a UI for testing various features of the MobilePush SDK.</li><br/>");
-			sb.append("<li>Provides a mechanism to collect and send debugging information.</li>");
-			sb.append("</ul>");
-			sb.append("For more information about the MobilePush SDK, see ");
-			sb.append("<a href=\"https://code.exacttarget.com/api/mobilepush-sdks\">Code@</a><br/>");
-			sb.append("<br/>");
-			sb.append("To see the code for this Public Demo, please see the gitHub repository for the Android MobilePush SDK found ");
-			sb.append("<a href=\"https://github.com/ExactTarget/MobilePushSDK-Android\">here</a>");
-			sb.append(" and then open the Public Demo folder.<br/>");
-			sb.append("<br/>");
-			sb.append("In order to use this app, you will need to open the Settings screen.  Add your name and then enable Push and Location Settings.  Then add several teams to your subscription list.<br/>");
-			sb.append("<br/>");
-			sb.append("It will take approximately 15 minutes for your Push registration to take effect.  Once you have waited at least 15 minutes, you can click on the Send Messages button which will appear on the bottom of this screen once Settings are completed.<br/>");
-			sb.append("<br/>");
-			sb.append("Normally, sending messages to devices is done from the Marketing Cloud.  However, in order to provide a fully functional demo, you are able to send a message to yourself (as if you had sent it from the Marketing Cloud).<br/>");
-			sb.append("<br/>");
-			sb.append("You may also want to be notified about entering or exiting specific locations.  See the Public Demo README file on ");
-			sb.append("<a href=\"https://github.com/ExactTarget/MobilePushSDK-Android\">gitHub</a> for more information.<br/>");
-
+		if (firstNameAttrib == null && lastNameAttrib == null) {
 			// no settings have been set, show that message and ask if they want to set them.
 			// Show Settings set so far
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setIcon(android.R.drawable.ic_dialog_info);
-			builder.setTitle("Add Settings");
-			String message = "This is the ET Public Demo App for the MobilePush SDK.\n\nPress Cancel for further information.\n\nOtherwise, press Settings to add attributes, enable Push and Location Notifications, and add teams to your subscription list.";
+			builder.setTitle("Update Preferences");
+			String message = "This is the ET Public Demo App for the MobilePush SDK.\n\nPress Cancel for further information.\n\nOtherwise, press Preferences to add attributes, enable Push and Location Notifications, and then select several team tags to test notification to tags.";
 			builder.setMessage(message);
 			builder.setNegativeButton("Cancel", null);
-			builder.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+			builder.setPositiveButton("Preferences", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					Intent settingsActivity = new Intent(PublicDemoHomeActivity.this, PublicDemoSettingsActivity.class);
 					startActivity(settingsActivity);
+					dialog.dismiss();
 				}
 			});
 			builder.create().show();
 		}
 
-		Utils.setWebView(this, R.id.homeWV, sb, false);
-	}
+		boolean pushEnabled = false;
 
-	private void setSubLine(StringBuilder sb, String teamName) {
-		sb.append("<br/>");
-		sb.append(teamName);
-	}
-
-	private Attribute getAttribute(ArrayList<Attribute> attributes, String key) {
-		for (Attribute attribute : attributes) {
-			if (attribute.getKey().equals(key)) {
-				return attribute;
+		try {
+			pushEnabled = ETPush.pushManager().isPushEnabled();
+		}
+		catch (Exception e) {
+			if (ETPush.getLogLevel() <= Log.ERROR) {
+				Log.e(TAG, e.getMessage(), e);
 			}
 		}
-		return null;
+
+		if (pushEnabled) {
+			sendMessages.setVisibility(View.VISIBLE);
+			sep.setVisibility(View.VISIBLE);
+
+			sendMessages.setOnClickListener(new View.OnClickListener() {
+				@Override public void onClick(View v) {
+					PublicDemoSendMessagesDialog smDialog = new PublicDemoSendMessagesDialog(PublicDemoHomeActivity.this);
+					smDialog.setCancelable(true);
+					smDialog.show();
+				}
+			});
+		}
+		else {
+			sendMessages.setVisibility(View.GONE);
+			sep.setVisibility(View.GONE);
+		}
+
+		Utils.setWebView(this, R.id.homeWV, sb, false);
 	}
 
 	// onEvent(RegistrationEvent event)

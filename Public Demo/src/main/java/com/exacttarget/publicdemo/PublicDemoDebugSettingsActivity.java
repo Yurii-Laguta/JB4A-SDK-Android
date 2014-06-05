@@ -179,7 +179,7 @@ public class PublicDemoDebugSettingsActivity extends PreferenceActivity {
 					//	copy to temp location so that the email program can find them.
 					File logcat = Utils.createLogcatFile();
 					File[] attachments = new File[] {Utils.copyFileToTemp(logcat), Utils.copyFileToTemp(PublicDemoApp.context().getDatabasePath("etdb.db"))};
-					Utils.sendEmailToEmailAddress(PublicDemoDebugSettingsActivity.this, "Android Public Demo Debug Info", Html.fromHtml(Utils.formatAboutPage().toString()), attachments);
+					Utils.sendEmailToEmailAddress(PublicDemoDebugSettingsActivity.this, "Android Public Demo Debug Info", Html.fromHtml(Utils.formatInfoPage().toString()), attachments);
 
 					// delete file as it has been copied to temp location
 					logcat.delete();
