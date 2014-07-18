@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
+import com.exacttarget.etpushsdk.data.CloudPagesResponse;
 import com.exacttarget.etpushsdk.event.RegistrationEvent;
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.exacttarget.practicefield.scrollpages.CirclePageIndicator;
@@ -238,6 +239,11 @@ public class PracticeFieldHomeActivity extends ActionBarActivity {
 		Log.i(TAG, "Device ID:" + event.getDeviceId());
 		Log.i(TAG, "Device Token:" + event.getDeviceToken());
 		Log.i(TAG, "Subscriber key:" + event.getSubscriberKey());
+	}
+
+	public void onEvent(final CloudPagesResponse event) {
+		Log.i(TAG, "CloudPages returned...");
+		Log.i(TAG, "Num messages: " + event.getMessages().size());
 	}
 
 }

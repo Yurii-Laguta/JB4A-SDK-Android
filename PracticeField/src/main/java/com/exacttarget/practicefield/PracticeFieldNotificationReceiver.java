@@ -66,9 +66,8 @@ public class PracticeFieldNotificationReceiver extends ET_GenericReceiver {
 		//
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PracticeFieldApp.context());
 		SharedPreferences.Editor spEditor = sp.edit();
-		spEditor.putLong(CONSTS.KEY_PUSH_RECEIVED_DATE, Calendar.getInstance().getTimeInMillis());
-
-		HashMap<String, String> map = new HashMap<String, String>();
+		long currTime = Calendar.getInstance().getTimeInMillis();
+		spEditor.putLong(CONSTS.KEY_PUSH_RECEIVED_DATE, currTime);
 
 		JSONObject jo = new JSONObject();
 		try {
@@ -85,6 +84,11 @@ public class PracticeFieldNotificationReceiver extends ET_GenericReceiver {
 		spEditor.putString(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, jo.toString());
 
 		spEditor.commit();
+
+		// Since the PracticeFieldDisplayMessageActivity will show either the last or current message
+		// pass a similar bundle to what is saved in Shared Preferences
+		payload.putLong(CONSTS.KEY_PUSH_RECEIVED_DATE, currTime);
+		payload.putString(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, jo.toString());
 
 		//
 		// This override will make sure that the launch intent is the only intent that is launched so only 1 is viewable at a time.

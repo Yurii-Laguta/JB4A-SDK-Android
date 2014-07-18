@@ -46,13 +46,14 @@ public final class ScrollPagesFragment extends Fragment {
 		if (mShowSendMessage) {
 			Button sendMessageButton = new Button(this.getActivity());
 			sendMessageButton.setText("Send Message");
-			sendMessageButton.setOnClickListener( new View.OnClickListener() {
+			sendMessageButton.setOnClickListener(new View.OnClickListener() {
 				@Override public void onClick(View v) {
 					PracticeFieldSendMessagesDialog smDialog = new PracticeFieldSendMessagesDialog(ScrollPagesFragment.this.getActivity());
 					smDialog.setCancelable(true);
 					smDialog.show();
 				}
 			});
+			sendMessageButton.setLayoutParams(new LayoutParams(300, ViewGroup.LayoutParams.WRAP_CONTENT));
 			layout.addView(sendMessageButton);
 		}
 

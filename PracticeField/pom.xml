@@ -23,6 +23,7 @@
         <google.playservices.version>16.0.0</google.playservices.version>
         <googlehttp.version>1.17.0-rc</googlehttp.version>
         <jackson.version>2.2.3</jackson.version>
+        <ormlite.version>4.48</ormlite.version>
         <amazon.device.messaging.version>1.0.1</amazon.device.messaging.version>
 
         <sign.keystore>${project.basedir}/cert/practicefield-app.keystore.jks</sign.keystore>
@@ -68,12 +69,12 @@
         <dependency>
             <groupId>com.j256.ormlite</groupId>
             <artifactId>ormlite-core</artifactId>
-            <version>4.47</version>
+            <version>${ormlite.version}</version>
         </dependency>
         <dependency>
             <groupId>com.j256.ormlite</groupId>
             <artifactId>ormlite-android</artifactId>
-            <version>4.47</version>
+            <version>${ormlite.version}</version>
         </dependency>
         <dependency>
             <groupId>com.exacttarget.etpushsdk</groupId>
@@ -85,6 +86,16 @@
             <artifactId>amazon-device-messaging</artifactId>
             <version>${amazon.device.messaging.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.joda</groupId>
+            <artifactId>joda-convert</artifactId>
+            <version>1.5</version>
         </dependency>
     </dependencies>
 
@@ -258,12 +269,12 @@
                             </zipalign>
                             <manifest>
                                 <versionName>${prodversion}</versionName>
-                                <versionCodeAutoIncrement>true</versionCodeAutoIncrement>
                             </manifest>
                             <!-- Change to true to skip Proguard -->
                             <proguard>
                                 <skip>false</skip>
                                 <config>proguard.cfg</config>
+                                <outputDirectory>proguard</outputDirectory>
                             </proguard>
                         </configuration>
                         <executions>
@@ -294,7 +305,7 @@
 									<classifier>signed-aligned</classifier>
 								</artifact>
 								<artifact>
-									<file>${project.build.directory}/proguard/mapping.txt</file>
+									<file>${project.basedir}/proguard/mapping.txt</file>
 									<type>map</type>
 									<classifier>release</classifier>
 								</artifact>

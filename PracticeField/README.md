@@ -38,11 +38,9 @@ The following keys are keys you need if you want to initiate messages within you
 3. ET_MESSAGE_ID_DEV - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud
 
 ## Libraries
-The libs folder contains additional libraries required for building your own development version.  You will need to add the ET SDK found in the libs folder of this repository.
+This project uses additional open source libraries.  In order to build your own version of the PracticeField, you will need to include the appropriate jar files in your project.
 
-We have included the most recent version of Google Play Services, which is required in order to use Google Cloud Messaging.  You should check the documentation for using Google Play Services in your project and make the necessary adjustments needed based on the development environment you use and the latest Google Play Services that is available.
-
-We have also included the most recent version of the Android Compatibility Library, which is required in order to use PracticeField app on older versions of Android.  You should check the documentation for using the Compatibility Library in your project and make the necessary adjustments needed based on the development environment you use.
+For example, the  Google Play Services library is required in order to use Google Cloud Messaging.  You should check the Google documentation for using Google Play Services in your project and make the necessary adjustments needed based on the development environment you use and the latest Google Play Services that is available.
 
 ## Marketing Cloud
 To create a development version of the PracticeField App, you will need to have your app defined within the ExactTarget Marketing Cloud:

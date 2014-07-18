@@ -13,16 +13,47 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
                 android:text="A disclaimer about why this is here."/>
+
+        <TextView
+                android:id="@+id/sep1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/demoDisclaimerTV"
+                android:background="@color/gray"
+                android:padding="0dp"
+                android:paddingTop="5dp"/>
+
+        <RadioGroup
+                android:id="@+id/chooseMessageTypeRG"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/sep1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:orientation="horizontal" >
+
+            <RadioButton
+                    android:id="@+id/Standard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Standard" />
+
+            <RadioButton
+                    android:id="@+id/CloudPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:text="CloudPage" />
+
+         </RadioGroup>
 
         <TextView
                 android:id="@+id/messageDescTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/demoDisclaimerTV"
+                android:layout_below="@+id/chooseMessageTypeRG"
                 android:layout_alignParentLeft="true"
                 android:textSize="18sp"
                 android:layout_marginLeft="10dp"
@@ -144,11 +175,11 @@
                 android:layout_below="@+id/tagDescriptor"/>
 
         <TextView
-                android:id="@+id/separator"
+                android:id="@+id/sep2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_below="@+id/tagSpinner"
-                android:background="@android:color/black"
+                android:background="@color/gray"
                 android:padding="0dp"
                 android:paddingTop="5dp"/>
 
@@ -156,7 +187,7 @@
                 android:id="@+id/buttonsLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/separator"
+                android:layout_below="@+id/sep2"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="2dp"
                 android:paddingBottom="10dp"

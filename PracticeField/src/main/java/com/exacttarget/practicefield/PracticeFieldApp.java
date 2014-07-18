@@ -3,7 +3,6 @@ package com.exacttarget.practicefield;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import com.exacttarget.etpushsdk.ETException;
@@ -48,22 +47,20 @@ public class PracticeFieldApp extends Application {
 
 		try {
 
-			boolean isDebuggable =  ( 0 != ( getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE ) );
-
-			if (isDebuggable) {
+			// CONSTS_API.getBuildType()
+			//
+			// This class will return the build type.
+			//
+			// Production values are used by default.  So, the meta data build type in the manifest is only needed for Dev and QA.
+			// To set to Dev or Prod, the following is needed in the AndroidManifest.xml file under the application section:
+			//         <meta-data android:name="buildType" android:value="dev"/>
+			//
+			if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.DEVELOPMENT | CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
 				// ETPush.setLogLevel
 				//
 				//		This call should be the first call in app Application class to ensure you get all the debug info in logcat from all the SDK calls.
 				//		In production you can remove this call as the default is Log.WARN
 				ETPush.setLogLevel(Log.DEBUG);
-
-				// CONSTS_API.setDevelopment()
-				//
-				// This class needs to change to use your API keys you have setup for your Mobile Push App as well as your Server to Server App.
-				//
-				// Production values are used by default.  So, only call setDevelopment() for your testing.  To Test Your Production app settings, you can comment this line out.
-				//
-				CONSTS_API.setDevelopment();
 			}
 			else {
 				// A production build, which normally doesn't have debugging turned on.
@@ -99,18 +96,19 @@ public class PracticeFieldApp extends Application {
 			//
 			//		This call is used to specify which activity is displayed when your customers click on the alert.
 			//		This call is optional.  By default, the default launch intent for your app will be displayed.
-			pushManager.setNotificationRecipientClass(PracticeFieldLastMessageActivity.class);
+			pushManager.setNotificationRecipientClass(PracticeFieldDisplayMessageActivity.class);
 
 			// ETPush.pushManager().setOpenDirectRecipient
 			//
-			//		This call is used to specify which activity is used to process a URL sent in the payload of a push message from the Marketing Cloud.
+			//		This call is used to specify which activity is used to process an Open Direct URL sent in the payload of a push message from the Marketing Cloud.
 			//
-			//		If you don't specify this class, but do specify a URL in the OpeDirect field when creating the Message in the Marketing
+			//		If you don't specify this class, but do specify a URL in the OpenDirect field when creating the Message in the Marketing
 			//      cloud, then the SDK will use the ETLandingPagePresenter class to display the URL.
 			//
 			//		Instead, we will use the PracticeFieldOpenDirectActivity which extends ETLandingPagePresenter in order to provide control over the
 			//      ActionBar and what happens when the user selects back.
 			pushManager.setOpenDirectRecipient(PracticeFieldOpenDirectActivity.class);
+
 		}
 		catch (ETException e) {
 			if (ETPush.getLogLevel() <= Log.ERROR) {

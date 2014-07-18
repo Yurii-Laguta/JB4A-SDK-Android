@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1000117" android:versionName="1.0.0-RELEASE" package="com.exacttarget.practicefield">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1000122" android:versionName="1.0.0-SNAPSHOT" package="com.exacttarget.practicefield">
 
-   	<!-- Android version. Your project can support any versions.  But minimum is version 10 and maximum is 19. -->
+    <!-- Android version. Your project can support any versions.  But minimum is version 10 and maximum is 19. -->
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
 	<!-- Android version. -->
 	   
@@ -33,9 +33,15 @@
 
     <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:logo="@drawable/ic_logo" android:name="com.exacttarget.practicefield.PracticeFieldApp" android:theme="@style/AppTheme">
 
+        <!-- Build Type -->
+        <!-- An indication whether the build is Production (prod), QA (QA) or Development (dev) -->
+        <!-- This field can be left out for production builds as it will default to prod. -->
+        <meta-data android:name="buildType" android:value="DEV"/>
+        <!-- Build Type -->
+
         <!-- ET Broadcast Receiver for handling push messages. You can use the ET_GenericReceiver directly, or extend it to customize notifications.
-             In this PracticeField app, we have extended it to provide custom notifications chosen by the app user.  As well as the ability to add vibration to the alert.
-         -->
+              In this PracticeField app, we have extended it to provide custom notifications chosen by the app user.  As well as the ability to add vibration to the alert.
+          -->
         <receiver android:name="com.exacttarget.practicefield.PracticeFieldNotificationReceiver" android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
@@ -101,8 +107,10 @@
             </intent-filter>
         </activity>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSendMessageActivity" android:screenOrientation="portrait"/>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldLastMessageActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldDisplayMessageActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldOpenDirectActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldCloudPageActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldCloudPageInboxActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldDiscountActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldInfoActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSettingsActivity" android:screenOrientation="portrait"/>

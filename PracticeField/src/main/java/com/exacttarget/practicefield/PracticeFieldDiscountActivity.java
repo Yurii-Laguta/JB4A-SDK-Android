@@ -14,13 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 
 public class PracticeFieldDiscountActivity extends ActionBarActivity {
 	private int currentPage = CONSTS.DISCOUNT_ACTIVITY;
-
-	private SharedPreferences sp;
+	private String payloadStr = "";
 
 	private static final String TAG = PracticeFieldDiscountActivity.class.getName();
 
@@ -29,13 +29,20 @@ public class PracticeFieldDiscountActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.discount_layout);
 
-		sp = PreferenceManager.getDefaultSharedPreferences(PracticeFieldApp.context());
+		if (savedInstanceState == null) {
+			payloadStr = getIntent().getExtras().getString(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, "");
+		}
+		else {
+			payloadStr = savedInstanceState.getString(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, "");
+		}
+
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
+		outState.putString(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, payloadStr);
 	}
 
 	@Override
@@ -109,30 +116,62 @@ public class PracticeFieldDiscountActivity extends ActionBarActivity {
 
 	private void prepareDisplay() {
 
-		if (sp.contains(CONSTS.KEY_PREF_DISCOUNT)) {
-			String message = sp.getString(CONSTS.KEY_PREF_DISCOUNT_MESSAGE, "");
-			String imageFile = sp.getString(CONSTS.KEY_PREF_DISCOUNT_IMAGE_FILE, "");
+		if (!payloadStr.equals("")) {
+			// convert JSON String of saved payload back to bundle to display
+			JSONObject jo = null;
 
-			if (message.isEmpty() | imageFile.isEmpty()) {
-				showNoDiscounts();
-			}
-			else {
+			try {
+				jo = new JSONObject(payloadStr);
 
-				TextView messageTV = (TextView) findViewById((R.id.messageTV));
-				messageTV.setText(message + "\n\n" + "Custom Keys (Discount Code):  " + sp.getInt(CONSTS.KEY_PREF_DISCOUNT, -1));
+				if (jo != null) {
 
-				try {
-					InputStream ims = getAssets().open(imageFile);
-					// load image as Drawable
-					Drawable d = Drawable.createFromStream(ims, null);
+					String discountStr = jo.getString(CONSTS.KEY_PAYLOAD_DISCOUNT);
 
-					ImageView qrIV = (ImageView) findViewById(R.id.QRcodeIV);
-					qrIV.setImageDrawable(d);
-				}
-				catch (Exception e) {
-					if (ETPush.getLogLevel() <= Log.ERROR) {
-						Log.e(TAG, e.getMessage(), e);
+					if (!discountStr.equals("")) {
+						int discount = Integer.valueOf(discountStr);
+						String message = jo.getString(CONSTS.KEY_PAYLOAD_ALERT);
+						String imageFile;
+
+						switch (discount) {
+							case 10:
+								imageFile = "10percentoffQR.png";
+								break;
+							case 15:
+								imageFile = "15percentoffQR.png";
+								break;
+							case 20:
+								imageFile = "20percentoffQR.png";
+								break;
+							default:
+								imageFile = "10percentoffQR.png";
+								break;
+						}
+
+						TextView messageTV = (TextView) findViewById((R.id.messageTV));
+						messageTV.setText(message + "\n\n" + "Custom Keys (Discount Code):  " + discount);
+
+						try {
+							InputStream ims = getAssets().open(imageFile);
+							// load image as Drawable
+							Drawable d = Drawable.createFromStream(ims, null);
+
+							ImageView qrIV = (ImageView) findViewById(R.id.QRcodeIV);
+							qrIV.setImageDrawable(d);
+						}
+						catch (Exception e) {
+							if (ETPush.getLogLevel() <= Log.ERROR) {
+								Log.e(TAG, e.getMessage(), e);
+							}
+						}
 					}
+					else {
+						showNoDiscounts();
+					}
+				}
+			}
+			catch (Exception e) {
+				if (ETPush.getLogLevel() <= Log.ERROR) {
+					Log.e(TAG, e.getMessage(), e);
 				}
 			}
 		}

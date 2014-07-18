@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spanned;
@@ -46,6 +44,7 @@ public class Utils {
 		menu.findItem(R.id.menu_settings).setVisible(false);
 		menu.findItem(R.id.menu_send_message).setVisible(false);
 		menu.findItem(R.id.menu_last_message).setVisible(false);
+		menu.findItem(R.id.menu_cloudpage_inbox).setVisible(false);
 		menu.findItem(R.id.menu_debug_settings).setVisible(false);
 		menu.findItem(R.id.menu_info).setVisible(false);
 		switch (currentPage) {
@@ -53,6 +52,7 @@ public class Utils {
 				menu.findItem(R.id.menu_settings).setVisible(true);
 				menu.findItem(R.id.menu_send_message).setVisible(true);
 				menu.findItem(R.id.menu_last_message).setVisible(true);
+				menu.findItem(R.id.menu_cloudpage_inbox).setVisible(true);
 				menu.findItem(R.id.menu_debug_settings).setVisible(true);
 				menu.findItem(R.id.menu_info).setVisible(true);
 				break;
@@ -60,9 +60,13 @@ public class Utils {
 				menu.findItem(R.id.menu_last_message).setVisible(true);
 				menu.findItem(R.id.menu_settings).setVisible(true);
 				break;
-			case CONSTS.LAST_MESSAGE_ACTIVITY:
+			case CONSTS.DISPLAY_MESSAGE_ACTIVITY:
 				break;
 			case CONSTS.OPENDIRECT_ACTIVITY:
+				break;
+			case CONSTS.CLOUDPAGE_ACTIVITY:
+				break;
+			case CONSTS.CLOUDPAGE_INBOX_ACTIVITY:
 				break;
 			case CONSTS.DISCOUNT_ACTIVITY:
 				break;
@@ -83,8 +87,10 @@ public class Utils {
 					case CONSTS.HOME_ACTIVITY:
 						break;
 					case CONSTS.SEND_MESSAGE_ACTIVITY:
-					case CONSTS.LAST_MESSAGE_ACTIVITY:
+					case CONSTS.DISPLAY_MESSAGE_ACTIVITY:
 					case CONSTS.OPENDIRECT_ACTIVITY:
+					case CONSTS.CLOUDPAGE_ACTIVITY:
+					case CONSTS.CLOUDPAGE_INBOX_ACTIVITY:
 					case CONSTS.DISCOUNT_ACTIVITY:
 					case CONSTS.INFO_ACTIVITY:
 					case CONSTS.SETTINGS_ACTIVITY:
@@ -113,16 +119,12 @@ public class Utils {
 				return true;
 
 			case R.id.menu_last_message:
-				// add fields from last push received
-				SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PracticeFieldApp.context());
+				intent = new Intent(activity, PracticeFieldDisplayMessageActivity.class);
+				activity.startActivity(intent);
+				return true;
 
-				long pushReceivedDate = sp.getLong(CONSTS.KEY_PUSH_RECEIVED_DATE, -1);
-				String payloadStr = sp.getString(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, "");
-
-				intent = new Intent(activity, PracticeFieldLastMessageActivity.class);
-
-				intent.putExtra(CONSTS.KEY_PUSH_RECEIVED_DATE, pushReceivedDate);
-				intent.putExtra(CONSTS.KEY_PUSH_RECEIVED_PAYLOAD, payloadStr);
+			case R.id.menu_cloudpage_inbox:
+				intent = new Intent(activity, PracticeFieldCloudPageInboxActivity.class);
 				activity.startActivity(intent);
 				return true;
 
@@ -334,9 +336,12 @@ public class Utils {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 
-		// PRODUCTION OR DEVELOPMENT??
-		if (CONSTS_API.isDevelopment()) {
+		// PRODUCTION, QA OR DEVELOPMENT??
+		if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.DEVELOPMENT) {
 			sb.append("<b>Development App Keys</b><br/>");
+		}
+		else if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
+			sb.append("<b>QA App Keys</b><br/>");
 		}
 		else {
 			sb.append("<b>Production App Keys</b><br/>");
@@ -379,10 +384,15 @@ public class Utils {
 		sb.append(PracticeFieldApp.context().getResources().getString(R.string.message_api_key_help).replace("\n", "<br/>"));
 		sb.append("<br/>");
 
-		// Message Id
+		// Standard Message Id
 		sb.append("<br/>");
-		sb.append("<b>Message Id:</b> ");
-		sb.append(Utils.obfuscateString(CONSTS_API.getMessageId()));
+		sb.append("<b>Standard Message Id:</b> ");
+		sb.append(Utils.obfuscateString(CONSTS_API.getStandardMessageId()));
+
+		// CloudPage Message Id
+		sb.append("<br/>");
+		sb.append("<b>CloudPage Message Id:</b> ");
+		sb.append(Utils.obfuscateString(CONSTS_API.getCloudPageMessageId()));
 
 		pages[1] = sb.toString();
 		sb = new StringBuilder();
@@ -678,7 +688,7 @@ public class Utils {
 	public static void setActivityTitle(ActionBarActivity activity, String titleStr) {
 		ActionBar ab = activity.getSupportActionBar();
 		ab.setTitle(titleStr);
-//		ab.setBackgroundDrawable(new ColorDrawable(R.color.ET_blue));
+		//		ab.setBackgroundDrawable(new ColorDrawable(R.color.ET_blue));
 		ab.setBackgroundDrawable(new ColorDrawable(activity.getResources().getColor(R.color.ET_orange)));
 		ab.setDisplayShowTitleEnabled(false);  // required to force redraw, without, gray color
 		ab.setDisplayShowTitleEnabled(true);

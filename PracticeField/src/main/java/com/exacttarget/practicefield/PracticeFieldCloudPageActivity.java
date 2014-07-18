@@ -12,15 +12,15 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETPush;
 
 /**
- * PracticeFieldOpenDirectActivity is an activity that will display the URL sent with the payload
+ * PracticeFieldCloudPageActivity is an activity that will display the CloudPage sent with the payload
  * of the message sent from the Marketing Cloud.
  *
  * @author pvandyk
  */
 
-public class PracticeFieldOpenDirectActivity extends ActionBarActivity {
-	private int currentPage = CONSTS.OPENDIRECT_ACTIVITY;
-	private static final String TAG = PracticeFieldOpenDirectActivity.class.getName();
+public class PracticeFieldCloudPageActivity extends ActionBarActivity {
+	private int currentPage = CONSTS.CLOUDPAGE_ACTIVITY;
+	private static final String TAG = PracticeFieldCloudPageActivity.class.getName();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -86,14 +86,14 @@ public class PracticeFieldOpenDirectActivity extends ActionBarActivity {
 		ll.setGravity(Gravity.CENTER);
 
 		WebView webView = new WebView(this);
-		webView.loadUrl(this.getIntent().getExtras().getString("_od"));
+		webView.loadUrl(this.getIntent().getExtras().getString("_x"));
 		webView.getSettings().setJavaScriptEnabled(true);
 		ll.addView(webView);
 
 		webView.setWebViewClient(new WebViewClient() {
 
 			public void onPageFinished(WebView view, String url) {
-				Utils.setActivityTitle(PracticeFieldOpenDirectActivity.this, view.getTitle());
+				Utils.setActivityTitle(PracticeFieldCloudPageActivity.this, view.getTitle());
 			}
 		});
 

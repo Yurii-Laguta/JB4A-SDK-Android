@@ -41,6 +41,11 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 
 	Activity callingActivity;
 
+	private enum MessageType {
+		STANDARD,
+		CLOUDPAGE
+	}
+
 	private static final String TAG = PracticeFieldSendMessagesDialog.class.getName();
 
 	public PracticeFieldSendMessagesDialog(Activity inActivity) {
@@ -69,6 +74,26 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 	}
 
 	private void prepareDisplay() {
+
+		// You can choose to select a Standard message or a CloudPage Message
+		// OpenDirect can not be sent with a CloudPage message, so remove from the list of choices
+		//
+		final RadioGroup messageTypeRG = (RadioGroup) findViewById(R.id.chooseMessageTypeRG);
+		final EditText openDirectET = (EditText) findViewById(R.id.openDirectET);
+		messageTypeRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+		{
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				TextView openDirectDesc = (TextView) findViewById(R.id.openDirectDescriptor);
+				if (checkedId == R.id.Standard) {
+					openDirectDesc.setVisibility(View.VISIBLE);
+					openDirectET.setVisibility(View.VISIBLE);
+				}
+				else {
+					openDirectDesc.setVisibility(View.GONE);
+					openDirectET.setVisibility(View.GONE);
+				}
+			}
+		});
 
 		TextView demoDisclaimer = (TextView) findViewById(R.id.demoDisclaimerTV);
 		demoDisclaimer.setText("Sending messages from an app that catches ET messages is not normally done.  We " +
@@ -128,6 +153,17 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 
 			@Override
 			public void onClick(View v) {
+
+				int messageTypeSelected = messageTypeRG.getCheckedRadioButtonId();
+
+				MessageType messageType;
+				if (messageTypeSelected == R.id.Standard) {
+					messageType = MessageType.STANDARD;
+				}
+				else {
+					messageType = MessageType.CLOUDPAGE;
+				}
+
 				EditText messageET = (EditText) findViewById(R.id.messageET);
 				String outMsg = messageET.getText().toString();
 
@@ -136,7 +172,6 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 				RadioButton soundRB = (RadioButton) findViewById(selSoundId);
 				String outSound = (String) soundRB.getTag();
 
-				EditText openDirectET = (EditText) findViewById(R.id.openDirectET);
 				String outOD = openDirectET.getText().toString();
 
 				int dcSelectedIndex = dcSpinner.getSelectedItemPosition();
@@ -149,7 +184,7 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 					Log.d(TAG, "Sending message to: " + outKey + " with code : " + outTag + " : " + outMsg);
 				}
 
-				sendMessage(outMsg, outSound, outTag, outOD, outKey);
+				sendMessage(outMsg, outSound, outTag, outOD, outKey, messageType);
 
 				dismiss();
 			}
@@ -172,7 +207,7 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 	//		This method is not normally found within a client app.  This code is typically found
 	//      within a server app to control sending of messages.
 	//
-	private void sendMessage(final String outMsg, final String outSound, final String outTag, final String outOD, final String outKey) {
+	private void sendMessage(final String outMsg, final String outSound, final String outTag, final String outOD, final String outKey, final MessageType messageType) {
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -186,7 +221,14 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 					//
 					String accessToken = "";
 					CloseableHttpClient httpClient = HttpClients.createDefault();
-					HttpPost httpRequestToken = new HttpPost("https://auth.exacttargetapis.com/v1/requestToken");
+
+					HttpPost httpRequestToken;
+					if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
+						httpRequestToken = new HttpPost(CONSTS_API.getQA_url());
+					}
+					else {
+						httpRequestToken = new HttpPost("https://auth.exacttargetapis.com/v1/requestToken");
+					}
 					httpRequestToken.setHeader("Content-type", "application/json");
 					httpRequestToken.setEntity(new StringEntity("{\"clientId\":\"" + CONSTS_API.getClientId() + "\",\"clientSecret\":\"" + CONSTS_API.getClientSecret() + "\"}"));
 					CloseableHttpResponse httpRequestTokenResponse = httpClient.execute(httpRequestToken);
@@ -205,11 +247,23 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 					//
 					// once the Access Token is retrieved, it can be used in to send the actual message.
 					//
-					// the messageId is the Id of the API Message set in the Marketing Cloud.  This API Message creates a template in the
-					// Marketing cloud (including security that connects to this app), and allows you to override the fields required for
+					// The messageId is the Id of the API Message set in the Marketing Cloud.  This API Message creates a template in the
+					// Marketing Cloud (including security that connects to this app), and allows you to override the fields required for
 					// the message being sent.
 					//
-					HttpPost httpPost = new HttpPost("https://www.exacttargetapis.com/push/v1/messageContact/" + CONSTS_API.getMessageId() + "/send?access_token=" + accessToken);
+					// Two API Messages have been created in the Cloud.  One for standard messages.  One that includes a CloudPage.
+					//
+
+					String messageId;
+					if (messageType == MessageType.STANDARD) {
+						messageId = CONSTS_API.getStandardMessageId();
+					}
+					else {
+						messageId = CONSTS_API.getCloudPageMessageId();
+					}
+
+					String postURL = "https://www.exacttargetapis.com/push/v1/messageContact/";
+					HttpPost httpPost = new HttpPost(postURL + messageId + "/send?access_token=" + accessToken);
 					httpPost.setHeader("Content-type", "application/json");
 
 					//
