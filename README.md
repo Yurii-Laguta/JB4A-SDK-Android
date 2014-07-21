@@ -2,11 +2,13 @@
 
 This is the git repository for the ET MobilePush SDK for Android. 
 
-For more information, please see [Code@ExactTarget](http://code.exacttarget.com).
+For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation at [here](http://exacttarget.github.io/MobilePushSDK-Android).
 
 ## Release History
 
 ### Version 3.2.0
+_Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_
+_(supported)_
 
 #### Major Notes
 * MPUSH-2428 - Update PracticeField app to support cloud pages.
@@ -20,13 +22,14 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 * MPUSH-2158 - Add "debug" tag to any app running as a debug build
 * MPUSH-2118 - Geofence re-downloading when device wakes up sometimes triggers 2nd fence message
 * MPUSH-2079 - Fix some messages being sent multiple times to middle tier
-* MPUSH-2053 - Add Support for Amazon Kindle Fire devices
 * MPUSH-2041 - Log GPS Failure in LocationManager
 * MPUSH-2166 - Show Notification when GooglePlayServices is out of date instead of dialog box.
 * MPUSH-1859 - Create a modern and more realistic Public Demo app (PracticeField) that uses all SDK features. 
-* MPUSH-2167 - PracticeField App Demo should show how to use proguard.cfg to be compatible with SDK and it's jar dependencies.
+* MPUSH-2167 - PracticeField App Demo should show how to use proguard.cfg to be compatible with SDK and its jar dependencies.
 
 ### Version 3.1.2
+_Released April 15, 2014, correlating to ExactTarget's 2014-04 Release_
+_(supported)_
 
 #### Major Notes
 * MPUSH-1941 - Fix expectation of no message per period (geofences)
@@ -35,14 +38,12 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 * MPUSH-1725 - VACUUM internal SQLite DB to keep size small.
 * MPUSH-1697 - Validate AndroidManifest.xml on startup and throw ETException if missing required options.
 * MPUSH-1556 - fenceID was not being sent with Stats.
-
-### Version 3.1.1 (internal release)
-
-#### Major Notes
 * Add Interfaces for EventBus Listeners. Helps ensure that listener methods are implemented properly.
 * Add checks to readyAimFire() to ensure the required permissions, receivers, and services exist in the ApplicationManifest.xml. Throws ETException if they don't.
 
 ### Version 3.1
+Released April 11, 2014, correlating to ExactTarget's 2014-03 Release
+_(supported)_
 
 #### Major Notes
 * Added Support for Geofence messaging
@@ -51,6 +52,7 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 * Add ability to turn on/off features in the call to ETPush.readyAimFire().
 
 ### Version 3.0
+_(no longer supported)_
 
 #### Major Notes
 * Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
@@ -66,9 +68,11 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 * **gcm.jar** - Instead of gcm.jar, include GooglePlayServices support in your application. see: http://developer.android.com/google/play-services/setup.html
 
 ### Version 2.1
+_(no longer supported)_
 * Providing a URL in the OpenDirect field through MobilePush will cause the provided URL to load when the notification is selected from the tray. This will *only* work if you have not specified a recipient for OpenDirect payloads. 
 
 ### Version 2.0
+_(no longer supported)_
 
 #### Major Notes
 * Support for Access Tokens in place of Client ID/Secret. Access Token is provided by Code@ExactTarget during app registrations. 
