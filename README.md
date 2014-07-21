@@ -6,13 +6,25 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 
 ## Release History
 
-### Version 3.1.3
+### Version 3.2.0
 
 #### Major Notes
+* MPUSH-2428 - Update PracticeField app to support cloud pages.
+* MPUSH-2327 - Send GCM Sender ID to server for logging/issue resolution purposes
+* MPUSH-2308 - Trigger re-register if GCM Sender ID changes.
+* MPUSH-2306 - Send deviceName with Registration
+* MPUSH-2238 - push_Enabled flag not sent with registration call
+* MPUSH-2223 - Fix issue with calling enable/disable push too quickly
+* MPUSH-2204 - Use consistent payload throughout workflow for opendirect handlers
+* MPUSH-2193 - Add public getter methods for Attributes and Tags
+* MPUSH-2158 - Add "debug" tag to any app running as a debug build
+* MPUSH-2118 - Geofence re-downloading when device wakes up sometimes triggers 2nd fence message
+* MPUSH-2079 - Fix some messages being sent multiple times to middle tier
+* MPUSH-2053 - Add Support for Amazon Kindle Fire devices
 * MPUSH-2041 - Log GPS Failure in LocationManager
 * MPUSH-2166 - Show Notification when GooglePlayServices is out of date instead of dialog box.
-* MPUSH-1859 - Create a modern and more realistic Public Demo app that uses all SDK features. 
-* MPUSH-2167 - Public Demo should show how to use proguard.cfg to be compatible with SDK and it's jar dependencies.
+* MPUSH-1859 - Create a modern and more realistic Public Demo app (PracticeField) that uses all SDK features. 
+* MPUSH-2167 - PracticeField App Demo should show how to use proguard.cfg to be compatible with SDK and it's jar dependencies.
 
 ### Version 3.1.2
 
