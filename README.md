@@ -47,12 +47,11 @@ _(supported)_
 
 #### Major Notes
 * Added Support for Geofence messaging
-* Added Support for CloudPage messages. Both retrieved from the server (inbox) as well as a push message.
 * Centralized support for how app backgrounding was handled.
 * Add ability to turn on/off features in the call to ETPush.readyAimFire().
 
 ### Version 3.0
-_(no longer supported)_
+<span class="alert">_This version no longer supported as of July 21, 2014._</span>
 
 #### Major Notes
 * Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
@@ -68,11 +67,11 @@ _(no longer supported)_
 * **gcm.jar** - Instead of gcm.jar, include GooglePlayServices support in your application. see: http://developer.android.com/google/play-services/setup.html
 
 ### Version 2.1
-_(no longer supported)_
+<span class="alert">_This version no longer supported as of July 21, 2014._</span>
 * Providing a URL in the OpenDirect field through MobilePush will cause the provided URL to load when the notification is selected from the tray. This will *only* work if you have not specified a recipient for OpenDirect payloads. 
 
 ### Version 2.0
-_(no longer supported)_
+<span class="alert">_This version no longer supported as of July 21, 2014._</span>
 
 #### Major Notes
 * Support for Access Tokens in place of Client ID/Secret. Access Token is provided by Code@ExactTarget during app registrations. 
@@ -86,5 +85,5 @@ _(no longer supported)_
 * **ETPush.pushEnabled** - Use **isPushEnabled()** in conjunction with **enablePush()** or **disablePush()** instead.
 
 ### Version 1.0
-
+<span class="alert">_This version no longer supported as of July 21, 2014._</span>
 * First public version
