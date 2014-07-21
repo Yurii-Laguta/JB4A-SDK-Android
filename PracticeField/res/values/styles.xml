@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    </style>
+
+    <color name="ET_orange">#E98300</color>
+    <color name="ET_blue">#009DDC</color>
+
+    <color name="gray">#CCCCCC</color>
+    <color name="darkgray">#999999</color>
+
+</resources>
