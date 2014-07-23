@@ -2,9 +2,10 @@
 
 This is the git repository for the ET MobilePush SDK for Android. 
 
-For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation at [here](http://exacttarget.github.io/MobilePushSDK-Android).
+For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.io/MobilePushSDK-Android).
 
 ## Release History
+As of July 2014, we have clarified the version numbering of the SDK and versions that will be supported.  For more information see [here](https://code.exacttarget.com/apis-sdks/mobilepush-sdks/mobile-push-sdk.html).
 
 ### Version 3.2.0
 _Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_
