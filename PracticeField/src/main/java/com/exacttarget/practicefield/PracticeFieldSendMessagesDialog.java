@@ -223,7 +223,8 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 					CloseableHttpClient httpClient = HttpClients.createDefault();
 
 					HttpPost httpRequestToken;
-					if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
+					if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.DEVELOPMENT | CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
+						// DEV AND QA go against QA DB
 						httpRequestToken = new HttpPost(CONSTS_API.getQA_url());
 					}
 					else {

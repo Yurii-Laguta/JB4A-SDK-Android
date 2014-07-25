@@ -199,9 +199,9 @@ public class PracticeFieldDisplayMessageActivity extends ActionBarActivity {
 				try {
 					sb.append("<br/><br/>");
 					sb.append("<i>Custom Keys (Discount Code):</i>  ");
-					String payloadDiscountStr = jo.getString(CONSTS.KEY_PAYLOAD_DISCOUNT);
-					if (jo.has(CONSTS.KEY_PAYLOAD_DISCOUNT) && !payloadDiscountStr.equals("")) {
+					if (jo.has(CONSTS.KEY_PAYLOAD_DISCOUNT)) {
 						// have a discount code
+						String payloadDiscountStr = jo.getString(CONSTS.KEY_PAYLOAD_DISCOUNT);
 
 						// CUSTOM KEYS
 						sb.append(payloadDiscountStr);
