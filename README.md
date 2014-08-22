@@ -7,6 +7,16 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 ## Release History
 As of July 2014, we have clarified the version numbering of the SDK and versions that will be supported.  For more information see [here](https://code.exacttarget.com/apis-sdks/mobilepush-sdks/mobile-push-sdk.html).
 
+### Version 3.3.0
+_Released August 25, 2014, correlating to ExactTarget's 2014-06 Release_
+_(supported)_
+
+#### Major Notes
+* MPUSH-2053 - Add support for Amazon
+* MPUSH-2371 - iBeacons support for Android 4.3 and later
+* MPUSH-2532 - Event-based Analytics
+* MPUSH-2668 - set default for locationType to geofence
+
 ### Version 3.2.0
 _Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_
 _(supported)_
@@ -44,7 +54,7 @@ _(supported)_
 
 ### Version 3.1
 Released April 11, 2014, correlating to ExactTarget's 2014-03 Release
-_(supported)_
+<span class="alert">_This version no longer supported as of August 25, 2014._</span>
 
 #### Major Notes
 * Added Support for Geofence messaging
