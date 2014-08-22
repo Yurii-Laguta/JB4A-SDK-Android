@@ -150,26 +150,33 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 		dcSpinner.setSelection(0);
 		dcSpinner.setAdapter(dcAdapter);
 
-		// prep sport spinner
-		String[] activityNames = callingActivity.getResources().getStringArray(R.array.activity_names);
-		String[] activityKeys = callingActivity.getResources().getStringArray(R.array.activity_keys);
+		// prep team spinner with combined list of NFL and FC teams
+		String[] nflTeamNames = callingActivity.getResources().getStringArray(R.array.nfl_teamNames);
+		String[] nflTeamKeys = callingActivity.getResources().getStringArray(R.array.nfl_teamKeys);
+		String[] fcTeamNames = callingActivity.getResources().getStringArray(R.array.fc_teamNames);
+		String[] fcTeamKeys = callingActivity.getResources().getStringArray(R.array.fc_teamKeys);
 
 		List<String> allTeamNames = new ArrayList<String>();
 		final List<String> allTeamKeys = new ArrayList<String>();
 		allTeamNames.add("None");
 		allTeamKeys.add("none");
 
-		for (int i = 0; i < activityNames.length; i++) {
-			allTeamNames.add(activityNames[i]);
-			allTeamKeys.add(activityKeys[i]);
+		for (int i = 0; i < nflTeamNames.length; i++) {
+			allTeamNames.add(nflTeamNames[i]);
+			allTeamKeys.add(nflTeamKeys[i]);
 		}
 
-		ArrayAdapter<String> activityAdapter = new ArrayAdapter<String>(callingActivity, android.R.layout.simple_spinner_item, allTeamNames);
-		activityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		for (int i = 0; i < fcTeamNames.length; i++) {
+			allTeamNames.add(fcTeamNames[i]);
+			allTeamKeys.add(fcTeamKeys[i]);
+		}
+
+		ArrayAdapter<String> teamAdapter = new ArrayAdapter<String>(callingActivity, android.R.layout.simple_spinner_item, allTeamNames);
+		teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		final Spinner tagSpinner = (Spinner) findViewById(R.id.tagSpinner);
 		tagSpinner.setSelection(0);
-		tagSpinner.setAdapter(activityAdapter);
+		tagSpinner.setAdapter(teamAdapter);
 
 		Button btSend = (Button) findViewById(R.id.sendButton);
 		btSend.setOnClickListener(new View.OnClickListener() {
