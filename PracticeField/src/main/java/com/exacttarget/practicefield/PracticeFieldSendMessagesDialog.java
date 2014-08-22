@@ -1,3 +1,33 @@
+/**
+ * Copyright (c) 2014 ExactTarget, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package com.exacttarget.practicefield;
 
 import android.app.Activity;
@@ -120,33 +150,26 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 		dcSpinner.setSelection(0);
 		dcSpinner.setAdapter(dcAdapter);
 
-		// prep team spinner with combined list of NFL and FC teams
-		String[] nflTeamNames = callingActivity.getResources().getStringArray(R.array.nfl_teamNames);
-		String[] nflTeamKeys = callingActivity.getResources().getStringArray(R.array.nfl_teamKeys);
-		String[] fcTeamNames = callingActivity.getResources().getStringArray(R.array.fc_teamNames);
-		String[] fcTeamKeys = callingActivity.getResources().getStringArray(R.array.fc_teamKeys);
+		// prep sport spinner
+		String[] activityNames = callingActivity.getResources().getStringArray(R.array.activity_names);
+		String[] activityKeys = callingActivity.getResources().getStringArray(R.array.activity_keys);
 
 		List<String> allTeamNames = new ArrayList<String>();
 		final List<String> allTeamKeys = new ArrayList<String>();
 		allTeamNames.add("None");
 		allTeamKeys.add("none");
 
-		for (int i = 0; i < nflTeamNames.length; i++) {
-			allTeamNames.add(nflTeamNames[i]);
-			allTeamKeys.add(nflTeamKeys[i]);
+		for (int i = 0; i < activityNames.length; i++) {
+			allTeamNames.add(activityNames[i]);
+			allTeamKeys.add(activityKeys[i]);
 		}
 
-		for (int i = 0; i < fcTeamNames.length; i++) {
-			allTeamNames.add(fcTeamNames[i]);
-			allTeamKeys.add(fcTeamKeys[i]);
-		}
-
-		ArrayAdapter<String> teamAdapter = new ArrayAdapter<String>(callingActivity, android.R.layout.simple_spinner_item, allTeamNames);
-		teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<String> activityAdapter = new ArrayAdapter<String>(callingActivity, android.R.layout.simple_spinner_item, allTeamNames);
+		activityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		final Spinner tagSpinner = (Spinner) findViewById(R.id.tagSpinner);
 		tagSpinner.setSelection(0);
-		tagSpinner.setAdapter(teamAdapter);
+		tagSpinner.setAdapter(activityAdapter);
 
 		Button btSend = (Button) findViewById(R.id.sendButton);
 		btSend.setOnClickListener(new View.OnClickListener() {
@@ -223,12 +246,7 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 					CloseableHttpClient httpClient = HttpClients.createDefault();
 
 					HttpPost httpRequestToken;
-					if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
-						httpRequestToken = new HttpPost(CONSTS_API.getQA_url());
-					}
-					else {
-						httpRequestToken = new HttpPost("https://auth.exacttargetapis.com/v1/requestToken");
-					}
+					httpRequestToken = new HttpPost(CONSTS_API.getFuel_url());
 					httpRequestToken.setHeader("Content-type", "application/json");
 					httpRequestToken.setEntity(new StringEntity("{\"clientId\":\"" + CONSTS_API.getClientId() + "\",\"clientSecret\":\"" + CONSTS_API.getClientSecret() + "\"}"));
 					CloseableHttpResponse httpRequestTokenResponse = httpClient.execute(httpRequestToken);
@@ -308,7 +326,7 @@ public class PracticeFieldSendMessagesDialog extends Dialog {
 					}
 
 					// the following are the tags that will determine whether the user as subscribed to a particular service
-					// in this PracticeField App, these are the teams subscribed to in Settings.  Either NFL or FC teams.
+					// in this PracticeField App, these are the Activities subscribed to in Settings.
 					ArrayList<String> inclusionTags = new ArrayList<String>(1);
 					if (!outTag.equals("none")) {
 						inclusionTags.add(outTag);

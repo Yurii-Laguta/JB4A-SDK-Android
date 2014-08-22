@@ -1,3 +1,33 @@
+/**
+ * Copyright (c) 2014 ExactTarget, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package com.exacttarget.practicefield;
 
 import android.os.Bundle;
@@ -124,11 +154,11 @@ public class PracticeFieldSendMessageActivity extends ActionBarActivity {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 		sb.append("<b>Sending a Message - Tag Selected in Preferences</b><br/>");
-		sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one sports team, but not another.<br/>");
+		sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one type of activity, but not another.<br/>");
 		sb.append("<br/>");
 		sb.append("You can send a message by selecting the particular tag (or group) who should receive the message.<br/>");
 		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to select tags for your favorite NFL or Football Club team.</li><br/>");
+		sb.append("<li>Open Preferences (see menu) to select tags for the activities you are interested in.</li><br/>");
 		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
 		sb.append("<li>Click Send Message to send a message to this device and choose one of the tags you selected in Preferences.</li><br/>");
 		sb.append("<li>Within a minute you should receive the message.</li><br/>");
@@ -138,13 +168,13 @@ public class PracticeFieldSendMessageActivity extends ActionBarActivity {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 		sb.append("<b>Sending a Message - Tag Not Selected in Preferences</b><br/>");
-		sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one sports team, but not another.<br/>");
+		sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one activity, but not another.<br/>");
 		sb.append("<br/>");
 		sb.append("If you target a particular group, but the customer has not expressed interest in that group, they will not receive a message.<br/>");
 		sb.append("<br/>");
-		sb.append("You can test that here if you select certain teams in Preferences, but then send to a team you have not selected.  Then you will not receive a message.<br/>");
+		sb.append("You can test that here if you select certain Activities in Preferences, but then send to an Activity you have not selected.  Then you will not receive a message.<br/>");
 		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to select tags for your favorite NFL or Football Club team.</li><br/>");
+		sb.append("<li>Open Preferences (see menu) to select tags for your favorite activities.</li><br/>");
 		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
 		sb.append("<li>Click Send Message to send a message to this device and choose one of the tags you have NOT selected in Preferences.</li><br/>");
 		sb.append("<li>You will not receive a message since the message is intended only for those who have selected that tag.</li><br/>");
@@ -186,8 +216,20 @@ public class PracticeFieldSendMessageActivity extends ActionBarActivity {
 		sb.append("<li>Open Preferences (see menu) to enable Location Settings.</li><br/>");
 		sb.append("<li>Wait 15 minutes to ensure your settings are registered.</li><br/>");
 		sb.append("<li>Download a tool such as FakeGPS to mock your location.</li><br/>");
-		sb.append("<li>Open FakeGPS and go to the location of any of the team stadiums listed in Preferences under NFL or FC Team Tag sections.</li><br/>");
-		sb.append("<li>If FakeGPS works properly, then within a minute you should receive a message welcoming you to that stadium.</li><br/>");
+		sb.append("<li>Open FakeGPS and go to any of the following locations:</li><br/>");
+		sb.append("<ul>");
+		sb.append("<li>Yellowstone National Park</li>");
+		sb.append("<li>Grand Canyon National Park</li>");
+		sb.append("<li>Yosemite National Park</li>");
+		sb.append("<li>Great Smoky Mountains National Park</li>");
+		sb.append("<li>Everglades National Park</li>");
+		sb.append("<li>Purnululu National Park</li>");
+		sb.append("<li>Great Himalayan National Park</li>");
+		sb.append("<li>W National Park of Niger</li>");
+		sb.append("<li>Pirin National Park</li>");
+		sb.append("<li>Nahanni National Park</li>");
+		sb.append("</ul><br/>");
+		sb.append("<li>If FakeGPS works properly, then within a minute you should receive a message welcoming you to that park.</li><br/>");
 		sb.append("</ul>");
 		pages[5] = sb.toString();
 

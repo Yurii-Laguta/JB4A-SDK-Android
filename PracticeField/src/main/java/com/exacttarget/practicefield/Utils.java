@@ -1,15 +1,48 @@
+/**
+ * Copyright (c) 2014 ExactTarget, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package com.exacttarget.practicefield;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spanned;
@@ -23,6 +56,8 @@ import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
 import com.exacttarget.etpushsdk.data.Attribute;
 import com.exacttarget.etpushsdk.data.DeviceData;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
@@ -44,6 +79,7 @@ public class Utils {
 		menu.findItem(R.id.menu_settings).setVisible(false);
 		menu.findItem(R.id.menu_send_message).setVisible(false);
 		menu.findItem(R.id.menu_last_message).setVisible(false);
+		menu.findItem(R.id.menu_beacons).setVisible(false);
 		menu.findItem(R.id.menu_cloudpage_inbox).setVisible(false);
 		menu.findItem(R.id.menu_debug_settings).setVisible(false);
 		menu.findItem(R.id.menu_info).setVisible(false);
@@ -52,6 +88,13 @@ public class Utils {
 				menu.findItem(R.id.menu_settings).setVisible(true);
 				menu.findItem(R.id.menu_send_message).setVisible(true);
 				menu.findItem(R.id.menu_last_message).setVisible(true);
+
+				if (android.os.Build.VERSION.SDK_INT >= 18) {
+					// Bluetooth LE only available on 4.3 and later
+					// https://developer.android.com/guide/topics/connectivity/bluetooth-le.html
+					menu.findItem(R.id.menu_beacons).setVisible(true);
+				}
+
 				menu.findItem(R.id.menu_cloudpage_inbox).setVisible(true);
 				menu.findItem(R.id.menu_debug_settings).setVisible(true);
 				menu.findItem(R.id.menu_info).setVisible(true);
@@ -59,6 +102,8 @@ public class Utils {
 			case CONSTS.SEND_MESSAGE_ACTIVITY:
 				menu.findItem(R.id.menu_last_message).setVisible(true);
 				menu.findItem(R.id.menu_settings).setVisible(true);
+				break;
+			case CONSTS.BEACONS_ACTIVITY:
 				break;
 			case CONSTS.DISPLAY_MESSAGE_ACTIVITY:
 				break;
@@ -87,6 +132,7 @@ public class Utils {
 					case CONSTS.HOME_ACTIVITY:
 						break;
 					case CONSTS.SEND_MESSAGE_ACTIVITY:
+					case CONSTS.BEACONS_ACTIVITY:
 					case CONSTS.DISPLAY_MESSAGE_ACTIVITY:
 					case CONSTS.OPENDIRECT_ACTIVITY:
 					case CONSTS.CLOUDPAGE_ACTIVITY:
@@ -125,6 +171,11 @@ public class Utils {
 
 			case R.id.menu_cloudpage_inbox:
 				intent = new Intent(activity, PracticeFieldCloudPageInboxActivity.class);
+				activity.startActivity(intent);
+				return true;
+
+			case R.id.menu_beacons:
+				intent = new Intent(activity, PracticeFieldBeaconsActivity.class);
 				activity.startActivity(intent);
 				return true;
 
@@ -336,16 +387,7 @@ public class Utils {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 
-		// PRODUCTION, QA OR DEVELOPMENT??
-		if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.DEVELOPMENT) {
-			sb.append("<b>Development App Keys</b><br/>");
-		}
-		else if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
-			sb.append("<b>QA App Keys</b><br/>");
-		}
-		else {
-			sb.append("<b>Production App Keys</b><br/>");
-		}
+		sb.append("<b>App Keys</b><br/>");
 
 		sb.append("<hr>");
 		sb.append(PracticeFieldApp.context().getResources().getString(R.string.app_keys_help).replace("\n", "<br/>"));
@@ -393,6 +435,11 @@ public class Utils {
 		sb.append("<br/>");
 		sb.append("<b>CloudPage Message Id:</b> ");
 		sb.append(Utils.obfuscateString(CONSTS_API.getCloudPageMessageId()));
+
+		// Fuel URL
+		sb.append("<br/>");
+		sb.append("<b>Fuel URL:</b> ");
+		sb.append(CONSTS_API.getFuel_url());
 
 		pages[1] = sb.toString();
 		sb = new StringBuilder();
@@ -561,43 +608,23 @@ public class Utils {
 		sb.append("<br/>");
 		sb.append("<br/>");
 
-		// NFL TEAM TAGS
-		sb.append("<b>NFL Team Tags</b>");
+		// SPORTS TAGS
+		sb.append("<b>Sports Tags</b>");
 
-		String[] nflTeamNames = PracticeFieldApp.context().getResources().getStringArray(R.array.nfl_teamNames);
-		String[] nflTeamKeys = PracticeFieldApp.context().getResources().getStringArray(R.array.nfl_teamKeys);
+		String[] activityNames = PracticeFieldApp.context().getResources().getStringArray(R.array.activity_names);
+		String[] activityKeys = PracticeFieldApp.context().getResources().getStringArray(R.array.activity_keys);
 
-		int num_NFL_subs = 0;
-		for (int i = 0; i < nflTeamNames.length; i++) {
-			if (tags.contains(nflTeamKeys[i])) {
-				setSubLine(sb, nflTeamNames[i]);
-				num_NFL_subs++;
+		int num_activity_subs = 0;
+		for (int i = 0; i < activityNames.length; i++) {
+			if (tags.contains(activityKeys[i])) {
+				setSubLine(sb, activityNames[i]);
+				num_activity_subs++;
 			}
 		}
 
-		if (num_NFL_subs == 0) {
+		if (num_activity_subs == 0) {
 			sb.append("<br/>");
-			sb.append("No NFL team tags.");
-		}
-
-		// SOCCER TEAM TAGS
-		sb.append("<br/><br/>");
-		sb.append("<b>FC Team Tags</b>");
-
-		String[] fcTeamNames = PracticeFieldApp.context().getResources().getStringArray(R.array.fc_teamNames);
-		String[] fcTeamKeys = PracticeFieldApp.context().getResources().getStringArray(R.array.fc_teamKeys);
-
-		int numSoccerSubs = 0;
-		for (int i = 0; i < fcTeamNames.length; i++) {
-			if (tags.contains(fcTeamKeys[i])) {
-				setSubLine(sb, fcTeamNames[i]);
-				numSoccerSubs++;
-			}
-		}
-
-		if (numSoccerSubs == 0) {
-			sb.append("<br/>");
-			sb.append("No FC team tags.");
+			sb.append("No Activity tags.");
 		}
 
 		pages[6] = sb.toString();
@@ -605,9 +632,9 @@ public class Utils {
 		return pages;
 	}
 
-	private static void setSubLine(StringBuilder sb, String teamName) {
+	private static void setSubLine(StringBuilder sb, String activityName) {
 		sb.append("<br/>");
-		sb.append(teamName);
+		sb.append(activityName);
 	}
 
 	public static String getLoglevelText(int loglevel) {
@@ -720,5 +747,4 @@ public class Utils {
 			}
 		}
 	}
-
 }

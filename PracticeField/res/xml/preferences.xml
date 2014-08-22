@@ -46,9 +46,9 @@
                 android:defaultValue="false"/>
 
         <CheckBoxPreference
-                android:key="pref_geo"
-                android:title="@string/pref_geo"
-                android:summary="@string/pref_geo_summ"
+                android:key="pref_location"
+                android:title="@string/pref_location"
+                android:summary="@string/pref_location_summ"
                 android:defaultValue="false"/>
 
     </PreferenceCategory>

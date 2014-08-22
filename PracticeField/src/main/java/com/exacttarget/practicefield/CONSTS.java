@@ -1,3 +1,32 @@
+/**
+ * Copyright (c) 2014 ExactTarget, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package com.exacttarget.practicefield;
 
 /**
@@ -14,13 +43,14 @@ public class CONSTS {
 	public static final int HOME_ACTIVITY = 0;
 	public static final int SETTINGS_ACTIVITY = 1;
 	public static final int DEBUG_SETTINGS_ACTIVITY = 2;
-	public static final int SEND_MESSAGE_ACTIVITY = 3;
-	public static final int DISPLAY_MESSAGE_ACTIVITY = 4;
-	public static final int CLOUDPAGE_ACTIVITY = 5;
-	public static final int CLOUDPAGE_INBOX_ACTIVITY = 6;
-	public static final int OPENDIRECT_ACTIVITY = 7;
-	public static final int DISCOUNT_ACTIVITY = 8;
-	public static final int INFO_ACTIVITY = 9;
+	public static final int BEACONS_ACTIVITY = 3;
+	public static final int SEND_MESSAGE_ACTIVITY = 4;
+	public static final int DISPLAY_MESSAGE_ACTIVITY = 5;
+	public static final int CLOUDPAGE_ACTIVITY = 6;
+	public static final int CLOUDPAGE_INBOX_ACTIVITY = 7;
+	public static final int OPENDIRECT_ACTIVITY = 8;
+	public static final int DISCOUNT_ACTIVITY = 9;
+	public static final int INFO_ACTIVITY = 10;
 
 	public static final String KEY_ATTRIB_FIRST_NAME = "FirstName";
 	public static final String KEY_ATTRIB_LAST_NAME = "LastName";
@@ -28,9 +58,8 @@ public class CONSTS {
 	public static final String KEY_PREF_FIRST_NAME = "pref_first_name";
 	public static final String KEY_PREF_LAST_NAME = "pref_last_name";
 	public static final String KEY_PREF_PUSH = "pref_push";
-	public static final String KEY_PREF_GEO = "pref_geo";
-	public static final String KEY_PREF_CAT_NFL = "pref_cat_nfl";
-	public static final String KEY_PREF_CAT_FC = "pref_cat_fc";
+	public static final String KEY_PREF_LOCATION = "pref_location";
+	public static final String KEY_PREF_CAT_SPORTS = "pref_cat_activities";
 
 	public static final String KEY_DEBUG_PREF_ENABLE_DEBUG = "debug_pref_enable_debug";
 	public static final String KEY_DEBUG_PREF_COLLECT_LOGCAT = "debug_pref_collect_logcat";
@@ -41,7 +70,7 @@ public class CONSTS {
 	public static final String KEY_PAYLOAD_DISCOUNT = "discount_code";
 	public static final String KEY_PAYLOAD_ALERT = "alert";
 
-	public static final String[] KEY_PREF_PUSH_DEPENDENT = {KEY_PREF_GEO, KEY_PREF_CAT_NFL,KEY_PREF_CAT_FC };
+	public static final String[] KEY_PREF_PUSH_DEPENDENT = {KEY_PREF_LOCATION, KEY_PREF_CAT_SPORTS };
 
 	public static final String PAGE_TITLE = "<b>Practice Field for<br/>&nbsp;&nbsp;&nbsp;ET MobilePush SDK</b><br/><br/>";
 

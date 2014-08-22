@@ -1,65 +1,106 @@
+/**
+ * Copyright (c) 2014 ExactTarget, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation and/or
+ * other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without
+ * specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package com.exacttarget.practicefield;
 
 import android.app.AlertDialog;
-import android.content.SharedPreferences;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.content.*;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.*;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.*;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
+import com.radiusnetworks.ibeacon.BleNotAvailableException;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * PracticeFieldSettingsActivity is the primary settings activity within the PracticeField App.
- *
+ * <p/>
  * This activity extends PreferenceActivity to provide the primary settings interface to collect user preferences.
- *
+ * <p/>
  * It handles settings that would normally be included within your customer facing app.  These settings that are sent to
  * the Marketing Cloud will take up to 15 minutes to take effect.  So, after setting or changing these settings, you
  * should wait at least 15 minutes before sending a message either from the Marketing Cloud or from the PracticeFieldSendMessagesDialog
  * found within this app.
- *
+ * <p/>
  * We have setup this demo app to require several settings before allowing the user to provide permission to receive notifications.
- *
+ * <p/>
  * Your app design may be different (for example, you may set notifications on by default in your Application class if you assume
  * permission was given by the user due to the permission settings set within the Google Play definition.
- *
+ * <p/>
  * Settings:
- *
- * 		1) First and Last Name.
- * 		   These are attributes saved in the Google Marketing Cloud.
- *
- * 		2) Enable Push Preferences
- * 	       This preference is the heart of the SDK. Without Push turned on, not much will happen!
- *
- * 	    3) Enable Location (or Geo Fencing) Preference
- * 	       This preference will allow to test Geo Fencing.  For the PracticeField App, we have setup several fences around the
- * 	       stadiums for the NFL and FC teams.  A tool like Fake GPS can be used to test these location settings.
- *
- * 	    4) Custom Ringtone and Custom Vibration
- * 	       This app shows a way to completely customize the way notification sounds work.  Within the Marketing Cloud, you can
- * 	       normally set to use the Default of a Custom Sound.  This demo, takes it a step further and will have it's own custom
- * 	       sound (sports whistle) or allow the user to select their own sound.  The settings from the Marketing Cloud are
- * 	       essentially ignored.
- *
- * 	       All of this work is done locally and not through the SDK.
- *
- * 		5) Team Tags
- * 	       The Team Tags show examples of using Tags to allow your customers to select which type of notification they are interested in
- * 	       receiving.  The example within this PracticeField App are sports teams.  The tags are sent to the Marketing Cloud and can
- * 	       be used to select customers to send the notification to.
- *
- * 	    6) Custom Keys
- * 	       In the PracticeField App in the Marketing Cloud, we set up a custom key to drive processing within the app when the user
- * 	       opens the notification.  This processing shows how to save the data sent.  As well as how to show different Activity or
- * 	       at least different information in the Activity as dictated by the value of the custom key.
+ * <p/>
+ * 1) First and Last Name.
+ * These are attributes saved in the Google Marketing Cloud.
+ * <p/>
+ * 2) Enable Push Preferences
+ * This preference is the heart of the SDK. Without Push turned on, not much will happen!
+ * <p/>
+ * 3) Enable Location (for Geo Fencing and Beacons) Preference
+ * This preference will test Geo Fencing and Beacon proximity.  For the PracticeField App, we have setup several fences around the
+ * national parks.  A tool like Fake GPS can be used to test these location settings.
+ * <p/>
+ * <p>
+ * To Test Beacons, we have setup messages using the GUID 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6.  If you assign this
+ * GUID to beacons you purchase/configure, you will receive messages for the following major/minor combinations: 1,1; 1,2; 1,3; 1,4.
+ * </p>
+ * 4) Custom Ringtone and Custom Vibration
+ * This app shows a way to completely customize the way notification sounds work.  Within the Marketing Cloud, you can
+ * normally set to use the Default of a Custom Sound.  This demo, takes it a step further and will have it's own custom
+ * sound (sports whistle) or allow the user to select their own sound.  The settings from the Marketing Cloud are
+ * essentially ignored.
+ * <p/>
+ * All of this work is done locally and not through the SDK.
+ * <p/>
+ * 5) Team Tags
+ * The Team Tags show examples of using Tags to allow your customers to select which type of notification they are interested in
+ * receiving.  The example within this PracticeField App are Activities.  The tags are sent to the Marketing Cloud and can
+ * be used to select customers to send the notification to.
+ * <p/>
+ * 6) Custom Keys
+ * In the PracticeField App in the Marketing Cloud, we set up a custom key to drive processing within the app when the user
+ * opens the notification.  This processing shows how to save the data sent.  As well as how to show different Activity or
+ * at least different information in the Activity as dictated by the value of the custom key.
  *
  * @author pvandyk
  */
@@ -364,37 +405,50 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 		});
 
 		//
-		// ENABLE LOCATION (GEO) PREFERENCE
+		// ENABLE LOCATION (GEO and BEACONS) PREFERENCE
 		//
 
-		final CheckBoxPreference geoPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_GEO);
+		final CheckBoxPreference locationsPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_LOCATION);
 
 		if (sp.getString(CONSTS.KEY_PREF_FIRST_NAME, "").isEmpty() | sp.getString(CONSTS.KEY_PREF_LAST_NAME, "").isEmpty()) {
-			geoPref.setEnabled(false);
+			locationsPref.setEnabled(false);
 		}
 		else {
-			geoPref.setEnabled(true);
+			locationsPref.setEnabled(true);
 			try {
-				geoPref.setChecked(ETLocationManager.locationManager().isWatchingLocation());
+				locationsPref.setChecked(ETLocationManager.locationManager().isWatchingLocation());
 			}
 			catch (Exception e) {
 				if (ETPush.getLogLevel() <= Log.ERROR) {
 					Log.e(TAG, e.getMessage(), e);
 				}
-				geoPref.setChecked(false);
+				locationsPref.setChecked(false);
 			}
 		}
-		geoPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+		locationsPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 			@Override
 			public boolean onPreferenceChange(Preference pref, Object newValue) {
-				Boolean newPrefGeo = (Boolean) newValue;
+				Boolean newPrefLocation = (Boolean) newValue;
 
 				try {
-					if (newPrefGeo) {
+					if (newPrefLocation) {
 						ETLocationManager.locationManager().startWatchingLocation();
+						try {
+							if (!ETLocationManager.locationManager().startWatchingProximity()) {
+								// startWatchingProximity will return false if BlueTooth is not turned on.
+								promptForBluetoothSettings();
+							}
+						}
+						catch (BleNotAvailableException e) {
+							// Bluetooth LE only available on 4.3 and later
+							// https://developer.android.com/guide/topics/connectivity/bluetooth-le.html
+							Log.w(TAG, "BLE is not available on this device");
+							ETLocationManager.locationManager().stopWatchingProximity();
+						}
 					}
 					else {
 						ETLocationManager.locationManager().stopWatchingLocation();
+						ETLocationManager.locationManager().stopWatchingProximity();
 					}
 
 					enablePushDependentPrefs();
@@ -409,32 +463,18 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 		});
 
 		//
-		// NFL TEAMS SUBSCRIPTIONS
+		// SPORTS SUBSCRIPTIONS
 		//
 		PreferenceScreen ps = getPreferenceScreen();
-		PreferenceCategory nfl_prefCat = new PreferenceCategory(this);
-		nfl_prefCat.setTitle("NFL Team Tags");
-		nfl_prefCat.setKey(CONSTS.KEY_PREF_CAT_NFL);
-		ps.addPreference(nfl_prefCat);
+		PreferenceCategory activities_prefCat = new PreferenceCategory(this);
+		activities_prefCat.setTitle("Activity Tags");
+		activities_prefCat.setKey(CONSTS.KEY_PREF_CAT_SPORTS);
+		ps.addPreference(activities_prefCat);
 
-		String[] nflTeamNames = getResources().getStringArray(R.array.nfl_teamNames);
-		String[] nflTeamKeys = getResources().getStringArray(R.array.nfl_teamKeys);
-		for (int i = 0; i < nflTeamNames.length; i++) {
-			setSubCheckBoxPref(nfl_prefCat, nflTeamNames[i], nflTeamKeys[i]);
-		}
-
-		//
-		// SOCCER TEAMS PREFERENCE
-		//
-		PreferenceCategory fc_prefCat = new PreferenceCategory(this);
-		fc_prefCat.setTitle("FC Team Tags");
-		fc_prefCat.setKey(CONSTS.KEY_PREF_CAT_FC);
-		ps.addPreference(fc_prefCat);
-
-		String[] fcTeamNames = getResources().getStringArray(R.array.fc_teamNames);
-		String[] fcTeamKeys = getResources().getStringArray(R.array.fc_teamKeys);
-		for (int i = 0; i < fcTeamNames.length; i++) {
-			setSubCheckBoxPref(fc_prefCat, fcTeamNames[i], fcTeamKeys[i]);
+		String[] activityNames = getResources().getStringArray(R.array.activity_names);
+		String[] activityKeys = getResources().getStringArray(R.array.activity_keys);
+		for (int i = 0; i < activityNames.length; i++) {
+			setSubCheckBoxPref(activities_prefCat, activityNames[i], activityKeys[i]);
 		}
 
 		//
@@ -447,13 +487,13 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 	//
 	// setSubCheckBoxPref
 	//
-	// Create the CheckBoxPreference controls to subscribe to a team notification.
+	// Create the CheckBoxPreference controls to subscribe to an Activity notification.
 	//
-	private void setSubCheckBoxPref(PreferenceCategory prefCat, final String teamName, final String teamKey) {
+	private void setSubCheckBoxPref(PreferenceCategory prefCat, final String activityName, final String activityKey) {
 		CheckBoxPreference cbp = new CheckBoxPreference(this);
-		cbp.setKey(teamKey);
-		cbp.setTitle(teamName);
-		cbp.setSummary("Receive notifications for " + teamName);
+		cbp.setKey(activityKey);
+		cbp.setTitle(activityName);
+		cbp.setSummary("Receive notifications for " + activityName);
 		cbp.setDefaultValue(Boolean.FALSE);
 
 		cbp.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -463,10 +503,10 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 				Boolean enabled = (Boolean) newValue;
 				try {
 					if (enabled) {
-						ETPush.pushManager().addTag(teamKey);
+						ETPush.pushManager().addTag(activityKey);
 					}
 					else {
-						ETPush.pushManager().removeTag(teamKey);
+						ETPush.pushManager().removeTag(activityKey);
 					}
 				}
 				catch (ETException e) {

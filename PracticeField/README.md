@@ -7,7 +7,7 @@ This is the Practice Field App for the MobilePush SDK. It serves these purposes:
 - Provides an example or template to practice creating an Android app that use the ExactTarget MobilePush SDK.
 - Provides a mechanism to collect and send debugging information to learn about the workings of the SDK as you practice.
 
-## Fully Functional APK
+## Fully Functional APK [Coming Soon...]
 The APKFiles folder contains et-practicefield-x.x.x-RELEASE.apk (where x.x.x is the current version of the PracticeField App) which can be downloaded to experience the Android SDK immediately before writing any code.
 
 If you would rather, you can download the MobilePush Practice Field app from the Play Store under the name ET MobilePush Practice Field.

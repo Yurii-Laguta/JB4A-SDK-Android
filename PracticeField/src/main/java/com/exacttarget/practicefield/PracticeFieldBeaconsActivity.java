@@ -45,24 +45,22 @@ import com.exacttarget.practicefield.scrollpages.PageIndicator;
 import com.exacttarget.practicefield.scrollpages.ScrollPagesAdapter;
 
 /**
- * PracticeFieldInfoActivity will display information about the PracticeField App.
- *
- * This activity extends Activity to provide key information about the app that is running.
+ * PracticeFieldBeaconsActivity will provide an overview of how to receive messages for Beacons.
  *
  * @author pvandyk
  */
 
-public class PracticeFieldInfoActivity extends ActionBarActivity {
+public class PracticeFieldBeaconsActivity extends ActionBarActivity {
 
-	private int currentPage = CONSTS.INFO_ACTIVITY;
+	private int currentPage = CONSTS.BEACONS_ACTIVITY;
 
-	private static final String TAG = PracticeFieldInfoActivity.class.getName();
+	private static final String TAG = PracticeFieldBeaconsActivity.class.getName();
 
 	ScrollPagesAdapter mAdapter;
 	ViewPager mPager;
 	PageIndicator mIndicator;
 
-	String[] pages;
+	String[] pages = new String[] {"0", "1", "2", "3", "4"};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -86,7 +84,7 @@ public class PracticeFieldInfoActivity extends ActionBarActivity {
 	protected void onResume() {
 		super.onResume();
 
-		Utils.setActivityTitle(this, R.string.info_activity_title);
+		Utils.setActivityTitle(this, R.string.beacons_activity_title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		try {
@@ -143,7 +141,75 @@ public class PracticeFieldInfoActivity extends ActionBarActivity {
 
 	private void prepareDisplay() {
 
-		pages = Utils.formatInfoPages().clone();
+		StringBuilder sb = new StringBuilder();
+		sb.append(CONSTS.PAGE_TITLE);
+		sb.append("<b>Beacons - Overview</b><br/>");
+		sb.append("<p>");
+		sb.append("The PracticeField has been set with several Beacon messages. In order to see how Beacons work, you will need to purchase several Beacons and configure them to work with the PracticeField app.");
+		sb.append("</p>");
+		sb.append("<p>");
+		sb.append("Each Beacon can be assigned a unique GUID as well as a Major and Minor number. For any Beacons you purchase, make sure that the Beacons can be configured.  You must be able to edit the GUID as well as the Major and Minor number.");
+		sb.append("</p>");
+		sb.append("<p>");
+		sb.append("Messages are fired when you are in proximity of a Beacon.  Different messages can be fired when you are in the following ranges:");
+		sb.append("</p>");
+		sb.append("<ul>");
+		sb.append("<li>Immediate (2-3 inches)</li>");
+		sb.append("<li>Near (2-3 feet)</li>");
+		sb.append("<li>Far (Up to 50 feet)</li>");
+		sb.append("</ul>");
+		sb.append("<p>");
+		sb.append("To see how Beacons work, we have setup 4 Beacons with a GUID of 2f234454-cf6d-4a0f-adf2-f4911ba9ffa6.  The following pages describe the messages associated with each Beacon.");
+		sb.append("</p>");
+		pages[0] = sb.toString();
+
+		sb = new StringBuilder();
+		sb.append(CONSTS.PAGE_TITLE);
+		sb.append("<b>Beacon 1</b><br/>");
+		sb.append("This Beacon is setup with a GUID of 2f234454-cf6d-4a0f-adf2-f4911ba9ffa6 and a Major number of 1 and Minor number of 1.<br/>");
+		sb.append("<br/>");
+		sb.append("The following messages have been setup that are unlimited:<br/>");
+		sb.append("<ul>");
+		sb.append("<li>IMMEDIATE 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 1</li><br/>");
+		sb.append("<li>NEAR 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 1</li><br/>");
+		sb.append("<li>FAR 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 1</li><br/>");
+		sb.append("</ul>");
+		pages[1] = sb.toString();
+
+		sb = new StringBuilder();
+		sb.append(CONSTS.PAGE_TITLE);
+		sb.append("<b>Beacon 2</b><br/>");
+		sb.append("This Beacon is setup with a GUID of 2f234454-cf6d-4a0f-adf2-f4911ba9ffa6 and a Major number of 1 and Minor number of 2.<br/>");
+		sb.append("<br/>");
+		sb.append("The following messages have been setup to fire at most once per hour:<br/>");
+		sb.append("<ul>");
+		sb.append("<li>IMMEDIATE 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 2</li><br/>");
+		sb.append("</ul>");
+
+		pages[2] = sb.toString();
+
+		sb = new StringBuilder();
+		sb.append(CONSTS.PAGE_TITLE);
+		sb.append("<b>Beacon 3</b><br/>");
+		sb.append("This Beacon is setup with a GUID of 2f234454-cf6d-4a0f-adf2-f4911ba9ffa6 and a Major number of 1 and Minor number of 3.<br/>");
+		sb.append("<br/>");
+		sb.append("The following messages have been setup to fire at most once per day:<br/>");
+		sb.append("<ul>");
+		sb.append("<li>IMMEDIATE 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 3</li><br/>");
+		sb.append("<li>NEAR 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 3</li><br/>");
+		sb.append("</ul>");
+		pages[3] = sb.toString();
+
+		sb = new StringBuilder();
+		sb.append("<b>Beacon 4</b><br/>");
+		sb.append("This Beacon is setup with a GUID of 2f234454-cf6d-4a0f-adf2-f4911ba9ffa6 and a Major number of 1 and Minor number of 4.<br/>");
+		sb.append("<br/>");
+		sb.append("The following messages have been setup to fire once ever:<br/>");
+		sb.append("<ul>");
+		sb.append("<li>IMMEDIATE 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 4</li><br/>");
+		sb.append("<li>FAR 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6 Major 1 Minor 4</li><br/>");
+		sb.append("</ul>");
+		pages[4] = sb.toString();
 
 		mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, false);
 
