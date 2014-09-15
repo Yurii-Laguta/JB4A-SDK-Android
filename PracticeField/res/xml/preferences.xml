@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
+            android:title="@string/pref_configs_title"
+            android:key="pref_configs_settings">
+
+        <Preference
+                android:key="prefConfigs"
+                android:selectable="false"
+                android:title="Background"
+                android:summary="@string/configs_help"/>
+
+        <ListPreference
+                android:key="pref_configs_list"
+                android:summary="@string/configs_list_summ"
+                android:title="@string/configs_list"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
             android:title="@string/pref_personal_info_title"
             android:key="pref_personal_info_settings">
 

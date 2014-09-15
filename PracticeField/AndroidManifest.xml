@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1000123" android:versionName="1.0.0-RELEASE" package="com.exacttarget.practicefield">
+<manifest xmlns:amazon="http://schemas.amazon.com/apk/res/android" xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1110001" android:versionName="1.1.1-RELEASE" package="com.exacttarget.practicefield">
 
     <!-- Android version. Your project can support any versions.  But minimum is version 10 and maximum is 19. -->
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
@@ -17,12 +17,23 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!-- END ExactTarget Required Permissions -->
-    
+
+    <!-- ExactTarget permissions for Amazon Device Messaging -->
+    <permission android:name="com.exacttarget.practicefield.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.exacttarget.practicefield.permission.RECEIVE_ADM_MESSAGE"/>
+    <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE"/>
+    <!-- END ExactTarget permissions for Amazon Device Messaging -->
+
     <!-- ExactTarget Permissions for location and region monitoring -->
  	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<!-- END ExactTarget location and region monitoring Permissions -->
+
+    <!-- ExactTarget Permissions for iBeacons -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- END ExactTarget Permissions for iBeacons -->
 
     <!-- ExactTarget DEMO Only for testing purposes -->
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>  // to simulate locations for Geo Fence testing
@@ -33,10 +44,14 @@
 
     <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:logo="@drawable/ic_logo" android:name="com.exacttarget.practicefield.PracticeFieldApp" android:theme="@style/AppTheme">
 
+        <!-- Required to send notifications to Kindle devices.  Reqiuired=false ensures Google Devices will ignore. -->
+        <amazon:enable-feature android:name="com.amazon.device.messaging" android:required="false"/>
+
         <!-- Build Type -->
         <!-- An indication whether the build is Production (prod), QA (QA) or Development (dev) -->
         <!-- This field can be left out for production builds as it will default to prod. -->
         <meta-data android:name="buildType" android:value="DEV"/>
+        <!-- <meta-data android:name="internalUseOnly" android:value="true"/>-->
         <!-- Build Type -->
 
         <!-- ET Broadcast Receiver for handling push messages. You can use the ET_GenericReceiver directly, or extend it to customize notifications.
@@ -82,13 +97,40 @@
 		<!-- ET Broadcast Receivers for for sending data (required) -->
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.ETSendDataReceiver"/>
  		<!-- ET Broadcast Receivers for for sending data (required) -->
-       
+
+        <!-- ET Broadcast Receiver for handling Amazon/ADM push messages. ADM requires it's own definition for this receiver.  You cannot combine this definition with the definition for Google/GCM. You can use the ET_GenericReceiver directly, or extend it to customize notifications -->
+        <receiver android:name="com.exacttarget.etpushsdk.ET_GenericReceiver" android:permission="com.amazon.device.messaging.permission.SEND">
+            <intent-filter>
+                <action android:name="com.amazon.device.messaging.intent.RECEIVE"/>
+                <action android:name="com.amazon.device.messaging.intent.REGISTRATION"/>
+
+                <category android:name="com.exacttarget.practicefield"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- ET Broadcast Receiver for handling notification taps. Used to capture analytics before handing off to client's Activity -->
+        <receiver android:name="com.exacttarget.etpushsdk.ETOpenReceiver">
+            <intent-filter>
+                <action android:name="com.exacttarget.MESSAGE_OPENED"/>
+            </intent-filter>
+        </receiver>
+
 		<!-- ET Service handlers for handling location updates -->
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETLocationTimeoutService"/>
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETLocationWakeupService"/>
         <service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETLocationProviderChangeService"/>
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETGeofenceIntentService"/>
 		<!-- ET Service handlers for handling location updates -->
+
+        <!-- Service handlers for iBeacons -->
+        <service android:enabled="true" android:exported="true" android:isolatedProcess="false" android:label="iBeacon" android:name="com.radiusnetworks.ibeacon.service.IBeaconService"/>
+        <service android:enabled="true" android:name="com.radiusnetworks.ibeacon.IBeaconIntentProcessor">
+            <meta-data android:name="background" android:value="true"/>
+            <intent-filter android:priority="1">
+                <action android:name="com.exacttarget.practicefield.DID_RANGING"/>
+                <action android:name="com.exacttarget.practicefield.DID_MONITORING"/>
+            </intent-filter>
+        </service>
 
         <!-- ET Service handlers for sending data (required) -->
 		<service android:enabled="true" android:name="com.exacttarget.etpushsdk.ETSendDataIntentService"/>
@@ -107,14 +149,34 @@
             </intent-filter>
         </activity>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSendMessageActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldBeaconsActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldDisplayMessageActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldOpenDirectActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldCloudPageActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldCloudPageInboxActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldDiscountActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldInfoActivity" android:screenOrientation="portrait"/>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSettingsActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldDebugSettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldEulaActivity" android:screenOrientation="portrait"/>
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSettingsActivity" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                 <data android:scheme="file"/>
+                <data android:mimeType="*/*"/>
+                <data android:pathPattern=".*\\.pfconfig"/>
+                <data android:host="*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:mimeType="text/plain"/>
+                <data android:pathPattern=".*\\.pfconfig"/>
+                <data android:host="*"/>
+            </intent-filter>
+        </activity>
         <!-- ET Demo Activities -->
 
         <!-- Google Play Services version.  Using the resource file will require your project contain the Google Play services project. -->

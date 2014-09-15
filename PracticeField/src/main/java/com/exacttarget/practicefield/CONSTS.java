@@ -51,10 +51,16 @@ public class CONSTS {
 	public static final int OPENDIRECT_ACTIVITY = 8;
 	public static final int DISCOUNT_ACTIVITY = 9;
 	public static final int INFO_ACTIVITY = 10;
+	public static final int EULA_ACTIVITY = 11;
 
 	public static final String KEY_ATTRIB_FIRST_NAME = "FirstName";
 	public static final String KEY_ATTRIB_LAST_NAME = "LastName";
 
+	public static final String PREFS_CONFIG = "ConfigPrefs";
+
+	public static final String KEY_PREF_CONFIGS_LIST = "pref_configs_list";
+	public static final String KEY_PREF_CONFIG_SUMMARY = "pref_config_summary";
+	public static final String KEY_PREF_CONFIG_FILE = "pref_config_file";
 	public static final String KEY_PREF_FIRST_NAME = "pref_first_name";
 	public static final String KEY_PREF_LAST_NAME = "pref_last_name";
 	public static final String KEY_PREF_PUSH = "pref_push";
@@ -73,5 +79,9 @@ public class CONSTS {
 	public static final String[] KEY_PREF_PUSH_DEPENDENT = {KEY_PREF_LOCATION, KEY_PREF_CAT_SPORTS };
 
 	public static final String PAGE_TITLE = "<b>Practice Field for<br/>&nbsp;&nbsp;&nbsp;ET MobilePush SDK</b><br/><br/>";
+
+	public static final String PROD_CONFIG = "##prod##";
+	public static final String QA_CONFIG = "##qa##";
+	public static final String DEV_CONFIG = "##dev##";
 
 }

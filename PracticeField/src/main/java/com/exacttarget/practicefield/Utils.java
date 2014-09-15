@@ -37,6 +37,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -83,10 +84,14 @@ public class Utils {
 		menu.findItem(R.id.menu_cloudpage_inbox).setVisible(false);
 		menu.findItem(R.id.menu_debug_settings).setVisible(false);
 		menu.findItem(R.id.menu_info).setVisible(false);
+		menu.findItem(R.id.menu_eula).setVisible(false);
 		switch (currentPage) {
 			case CONSTS.HOME_ACTIVITY:
 				menu.findItem(R.id.menu_settings).setVisible(true);
-				menu.findItem(R.id.menu_send_message).setVisible(true);
+				if (!(CONSTS_API.getConfigType() == CONSTS_API.ConfigType.CUSTOM && CONSTS_API.getClientId().equals(""))) {
+					// can't send messages if Custom keys and no client id provided
+					menu.findItem(R.id.menu_send_message).setVisible(true);
+				}
 				menu.findItem(R.id.menu_last_message).setVisible(true);
 
 				if (android.os.Build.VERSION.SDK_INT >= 18) {
@@ -98,6 +103,7 @@ public class Utils {
 				menu.findItem(R.id.menu_cloudpage_inbox).setVisible(true);
 				menu.findItem(R.id.menu_debug_settings).setVisible(true);
 				menu.findItem(R.id.menu_info).setVisible(true);
+				menu.findItem(R.id.menu_eula).setVisible(true);
 				break;
 			case CONSTS.SEND_MESSAGE_ACTIVITY:
 				menu.findItem(R.id.menu_last_message).setVisible(true);
@@ -191,6 +197,11 @@ public class Utils {
 
 			case R.id.menu_info:
 				intent = new Intent(activity, PracticeFieldInfoActivity.class);
+				activity.startActivity(intent);
+				return true;
+
+			case R.id.menu_eula:
+				intent = new Intent(activity, PracticeFieldEulaActivity.class);
 				activity.startActivity(intent);
 				return true;
 		}
@@ -387,7 +398,24 @@ public class Utils {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 
-		sb.append("<b>App Keys</b><br/>");
+		// PRODUCTION, QA OR DEVELOPMENT??
+		if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.DEVELOPMENT) {
+			sb.append("<b>Development App Keys</b><br/>");
+		}
+		else if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.QA) {
+			sb.append("<b>QA App Keys</b><br/>");
+		}
+		else if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.PRODUCTION) {
+			sb.append("<b>Production App Keys</b><br/>");
+		}
+		else {
+			SharedPreferences sp = PracticeFieldApp.context().getSharedPreferences(CONSTS.PREFS_CONFIG, Context.MODE_PRIVATE);
+			String summary = sp.getString(CONSTS.KEY_PREF_CONFIG_SUMMARY, "");
+			sb.append("<b>Custom App Keys</b><br/>");
+			sb.append("Custom config: ");
+			sb.append(summary);
+			sb.append("<br/><br/>");
+		}
 
 		sb.append("<hr>");
 		sb.append(PracticeFieldApp.context().getResources().getString(R.string.app_keys_help).replace("\n", "<br/>"));
@@ -408,38 +436,42 @@ public class Utils {
 		sb.append("<b>GCM Id:</b> ");
 		sb.append(Utils.obfuscateString(CONSTS_API.getGcmSenderId()));
 
-		sb.append("<br/><br/>");
-		sb.append(PracticeFieldApp.context().getResources().getString(R.string.message_keys_help).replace("\n", "<br/>"));
-		sb.append("<br/>");
+		if (!(CONSTS_API.getConfigType() == CONSTS_API.ConfigType.CUSTOM && CONSTS_API.getClientId().equals(""))) {
+			// no need to display if Custom and no ClientId
+			sb.append("<br/><br/>");
+			sb.append(PracticeFieldApp.context().getResources().getString(R.string.message_keys_help).replace("\n", "<br/>"));
+			sb.append("<br/>");
 
-		// Client Id
-		sb.append("<br/>");
-		sb.append("<b>Client Id:</b> ");
-		sb.append(Utils.obfuscateString(CONSTS_API.getClientId()));
+			// Client Id
+			sb.append("<br/>");
+			sb.append("<b>Client Id:</b> ");
+			sb.append(Utils.obfuscateString(CONSTS_API.getClientId()));
 
-		// Client Secret
-		sb.append("<br/>");
-		sb.append("<b>Client Secret:</b> ");
-		sb.append(Utils.obfuscateString(CONSTS_API.getClientSecret()));
+			// Client Secret
+			sb.append("<br/>");
+			sb.append("<b>Client Secret:</b> ");
+			sb.append(Utils.obfuscateString(CONSTS_API.getClientSecret()));
 
-		sb.append("<br/><br/>");
-		sb.append(PracticeFieldApp.context().getResources().getString(R.string.message_api_key_help).replace("\n", "<br/>"));
-		sb.append("<br/>");
+			sb.append("<br/><br/>");
+			sb.append(PracticeFieldApp.context().getResources().getString(R.string.message_api_key_help).replace("\n", "<br/>"));
+			sb.append("<br/>");
 
-		// Standard Message Id
-		sb.append("<br/>");
-		sb.append("<b>Standard Message Id:</b> ");
-		sb.append(Utils.obfuscateString(CONSTS_API.getStandardMessageId()));
+			// Standard Message Id
+			sb.append("<br/>");
+			sb.append("<b>Standard Message Id:</b> ");
+			sb.append(Utils.obfuscateString(CONSTS_API.getStandardMessageId()));
 
-		// CloudPage Message Id
-		sb.append("<br/>");
-		sb.append("<b>CloudPage Message Id:</b> ");
-		sb.append(Utils.obfuscateString(CONSTS_API.getCloudPageMessageId()));
+			// CloudPage Message Id
+			sb.append("<br/>");
+			sb.append("<b>CloudPage Message Id:</b> ");
+			sb.append(Utils.obfuscateString(CONSTS_API.getCloudPageMessageId()));
 
-		// Fuel URL
-		sb.append("<br/>");
-		sb.append("<b>Fuel URL:</b> ");
-		sb.append(CONSTS_API.getFuel_url());
+			// Fuel URL
+			sb.append("<br/>");
+			sb.append("<b>Fuel URL:</b> ");
+			sb.append(CONSTS_API.getFuel_url());
+
+		}
 
 		pages[1] = sb.toString();
 		sb = new StringBuilder();
@@ -747,4 +779,66 @@ public class Utils {
 			}
 		}
 	}
+
+	public static JSONObject getConfig (String path) {
+		BufferedReader in;
+		String line;
+		StringBuilder text;
+		JSONObject json = null;
+
+		try {
+			in = new BufferedReader(new FileReader(path));
+			text = new StringBuilder();
+			while ((line = in.readLine()) != null) {
+				text.append(line);
+				text.append('\n');
+			}
+
+			try {
+				json = new JSONObject(text.toString());
+			}
+			catch (JSONException e) {
+				if (ETPush.getLogLevel() <= Log.ERROR) {
+					Log.e(TAG, "Error parsing PFConfig file to JSON: " + e.getLocalizedMessage());
+				}
+			}
+		}
+		catch (IOException e) {
+			if (ETPush.getLogLevel() <= Log.ERROR) {
+				Log.d(TAG, "PFConfig read error: " + e.getLocalizedMessage());
+			}
+		}
+		return json;
+	}
+
+	public static String getRawResourceContents(String fileName, boolean isHTML) {
+		String fileText = "";
+		try {
+			Resources res = PracticeFieldApp.context().getResources();
+			InputStream in_s = res.openRawResource(getResId("R.raw." + fileName));
+			BufferedReader fileReader = new BufferedReader(new InputStreamReader(in_s, "UTF-8"));
+			String fileLine;
+			while ((fileLine = fileReader.readLine()) != null) {
+				fileText += fileLine;
+				if (!isHTML)
+					fileText += "\n";
+			}
+		}
+		catch (Exception e) {
+			if (ETPush.getLogLevel() <= Log.ERROR) {
+				Log.d(TAG, "Error getting raw resource file: " + e.getLocalizedMessage());
+			}
+		}
+
+		return fileText;
+	}
+
+	public static int getResId(String resName) {
+		Context context = PracticeFieldApp.context();
+		int firstDotPos = resName.indexOf(".");
+		int secondDotPos = resName.lastIndexOf(".");
+
+		return context.getResources().getIdentifier(resName.substring(secondDotPos + 1), resName.substring(firstDotPos + 1, secondDotPos), context.getPackageName());
+	}
+
 }

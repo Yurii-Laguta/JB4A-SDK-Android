@@ -50,4 +50,11 @@
             android:showAsAction="never"
             android:title="@string/menu_info"/>
 
- </menu>
+    <item
+            android:id="@+id/menu_eula"
+            android:icon="@android:drawable/ic_menu_help"
+            android:orderInCategory="107"
+            android:showAsAction="never"
+            android:title="@string/menu_eula"/>
+
+</menu>
