@@ -1,6 +1,6 @@
-# ExactTarget MobilePush SDK for Android
+# ExactTarget Journey Builder for Apps Android SDK (formerly MobilePush Android SDK)
 
-This is the git repository for the ET MobilePush SDK for Android. 
+This is the git repository for the ExactTarget Journey Builder for Apps Android SDK (formerly MobilePush Android SDK). 
 
 For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.io/MobilePushSDK-Android).
 

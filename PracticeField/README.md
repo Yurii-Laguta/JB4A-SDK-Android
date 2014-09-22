@@ -1,10 +1,10 @@
-# Practice Field for MobilePush SDK
+# Practice Field for Journey Builder for Apps Android SDK (formerly MobilePush Android SDK)
 
 ## About
-This is the Practice Field App for the MobilePush SDK. It serves these purposes:
+This is the Practice Field App for the Journey Builder for Apps Android SDK (formerly MobilePush Android SDK). It serves these purposes:
 
-- Provides a UI for practicing with various features of the MobilePush SDK.
-- Provides an example or template to practice creating an Android app that use the ExactTarget MobilePush SDK.
+- Provides a UI for practicing with various features of the Journey Builder for Apps Android SDK (formerly MobilePush Android SDK).
+- Provides an example or template to practice creating an Android app that use the Journey Builder for Apps Android SDK (formerly MobilePush Android SDK).
 - Provides a mechanism to collect and send debugging information to learn about the workings of the SDK as you practice.
 
 ## Fully Functional APK
