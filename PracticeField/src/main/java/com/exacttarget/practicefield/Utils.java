@@ -88,7 +88,7 @@ public class Utils {
 		switch (currentPage) {
 			case CONSTS.HOME_ACTIVITY:
 				menu.findItem(R.id.menu_settings).setVisible(true);
-				if (!(CONSTS_API.getConfigType() == CONSTS_API.ConfigType.CUSTOM && CONSTS_API.getClientId().equals(""))) {
+				if (!CONSTS_API.getClientId().equals("")) {
 					// can't send messages if Custom keys and no client id provided
 					menu.findItem(R.id.menu_send_message).setVisible(true);
 				}
@@ -398,24 +398,7 @@ public class Utils {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 
-		// PRODUCTION, QA OR DEVELOPMENT??
-		if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.DEVELOPMENT) {
-			sb.append("<b>Development App Keys</b><br/>");
-		}
-		else if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.QA) {
-			sb.append("<b>QA App Keys</b><br/>");
-		}
-		else if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.PRODUCTION) {
-			sb.append("<b>Production App Keys</b><br/>");
-		}
-		else {
-			SharedPreferences sp = PracticeFieldApp.context().getSharedPreferences(CONSTS.PREFS_CONFIG, Context.MODE_PRIVATE);
-			String summary = sp.getString(CONSTS.KEY_PREF_CONFIG_SUMMARY, "");
-			sb.append("<b>Custom App Keys</b><br/>");
-			sb.append("Custom config: ");
-			sb.append(summary);
-			sb.append("<br/><br/>");
-		}
+		sb.append("<b>App Keys</b><br/>");
 
 		sb.append("<hr>");
 		sb.append(PracticeFieldApp.context().getResources().getString(R.string.app_keys_help).replace("\n", "<br/>"));
@@ -436,8 +419,8 @@ public class Utils {
 		sb.append("<b>GCM Id:</b> ");
 		sb.append(Utils.obfuscateString(CONSTS_API.getGcmSenderId()));
 
-		if (!(CONSTS_API.getConfigType() == CONSTS_API.ConfigType.CUSTOM && CONSTS_API.getClientId().equals(""))) {
-			// no need to display if Custom and no ClientId
+		if (!CONSTS_API.getClientId().equals("")) {
+			// no need to display if no ClientId
 			sb.append("<br/><br/>");
 			sb.append(PracticeFieldApp.context().getResources().getString(R.string.message_keys_help).replace("\n", "<br/>"));
 			sb.append("<br/>");
@@ -778,37 +761,6 @@ public class Utils {
 				}
 			}
 		}
-	}
-
-	public static JSONObject getConfig (String path) {
-		BufferedReader in;
-		String line;
-		StringBuilder text;
-		JSONObject json = null;
-
-		try {
-			in = new BufferedReader(new FileReader(path));
-			text = new StringBuilder();
-			while ((line = in.readLine()) != null) {
-				text.append(line);
-				text.append('\n');
-			}
-
-			try {
-				json = new JSONObject(text.toString());
-			}
-			catch (JSONException e) {
-				if (ETPush.getLogLevel() <= Log.ERROR) {
-					Log.e(TAG, "Error parsing PFConfig file to JSON: " + e.getLocalizedMessage());
-				}
-			}
-		}
-		catch (IOException e) {
-			if (ETPush.getLogLevel() <= Log.ERROR) {
-				Log.d(TAG, "PFConfig read error: " + e.getLocalizedMessage());
-			}
-		}
-		return json;
 	}
 
 	public static String getRawResourceContents(String fileName, boolean isHTML) {
