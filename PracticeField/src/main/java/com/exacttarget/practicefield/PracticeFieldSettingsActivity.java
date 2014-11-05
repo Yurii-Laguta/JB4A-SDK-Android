@@ -111,9 +111,6 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 
 	private SharedPreferences sp;
 
-	private ArrayList<String> pfConfigsListSummary = null;
-	private ArrayList<String> pfConfigsListFiles = null;
-
 	private static final int currentPage = CONSTS.SETTINGS_ACTIVITY;
 	private static final String TAG = PracticeFieldSettingsActivity.class.getName();
 
@@ -125,26 +122,6 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 		sp = PreferenceManager.getDefaultSharedPreferences(PracticeFieldApp.context());
 
 		addPreferencesFromResource(R.xml.preferences);
-
-		if (getIntent().getAction() != null && getIntent().getAction().contains(Intent.ACTION_VIEW)) {
-			// check if new config file passed in
-			Uri data = getIntent().getData();
-			if (data != null) {
-				getIntent().setData(null);
-				try {
-					importPFConfigFile(data);
-				}
-				catch (Exception e) {
-					if (ETPush.getLogLevel() <= Log.ERROR) {
-						Log.e(TAG, "Failed to save new PFConfig File.", e);
-					}
-				}
-			}
-		}
-
-		if (pfConfigsListFiles == null | pfConfigsListSummary == null) {
-			getConfigsList();
-		}
 
 		prepareDisplay();
 
@@ -256,8 +233,6 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 	//
 	@SuppressWarnings("deprecation")
 	private void prepareDisplay() {
-
-		addConfigChange();
 
 		//
 		// FIRST NAME PREFERENCE
@@ -512,27 +487,6 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 	} //prepareDisplay()
 
 	//
-	// set_pfcl
-	//
-	private int set_pfcl(ListPreference pfclPref) {
-		SharedPreferences sp = PracticeFieldApp.context().getSharedPreferences(CONSTS.PREFS_CONFIG, Context.MODE_PRIVATE);
-		String currFilePath = sp.getString(CONSTS.KEY_PREF_CONFIG_FILE, "");
-		int index = pfConfigsListFiles.indexOf(currFilePath);
-
-		if (currFilePath.equals("") | index == -1) {
-			// default to prod
-			index = 0;
-		}
-
-		if (pfclPref != null) {
-			pfclPref.setValueIndex(index);
-			pfclPref.setSummary(pfConfigsListSummary.get(index));
-		}
-
-		return index;
-	}
-
-	//
 	// setSubCheckBoxPref
 	//
 	// Create the CheckBoxPreference controls to subscribe to an Activity notification.
@@ -617,271 +571,6 @@ public class PracticeFieldSettingsActivity extends PreferenceActivity {
 	//
 	private void updatePreferencesForKey(String key, String value) {
 		sp.edit().putString(key, value).apply();
-	}
-
-	//**************************************************************
-	//
-	// Remove before adding to staging
-	//
-	//**************************************************************
-
-	//
-	// addConfigChange
-	//
-	// add Config change preference
-	//
-	private void addConfigChange() {
-		//
-		// PFConfigs PREFERENCE
-		//
-		final ListPreference pfclPref = (ListPreference) findPreference(CONSTS.KEY_PREF_CONFIGS_LIST);
-
-		boolean forInternalUseOnly = false;
-		try {
-			ApplicationInfo ai = PracticeFieldApp.context().getPackageManager().getApplicationInfo(PracticeFieldApp.context().getPackageName(), PackageManager.GET_META_DATA);
-			Bundle bundle = ai.metaData;
-			forInternalUseOnly = bundle.getBoolean("internalUseOnly");
-		}
-		catch (Exception e) {
-			if (ETPush.getLogLevel() <= Log.ERROR) {
-				Log.e(TAG, e.getMessage());
-			}
-		}
-
-		if (forInternalUseOnly) {
-
-			String[] strArray = new String[pfConfigsListSummary.size()];
-			strArray = pfConfigsListSummary.toArray(strArray);
-			pfclPref.setEntries(strArray);
-			strArray = new String[pfConfigsListFiles.size()];
-			strArray = pfConfigsListFiles.toArray(strArray);
-			pfclPref.setEntryValues(strArray);
-
-			set_pfcl(pfclPref);
-
-			pfclPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-
-				@Override
-				public boolean onPreferenceChange(Preference pref, Object newValue) {
-					final int newIndex = pfConfigsListFiles.indexOf((String) newValue);
-
-					SharedPreferences sp = PracticeFieldApp.context().getSharedPreferences(CONSTS.PREFS_CONFIG, Context.MODE_PRIVATE);
-					sp.edit().putString(CONSTS.KEY_PREF_CONFIG_SUMMARY, pfConfigsListSummary.get(newIndex)).commit();
-					sp.edit().putString(CONSTS.KEY_PREF_CONFIG_FILE, pfConfigsListFiles.get(newIndex)).commit();
-					pfclPref.setSummary(pfConfigsListSummary.get(newIndex));
-
-					switchConfig(pfclPref, newIndex);
-
-					return true;
-				}
-			});
-		}
-		else {
-			PreferenceScreen allPrefs = getPreferenceScreen();
-			PreferenceCategory configCat = (PreferenceCategory) findPreference("pref_configs_settings");
-			allPrefs.removePreference(configCat);
-		}
-
-	}
-
-	//
-	// getConfigsList
-	//
-	// Get the ConfigsList that have been imported.
-	//
-	private void getConfigsList() {
-
-		this.pfConfigsListSummary = new ArrayList<String>();
-		this.pfConfigsListFiles = new ArrayList<String>();
-
-		this.pfConfigsListSummary.add("PROD");
-		this.pfConfigsListFiles.add(CONSTS.PROD_CONFIG);
-		this.pfConfigsListSummary.add("QA");
-		this.pfConfigsListFiles.add(CONSTS.QA_CONFIG);
-		this.pfConfigsListSummary.add("Development");
-		this.pfConfigsListFiles.add(CONSTS.DEV_CONFIG);
-
-		File fileList = new File(getFilesDir() + "/PFConfigFiles/");
-		File[] fileNames = fileList.listFiles();
-		if (fileNames != null) {
-			for (File tf : fileNames) {
-				JSONObject json = Utils.getConfig(tf.getAbsolutePath());
-
-				if (json != null) {
-					try {
-						json = json.getJSONObject("PFConfig");
-						this.pfConfigsListSummary.add(json.getString("configurationName"));
-						this.pfConfigsListFiles.add(tf.getAbsolutePath());
-						if (ETPush.getLogLevel() <= Log.DEBUG) {
-							Log.d(TAG, "===> Loaded a config: " + json.getString("configurationName"));
-						}
-
-					}
-					catch (JSONException e) {
-						if (ETPush.getLogLevel() <= Log.ERROR) {
-							Log.e(TAG, "JSON Get error: " + e.getLocalizedMessage());
-						}
-					}
-				}
-			}
-		}
-	}
-
-	//
-	// importPFConfigFile
-	//
-	// Import a new PracticeField Config File
-	//
-
-	private void importPFConfigFile(Uri data) {
-
-		if (CONSTS_API.getBuildType() != CONSTS_API.BuildType.PRODUCTION) {
-			final String scheme = data.getScheme();
-			JSONObject json;
-
-			if (ContentResolver.SCHEME_CONTENT.equals(scheme) || ContentResolver.SCHEME_FILE.equals(scheme)) {
-				try {
-					ContentResolver cr = getApplicationContext().getContentResolver();
-					InputStream is = cr.openInputStream(data);
-					if (is == null)
-						return;
-
-					StringBuilder buf = new StringBuilder();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-					String str;
-					while ((str = reader.readLine()) != null) {
-						buf.append(str);
-						buf.append("\n");
-					}
-					is.close();
-
-					json = new JSONObject(buf.toString());
-					Log.d(TAG, json.toString(4));
-
-					try {
-						File PFConfigFile = new File(getFilesDir() + "/PFConfigFiles/" + json.getJSONObject("PFConfig").getString("configurationName") + ".pfconfig");
-
-						if (PFConfigFile.getParentFile().exists() || PFConfigFile.getParentFile().mkdirs()) {
-
-							if (PFConfigFile.exists()) {
-								if (!PFConfigFile.delete()) {
-									if (ETPush.getLogLevel() <= Log.ERROR) {
-										throw new Exception("deleting existing PFConfig file failed.");
-									}
-								}
-							}
-
-							if (!PFConfigFile.createNewFile()) {
-								if (ETPush.getLogLevel() <= Log.ERROR) {
-									throw new Exception("creating new PFConfig file failed.");
-								}
-							}
-							FileOutputStream fos = new FileOutputStream(PFConfigFile);
-
-							fos.write(json.toString(4).getBytes());
-							fos.flush();
-							fos.close();
-
-							getConfigsList();
-
-							int newIndex = pfConfigsListFiles.indexOf(PFConfigFile.getAbsolutePath());
-							switchConfig(null, newIndex);
-
-							Toast.makeText(PracticeFieldApp.context(), "Config import successful.  Switching to new config.", Toast.LENGTH_LONG).show();
-
-						}
-					}
-					catch (Exception e) {
-						if (ETPush.getLogLevel() <= Log.ERROR) {
-							Log.e(TAG, "Saving PFConfig file failed.", e);
-						}
-					}
-
-				}
-				catch (FileNotFoundException e) {
-					if (ETPush.getLogLevel() <= Log.ERROR) {
-						Log.e(TAG, "Unable to open PFConfig file.", e);
-					}
-				}
-				catch (IOException e) {
-					if (ETPush.getLogLevel() <= Log.ERROR) {
-						Log.e(TAG, "IO Exception saving PFConfig failed.", e);
-					}
-				}
-				catch (JSONException e) {
-					if (ETPush.getLogLevel() <= Log.ERROR) {
-						Log.e(TAG, "Error parsing JSON response from PFConfig.", e);
-					}
-				}
-			}
-		}
-		else {
-			finish();
-		}
-	}
-
-	//
-	// switchConfig
-	//
-	// Switch to new imported or selected config
-	//
-	private void switchConfig(final ListPreference pfclPref, final int newIndex) {
-
-		final ProgressDialog progressDialog = ProgressDialog.show(PracticeFieldSettingsActivity.this, "Reset Config", "Please wait...", true);
-		new Thread(new Runnable() {
-			public void run() {
-				try {
-
-					// clear shared prefs
-					sp.edit().clear().apply();
-
-					// set new config type
-					CONSTS_API.setConfigType(pfConfigsListSummary.get(newIndex), pfConfigsListFiles.get(newIndex));
-
-					// it's possible there is a problem with the config, if so, set to new number
-					final int index = set_pfcl(pfclPref);
-					if (index != newIndex) {
-						if (ETPush.getLogLevel() <= Log.DEBUG) {
-							Log.d(TAG, "Unable to set to new config.  Switched to: " + pfConfigsListSummary.get(index));
-						}
-						CONSTS_API.setConfigType(pfConfigsListSummary.get(index), pfConfigsListFiles.get(index));
-					}
-
-					ETPush.resetPush(PracticeFieldApp.context(), CONSTS_API.getEtAppId(), CONSTS_API.getAccessToken());
-					ETPush.pushManager().setGcmSenderID(CONSTS_API.getGcmSenderId());
-
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							if (!PracticeFieldSettingsActivity.this.isFinishing()) {
-								progressDialog.dismiss();
-							}
-							if (index == newIndex)
-								Toast.makeText(PracticeFieldApp.context(), "Reset to new config successful: " + pfConfigsListSummary.get(index), Toast.LENGTH_LONG).show();
-							else
-								Toast.makeText(PracticeFieldApp.context(), "Reset to new config not successful.  Reset to PRODUCTION", Toast.LENGTH_LONG).show();
-
-							finish();
-
-						}
-					});
-				}
-				catch (Exception e) {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							if (!PracticeFieldSettingsActivity.this.isFinishing()) {
-								progressDialog.dismiss();
-							}
-							Toast.makeText(PracticeFieldApp.context(), "Problems resetting to new config.  Check logcat.", Toast.LENGTH_LONG).show();
-						}
-					});
-					if (ETPush.getLogLevel() <= Log.ERROR) {
-						Log.e(TAG, "Problems resetting to new config.", e);
-					}
-				}
-			}
-		}).start();
 	}
 
 	//

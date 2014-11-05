@@ -47,13 +47,6 @@
         <!-- Required to send notifications to Kindle devices.  Reqiuired=false ensures Google Devices will ignore. -->
         <amazon:enable-feature android:name="com.amazon.device.messaging" android:required="false"/>
 
-        <!-- Build Type -->
-        <!-- An indication whether the build is Production (prod), QA (QA) or Development (dev) -->
-        <!-- This field can be left out for production builds as it will default to prod. -->
-        <meta-data android:name="buildType" android:value="DEV"/>
-        <!-- <meta-data android:name="internalUseOnly" android:value="true"/>-->
-        <!-- Build Type -->
-
         <!-- ET Broadcast Receiver for handling push messages. You can use the ET_GenericReceiver directly, or extend it to customize notifications.
               In this PracticeField app, we have extended it to provide custom notifications chosen by the app user.  As well as the ability to add vibration to the alert.
           -->
@@ -158,26 +151,8 @@
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldInfoActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldDebugSettingsActivity" android:screenOrientation="portrait"/>
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldEulaActivity" android:screenOrientation="portrait"/>
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSettingsActivity" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                 <data android:scheme="file"/>
-                <data android:mimeType="*/*"/>
-                <data android:pathPattern=".*\\.pfconfig"/>
-                <data android:host="*"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:mimeType="text/plain"/>
-                <data android:pathPattern=".*\\.pfconfig"/>
-                <data android:host="*"/>
-            </intent-filter>
-        </activity>
-        <!-- ET Demo Activities -->
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize" android:name="com.exacttarget.practicefield.PracticeFieldSettingsActivity" android:screenOrientation="portrait"/>
+/        <!-- ET Demo Activities -->
 
         <!-- Google Play Services version.  Using the resource file will require your project contain the Google Play services project. -->
         <!-- See Google documentation for more information -->
