@@ -77,30 +77,17 @@ public class PracticeFieldApp extends Application {
 
 		try {
 
-			// CONSTS_API.getBuildType()
+			// PracticeFieldDebugSettingsActivity allows you to override the debug level.  Set it now.
 			//
-			// This class will return the build type.
+			// If you prefer to check for a debug version, you can use the following code:
+			// Boolean release = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE);
+			// which checks debuggable flag value which is set to false for release builds and true for debug builds.
 			//
-			// Production values are used by default.  So, the meta data build type in the manifest is only needed for Dev and QA.
-			// To set to Dev or Prod, the following is needed in the AndroidManifest.xml file under the application section:
-			//         <meta-data android:name="buildType" android:value="dev"/>
-			//
-			if (CONSTS_API.getBuildType() == CONSTS_API.BuildType.DEVELOPMENT | CONSTS_API.getBuildType() == CONSTS_API.BuildType.QA) {
-				// ETPush.setLogLevel
-				//
-				//		This call should be the first call in app Application class to ensure you get all the debug info in logcat from all the SDK calls.
-				//		In production you can remove this call as the default is Log.WARN
-				ETPush.setLogLevel(Log.DEBUG);
-			}
-			else {
-				// A production build, which normally doesn't have debugging turned on.
-				// However, PracticeFieldDebugSettingsActivity allows you to override the debug level.  Set it now.
-				SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PracticeFieldApp.context());
-				boolean enableDebug = sp.getBoolean(CONSTS.KEY_DEBUG_PREF_ENABLE_DEBUG, false);
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PracticeFieldApp.context());
+			boolean enableDebug = sp.getBoolean(CONSTS.KEY_DEBUG_PREF_ENABLE_DEBUG, false);
 
-				if (enableDebug) {
-					ETPush.setLogLevel(Log.DEBUG);
-				}
+			if (enableDebug) {
+				ETPush.setLogLevel(Log.DEBUG);
 			}
 
 			// ETPush.readyAimFire
