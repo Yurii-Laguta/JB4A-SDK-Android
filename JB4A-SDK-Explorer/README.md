@@ -8,9 +8,9 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 - Provides a mechanism to collect and send debugging information to learn about the workings of the SDK as you explore.
 
 ## Fully Functional APK
-The APKFiles folder contains jb4a-sdk-explorer-x.x.x.xxxx.apk (where x.x.x is the current version of the SDK Explorer App) which can be downloaded to experience the Android SDK immediately before writing any code.
+The APKFiles folder contains jb4a-sdk-explorer.apk which can be downloaded to experience the Android SDK immediately before writing any code.
 
-If you would rather, you can download the Journey Builder for Apps SDK Explorer app from the Play Store under the name Salesforce Journey Builder for Apps SDK Explorer.
+If you would rather, you can download the Journey Builder for Apps SDK Explorer app from the Play Store under the name Salesforce Journey Builder for Apps SDK Explorer (coming soon).
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 

@@ -1,7 +1,7 @@
 <div><font color="black">
 <a href="http://www.exacttarget.com/privacy-policy">Privacy Policy</a>
 <p>
-This is a legally binding agreement. Please read it carefully. By clicking "I Accept", or installing or using the ETMC MobilePush Practice Field for Android software and/or any updates to such software provided by salesforce.com, inc. and/or a salesforce.com, inc. affiliate (collectively, "salesforce.com"), you:
+This is a legally binding agreement. Please read it carefully. By clicking "I Accept", or installing or using the Journey Builder for Apps SDK Explorer for Android software and/or any updates to such software provided by salesforce.com, inc. and/or a salesforce.com, inc. affiliate (collectively, "salesforce.com"), you:
 </p>
 <ul>
 <li>agree to the following terms on behalf of the salesforce.com customer with which you are employed, affiliated or associated (the "Customer"),</li> 
@@ -21,13 +21,13 @@ This Order Form Supplement was last updated on July 22, 2014. It is effective be
 1. THIS ORDER FORM SUPPLEMENT
 </p>
 <p>
-This Order Form Supplement is a part of each Order Form by which the Customer ordered the ETMC MobilePush Practice Field service, or a salesforce.com service incorporating the ETMC MobilePush Practice Field service (an "Order Form"). The Order Form and this Order Form Supplement are governed by the Master Subscription Agreement.  This Order Form Supplement adjusts certain terms of the Master Subscription Agreement, solely with respect to the Software.  Capitalized terms used but not defined in this Order Form Supplement have the meanings given to them in the Master Subscription Agreement.
+This Order Form Supplement is a part of each Order Form by which the Customer ordered the Journey Builder for Apps SDK Explorer service, or a salesforce.com service incorporating the Journey Builder for Apps SDK Explorer service (an "Order Form"). The Order Form and this Order Form Supplement are governed by the Master Subscription Agreement.  This Order Form Supplement adjusts certain terms of the Master Subscription Agreement, solely with respect to the Software.  Capitalized terms used but not defined in this Order Form Supplement have the meanings given to them in the Master Subscription Agreement.
 </p>
 <p>
 2. THE SOFTWARE
 </p>
 <p>
-The Software allows ETMC MobilePush Practice Field customers to use the ETMC MobilePush Practice Field service from Supported Devices. A "Supported Device" is a combination of an Google device model and relevant Android software version(s) that is supported by the Software. The Software is provided by salesforce.com as a component of the applicable service described in the Order Form.
+The Software allows Journey Builder for Apps SDK Explorer customers to use the Journey Builder for Apps SDK Explorer service from Supported Devices. A "Supported Device" is a combination of an Google device model and relevant Android software version(s) that is supported by the Software. The Software is provided by salesforce.com as a component of the applicable service described in the Order Form.
 </p>
 <p>
 3. WHO YOU ARE CONTRACTING WITH
@@ -66,7 +66,7 @@ The Software, including software embedded in the Software, is licensed, not sold
 6. TERM AND TERMINATION
 </p>
 <p>
-Salesforce.com may terminate this Order Form Supplement at any time upon 30 days' notice to Customer without cause, or immediately upon notice to the Customer if any third party (including, but not limited to, Google Inc., or your network connectivity provider) restricts, prevents or ceases to authorize the installation or use of the Software on your Supported Device or over your network. In addition, this Order Form Supplement shall terminate immediately and automatically upon any termination or expiration of the Customer's subscription to the ETMC MobilePush Practice Field service. Upon any such termination or expiration, the Customer (including you) shall no longer be permitted to use the Software, and shall delete or destroy all copies of the Software in its (including your) possession.
+Salesforce.com may terminate this Order Form Supplement at any time upon 30 days' notice to Customer without cause, or immediately upon notice to the Customer if any third party (including, but not limited to, Google Inc., or your network connectivity provider) restricts, prevents or ceases to authorize the installation or use of the Software on your Supported Device or over your network. In addition, this Order Form Supplement shall terminate immediately and automatically upon any termination or expiration of the Customer's subscription to the Journey Builder for Apps SDK Explorer service. Upon any such termination or expiration, the Customer (including you) shall no longer be permitted to use the Software, and shall delete or destroy all copies of the Software in its (including your) possession.
 </p>
 <p>
 Termination of this Order Form Supplement shall not entitle the Customer to any refund, credit, or other compensation from salesforce.com under the Master Subscription Agreement or any other agreement or from any third party.
@@ -81,7 +81,7 @@ Any service level agreement in effect between the Customer and saleforce.com sha
 8. USE OF DATA
 </p>
 <p>
-The Software may obtain information from, or access data stored on, a Supported Device to provide the ETMC MobilePush Practice Field service.  The Software may transmit information to and from your device to provide the ETMC MobilePush Practice Field service.  The Software may provide salesforce.com with information related to your use of the ETMC MobilePush Practice Field service, information regarding your computer system, and information regarding your interaction with the Software, which salesforce.com may use to provide and improve the ETMC MobilePush Practice Field service and related products.  The Software’s access to information through your or the Customer’s device does not cause that information to be Customer Data under the Master Subscription Agreement or the ETMC Privacy Statement.
+The Software may obtain information from, or access data stored on, a Supported Device to provide the Journey Builder for Apps SDK Explorer service.  The Software may transmit information to and from your device to provide the Journey Builder for Apps SDK Explorer service.  The Software may provide salesforce.com with information related to your use of the Journey Builder for Apps SDK Explorer service, information regarding your computer system, and information regarding your interaction with the Software, which salesforce.com may use to provide and improve the Journey Builder for Apps SDK Explorer service and related products.  The Software’s access to information through your or the Customer’s device does not cause that information to be Customer Data under the Master Subscription Agreement or the Salesforce Marketing Cloud Privacy Statement.
 </p>
 <p>
 9. TERMS REQUIRED BY Google INC.
