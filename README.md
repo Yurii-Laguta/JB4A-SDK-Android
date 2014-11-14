@@ -1,6 +1,7 @@
-# ExactTarget Journey Builder for Apps Android SDK (formerly MobilePush Android SDK)
+#Journey Builder for Apps Android SDK
 
-This is the git repository for the ExactTarget Journey Builder for Apps Android SDK (formerly MobilePush Android SDK). 
+This is the git repository for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK.<br>
+<b>Formerly ExactTarget MobilePush Android SDK</b>
 
 For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.com/JB4A-SDK-Android).
 
