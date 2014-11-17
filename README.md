@@ -1,11 +1,27 @@
-# ExactTarget Journey Builder for Apps Android SDK (formerly MobilePush Android SDK)
+#Journey Builder for Apps Android SDK
 
-This is the git repository for the ExactTarget Journey Builder for Apps Android SDK (formerly MobilePush Android SDK). 
+This is the git repository for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK.<br>
+<b>Formerly ExactTarget MobilePush Android SDK</b>
 
-For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.io/MobilePushSDK-Android).
+For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.com/JB4A-SDK-Android).
 
 ## Release History
 As of July 2014, we have clarified the version numbering of the SDK and versions that will be supported.  For more information see [here](https://code.exacttarget.com/apis-sdks/mobilepush-sdks/mobile-push-sdk.html).
+
+### Version 3.4.0
+_Released November 10, 2014, correlating to ExactTarget's 2014-08 Release_
+_(supported)_
+
+#### Major Notes
+* MPUSH-2913 - Rename SDK to Journey Builder for Apps SDK (primarily repo and comment changes)
+* MPUSH-2910 - Rename PracticeField to Journey Builder for Apps SDK Explorer (full rename of app)
+* MPUSH-2897 - Ensure SDK does not write to disk on main thread.<br/>
+_Changes required due to a new parameter in readyAimFire() and removal of setGcmSenderId()._
+* MPUSH-2701 - Support interactive notifications (up to three buttons on a notification)
+* MPUSH-2701 - Support picture notifications (using custom key et_big_pic)
+* MPUSH-2702 - Support large text notifications on supported Android versions 
+* MPUSH-2727 - Add package name to intent-filter for ETOpenReceiver in AndroidManifest.xml<br/>
+_Changes required to add package name to intent-filter in AndroidManifest.xml_
 
 ### Version 3.3.0
 _Released August 25, 2014, correlating to ExactTarget's 2014-06 Release_
@@ -40,7 +56,7 @@ _(supported)_
 
 ### Version 3.1.2
 _Released April 15, 2014, correlating to ExactTarget's 2014-04 Release_
-_(supported)_
+<span class="alert">_This version no longer supported as of November 10, 2014._</span>
 
 #### Major Notes
 * MPUSH-1941 - Fix expectation of no message per period (geofences)
