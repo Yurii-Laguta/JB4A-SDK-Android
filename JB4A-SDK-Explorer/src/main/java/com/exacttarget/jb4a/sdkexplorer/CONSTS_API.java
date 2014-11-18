@@ -28,7 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.exacttarget.practicefield;
+package com.exacttarget.jb4a.sdkexplorer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
