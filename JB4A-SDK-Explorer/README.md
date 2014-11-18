@@ -8,7 +8,8 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 - Provides a mechanism to collect and send debugging information to learn about the workings of the SDK as you explore.
 
 ## Fully Functional APK
-The APKFiles folder contains jb4a-sdk-explorer.apk which can be downloaded to experience the Android SDK immediately before writing any code.
+The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.  Click the following to download this apk to install on your device:<br/>
+[jb4a-sdk-explorer-2.0.0.0004-RELEASE.apk](APKFiles/jb4a-sdk-explorer-2.0.0.0004-RELEASE.apk)
 
 If you would rather, you can download the Journey Builder for Apps SDK Explorer app from the Play Store under the name Salesforce Journey Builder for Apps SDK Explorer (coming soon).
 
@@ -48,8 +49,7 @@ To create your own version of the SDK Explorer, you will need to have your app d
 2. Create a template (API Triggered) Message for a standard and CloudPage message in order to send messages from your app.
 3. Create messages for your app for each location you'd like to test Geo Fencing.
 
-For more information, see the info on Code@ here:
-https://code.exacttarget.com/mobilepush/integrating-mobilepush-sdk-your-android-mobile-app
+For more information, see the info on [Code@](https://code.exacttarget.com/apis-sdks/journey-builder-for-apps/index.html).
 
 
 
