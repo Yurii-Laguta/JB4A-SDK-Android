@@ -5,9 +5,6 @@ This is the git repository for the Salesforce Marketing Cloud Journey Builder fo
 
 For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.com/JB4A-SDK-Android).
 
-## Release History
-As of July 2014, we have clarified the version numbering of the SDK and versions that will be supported.  For more information see [here](https://code.exacttarget.com/apis-sdks/mobilepush-sdks/mobile-push-sdk.html).
-
 ### Version 3.4.0
 _Released November 17, 2014, correlating to ExactTarget's 2014-08 Release_
 _(supported)_
