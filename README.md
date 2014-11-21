@@ -6,7 +6,7 @@ This is the git repository for the Salesforce Marketing Cloud Journey Builder fo
 For more information, please see [Code@ExactTarget](http://code.exacttarget.com), or visit the online documentation [here](http://exacttarget.github.com/JB4A-SDK-Android).
 
 Click the following to download the latest JB4A SDK:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK" target="_blank">etsdk-3.4.0.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK/etsdk-3.4.0.jar" target="_blank">etsdk-3.4.0.jar</a>
 
 ### Version 3.4.0
 _Released November 17, 2014, correlating to ExactTarget's 2014-08 Release_
