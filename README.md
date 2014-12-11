@@ -8,6 +8,13 @@ For more information, please see [Code@ExactTarget](http://code.exacttarget.com)
 Click the following to download the latest JB4A SDK:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK/etsdk-3.4.0.jar" target="_blank">etsdk-3.4.0.jar</a>
 
+### Version 3.4.1
+_Released December 11, 2014
+_(supported)_
+
+#### Major Notes
+* MPUSH-3153 - Fix registration error when Location is false in readyAimFire()
+
 ### Version 3.4.0
 _Released November 17, 2014, correlating to ExactTarget's 2014-08 Release_
 _(supported)_
