@@ -33,8 +33,6 @@ package com.exacttarget.jb4a.sdkexplorer;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.*;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.*;
 import android.util.Log;
@@ -47,9 +45,6 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
 import com.radiusnetworks.ibeacon.BleNotAvailableException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * SDK_ExplorerSettingsActivity is the primary settings activity within the JB4A SDK Explorer.
@@ -180,8 +175,6 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
     //
     @SuppressWarnings("deprecation")
     private void prepareDisplay() {
-
-        addConfigChange();
 
         //
         // FIRST NAME PREFERENCE

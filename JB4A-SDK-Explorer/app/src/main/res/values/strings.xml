@@ -42,7 +42,6 @@
     <string name="pref_location_summ">Receive alerts when you are located near a national park.</string>
 
     <!-- HELP -->
-    <string name="configs_help">The Journey Builder for Apps (JB4A) SDK Explorer can be configured with different accounts to assist in testing and debugging.  Config files must have an extension of .pushconfig and contain a specific JSON array that will be used to set the appropriate keys to access and use your Salesforce Marketing Cloud account.</string>
     <string name="attribute_help">Attributes contain specific information about your subscribers, such as first and last name, gender, and geographical location.\n\nYou can assign specific information as part of a subscriber attribute to be used as part of sends or subscriber management.\n\nThis JB4A SDK Explorer stores first name and last name as attributes.</string>
     <string name="subscriber_key_help">Your subscriber key provides a key for the Contact Record and can be used to tie together multiple channels/devices for each Contact.</string>
     <string name="notification_help">Push and Location notifications are used to indicate whether this device is interested in receiving notifications or location messages.</string>

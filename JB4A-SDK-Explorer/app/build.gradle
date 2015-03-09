@@ -44,7 +44,6 @@ android {
             minifyEnabled true
             proguardFile 'proguard.cfg'
             zipAlignEnabled true
-            signingConfig signingConfigs.release
         }
     }
 
@@ -60,10 +59,8 @@ android {
 }
 
 dependencies {
-    // This line implicitely compiles all JAR files in the libs/ folder.
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    // SDK
+     // SDK
+    compile files('libs/etsdk-3.5.0.jar')
 
     // Google
     compile 'com.google.android.gms:play-services:6.1.71'

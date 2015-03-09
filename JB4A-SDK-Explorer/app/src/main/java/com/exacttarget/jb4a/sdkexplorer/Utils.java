@@ -54,13 +54,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.*;
 
-import com.exacttarget.etpushsdk.Config;
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
 import com.exacttarget.etpushsdk.data.Attribute;
 import com.exacttarget.etpushsdk.data.DeviceData;
-import com.exacttarget.etpushsdk.data.ETSqliteOpenHelper;
 
 import java.io.*;
 import java.lang.Process;
@@ -91,10 +89,7 @@ public class Utils {
 		switch (currentPage) {
 			case CONSTS.HOME_ACTIVITY:
 				menu.findItem(R.id.menu_settings).setVisible(true);
-				if (!(CONSTS_API.getConfigType() == CONSTS_API.ConfigType.CUSTOM && CONSTS_API.getClientId().equals(""))) {
-					// can't send messages if Custom keys and no client id provided
-					menu.findItem(R.id.menu_send_message).setVisible(true);
-				}
+				menu.findItem(R.id.menu_send_message).setVisible(true);
 				menu.findItem(R.id.menu_last_message).setVisible(true);
 
 				if (android.os.Build.VERSION.SDK_INT >= 18) {
@@ -402,18 +397,12 @@ public class Utils {
 		sb = new StringBuilder();
 		sb.append(CONSTS.PAGE_TITLE);
 
-		// PRODUCTION which is ET Mobile Team
-		if (CONSTS_API.getConfigType() == CONSTS_API.ConfigType.ET_MOBILE_TEAM) {
-			sb.append("<b>ET Mobile Team App Keys</b><br/>");
-		}
-		else {
-			SharedPreferences registerPrefs = SDK_ExplorerApp.context().getSharedPreferences("registerPrefs", Context.MODE_PRIVATE);
-			String pushConfigName = registerPrefs.getString("PushConfigName", "");
-			sb.append("<b>Custom App Keys</b><br/>");
-			sb.append("Custom config: ");
-			sb.append(pushConfigName);
-			sb.append("<br/><br/>");
-		}
+        SharedPreferences registerPrefs = SDK_ExplorerApp.context().getSharedPreferences("registerPrefs", Context.MODE_PRIVATE);
+        String pushConfigName = registerPrefs.getString("PushConfigName", "");
+        sb.append("<b>Custom App Keys</b><br/>");
+        sb.append("Custom config: ");
+        sb.append(pushConfigName);
+        sb.append("<br/><br/>");
 
 		sb.append("<hr>");
 		sb.append(SDK_ExplorerApp.context().getResources().getString(R.string.app_keys_help).replace("\n", "<br/>"));
@@ -434,42 +423,38 @@ public class Utils {
 		sb.append("<b>GCM Id:</b> ");
 		sb.append(Utils.obfuscateString(CONSTS_API.getGcmSenderId()));
 
-		if (!(CONSTS_API.getConfigType() == CONSTS_API.ConfigType.CUSTOM && CONSTS_API.getClientId().equals(""))) {
-			// no need to display if Custom and no ClientId
-			sb.append("<br/><br/>");
-			sb.append(SDK_ExplorerApp.context().getResources().getString(R.string.message_keys_help).replace("\n", "<br/>"));
-			sb.append("<br/>");
+        sb.append("<br/><br/>");
+        sb.append(SDK_ExplorerApp.context().getResources().getString(R.string.message_keys_help).replace("\n", "<br/>"));
+        sb.append("<br/>");
 
-			// Client Id
-			sb.append("<br/>");
-			sb.append("<b>Client Id:</b> ");
-			sb.append(Utils.obfuscateString(CONSTS_API.getClientId()));
+        // Client Id
+        sb.append("<br/>");
+        sb.append("<b>Client Id:</b> ");
+        sb.append(Utils.obfuscateString(CONSTS_API.getClientId()));
 
-			// Client Secret
-			sb.append("<br/>");
-			sb.append("<b>Client Secret:</b> ");
-			sb.append(Utils.obfuscateString(CONSTS_API.getClientSecret()));
+        // Client Secret
+        sb.append("<br/>");
+        sb.append("<b>Client Secret:</b> ");
+        sb.append(Utils.obfuscateString(CONSTS_API.getClientSecret()));
 
-			sb.append("<br/><br/>");
-			sb.append(SDK_ExplorerApp.context().getResources().getString(R.string.message_api_key_help).replace("\n", "<br/>"));
-			sb.append("<br/>");
+        sb.append("<br/><br/>");
+        sb.append(SDK_ExplorerApp.context().getResources().getString(R.string.message_api_key_help).replace("\n", "<br/>"));
+        sb.append("<br/>");
 
-			// Standard Message Id
-			sb.append("<br/>");
-			sb.append("<b>Standard Message Id:</b> ");
-			sb.append(Utils.obfuscateString(CONSTS_API.getStandardMessageId()));
+        // Standard Message Id
+        sb.append("<br/>");
+        sb.append("<b>Standard Message Id:</b> ");
+        sb.append(Utils.obfuscateString(CONSTS_API.getStandardMessageId()));
 
-			// CloudPage Message Id
-			sb.append("<br/>");
-			sb.append("<b>CloudPage Message Id:</b> ");
-			sb.append(Utils.obfuscateString(CONSTS_API.getCloudPageMessageId()));
+        // CloudPage Message Id
+        sb.append("<br/>");
+        sb.append("<b>CloudPage Message Id:</b> ");
+        sb.append(Utils.obfuscateString(CONSTS_API.getCloudPageMessageId()));
 
-			// Fuel URL
-			sb.append("<br/>");
-			sb.append("<b>Fuel URL:</b> ");
-			sb.append(CONSTS_API.getFuel_url());
-
-		}
+        // Fuel URL
+        sb.append("<br/>");
+        sb.append("<b>Fuel URL:</b> ");
+        sb.append(CONSTS_API.getFuel_url());
 
 		pages[1] = sb.toString();
 		sb = new StringBuilder();
