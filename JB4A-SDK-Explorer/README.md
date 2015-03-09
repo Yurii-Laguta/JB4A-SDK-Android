@@ -9,7 +9,7 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 
 ## Fully Functional APK
 The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.  Click the following to download this apk to install on your device:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/jb4a-sdk-explorer-2.0.0.0005.apk" target="_blank">jb4a-sdk-explorer-2.0.0.0005.apk</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2100026.apk" target="_blank">JB4A-SDK-Explorer-Google-release-2100026.apk</a>
 
 If you would rather, you can download the Journey Builder for Apps SDK Explorer app from the Play Store under the name Salesforce Journey Builder for Apps SDK Explorer (coming soon).
 
@@ -36,11 +36,6 @@ The following keys are keys you need if you want to initiate messages within you
 2. ET_CLIENT_SECRET -  the clientSecret for your API app as defined in the AppCenter section of the Marketing Cloud
 3. ET_STANDARD_MESSAGE_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for standard messages.
 3. ET_CLOUDPAGE_MESSAGE_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for CloudPage alert messages.
-
-## Libraries
-This project uses additional open source libraries.  In order to build your own version of the SDK Explorer, you will need to include the appropriate jar files in your project.
-
-For example, the  Google Play Services library is required in order to use Google Cloud Messaging.  You should check the Google documentation for using Google Play Services in your project and make the necessary adjustments needed based on the development environment you use and the latest Google Play Services that is available.
 
 ## Marketing Cloud
 To create your own version of the SDK Explorer, you will need to have your app defined within the Salesforce Marketing Cloud:
