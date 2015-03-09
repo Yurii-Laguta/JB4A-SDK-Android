@@ -16,11 +16,6 @@ build/
 # Local Configuration Files
 /local.properties
 
-# Built Application Files
-/APKFiles
-*.apk
-*.ap_
-
 # Files for the Dex VM
 *.dex
 
