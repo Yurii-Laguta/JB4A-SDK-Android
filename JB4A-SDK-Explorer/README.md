@@ -9,9 +9,7 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 
 ## Fully Functional APK
 The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.  Click the following to download this apk to install on your device:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/jb4a-sdk-explorer-2.0.0.0005.apk" target="_blank">jb4a-sdk-explorer-2.0.0.0005.apk</a>
-
-If you would rather, you can download the Journey Builder for Apps SDK Explorer app from the Play Store under the name Salesforce Journey Builder for Apps SDK Explorer (coming soon).
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2100026.apk" target="_blank">JB4A-SDK-Explorer-Google-release-2100026.apk</a>
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
@@ -26,21 +24,16 @@ The code in this repository includes all of the code used to run the fully funct
 
 The following keys are keys you normally use to create an app that uses the Android SDK:
 
-1. ET_APP_ID - the AppId for your development app as defined in the AppCenter section of the Marketing Cloud
-2. ET_ACCESS_TOKEN - the Access Token for your development app as defined in the AppCenter section of the Marketing Cloud
-3. GCM_SENDER_ID - the Google Cloud Messaging ID as defined in the Google Cloud Developers Console for your app
+1. ET\_APP\_ID - the AppId for your development app as defined in the AppCenter section of the Marketing Cloud
+2. ET\_ACCESS\_TOKEN - the Access Token for your development app as defined in the AppCenter section of the Marketing Cloud
+3. GCM\_SENDER\_ID - the Google Cloud Messaging ID as defined in the Google Cloud Developers Console for your app
 
 The following keys are keys you need if you want to initiate messages within your customized SDK Explorer:
 
-1. ET_CLIENT_ID - the clientId for your API app as defined in the AppCenter section of the Marketing Cloud
-2. ET_CLIENT_SECRET -  the clientSecret for your API app as defined in the AppCenter section of the Marketing Cloud
-3. ET_STANDARD_MESSAGE_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for standard messages.
-3. ET_CLOUDPAGE_MESSAGE_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for CloudPage alert messages.
-
-## Libraries
-This project uses additional open source libraries.  In order to build your own version of the SDK Explorer, you will need to include the appropriate jar files in your project.
-
-For example, the  Google Play Services library is required in order to use Google Cloud Messaging.  You should check the Google documentation for using Google Play Services in your project and make the necessary adjustments needed based on the development environment you use and the latest Google Play Services that is available.
+1. ET\_CLIENT\_ID - the clientId for your API app as defined in the AppCenter section of the Marketing Cloud
+2. ET\_CLIENT\_SECRET -  the clientSecret for your API app as defined in the AppCenter section of the Marketing Cloud
+3. ET\_STANDARD\_MESSAGE\_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for standard messages.
+3. ET\_CLOUDPAGE\_MESSAGE\_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for CloudPage alert messages.
 
 ## Marketing Cloud
 To create your own version of the SDK Explorer, you will need to have your app defined within the Salesforce Marketing Cloud:
