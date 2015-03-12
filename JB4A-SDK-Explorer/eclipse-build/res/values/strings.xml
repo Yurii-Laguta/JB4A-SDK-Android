@@ -95,5 +95,11 @@
     <!-- INTERNAL UPDATE -->
     <string name="update_title">Update SDK Explorer?</string>
     <string name="update_button">Download Now</string>
+    
 
+    
+    <!-- Eula -->
+    <string name="companyName">Google</string>
+    <string name="preposition">a</string>
+ 
 </resources>
