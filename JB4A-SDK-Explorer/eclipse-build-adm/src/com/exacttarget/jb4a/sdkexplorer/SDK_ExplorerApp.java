@@ -114,7 +114,7 @@ public class SDK_ExplorerApp extends Application {
 			//
 			//			Your app will have these choices set based on how you want your app to work.
 			//
-			ETPush.readyAimFire(this, CONSTS_API.getEtAppId(), CONSTS_API.getAccessToken(), CONSTS_API.getGcmSenderId(), true, true, true, true);
+			ETPush.readyAimFire(this, CONSTS_API.getEtAppId(), CONSTS_API.getAccessToken(), CONSTS_API.getGcmSenderId(), true, true, false, true);
 			ETPush pushManager = ETPush.pushManager();
 
 			// ETPush.pushManager().setNotificationRecipientClass
