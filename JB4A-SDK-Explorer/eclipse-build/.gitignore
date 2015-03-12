@@ -13,6 +13,14 @@ crashlytics-build.properties
 build/
 .gradle
 
+# Eclipse
+.classpath
+.project
+.settings
+default.properties
+bin/
+gen/
+
 # Local Configuration Files
 /local.properties
 
