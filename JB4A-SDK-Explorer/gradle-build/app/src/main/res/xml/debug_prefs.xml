@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+            android:title="@string/debug_pref_settings_title"
+            android:key="debug_pref_settings">
+
+         <CheckBoxPreference
+                android:key="debug_pref_enable_debug"
+                android:title="@string/debug_pref_enable_debug"
+                android:summaryOn="@string/debug_pref_enable_debug_summ_on"
+                android:summaryOff="@string/debug_pref_enable_debug_summ_off"
+                android:defaultValue="false"/>
+
+        <Preference
+            android:key="debug_pref_collect_logcat"
+            android:title="@string/debug_pref_collect_logcat"
+            android:summary="@string/debug_pref_collect_logcat_summ"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>
