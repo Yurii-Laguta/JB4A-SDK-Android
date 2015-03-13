@@ -35,7 +35,7 @@ The following keys are keys you need if you want to initiate messages within you
 3. ET\_STANDARD\_MESSAGE\_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for standard messages.
 3. ET\_CLOUDPAGE\_MESSAGE\_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for CloudPage alert messages.
 
-Two project samples are available to show how to create a project that uses the SDK with [Android Studio](https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/gradle-build) and with [Eclipse](https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/eclipse-build).
+Three project samples are available to show how to create a project that uses the SDK with [Android Studio](https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/gradle-build), with [Eclipse for Google Cloud Messaging](https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/eclipse-build-gcm) and with [Eclipse for Amazon Device Messaging](https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/eclipse-build-adm).
 
 ## Marketing Cloud
 To create your own version of the SDK Explorer, you will need to have your app defined within the Salesforce Marketing Cloud:
