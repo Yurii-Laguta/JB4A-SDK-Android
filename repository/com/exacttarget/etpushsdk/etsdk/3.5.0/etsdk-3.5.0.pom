@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.exacttarget.etpushsdk</groupId>
   <artifactId>etsdk</artifactId>
-  <version>3.5.0.3518-SNAPSHOT</version>
+  <version>3.5.0</version>
   <packaging>aar</packaging>
   <dependencies>
     <dependency>
