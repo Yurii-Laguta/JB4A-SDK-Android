@@ -51,8 +51,8 @@
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.location.receiver.PassiveLocationChangedReceiver"/>
 		<receiver android:exported="false" android:name="com.exacttarget.etpushsdk.location.receiver.PowerStateChangedReceiver">
 			<intent-filter>
-				<action android:name="android.intent.action.ACTION_BATTERY_LOW"/>
-				<action android:name="android.intent.action.ACTION_BATTERY_OKAY"/>
+				<action android:name="android.intent.action.BATTERY_LOW"/>
+				<action android:name="android.intent.action.BATTERY_OKAY"/>
 			</intent-filter>
 		</receiver>
 		
