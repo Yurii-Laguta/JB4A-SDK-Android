@@ -11,7 +11,7 @@ Click the following to download the latest JB4A SDK:<br/>
 ### Version 3.5.0
 _Released March 9, 2015, correlating to ExactTarget's 2015-02 Release_<br/>
 _(supported)_<br/><br/>
-On March 26th, updated AndroidManifest.xml in SDK Explorer example code to remove ACTION from android.intent.action.BATTERY\_LOW" and android.intent.action.BATTERY\_OKAY"<br/><br/>
+On March 26th, updated AndroidManifest.xml in SDK Explorer example code to remove ACTION from android.intent.action.BATTERY\_LOW" and android.intent.action.BATTERY\_OKAY" which are used for Location monitoring.<br/>
 #### Major Notes ####
 * MPUSH-2948 - Development environment and examples converted to Android Studio
 * MPUSH-3076 - fix to prevent crash if meta-data missing from AndroidManifest.xml
