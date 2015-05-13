@@ -58,9 +58,9 @@ _Released June 22nd, 2015, correlating to the Salesforce Marketing Cloud 2015-04
 
 ** Required Coding Changes ** - The following are changes that must be made in order to upgrade from previous releases of the SDK:
  * You must update the activityPaused() and activityResumed() calls as static calls in your activities to determine whether app is in foreground or background for CloudPage Inbox, Analytics, and Location messages.
-   * [Analytics](../feature-implementation/analytics.html#android)
-   * [Rich Push Inbox](../rich-push/inbox.html#android)
-   * [Location](../location-services/geolocation.html#android)
+   * [Analytics](doc/implement-android-analytics.md)
+   * [Rich Push Inbox](doc/implement-android-inbox.md)
+   * [Location](doc/implement-android-location.md)
 
 ** Documentation Updates **
  * What did we change and where
