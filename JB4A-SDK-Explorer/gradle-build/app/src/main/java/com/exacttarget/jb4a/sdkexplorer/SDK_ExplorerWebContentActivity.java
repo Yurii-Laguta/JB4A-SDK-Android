@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,6 +37,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
+
 /**
  * SDK_ExplorerWebContentActivity is an activity that will display the URL sent with the payload
  * of the message sent from the Marketing Cloud.
@@ -45,8 +47,8 @@ import android.widget.LinearLayout;
  */
 
 public class SDK_ExplorerWebContentActivity extends BaseActivity {
+    private static final String TAG = Utils.formatTag(SDK_ExplorerWebContentActivity.class.getSimpleName()) ;
     private int currentPage = CONSTS.VIEW_WEB_CONTENT_ACTIVITY;
-    private static final String TAG = SDK_ExplorerWebContentActivity.class.getName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

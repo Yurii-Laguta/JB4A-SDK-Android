@@ -15,16 +15,14 @@
     <string name="silent">Silent</string>
     <string name="placeholder_long">Placeholder to test until text loaded.</string>
     <string name="blank"></string>
-
+    <string name="companyName">Google</string>
+    <string name="preposition">a</string>
+    
     <!-- SETTINGS -->
     <string name="settings">Preferences</string>
-    <string name="pref_configs_title">SDK Explorer Push Config</string>
     <string name="pref_personal_info_title">Attributes</string>
     <string name="pref_notify_category_title">Notifications</string>
     <string name="pref_tag_category_title">Tags</string>
-
-    <string name="configs_list">Selected Configuration</string>
-    <string name="configs_list_summ">Click to change the configuration to use for this app.</string>
 
     <string name="pref_first_name">First Name</string>
     <string name="pref_first_name_summ">Please enter your first name</string>
@@ -49,7 +47,7 @@
     <string name="open_direct_recipient_help">The Open Direct Recipient will be used whenever an OpenDirect url is included with a message and the customer clicks on that message.</string>
     <string name="cloudpage_recipient_help">The CloudPage Recipient will be used whenever a CloudPage is included with a message and the customer clicks on that message.</string>
     <string name="notification_recipient_help">The Notification Recipient will be used whenever a message is received and the customer clicks on that message.</string>
-    <string name="device_token_help">The Device Token is assigned by the Google Cloud Messaging (GCM) service whenever pushEnabled() is called to uniquely identify this device and app to GCM.</string>
+    <string name="system_token_help">The System Token is assigned by the Google Cloud Messaging (GCM) service whenever pushEnabled() is called to uniquely identify this device and app to GCM.</string>
     <string name="device_id_help">The Device Id is a unique identifier for this device and is can be used by the Marketing Cloud to push messages to specific devices.</string>
     <string name="app_keys_help">The App Keys are used to uniquely identify your app with the Marketing Cloud and with Google.  The App Id and Access Token are defined in the App Center.  The GCM Id is found in the Google Developers Console.</string>
     <string name="message_keys_help">The following values are needed to send messages from this app.  These are not normally found in an app that catches Push Notifications.  But it provides a way to test this app directly.\n\nThe clientId and the clientSecret are the values found in the Salesforce Marketing Cloud App Center for the Server to Server App.</string>
@@ -92,8 +90,5 @@
     <string name="alert_utils4_text">There are no email clients installed.</string>
     <string name="alert_utils5_text">Please enable Push Notifications in Preferences before attempting to Send Messages</string>
 
-    <!-- INTERNAL UPDATE -->
-    <string name="update_title">Update SDK Explorer?</string>
-    <string name="update_button">Download Now</string>
 
 </resources>

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,49 +31,43 @@ package com.exacttarget.jb4a.sdkexplorer;
 
 /**
  * CONSTS
- *
+ * <p/>
  * Global constants.
  *
  * @author pvandyk
  */
 public class CONSTS {
 
-	public static final String KEY_CURRENT_PAGE = "currentPage";
+    public static final String KEY_CURRENT_PAGE = "currentPage";
 
-	public static final int HOME_ACTIVITY = 0;
-	public static final int SETTINGS_ACTIVITY = 1;
-	public static final int DEBUG_SETTINGS_ACTIVITY = 2;
-	public static final int BEACONS_ACTIVITY = 3;
-	public static final int SEND_MESSAGE_ACTIVITY = 4;
-	public static final int DISPLAY_MESSAGE_ACTIVITY = 5;
-	public static final int CLOUDPAGE_ACTIVITY = 6;
-	public static final int CLOUDPAGE_INBOX_ACTIVITY = 7;
-	public static final int VIEW_WEB_CONTENT_ACTIVITY = 8;
-	public static final int DISCOUNT_ACTIVITY = 9;
-	public static final int INFO_ACTIVITY = 10;
-	public static final int EULA_ACTIVITY = 11;
+    public static final int HOME_ACTIVITY = 0;
+    public static final int SETTINGS_ACTIVITY = 1;
+    public static final int DEBUG_SETTINGS_ACTIVITY = 2;
+    public static final int LOCATION_ACTIVITY = 3;
+    public static final int SEND_MESSAGE_ACTIVITY = 4;
+    public static final int DISPLAY_MESSAGE_ACTIVITY = 5;
+    public static final int CLOUDPAGE_ACTIVITY = 6;
+    public static final int CLOUDPAGE_INBOX_ACTIVITY = 7;
+    public static final int VIEW_WEB_CONTENT_ACTIVITY = 8;
+    public static final int DISCOUNT_ACTIVITY = 9;
+    public static final int INFO_ACTIVITY = 10;
+    public static final int EULA_ACTIVITY = 11;
 
-	public static final String KEY_ATTRIB_FIRST_NAME = "FirstName";
-	public static final String KEY_ATTRIB_LAST_NAME = "LastName";
+    public static final String KEY_ATTRIB_FIRST_NAME = "FirstName";
+    public static final String KEY_ATTRIB_LAST_NAME = "LastName";
 
-	public static final String KEY_PREF_CONFIGS_LIST = "pref_configs_list";
-	public static final String KEY_PREF_FIRST_NAME = "pref_first_name";
-	public static final String KEY_PREF_LAST_NAME = "pref_last_name";
-	public static final String KEY_PREF_SUBSCRIBER_KEY = "pref_subscriber_key";
-	public static final String KEY_PREF_PUSH = "pref_push";
-	public static final String KEY_PREF_LOCATION = "pref_location";
-	public static final String KEY_PREF_CAT_SPORTS = "pref_cat_activities";
-
-	public static final String KEY_DEBUG_PREF_ENABLE_DEBUG = "debug_pref_enable_debug";
-	public static final String KEY_DEBUG_PREF_COLLECT_LOGCAT = "debug_pref_collect_logcat";
-
-	public static final String KEY_PUSH_RECEIVED_DATE = "push_received_date";
-	public static final String KEY_PUSH_RECEIVED_PAYLOAD = "push_received_payload";
-
-	public static final String KEY_PAYLOAD_DISCOUNT = "discount_code";
-	public static final String KEY_PAYLOAD_ALERT = "alert";
-
-	public static final String[] KEY_PREF_PUSH_DEPENDENT = {KEY_PREF_LOCATION, KEY_PREF_CAT_SPORTS };
-
-	public static final String PAGE_TITLE = "<b>Journey Builder For Apps (JB4A)<br/>SDK Explorer</b><br/><br/>";
+    public static final String KEY_PREF_FIRST_NAME = "pref_first_name";
+    public static final String KEY_PREF_LAST_NAME = "pref_last_name";
+    public static final String KEY_PREF_SUBSCRIBER_KEY = "pref_subscriber_key";
+    public static final String KEY_PREF_PUSH = "pref_push";
+    public static final String KEY_PREF_LOCATION = "pref_location";
+    public static final String KEY_PREF_CAT_SPORTS = "pref_cat_activities";
+    public static final String[] KEY_PREF_PUSH_DEPENDENT = {KEY_PREF_LOCATION, KEY_PREF_CAT_SPORTS};
+    public static final String KEY_DEBUG_PREF_ENABLE_DEBUG = "debug_pref_enable_debug";
+    public static final String KEY_DEBUG_PREF_COLLECT_LOGCAT = "debug_pref_collect_logcat";
+    public static final String KEY_PUSH_RECEIVED_DATE = "push_received_date";
+    public static final String KEY_PUSH_RECEIVED_PAYLOAD = "push_received_payload";
+    public static final String KEY_PAYLOAD_DISCOUNT = "discount_code";
+    public static final String KEY_PAYLOAD_ALERT = "alert";
+    public static final String PAGE_TITLE = "<b>Journey Builder For Apps (JB4A)<br/>SDK Explorer</b><br/><br/>";
 }

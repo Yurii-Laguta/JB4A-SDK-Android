@@ -2,59 +2,59 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/menu_settings"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:orderInCategory="100"
-            android:showAsAction="never"
-            android:title="@string/menu_settings"/>
+        android:id="@+id/menu_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_settings" />
 
     <item
-            android:id="@+id/menu_send_message"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:orderInCategory="101"
-            android:showAsAction="never"
-            android:title="@string/menu_send_message"/>
-
-     <item
-            android:id="@+id/menu_last_message"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:orderInCategory="102"
-            android:showAsAction="never"
-            android:title="@string/menu_last_message"/>
+        android:id="@+id/menu_send_message"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="101"
+        android:showAsAction="never"
+        android:title="@string/menu_send_message" />
 
     <item
-            android:id="@+id/menu_beacons"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:orderInCategory="103"
-            android:showAsAction="never"
-            android:title="@string/menu_locations"/>
+        android:id="@+id/menu_last_message"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+        android:title="@string/menu_last_message" />
 
     <item
-            android:id="@+id/menu_cloudpage_inbox"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:orderInCategory="104"
-            android:showAsAction="never"
-            android:title="@string/menu_cloudpage_inbox"/>
-
-     <item
-            android:id="@+id/menu_debug_settings"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:orderInCategory="105"
-            android:showAsAction="never"
-            android:title="@string/menu_debug_settings"/>
+        android:id="@+id/menu_locations"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="@string/menu_locations" />
 
     <item
-            android:id="@+id/menu_info"
-            android:icon="@android:drawable/ic_menu_help"
-            android:orderInCategory="106"
-            android:showAsAction="never"
-            android:title="@string/menu_info"/>
+        android:id="@+id/menu_cloudpage_inbox"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="104"
+        android:showAsAction="never"
+        android:title="@string/menu_cloudpage_inbox" />
 
     <item
-            android:id="@+id/menu_eula"
-            android:icon="@android:drawable/ic_menu_help"
-            android:orderInCategory="107"
-            android:showAsAction="never"
-            android:title="@string/menu_eula"/>
+        android:id="@+id/menu_debug_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="105"
+        android:showAsAction="never"
+        android:title="@string/menu_debug_settings" />
+
+    <item
+        android:id="@+id/menu_info"
+        android:icon="@android:drawable/ic_menu_help"
+        android:orderInCategory="106"
+        android:showAsAction="never"
+        android:title="@string/menu_info" />
+
+    <item
+        android:id="@+id/menu_eula"
+        android:icon="@android:drawable/ic_menu_help"
+        android:orderInCategory="107"
+        android:showAsAction="never"
+        android:title="@string/menu_eula" />
 
 </menu>

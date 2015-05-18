@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -30,17 +30,6 @@
 
 package com.exacttarget.jb4a.sdkexplorer;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import com.exacttarget.etpushsdk.Config;
-import com.exacttarget.etpushsdk.ETPush;
-import org.json.JSONObject;
-
 /**
  * CONSTS_API
  * 
@@ -51,63 +40,63 @@ import org.json.JSONObject;
 
 public class CONSTS_API {
 
-	// getEtAppId()
-	//
-	// get the ET App Id from the App Center in the Marketing Cloud for your Mobile Push App
-	//
-	public static String getEtAppId() {
-		return "[***REPLACE WITH YOUR KEY***]";
-	}
+    // getEtAppId()
+    //
+    // get the ET App Id from the App Center in the Marketing Cloud for your Mobile Push App
+    //
+    public static String getEtAppId() {
+        return "[***REPLACE WITH YOUR KEY***]";
+    }
 
-	// getAccessToken()
-	//
-	// get the Access Token from the App Center in the Marketing Cloud for your Mobile Push App
-	//
-	public static String getAccessToken() {
-		return "[***REPLACE WITH YOUR ACCESS TOKEN***]";
-	}
+    // getAccessToken()
+    //
+    // get the Access Token from the App Center in the Marketing Cloud for your Mobile Push App
+    //
+    public static String getAccessToken() {
+        return "[***REPLACE WITH YOUR ACCESS TOKEN***]";
+    }
 
-	// getGcmSenderId()
-	//
-	// get the GCM Sender Id setup for your Google Cloud Messaging account.
-	//
-	public static String getGcmSenderId() {
-		return "[***REPLACE WITH YOUR GCM SENDER ID***]";
-	}
+    // getGcmSenderId()
+    //
+    // get the GCM Sender Id setup for your Google Cloud Messaging account.
+    //
+    public static String getGcmSenderId() {
+        return "[***REPLACE WITH YOUR GCM SENDER ID***]";
+    }
 
-	// getClientId()
-	//
-	// get the Client ID from the App Center in the Marketing Cloud for your Server to Server App in App Center in the Marketing Cloud
-	//
-	public static String getClientId() {
-		return "[***REPLACE WITH YOUR CLIENT ID***]";
-	}
+    // getClientId()
+    //
+    // get the Client ID from the App Center in the Marketing Cloud for your Server to Server App in App Center in the Marketing Cloud
+    //
+    public static String getClientId() {
+        return "[***REPLACE WITH YOUR CLIENT ID***]";
+    }
 
-	// getClientSecret()
-	//
-	// get the Client Secret from the App Center in the Marketing Cloud for your Server to Server App in App Center in the Marketing Cloud
-	//
-	public static String getClientSecret() {
-		return "[***REPLACE WITH YOUR CLIENT SECRET***]";
-	}
+    // getClientSecret()
+    //
+    // get the Client Secret from the App Center in the Marketing Cloud for your Server to Server App in App Center in the Marketing Cloud
+    //
+    public static String getClientSecret() {
+        return "[***REPLACE WITH YOUR CLIENT SECRET***]";
+    }
 
-	// getStandardMessageId()
-	//
-	// get the Message ID from the API Message you set up in the Marketing Cloud for standard alerts
-	//
-	public static String getStandardMessageId() {
-		return "[***REPLACE WITH YOUR MESSAGE ID***]";
-	}
+    // getStandardMessageId()
+    //
+    // get the Message ID from the API Message you set up in the Marketing Cloud for standard alerts
+    //
+    public static String getStandardMessageId() {
+        return "[***REPLACE WITH YOUR MESSAGE ID***]";
+    }
 
-	// getMessageId()
-	//
-	// get the Message ID from the API Message you set up in the Marketing Cloud for a CloudPage alert
-	//
-	public static String getCloudPageMessageId() {
-		return "[***REPLACE WITH YOUR CLOUDPAGE MESSAGE ID***]";
-	}
+    // getMessageId()
+    //
+    // get the Message ID from the API Message you set up in the Marketing Cloud for a CloudPage alert
+    //
+    public static String getCloudPageMessageId() {
+        return "[***REPLACE WITH YOUR CLOUDPAGE MESSAGE ID***]";
+    }
 
-	public static String getFuel_url() {
-		return "https://auth.exacttargetapis.com/v1/requestToken";
-	}
+    public static String getFuel_url() {
+        return "https://auth.exacttargetapis.com/v1/requestToken";
+    }
 }

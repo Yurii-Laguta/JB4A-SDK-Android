@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,10 +35,12 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.CirclePageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.PageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
 /**
  * SDK_ExplorerSendMessageActivity will provide an overview of each type of message that can be sent using the SDK_ExplorerSendMessagesDialog.
@@ -48,163 +50,153 @@ import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
 
 public class SDK_ExplorerSendMessageActivity extends BaseActivity {
 
-	private int currentPage = CONSTS.SEND_MESSAGE_ACTIVITY;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerSendMessageActivity.class.getSimpleName()) ;
+    ScrollPagesAdapter mAdapter;
+    ViewPager mPager;
+    PageIndicator mIndicator;
+    String[] pages = new String[]{"0", "1", "2", "3", "4", "5"};
+    private int currentPage = CONSTS.SEND_MESSAGE_ACTIVITY;
 
-	private static final String TAG = SDK_ExplorerSendMessageActivity.class.getName();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.scroll_pages);
+    }
 
-	ScrollPagesAdapter mAdapter;
-	ViewPager mPager;
-	PageIndicator mIndicator;
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
+    }
 
-	String[] pages = new String[] {"0", "1", "2", "3", "4", "5"};
+    @Override
+    protected void onDestroy() {
+        EventBus.getInstance().unregister(this);
+        super.onDestroy();
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.scroll_pages);
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
-	}
+        Utils.setActivityTitle(this, R.string.send_message_activity_title);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-	@Override
-	protected void onDestroy() {
-		EventBus.getDefault().unregister(this);
-		super.onDestroy();
-	}
+        prepareDisplay();
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.global_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-		Utils.setActivityTitle(this, R.string.send_message_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Utils.prepareMenu(currentPage, menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-		prepareDisplay();
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Boolean result = Utils.selectMenuItem(this, currentPage, item);
+        return result != null ? result : super.onOptionsItemSelected(item);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.global_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+    private void prepareDisplay() {
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		Utils.prepareMenu(currentPage, menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
+        StringBuilder sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append("<b>Sending a Message - Basic</b><br/>");
+        sb.append("<ul>");
+        sb.append("<li>Open Preferences (see menu) to add your name and then enable Push Notifications.</li><br/>");
+        sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
+        sb.append("<li>Click Send Message to send a message to this device.</li><br/>");
+        sb.append("</ul>");
+        pages[0] = sb.toString();
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Boolean result = Utils.selectMenuItem(this, currentPage, item);
-		return result != null ? result : super.onOptionsItemSelected(item);
-	}
+        sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append("<b>Sending a Message - Tag Selected in Preferences</b><br/>");
+        sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one type of activity, but not another.<br/>");
+        sb.append("<br/>");
+        sb.append("You can send a message by selecting the particular tag (or group) who should receive the message.<br/>");
+        sb.append("<ul>");
+        sb.append("<li>Open Preferences (see menu) to select tags for the activities you are interested in.</li><br/>");
+        sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
+        sb.append("<li>Click Send Message to send a message to this device and choose one of the tags you selected in Preferences.</li><br/>");
+        sb.append("<li>Within a minute you should receive the message.</li><br/>");
+        sb.append("</ul>");
+        pages[1] = sb.toString();
 
-	private void prepareDisplay() {
+        sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append("<b>Sending a Message - Tag Not Selected in Preferences</b><br/>");
+        sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one activity, but not another.<br/>");
+        sb.append("<br/>");
+        sb.append("If you target a particular group, but the customer has not expressed interest in that group, they will not receive a message.<br/>");
+        sb.append("<br/>");
+        sb.append("You can test that here if you select certain Activities in Preferences, but then send to an Activity you have not selected.  Then you will not receive a message.<br/>");
+        sb.append("<ul>");
+        sb.append("<li>Open Preferences (see menu) to select tags for your favorite activities.</li><br/>");
+        sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
+        sb.append("<li>Click Send Message to send a message to this device and choose one of the tags you have NOT selected in Preferences.</li><br/>");
+        sb.append("<li>You will not receive a message since the message is intended only for those who have selected that tag.</li><br/>");
+        sb.append("</ul>");
+        pages[2] = sb.toString();
 
-		StringBuilder sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append("<b>Sending a Message - Basic</b><br/>");
-		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to add your name and then enable Push Notifications.</li><br/>");
-		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
-		sb.append("<li>Click Send Message to send a message to this device.</li><br/>");
-		sb.append("</ul>");
-		pages[0] = sb.toString();
+        sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append("<b>Sending a Message - Specify Open Direct URL</b><br/>");
+        sb.append("An Open Direct URL allows you to specify a particular web page to view when a customer clicks on the notification received.<br/>");
+        sb.append("<ul>");
+        sb.append("<li>Open Preferences (see menu) to enable Push Notifications.</li><br/>");
+        sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
+        sb.append("<li>Click Send Message to send a message to this device and then enter an URL in the Open Direct field.</li><br/>");
+        sb.append("<li>Within a minute, you should receive a message.</li><br/>");
+        sb.append("<li>When you click on this message, the web page you entered when you sent the message will be opened.</li><br/>");
+        sb.append("</ul>");
+        pages[3] = sb.toString();
 
-		sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append("<b>Sending a Message - Tag Selected in Preferences</b><br/>");
-		sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one type of activity, but not another.<br/>");
-		sb.append("<br/>");
-		sb.append("You can send a message by selecting the particular tag (or group) who should receive the message.<br/>");
-		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to select tags for the activities you are interested in.</li><br/>");
-		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
-		sb.append("<li>Click Send Message to send a message to this device and choose one of the tags you selected in Preferences.</li><br/>");
-		sb.append("<li>Within a minute you should receive the message.</li><br/>");
-		sb.append("</ul>");
-		pages[1] = sb.toString();
+        sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append("<b>Sending a Message - Custom Keys</b><br/>");
+        sb.append("Custom Keys allow you to direct the app to perform certain functions when the customer clicks on the notification.<br/>");
+        sb.append("<br/>");
+        sb.append("We have setup a discount code as the Custom Key for the JB4A SDK Explorer.<br/>");
+        sb.append("<ul>");
+        sb.append("<li>Open Preferences (see menu) to enable Push Notifications.</li><br/>");
+        sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
+        sb.append("<li>Click Send Message to send a message to this device and select one of the Custom Keys specified in the drop down list.</li><br/>");
+        sb.append("<li>Within a minute, you should receive a message.</li><br/>");
+        sb.append("<li>When you click on this message, special processing within the app based on the value of that custom key will be performed.</li><br/>");
+        sb.append("</ul>");
+        pages[4] = sb.toString();
 
-		sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append("<b>Sending a Message - Tag Not Selected in Preferences</b><br/>");
-		sb.append("Tags allow you to target customers who have specified they want certain types of notifications but not others.  For example, an interest in one activity, but not another.<br/>");
-		sb.append("<br/>");
-		sb.append("If you target a particular group, but the customer has not expressed interest in that group, they will not receive a message.<br/>");
-		sb.append("<br/>");
-		sb.append("You can test that here if you select certain Activities in Preferences, but then send to an Activity you have not selected.  Then you will not receive a message.<br/>");
-		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to select tags for your favorite activities.</li><br/>");
-		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
-		sb.append("<li>Click Send Message to send a message to this device and choose one of the tags you have NOT selected in Preferences.</li><br/>");
-		sb.append("<li>You will not receive a message since the message is intended only for those who have selected that tag.</li><br/>");
-		sb.append("</ul>");
-		pages[2] = sb.toString();
+        sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append("<b>Sending a Message - Location</b><br/>");
+        sb.append("<ul>");
+        sb.append("<li>Open Preferences (see menu) to enable Location Settings.</li><br/>");
+        sb.append("<li>Wait 15 minutes to ensure your settings are registered.</li><br/>");
+        sb.append("<li>Download a tool such as FakeGPS to mock your location.</li><br/>");
+        sb.append("<li>Open FakeGPS and go to any of the following locations:</li><br/>");
+        sb.append("<ul>");
+        sb.append("<li>Grand Canyon National Park</li>");
+        sb.append("<li>Yellowstone National Park</li>");
+        sb.append("<li>Yosemite National Park</li>");
+        sb.append("</ul><br/>");
+        sb.append("<li>If FakeGPS works properly, then within a minute you should receive a message welcoming you to that park.</li><br/>");
+        sb.append("</ul>");
+        pages[5] = sb.toString();
 
-		sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append("<b>Sending a Message - Specify Open Direct URL</b><br/>");
-		sb.append("An Open Direct URL allows you to specify a particular web page to view when a customer clicks on the notification received.<br/>");
-		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to enable Push Notifications.</li><br/>");
-		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
-		sb.append("<li>Click Send Message to send a message to this device and then enter an URL in the Open Direct field.</li><br/>");
-		sb.append("<li>Within a minute, you should receive a message.</li><br/>");
-		sb.append("<li>When you click on this message, the web page you entered when you sent the message will be opened.</li><br/>");
-		sb.append("</ul>");
-		pages[3] = sb.toString();
+        mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, true);
 
-		sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append("<b>Sending a Message - Custom Keys</b><br/>");
-		sb.append("Custom Keys allow you to direct the app to perform certain functions when the customer clicks on the notification.<br/>");
-		sb.append("<br/>");
-		sb.append("We have setup a discount code as the Custom Key for the JB4A SDK Explorer.<br/>");
-		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to enable Push Notifications.</li><br/>");
-		sb.append("<li>Wait 15 minutes to ensure your settings have been registered.</li><br/>");
-		sb.append("<li>Click Send Message to send a message to this device and select one of the Custom Keys specified in the drop down list.</li><br/>");
-		sb.append("<li>Within a minute, you should receive a message.</li><br/>");
-		sb.append("<li>When you click on this message, special processing within the app based on the value of that custom key will be performed.</li><br/>");
-		sb.append("</ul>");
-		pages[4] = sb.toString();
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
 
-		sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append("<b>Sending a Message - Location</b><br/>");
-		sb.append("<ul>");
-		sb.append("<li>Open Preferences (see menu) to enable Location Settings.</li><br/>");
-		sb.append("<li>Wait 15 minutes to ensure your settings are registered.</li><br/>");
-		sb.append("<li>Download a tool such as FakeGPS to mock your location.</li><br/>");
-		sb.append("<li>Open FakeGPS and go to any of the following locations:</li><br/>");
-		sb.append("<ul>");
-		sb.append("<li>Yellowstone National Park</li>");
-		sb.append("<li>Grand Canyon National Park</li>");
-		sb.append("<li>Yosemite National Park</li>");
-		sb.append("<li>Great Smoky Mountains National Park</li>");
-		sb.append("<li>Everglades National Park</li>");
-		sb.append("<li>Purnululu National Park</li>");
-		sb.append("<li>Great Himalayan National Park</li>");
-		sb.append("<li>W National Park of Niger</li>");
-		sb.append("<li>Pirin National Park</li>");
-		sb.append("<li>Nahanni National Park</li>");
-		sb.append("</ul><br/>");
-		sb.append("<li>If FakeGPS works properly, then within a minute you should receive a message welcoming you to that park.</li><br/>");
-		sb.append("</ul>");
-		pages[5] = sb.toString();
-
-		mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, true);
-
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
-
-		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
-	}
+        mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        mIndicator.setViewPager(mPager);
+    }
 }

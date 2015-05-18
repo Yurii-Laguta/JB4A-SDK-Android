@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,14 +35,16 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.CirclePageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.PageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
 /**
  * SDK_ExplorerInfoActivity will display information about the JB4A SDK Explorer.
- *
+ * <p/>
  * This activity extends Activity to provide key information about the app that is running.
  *
  * @author pvandyk
@@ -50,78 +52,75 @@ import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
 
 public class SDK_ExplorerInfoActivity extends BaseActivity {
 
-	private int currentPage = CONSTS.INFO_ACTIVITY;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerInfoActivity.class.getSimpleName()) ;
+    ScrollPagesAdapter mAdapter;
+    ViewPager mPager;
+    PageIndicator mIndicator;
+    String[] pages;
+    private int currentPage = CONSTS.INFO_ACTIVITY;
 
-	private static final String TAG = SDK_ExplorerInfoActivity.class.getName();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.scroll_pages);
+    }
 
-	ScrollPagesAdapter mAdapter;
-	ViewPager mPager;
-	PageIndicator mIndicator;
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
+    }
 
-	String[] pages;
+    @Override
+    protected void onDestroy() {
+        EventBus.getInstance().unregister(this);
+        super.onDestroy();
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.scroll_pages);
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
-	}
+        Utils.setActivityTitle(this, R.string.info_activity_title);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-	@Override
-	protected void onDestroy() {
-		EventBus.getDefault().unregister(this);
-		super.onDestroy();
-	}
+        prepareDisplay();
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.global_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-		Utils.setActivityTitle(this, R.string.info_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Utils.prepareMenu(currentPage, menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-		prepareDisplay();
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Boolean result = Utils.selectMenuItem(this, currentPage, item);
+        return result != null ? result : super.onOptionsItemSelected(item);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.global_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		Utils.prepareMenu(currentPage, menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
+    private void prepareDisplay() {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Boolean result = Utils.selectMenuItem(this, currentPage, item);
-		return result != null ? result : super.onOptionsItemSelected(item);
-	}
+        pages = Utils.formatInfoPages().clone();
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-	}
+        mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, false);
 
-	private void prepareDisplay() {
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
 
-		pages = Utils.formatInfoPages().clone();
-
-		mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, false);
-
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
-
-		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
-	}
+        mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        mIndicator.setViewPager(mPager);
+    }
 }

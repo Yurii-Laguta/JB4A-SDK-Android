@@ -3,8 +3,10 @@ package com.exacttarget.jb4a.sdkexplorer;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
+
 public class SDK_ExplorerViewFavoritesActivity extends BaseActivity {
-    private static final String TAG = SDK_ExplorerViewFavoritesActivity.class.getName();
+    private static final String TAG = Utils.formatTag(SDK_ExplorerViewFavoritesActivity.class.getSimpleName()) ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class SDK_ExplorerViewFavoritesActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             super.onBackPressed();
         }
         return super.onOptionsItemSelected(item);

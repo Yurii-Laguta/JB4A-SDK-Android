@@ -1,16 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application>
-        <!-- ET Broadcast Receiver for handling push messages. You can use the ET_GenericReceiver directly, or extend it to customize notifications -->
-        <receiver android:name="com.exacttarget.jb4a.sdkexplorer.SDK_ExplorerNotificationReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+    <!-- JB4A SDK Google Permissions -->
+    <permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <!-- JB4A SDK Google Permissions -->
 
-                <category android:name="com.exacttarget.jb4a.sdkexplorer"/>
+    <!-- JB4A SDK Permissions for location and region monitoring -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- END JB4A SDK location and region monitoring Permissions -->
+
+    <application>
+        <!-- ETPushReceiver and Service -->
+        <receiver
+            android:exported="true"
+            android:name="com.exacttarget.etpushsdk.ETPushReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="${applicationId}.MESSAGE_OPENED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="com.exacttarget.etpushsdk.ETPushService"
+            android:enabled="true" />
+        <!-- ETPushReceiver and Service -->
+
+        <!-- ETLocationReceiver and Service -->
+        <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+       </receiver>
+
+        <service
+            android:name="com.exacttarget.etpushsdk.ETLocationService"
+            android:enabled="true" />
+        <!-- ETLocationReceiver and Service -->
+
     </application>
 
 </manifest>

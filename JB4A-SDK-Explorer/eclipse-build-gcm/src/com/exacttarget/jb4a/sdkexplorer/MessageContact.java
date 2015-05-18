@@ -1,21 +1,21 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
- *
+ * <p/>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- *
+ * <p/>
  * 1. Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
- *
+ * <p/>
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation and/or
  * other materials provided with the distribution.
- *
+ * <p/>
  * 3. Neither the name of the copyright holder nor the names of its contributors
  * may be used to endorse or promote products derived from this software without
  * specific prior written permission.
- *
+ * <p/>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -30,108 +30,156 @@
 
 package com.exacttarget.jb4a.sdkexplorer;
 
+import android.util.Log;
+
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * MessageContact to provide data to Middle Tier to send a message to a list of devices or subscribers.
  *
  * @author awestberg
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+
+@SuppressWarnings("unused")
 public class MessageContact {
 
-	@JsonProperty("InclusionTags")
-	private ArrayList<String> inclusionTags;
+    private static final String TAG = Utils.formatTag(MessageContact.class.getSimpleName());
 
-	@JsonProperty("ExclusionTags")
-	private ArrayList<String> exclusionTags;
+    private ArrayList<String> inclusionTags = null;
+    private ArrayList<String> exclusionTags = null;
+    private ArrayList<String> deviceTokens = null;
+    private String messageText = null;
+    private String sound = null;
+    private String openDirect = null;
+    private HashMap<String, String> customKeys = null;
 
-	@JsonProperty("DeviceTokens")
-	private ArrayList<String> deviceTokens;
+    public ArrayList<String> getInclusionTags() {
+        return inclusionTags;
+    }
 
-	@JsonProperty("Override")
-	private Boolean override = Boolean.TRUE;
+    public void setInclusionTags(ArrayList<String> inclusionTags) {
+        this.inclusionTags = inclusionTags;
+    }
 
-	@JsonProperty("MessageText")
-	private String messageText;
+    public ArrayList<String> getExclusionTags() {
+        return exclusionTags;
+    }
 
-	@JsonProperty("Sound")
-	private String sound;
+    public void setExclusionTags(ArrayList<String> exclusionTags) {
+        this.exclusionTags = exclusionTags;
+    }
 
-	@JsonProperty("OpenDirect")
-	private String openDirect;
+    public ArrayList<String> getDeviceTokens() {
+        return deviceTokens;
+    }
 
-	@JsonProperty("CustomKeys")
-	private HashMap<String,String> customKeys;
+    public void setDeviceTokens(ArrayList<String> deviceTokens) {
+        this.deviceTokens = deviceTokens;
+    }
 
-	public ArrayList<String> getInclusionTags() {
-		return inclusionTags;
-	}
+    public String getMessageText() {
+        return messageText;
+    }
 
-	public void setInclusionTags(ArrayList<String> inclusionTags) {
-		this.inclusionTags = inclusionTags;
-	}
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
 
-	public ArrayList<String> getExclusionTags() {
-		return exclusionTags;
-	}
+    public String getSound() {
+        return sound;
+    }
 
-	public void setExclusionTags(ArrayList<String> exclusionTags) {
-		this.exclusionTags = exclusionTags;
-	}
+    public void setSound(String sound) {
+        this.sound = sound;
+    }
 
-	public ArrayList<String> getDeviceTokens() {
-		return deviceTokens;
-	}
+    public String getOpenDirect() {
+        return openDirect;
+    }
 
-	public void setDeviceTokens(ArrayList<String> deviceTokens) {
-		this.deviceTokens = deviceTokens;
-	}
+    public void setOpenDirect(String openDirect) {
+        this.openDirect = openDirect;
+    }
 
-	public Boolean getOverride() {
-		return override;
-	}
+    public HashMap<String, String> getCustomKeys() {
+        return customKeys;
+    }
 
-	public void setOverride(Boolean override) {
-		this.override = override;
-	}
+    public void setCustomKeys(HashMap<String, String> customKeys) {
+        this.customKeys = new HashMap<>(customKeys);
+    }
 
-	public String getMessageText() {
-		return messageText;
-	}
+    public String toJson() {
+        /*
+           {
+             "DeviceTokens":["this device token"],
+             "InclusionTags":["the list of tags that this message should go to"],
+             "ExclusionTags":["the list of tags that this message should not go to"],
+             "CustomKeys":{"key":"value", "key":"value"},
+             "MessageText":"alert",
+             "OpenDirect":"the URL to open when a message is clicked",
+             "Override":true,
+             "Sound":"default"
+         }
+         */
+        try {
+            JSONObject jsonObject = new JSONObject();
 
-	public void setMessageText(String messageText) {
-		this.messageText = messageText;
-	}
+            if (messageText != null) {
+                jsonObject.put("MessageText", messageText);
+            }
 
-	public String getSound() {
-		return sound;
-	}
+            if (openDirect != null) {
+                jsonObject.put("OpenDirect", openDirect);
+            }
 
-	public void setSound(String sound) {
-		this.sound = sound;
-	}
+            jsonObject.put("Override", Boolean.TRUE);
 
-	public String getOpenDirect() {
-		return openDirect;
-	}
+            if (sound != null) {
+                jsonObject.put("Sound", sound);
+            } else {
+                jsonObject.put("Sound", "default");
+            }
 
-	public void setOpenDirect(String openDirect) {
-		this.openDirect = openDirect;
-	}
+            if (deviceTokens != null) {
+                JSONArray jsonArray = new JSONArray(deviceTokens);
+                jsonObject.put("deviceTokens", jsonArray);
+            }
 
-	public HashMap<String, String> getCustomKeys() {
-		return customKeys;
-	}
+            if (inclusionTags != null) {
+                JSONArray jsonArray = new JSONArray(inclusionTags);
+                jsonObject.put("inclusionTags", jsonArray);
+            }
 
-	public void setCustomKeys(HashMap<String, String> customKeys) {
-		this.customKeys = customKeys;
-	}
+            if (exclusionTags != null) {
+                JSONArray jsonArray = new JSONArray(exclusionTags);
+                jsonObject.put("inclusionTags", jsonArray);
+            }
 
+            if (customKeys != null) {
+                JSONObject customKeysJson = new JSONObject();
+
+                Iterator it = customKeys.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    customKeysJson.put((String) pair.getKey(), pair.getValue());
+                    it.remove(); // avoids a ConcurrentModificationException
+                }
+                jsonObject.put("CustomKeys", customKeysJson);
+            }
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            Log.e(TAG, String.format("Error converting AnalyticItem to JSON: %1$s", e.getMessage()), e);
+            return null;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -35,10 +35,12 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.CirclePageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.PageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
 /**
  * SDK_ExplorerEulaActivity will the End User License Agreement for the JB4A SDK Explorer.
@@ -48,81 +50,78 @@ import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
 
 public class SDK_ExplorerEulaActivity extends BaseActivity {
 
-	private int currentPage = CONSTS.EULA_ACTIVITY;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerEulaActivity.class.getSimpleName()) ;
+    ScrollPagesAdapter mAdapter;
+    ViewPager mPager;
+    PageIndicator mIndicator;
+    String[] pages = new String[]{"0"};
+    private int currentPage = CONSTS.EULA_ACTIVITY;
 
-	private static final String TAG = SDK_ExplorerEulaActivity.class.getName();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.scroll_pages);
+    }
 
-	ScrollPagesAdapter mAdapter;
-	ViewPager mPager;
-	PageIndicator mIndicator;
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
+    }
 
-	String[] pages = new String[] {"0"};
+    @Override
+    protected void onDestroy() {
+        EventBus.getInstance().unregister(this);
+        super.onDestroy();
+    }
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.scroll_pages);
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
-	}
+        Utils.setActivityTitle(this, R.string.eula_activity_title);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-	@Override
-	protected void onDestroy() {
-		EventBus.getDefault().unregister(this);
-		super.onDestroy();
-	}
+        prepareDisplay();
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.global_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-		Utils.setActivityTitle(this, R.string.eula_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Utils.prepareMenu(currentPage, menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-		prepareDisplay();
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Boolean result = Utils.selectMenuItem(this, currentPage, item);
+        return result != null ? result : super.onOptionsItemSelected(item);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.global_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		Utils.prepareMenu(currentPage, menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
+    private void prepareDisplay() {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Boolean result = Utils.selectMenuItem(this, currentPage, item);
-		return result != null ? result : super.onOptionsItemSelected(item);
-	}
+        StringBuilder sb = new StringBuilder();
+        sb.append(CONSTS.PAGE_TITLE);
+        sb.append(Utils.getRawResourceContents("eula", true));
+        pages[0] = sb.toString().replace("$[eulaCompany]", getString(R.string.companyName)).replace("$[preposition]", getString(R.string.preposition));
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-	}
+        mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, false);
 
-	private void prepareDisplay() {
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
 
-		StringBuilder sb = new StringBuilder();
-		sb.append(CONSTS.PAGE_TITLE);
-		sb.append(Utils.getRawResourceContents("eula", true));
-		pages[0] = sb.toString().replace("$[eulaCompany]", getString(R.string.companyName)).replace("$[preposition]", getString(R.string.preposition));
-
-		mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, false);
-
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
-
-		mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
-	}
+        mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        mIndicator.setViewPager(mPager);
+    }
 }

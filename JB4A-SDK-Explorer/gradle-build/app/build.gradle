@@ -2,32 +2,36 @@ apply plugin: 'com.android.application'
 
 android {
 
-    compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    compileSdkVersion 22
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.exacttarget.jb4a.sdkexplorer"
-        versionCode = 2100026
-        versionName = "2.1.0.26"
+        versionCode = 2200056
+        versionName = "2.2.0.56"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
 
-    // needed for joda only
-    packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
+    signingConfigs {
+        release {
+            storeFile file("cert/your_key_store_file")
+            storePassword System.getenv("SDK_EXPLORER_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("SDK_EXPLORER_KEYSTORE_ALIAS")
+            keyPassword System.getenv("SDK_EXPLORER_KEYSTORE_PASSWORD")
+        }
     }
 
     productFlavors {
-         Google {
+        Google {
             resValue "string", "companyName", "Google"
             resValue "string", "preposition", "a"
-         }
+            applicationId "com.exacttarget.jb4a.sdkexplorer.google"
+        }
 
         Amazon {
             resValue "string", "companyName", "Amazon"
             resValue "string", "preposition", "an"
+            applicationId "com.exacttarget.jb4a.sdkexplorer.amazon"
         }
     }
 
@@ -37,13 +41,18 @@ android {
             minifyEnabled false
             zipAlignEnabled false
             signingConfig signingConfigs.debug
-         }
+            applicationIdSuffix '.debug'
+            versionNameSuffix 'd'
+        }
 
-       release {
+        release {
             debuggable false
             minifyEnabled true
             proguardFile 'proguard.cfg'
             zipAlignEnabled true
+            signingConfig signingConfigs.release
+            applicationIdSuffix ''
+            versionNameSuffix ''
         }
     }
 
@@ -56,21 +65,27 @@ android {
             manifest.srcFile 'Amazon/AndroidManifest.xml'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def newApkName = "JB4A-SDK-Explorer-${variantData.variantConfiguration.baseName}-" + defaultConfig.versionCode + ".apk";
+                output.outputFile = new File("${project.buildDir}/APKFiles/", newApkName);
+            }
+        }
+    }
 }
 
 dependencies {
-     // SDK
-    compile files('libs/etsdk-3.5.0.jar')
+    // This line implicitely compiles all JAR files in the libs/ folder.
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Google
-    compile 'com.google.android.gms:play-services:6.1.71'
-    compile 'com.android.support:support-v4:21.0.2'
+    // SDK
+    compile 'com.exacttarget.etpushsdk:etsdk:4.0.0@aar'
 
-    // SDK 3rd Party Libraries
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
-    compile 'com.j256.ormlite:ormlite-android:4.48'
-    compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6'
-
-    // Required for SDK Explorer (not SDK)
-    compile 'com.belladati:httpclientandroidlib:4.3.0'
+    // 3rd Party Libraries needed for SDK
+    compile 'com.google.android.gms:play-services-location:7.3.0'
+    compile 'com.google.android.gms:play-services-gcm:7.3.0'
+    compile 'com.android.support:support-v4:22.1.1'
 }

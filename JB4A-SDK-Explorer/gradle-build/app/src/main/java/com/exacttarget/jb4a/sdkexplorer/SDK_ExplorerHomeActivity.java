@@ -1,21 +1,21 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
- *
+ * <p/>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- *
+ * <p/>
  * 1. Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
- *
+ * <p/>
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation and/or
  * other materials provided with the distribution.
- *
+ * <p/>
  * 3. Neither the name of the copyright holder nor the names of its contributors
  * may be used to endorse or promote products derived from this software without
  * specific prior written permission.
- *
+ * <p/>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -30,30 +30,37 @@
 
 package com.exacttarget.jb4a.sdkexplorer;
 
-import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.exacttarget.etpushsdk.ETException;
-import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
-import com.exacttarget.etpushsdk.util.EventBus;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.CirclePageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.PageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
-import com.radiusnetworks.ibeacon.BleNotAvailableException;
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
-import org.apache.http.client.methods.HttpGet;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * SDK_ExplorerHomeActivity is the primary activity in the JB4A SDK Explorer.
@@ -63,29 +70,29 @@ import java.util.regex.Pattern;
  * It calls several methods in order to link to the JB4A Android SDK:
  * <p/>
  * 1) To get notified of events that occur within the SDK, call
- * EventBus.getDefault().register() in onCreate() and
- * EventBus.getDefault().unregister(); in onDestroy()
+ * EventBus.getInstance().register() in onCreate() and
+ * EventBus.getInstance().unregister(); in onDestroy()
  * <p/>
  * 2) To ensure that registrations stay current with Google Cloud Messaging,
- * call ETPush.pushManager().enablePush() if push is enabled for this
- * device.  You would call ETPush.pushManager().isPushEnabled() to determine
+ * call ETPush.getInstance().enablePush() if push is enabled for this
+ * device.  You would call ETPush.getInstance().isPushEnabled() to determine
  * if push is enabled.
  * <p/>
- * 3) To provide analytics about the usage of your app, call ETPush.pushManager().activityResumed();
- * in onResume() and ETPush.pushManager().activityPaused() in onPause().
+ * 3) To provide analytics about the usage of your app, call ETPush.getInstance().activityResumed();
+ * in onResume() and ETPush.getInstance().activityPaused() in onPause().
  *
  * @author pvandyk
  */
 
 public class SDK_ExplorerHomeActivity extends BaseActivity {
 
-    public static final String KEY_FIRST_LAUNCH = "key_first_launch";
     private static final int currentPage = CONSTS.HOME_ACTIVITY;
-    private static final String TAG = SDK_ExplorerHomeActivity.class.getName();
-    protected SharedPreferences sharedPreferences;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerHomeActivity.class.getSimpleName());
+
     ScrollPagesAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
+
     String[] pages = new String[]{"0", "1", "2", "3"};
 
     @Override
@@ -93,42 +100,9 @@ public class SDK_ExplorerHomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scroll_pages);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        // we want to default to have this app with push  and location enabled
-        // then in Preferences, allow user to turn off
-        try {
-            boolean isFirstLaunch = sharedPreferences.getBoolean(KEY_FIRST_LAUNCH, true);
-            ETPush pushManager = ETPush.pushManager();
-            if (isFirstLaunch) {
-                sharedPreferences.edit().putBoolean(KEY_FIRST_LAUNCH, false).apply();
-
-                // this essentially opts in this device for push messages and for location messages
-                pushManager.enablePush();
-                ETLocationManager.locationManager().startWatchingLocation();
-                try {
-                    if (!ETLocationManager.locationManager().startWatchingProximity()) {
-                        promptForBluetoothSettings();
-                    }
-                } catch (BleNotAvailableException e) {
-                    Log.w(TAG, "BLE is not available on this device");
-                    sharedPreferences.edit().putBoolean("pref_proximity", false).commit();
-                    ETLocationManager.locationManager().stopWatchingProximity();
-                }
-
-            } else {
-                // we want to ensure registration info is sent
-                // calling this each time ensures you are syncing data with the Marketing Cloud
-                if (pushManager.isPushEnabled()) {
-                    pushManager.enablePush();
-                } else {
-                    pushManager.disablePush();
-                }
-            }
-        } catch (ETException e) {
-            Log.e(TAG, e.getMessage(), e);
+        if (ETPush.getLogLevel() <= Log.DEBUG) {
+            Log.i(TAG, "start onCreate()");
         }
-        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -139,7 +113,6 @@ public class SDK_ExplorerHomeActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 
@@ -172,8 +145,7 @@ public class SDK_ExplorerHomeActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Boolean result = Utils.selectMenuItem(this, currentPage, item);
-        return result != null ? result : super.onOptionsItemSelected(item);
+        return Utils.selectMenuItem(this, currentPage, item);
     }
 
     @Override
@@ -187,7 +159,7 @@ public class SDK_ExplorerHomeActivity extends BaseActivity {
         sb.append(CONSTS.PAGE_TITLE);
         sb.append("<b>Overview</b><br/>");
         sb.append("<hr>");
-        sb.append("This app allows you to explore how to use the Journey Builder for Apps (JB4A) SDK.");
+        sb.append("The SDK Explorer allows you to explore how to use the Journey Builder for Apps (JB4A) SDK.");
         sb.append("<br/><br/>");
         sb.append("The JB4A SDK is a key component of ");
         sb.append("<a href=\"http://www.exacttarget.com/products/mobile-marketing\">Mobile Marketing</a> for your company.<br/>");
@@ -242,30 +214,4 @@ public class SDK_ExplorerHomeActivity extends BaseActivity {
         mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         mIndicator.setViewPager(mPager);
     }
-
-    private void promptForBluetoothSettings() {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .setTitle("Enable Bluetooth?")
-                .setMessage("Beacon alerts require that you have Bluetooth enabled. Enable it now?")
-                .setNegativeButton("Cancel", null)
-                .setPositiveButton("Enable Bluetooth", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                        if (!mBluetoothAdapter.isEnabled()) {
-                            mBluetoothAdapter.enable();
-                        }
-
-                        try {
-                            ETLocationManager.locationManager().startWatchingProximity();
-                        } catch (BleNotAvailableException e) {
-                            Log.e(TAG, e.getMessage(), e);
-                        } catch (ETException e) {
-                            Log.e(TAG, e.getMessage(), e);
-                        }
-                    }
-                })
-                .show();
-    } 
 }

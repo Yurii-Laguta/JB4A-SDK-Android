@@ -1,15 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 allprojects {
     repositories {
-        mavenCentral()
+        jcenter()
+        maven {
+            url "http://exacttarget.github.io/JB4A-SDK-Android-Beta/repository" 
+        }    
     }
 }
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
+        maven {
+            url "http://exacttarget.github.io/JB4A-SDK-Android-Beta/repository" 
+        }   
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }

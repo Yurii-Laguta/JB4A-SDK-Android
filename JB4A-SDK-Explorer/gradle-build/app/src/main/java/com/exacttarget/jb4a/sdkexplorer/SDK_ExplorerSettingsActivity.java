@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -31,20 +31,32 @@
 package com.exacttarget.jb4a.sdkexplorer;
 
 import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.content.*;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.*;
+import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.util.Log;
-import android.view.*;
-
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
-import com.radiusnetworks.ibeacon.BleNotAvailableException;
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SDK_ExplorerSettingsActivity is the primary settings activity within the JB4A SDK Explorer.
@@ -72,14 +84,10 @@ import com.radiusnetworks.ibeacon.BleNotAvailableException;
  * 3) Enable Push Preferences
  * This preference is the heart of the SDK. Without Push turned on, not much will happen!
  * <p/>
- * 4) Enable Location (for Geo Fencing and Beacons) Preference
- * This preference will test Geo Fencing and Beacon proximity.  For the JB4A SDK Explorer, we have setup several fences around the
+ * 4) Enable Location (for Geo Fencing) Preference
+ * This preference will test Geo Fencing.  For the JB4A SDK Explorer, we have setup several fences around the
  * national parks.  A tool like Fake GPS can be used to test these location settings.
  * <p/>
- * <p>
- * To Test Beacons, we have setup messages using the GUID 2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6.  If you assign this
- * GUID to beacons you purchase/configure, you will receive messages for the following major/minor combinations: 1,1; 1,2; 1,3; 1,4.
- * </p>
  * 5) Custom Ringtone and Custom Vibration
  * This app shows a way to completely customize the way notification sounds work.  Within the Marketing Cloud, you can
  * normally set to use the Default of a Custom Sound.  This SDK Explorer, takes it a step further and will have it's own custom
@@ -103,10 +111,9 @@ import com.radiusnetworks.ibeacon.BleNotAvailableException;
 
 public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
 
-    private SharedPreferences sp;
-
     private static final int currentPage = CONSTS.SETTINGS_ACTIVITY;
-    private static final String TAG = SDK_ExplorerSettingsActivity.class.getName();
+    private static final String TAG = Utils.formatTag(SDK_ExplorerSettingsActivity.class.getSimpleName()) ;
+    private SharedPreferences sp;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -213,7 +220,7 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
                             fnPref.setSummary(newFirstName);
 
                             try {
-                                ETPush.pushManager().addAttribute(CONSTS.KEY_ATTRIB_FIRST_NAME, newFirstName);
+                                ETPush.getInstance().addAttribute(CONSTS.KEY_ATTRIB_FIRST_NAME, newFirstName);
                             } catch (ETException e) {
                                 if (ETPush.getLogLevel() <= Log.ERROR) {
                                     Log.e(TAG, e.getMessage(), e);
@@ -265,7 +272,7 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
                             lnPref.setSummary(newLastName);
 
                             try {
-                                ETPush.pushManager().addAttribute(CONSTS.KEY_ATTRIB_LAST_NAME, newLastName);
+                                ETPush.getInstance().addAttribute(CONSTS.KEY_ATTRIB_LAST_NAME, newLastName);
                             } catch (ETException e) {
                                 if (ETPush.getLogLevel() <= Log.ERROR) {
                                     Log.e(TAG, e.getMessage(), e);
@@ -318,7 +325,7 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
                             skPref.setSummary(newSubscriberKey);
 
                             try {
-                                ETPush.pushManager().setSubscriberKey(newSubscriberKey);
+                                ETPush.getInstance().setSubscriberKey(newSubscriberKey);
                             } catch (ETException e) {
                                 if (ETPush.getLogLevel() <= Log.ERROR) {
                                     Log.e(TAG, e.getMessage(), e);
@@ -341,7 +348,7 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
         CheckBoxPreference pushPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_PUSH);
 
         try {
-            pushPref.setChecked(ETPush.pushManager().isPushEnabled());
+            pushPref.setChecked(ETPush.getInstance().isPushEnabled());
         } catch (Exception e) {
             if (ETPush.getLogLevel() <= Log.ERROR) {
                 Log.e(TAG, e.getMessage(), e);
@@ -359,10 +366,10 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
 
                 try {
                     if (newPrefPush) {
-                        ETPush.pushManager().enablePush();
+                        ETPush.getInstance().enablePush();
                     } else {
                         // opt out for push messages
-                        ETPush.pushManager().disablePush();
+                        ETPush.getInstance().disablePush();
                     }
 
                     enablePushDependentPrefs();
@@ -381,52 +388,48 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
 
         final CheckBoxPreference locationsPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_LOCATION);
 
-        try {
-            locationsPref.setChecked(ETLocationManager.locationManager().isWatchingLocation());
-        } catch (Exception e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-            locationsPref.setChecked(false);
-        }
+        if (getString(R.string.companyName).equalsIgnoreCase("google")) {
+            // allow for Google
 
-        locationsPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference pref, Object newValue) {
-                Boolean newPrefLocation = (Boolean) newValue;
-                // save the preference to Shared Preferences
-                updatePreferencesForKey(CONSTS.KEY_PREF_LOCATION, newPrefLocation);
-
-                try {
-                    if (newPrefLocation) {
-                        // opt in for location messages
-                        ETLocationManager.locationManager().startWatchingLocation();
-                        try {
-                            if (!ETLocationManager.locationManager().startWatchingProximity()) {
-                                // startWatchingProximity will return false if BlueTooth is not turned on.
-                                promptForBluetoothSettings();
-                            }
-                        } catch (BleNotAvailableException e) {
-                            // Bluetooth LE only available on 4.3 and later
-                            // https://developer.android.com/guide/topics/connectivity/bluetooth-le.html
-                            Log.w(TAG, "BLE is not available on this device");
-                            ETLocationManager.locationManager().stopWatchingProximity();
-                        }
-                    } else {
-                        // opt out for location messages
-                        ETLocationManager.locationManager().stopWatchingLocation();
-                        ETLocationManager.locationManager().stopWatchingProximity();
-                    }
-
-                    enablePushDependentPrefs();
-                } catch (ETException e) {
-                    if (ETPush.getLogLevel() <= Log.ERROR) {
-                        Log.e(TAG, e.getMessage(), e);
-                    }
+            try {
+                locationsPref.setChecked(ETLocationManager.getInstance().isWatchingLocation());
+            } catch (Exception e) {
+                if (ETPush.getLogLevel() <= Log.ERROR) {
+                    Log.e(TAG, e.getMessage(), e);
                 }
-                return true;
+                locationsPref.setChecked(false);
             }
-        });
+
+            locationsPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference pref, Object newValue) {
+                    Boolean newPrefLocation = (Boolean) newValue;
+                    // save the preference to Shared Preferences
+                    updatePreferencesForKey(CONSTS.KEY_PREF_LOCATION, newPrefLocation);
+
+                    try {
+                        if (newPrefLocation) {
+                            // opt in for location messages
+                            ETLocationManager.getInstance().startWatchingLocation();
+                        } else {
+                            // opt out for location messages
+                            ETLocationManager.getInstance().stopWatchingLocation();
+                        }
+
+                        enablePushDependentPrefs();
+                    } catch (ETException e) {
+                        if (ETPush.getLogLevel() <= Log.ERROR) {
+                            Log.e(TAG, e.getMessage(), e);
+                        }
+                    }
+                    return true;
+                }
+            });
+        } else {
+            // disable for Amazon
+            PreferenceCategory notifySettings = (PreferenceCategory) findPreference("pref_key_notify_settings");
+            notifySettings.removePreference(locationsPref);
+       }
 
         //
         // SPORTS SUBSCRIPTIONS
@@ -469,9 +472,9 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
                 Boolean enabled = (Boolean) newValue;
                 try {
                     if (enabled) {
-                        ETPush.pushManager().addTag(activityKey);
+                        ETPush.getInstance().addTag(activityKey);
                     } else {
-                        ETPush.pushManager().removeTag(activityKey);
+                        ETPush.getInstance().removeTag(activityKey);
                     }
                 } catch (ETException e) {
                     if (ETPush.getLogLevel() <= Log.ERROR) {
@@ -494,7 +497,7 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
         boolean pushEnabled = false;
 
         try {
-            pushEnabled = ETPush.pushManager().isPushEnabled();
+            pushEnabled = ETPush.getInstance().isPushEnabled();
         } catch (ETException e) {
             if (ETPush.getLogLevel() <= Log.ERROR) {
                 Log.e(TAG, e.getMessage(), e);
@@ -540,40 +543,5 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
     //
     private void updatePreferencesForKey(String key, Boolean value) {
         sp.edit().putBoolean(key, value).apply();
-    }
-
-    //
-    // promptForBluetoothSettings
-    //
-    // Bluetooth is not turned on, so ask user to turn it on.
-    //
-    private void promptForBluetoothSettings() {
-        new AlertDialog.Builder(SDK_ExplorerSettingsActivity.this)
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .setTitle("Enable Bluetooth?")
-                .setMessage("Beacons require that you have Bluetooth enabled. Enable it now?")
-                .setNegativeButton("Cancel", null)
-                .setPositiveButton("Enable Bluetooth", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                        if (!mBluetoothAdapter.isEnabled()) {
-                            mBluetoothAdapter.enable();
-                        }
-
-                        try {
-                            ETLocationManager.locationManager().startWatchingProximity();
-                        } catch (BleNotAvailableException e) {
-                            if (ETPush.getLogLevel() <= Log.ERROR) {
-                                Log.e(TAG, e.getMessage(), e);
-                            }
-                        } catch (ETException e) {
-                            if (ETPush.getLogLevel() <= Log.ERROR) {
-                                Log.e(TAG, e.getMessage(), e);
-                            }
-                        }
-                    }
-                })
-                .show();
     }
 }

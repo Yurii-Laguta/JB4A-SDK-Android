@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -37,6 +37,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
+
 /**
  * SDK_ExplorerCloudPageActivity is an activity that will display the CloudPage sent with the payload
  * of the message sent from the Marketing Cloud.
@@ -45,51 +47,51 @@ import android.widget.LinearLayout;
  */
 
 public class SDK_ExplorerCloudPageActivity extends BaseActivity {
-	private int currentPage = CONSTS.CLOUDPAGE_ACTIVITY;
-	private static final String TAG = SDK_ExplorerCloudPageActivity.class.getName();
+    private static final String TAG = Utils.formatTag(SDK_ExplorerCloudPageActivity.class.getSimpleName()) ;
+    private int currentPage = CONSTS.CLOUDPAGE_ACTIVITY;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		prepareDisplay();
-	}
+        prepareDisplay();
+    }
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
-	}
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Boolean result = Utils.selectMenuItem(this, currentPage, item);
-		return result != null ? result : super.onOptionsItemSelected(item);
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Boolean result = Utils.selectMenuItem(this, currentPage, item);
+        return result != null ? result : super.onOptionsItemSelected(item);
+    }
 
-	private void prepareDisplay() {
-		Utils.setActivityTitle(this, "Loading...");
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+    private void prepareDisplay() {
+        Utils.setActivityTitle(this, "Loading...");
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		LinearLayout ll = new LinearLayout(this);
-		ll.setOrientation(LinearLayout.VERTICAL);
-		ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-		ll.setGravity(Gravity.CENTER);
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        ll.setGravity(Gravity.CENTER);
 
-		WebView webView = new WebView(this);
-		webView.loadUrl(this.getIntent().getExtras().getString("_x"));
-		webView.getSettings().setJavaScriptEnabled(true);
-		ll.addView(webView);
+        WebView webView = new WebView(this);
+        webView.loadUrl(this.getIntent().getExtras().getString("_x"));
+        webView.getSettings().setJavaScriptEnabled(true);
+        ll.addView(webView);
 
-		webView.setWebViewClient(new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient() {
 
-			public void onPageFinished(WebView view, String url) {
-				Utils.setActivityTitle(SDK_ExplorerCloudPageActivity.this, view.getTitle());
-			}
-		});
+            public void onPageFinished(WebView view, String url) {
+                Utils.setActivityTitle(SDK_ExplorerCloudPageActivity.this, view.getTitle());
+            }
+        });
 
-		setContentView(ll);
+        setContentView(ll);
 
-	}
+    }
 }

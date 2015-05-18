@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 ExactTarget, Inc.
+ * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -46,6 +46,7 @@ import android.widget.TextView;
 
 import com.exacttarget.etpushsdk.adapter.CloudPageListAdapter;
 import com.exacttarget.etpushsdk.data.Message;
+import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
 /**
  * SDK_ExplorerCloudPageInboxActivity is an activity that will display CloudPages that have been downloaded
@@ -55,140 +56,132 @@ import com.exacttarget.etpushsdk.data.Message;
  */
 
 public class SDK_ExplorerCloudPageInboxActivity extends BaseActivity {
-	private int currentPage = CONSTS.CLOUDPAGE_INBOX_ACTIVITY;
-	private MyCloudPageListAdapter cloudPageListAdapter;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerCloudPageInboxActivity.class.getSimpleName()) ;
+    private AdapterView.OnItemClickListener cloudPageItemClickListener = new AdapterView.OnItemClickListener() {
 
-	private static final String TAG = SDK_ExplorerCloudPageInboxActivity.class.getName();
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Log.i(TAG, "Position Clicked: " + position);
+            CloudPageListAdapter adapter = (CloudPageListAdapter) parent.getAdapter();
+            Message message = (Message) adapter.getItem(position);
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.cloudpage_inbox_layout);
+            adapter.setMessageRead(message);
 
-		prepareDisplay();
-	}
+            Intent intent = new Intent(SDK_ExplorerCloudPageInboxActivity.this, SDK_ExplorerCloudPageActivity.class);
+            intent.putExtra("_x", message.getUrl());
+            startActivity(intent);
+        }
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
-	}
+    };
+    private AdapterView.OnItemLongClickListener cloudPageItemDeleteListener = new AdapterView.OnItemLongClickListener() {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Boolean result = Utils.selectMenuItem(this, currentPage, item);
-		return result != null ? result : super.onOptionsItemSelected(item);
-	}
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            Log.i(TAG, "Position Deleted: " + position);
+            CloudPageListAdapter adapter = (CloudPageListAdapter) parent.getAdapter();
+            Message message = (Message) adapter.getItem(position);
 
-	private void prepareDisplay() {
-		Utils.setActivityTitle(this, R.string.cloudpage_inbox_activity_title);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+            adapter.deleteMessage(message);
 
-		RadioGroup filterRadioGroup;
-		ListView cloudPageListView;
+            return true;
+        }
 
-		filterRadioGroup = (RadioGroup) findViewById(R.id.filterRadioGroup);
-		cloudPageListView = (ListView) findViewById(R.id.cloudPageListView);
+    };
+    private int currentPage = CONSTS.CLOUDPAGE_INBOX_ACTIVITY;
+    private MyCloudPageListAdapter cloudPageListAdapter;
+    private RadioGroup.OnCheckedChangeListener radioChangedListener = new RadioGroup.OnCheckedChangeListener() {
 
-		filterRadioGroup.setOnCheckedChangeListener(radioChangedListener);
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            if (R.id.filterAll == checkedId) {
+                cloudPageListAdapter.setDisplay(CloudPageListAdapter.DISPLAY_ALL);
+            } else if (R.id.filterRead == checkedId) {
+                cloudPageListAdapter.setDisplay(CloudPageListAdapter.DISPLAY_READ);
+            } else if (R.id.filterUnread == checkedId) {
+                cloudPageListAdapter.setDisplay(CloudPageListAdapter.DISPLAY_UNREAD);
+            }
+        }
 
-		cloudPageListView.setOnItemClickListener(cloudPageItemClickListener);
-		cloudPageListView.setOnItemLongClickListener(cloudPageItemDeleteListener);
+    };
 
-		cloudPageListAdapter = new MyCloudPageListAdapter(getApplicationContext());
-		cloudPageListView.setAdapter(cloudPageListAdapter);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.cloudpage_inbox_layout);
 
-	}
+        prepareDisplay();
+    }
 
-	private AdapterView.OnItemClickListener cloudPageItemClickListener = new AdapterView.OnItemClickListener() {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CONSTS.KEY_CURRENT_PAGE, currentPage);
+    }
 
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Log.i(TAG, "Position Clicked: " + position);
-			CloudPageListAdapter adapter = (CloudPageListAdapter) parent.getAdapter();
-			Message message = (Message) adapter.getItem(position);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Boolean result = Utils.selectMenuItem(this, currentPage, item);
+        return result != null ? result : super.onOptionsItemSelected(item);
+    }
 
-			adapter.setMessageRead(message);
+    private void prepareDisplay() {
+        Utils.setActivityTitle(this, R.string.cloudpage_inbox_activity_title);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
-			Intent intent = new Intent(SDK_ExplorerCloudPageInboxActivity.this, SDK_ExplorerCloudPageActivity.class);
-			intent.putExtra("_x", message.getUrl());
-			startActivity(intent);
-		}
+        RadioGroup filterRadioGroup;
+        ListView cloudPageListView;
 
-	};
+        filterRadioGroup = (RadioGroup) findViewById(R.id.filterRadioGroup);
+        cloudPageListView = (ListView) findViewById(R.id.cloudPageListView);
 
-	private AdapterView.OnItemLongClickListener cloudPageItemDeleteListener = new AdapterView.OnItemLongClickListener() {
+        filterRadioGroup.setOnCheckedChangeListener(radioChangedListener);
 
-		@Override
-		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-			Log.i(TAG, "Position Deleted: " + position);
-			CloudPageListAdapter adapter = (CloudPageListAdapter) parent.getAdapter();
-			Message message = (Message) adapter.getItem(position);
+        cloudPageListView.setOnItemClickListener(cloudPageItemClickListener);
+        cloudPageListView.setOnItemLongClickListener(cloudPageItemDeleteListener);
 
-			adapter.deleteMessage(message);
+        cloudPageListAdapter = new MyCloudPageListAdapter(getApplicationContext());
+        cloudPageListView.setAdapter(cloudPageListAdapter);
 
-			return true;
-		}
+    }
 
-	};
+    private class MyCloudPageListAdapter extends CloudPageListAdapter {
 
-	private RadioGroup.OnCheckedChangeListener radioChangedListener = new RadioGroup.OnCheckedChangeListener(){
+        public MyCloudPageListAdapter(Context appContext) {
+            super(appContext);
+        }
 
-		@Override
-		public void onCheckedChanged(RadioGroup group, int checkedId) {
-			if(R.id.filterAll == checkedId) {
-				cloudPageListAdapter.setDisplay(CloudPageListAdapter.DISPLAY_ALL);
-			}
-			else if(R.id.filterRead == checkedId) {
-				cloudPageListAdapter.setDisplay(CloudPageListAdapter.DISPLAY_READ);
-			}
-			else if(R.id.filterUnread == checkedId) {
-				cloudPageListAdapter.setDisplay(CloudPageListAdapter.DISPLAY_UNREAD);
-			}
-		}
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view;
+            ImageView icon;
+            TextView subject;
+            TextView time;
 
-	};
+            LayoutInflater mInflater = (LayoutInflater) SDK_ExplorerCloudPageInboxActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-	private class MyCloudPageListAdapter extends CloudPageListAdapter {
+            if (convertView == null) {
+                view = mInflater.inflate(R.layout.cloudpage_list_item, parent, false);
+            } else {
+                view = convertView;
+            }
 
-		public MyCloudPageListAdapter(Context appContext) {
-			super(appContext);
-		}
+            subject = (TextView) view.findViewById(R.id.cloudpageSubject);
+            icon = (ImageView) view.findViewById(R.id.readUnreadIcon);
+            time = (TextView) view.findViewById(R.id.timeTextView);
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View view;
-			ImageView icon;
-			TextView subject;
-			TextView time;
+            Message message = (Message) getItem(position);
 
-			LayoutInflater mInflater = (LayoutInflater) SDK_ExplorerCloudPageInboxActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if (message.getRead()) {
+                icon.setImageResource(R.drawable.read);
+            } else {
+                icon.setImageResource(R.drawable.unread);
+            }
 
-			if (convertView == null) {
-				view = mInflater.inflate(R.layout.cloudpage_list_item, parent, false);
-			}
-			else {
-				view = convertView;
-			}
-
-			subject = (TextView) view.findViewById(R.id.cloudpageSubject);
-			icon = (ImageView) view.findViewById(R.id.readUnreadIcon);
-			time = (TextView) view.findViewById(R.id.timeTextView);
-
-			Message message = (Message) getItem(position);
-
-			if(message.getRead()) {
-				icon.setImageResource(R.drawable.read);
-			}
-			else {
-				icon.setImageResource(R.drawable.unread);
-			}
-
-			subject.setText(message.getSubject());
+            subject.setText(message.getSubject());
 
             time.setText(android.text.format.DateFormat.format("MMM dd yyyy - hh:mm a", message.getStartDate()));
 
-			return view;
-		}
-	}
+            return view;
+        }
+    }
 }
