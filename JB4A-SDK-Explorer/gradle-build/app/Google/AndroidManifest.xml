@@ -28,10 +28,16 @@
                 <category android:name="${applicationId}" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />   
                 <action android:name="${applicationId}.MESSAGE_OPENED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -44,11 +50,6 @@
 
         <!-- ETLocationReceiver and Service -->
         <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.BATTERY_LOW" />
-                <action android:name="android.intent.action.BATTERY_OKAY" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.location.PROVIDERS_CHANGED" />
                 <category android:name="android.intent.category.DEFAULT" />

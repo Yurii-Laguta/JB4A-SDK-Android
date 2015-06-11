@@ -59,6 +59,7 @@
             <intent-filter>
                 <action android:name="com.exacttarget.jb4a.sdkexplorer.MESSAGE_OPENED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
             </intent-filter>
         </receiver>
 
