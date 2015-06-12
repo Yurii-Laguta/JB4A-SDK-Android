@@ -9,7 +9,7 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 
 ## Fully Functional APK
 The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.  Click the following to download this apk to install on your device:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2100026.apk" target="_blank">JB4A-SDK-Explorer-Google-release-2100026.apk</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2100027.apk" target="_blank">JB4A-SDK-Explorer-Google-release-2100027.apk</a>
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
