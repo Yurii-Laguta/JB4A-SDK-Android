@@ -8,7 +8,7 @@ order: 8
 ---
 You can add buttons called *interactive notifications* to push notifications in your Mobile app. The Salesforce Marketing Cloud sends the category name for these interactive notifications in the message payload. 
 
-This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>).
+This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>).
 
 You can view a sample of these interactive notifications in the following image, which includes three buttons that can be tapped, each of which will open a custom intent:<br/>
 

@@ -11,7 +11,7 @@ You can include custom keys in the message payload sent with a Push Message. Thi
 
 Access the custom key from the message payload in the Activity that opens when a push notification receives a tap:
 
-This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>) uses the SDK_ExplorerDisplayMessageActivity to show the contents of the payload sent with the Push Message.  CONSTS.KEY_PAYLOAD_DISCOUNT is a static string that contains "discount_code".  This is the custom key that has been defined in the Marketing Cloud.  This Activity searches for this key to determine whether it has been sent with the message payload.
+This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses the SDK_ExplorerDisplayMessageActivity to show the contents of the payload sent with the Push Message.  CONSTS.KEY_PAYLOAD_DISCOUNT is a static string that contains "discount_code".  This is the custom key that has been defined in the Marketing Cloud.  This Activity searches for this key to determine whether it has been sent with the message payload.
 
 Here is the how this custom key is setup in the SDK Explorer Marketing Cloud account for the SDK Explorer App:
 <img class="img-responsive" src="{{ site.baseurl }}/assets/custom-key-marketingcloud.png" />

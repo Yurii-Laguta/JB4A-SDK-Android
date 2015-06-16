@@ -16,7 +16,7 @@ ___
 
 1.  Use the ETNotifications class to override the launch intent.
     
-    This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>)
+    This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>)
 
     After readyAimFire() completes, let the SDK the code you would like to execute when the pending intent is setup.
 

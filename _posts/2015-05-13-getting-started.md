@@ -18,6 +18,6 @@ All of the information required to integrate the Journey Builder for Apps SDK in
 
 ##Source Code and Other Information
 
-* <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta" target="_blank">Journey Builder for Apps Android SDK (BETA)</a> - Download the Android SDK for use in your native Android and Amazon apps.
+* <a href="https://github.com/ExactTarget/JB4A-SDK-Android" target="_blank">Journey Builder for Apps Android SDK</a> - Download the Android SDK for use in your native Android and Amazon apps.
 * <a href="http://help.exacttarget.com/en/documentation/mobilepush/" target="_blank">Salesforce Marketing Cloud MobilePush Documentation</a> – This documentation contains information on the Salesforce Marketing Cloud MobilePush app, including information on associating MobilePush with a mobile app.
-* We have created an app that implements all of the features of the SDK to allow you to explore how a native app implements the Journey Builder for Apps SDK: <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a> 
+* We have created an app that implements all of the features of the SDK to allow you to explore how a native app implements the Journey Builder for Apps SDK: <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a> 

@@ -8,7 +8,7 @@ order: 2
 ---
 To implement segmentation by attributes, include code to reference attributes in the app. Any attributes you save with the SDK must be added to your Marketing Cloud Contact record in advance so that the Marketing Cloud can connect the values sent by the SDK to the correct Contact fields.
 
-This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>) uses a PreferenceActivity to allow your users to enter or change attributes in their Contact record (that have been previously setup) for each user of your Mobile App:
+This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses a PreferenceActivity to allow your users to enter or change attributes in their Contact record (that have been previously setup) for each user of your Mobile App:
 
 The ETPush.getInstance().addAttribute() method will create a new registration record and send it to the Marketing Cloud.  It will take up to 15 minutes for this value to be recorded in the Contact record.  If the internet is not available when the update is made, the SDK will save the update and send whenever the network becomes available.
 

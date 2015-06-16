@@ -6,7 +6,7 @@ category: sdk-implementation
 date: 2015-05-14 12:00:00
 order: 2
 ---
-In order to use the SDK in your Mobile app on Amazon devices, you should follow the steps found in [this]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) document.  Then create a build variant as shown in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>.
+In order to use the SDK in your Mobile app on Amazon devices, you should follow the steps found in [this]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) document.  Then create a build variant as shown in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
 1. You must create a text file named `api_key.txt`. The file should contain the key you obtained during [Amazon Provisioning]({{ site.baseurl }}/provisioning/amazon.html) step. Place the file in the `{project root}/app/src/main/assets` folder.
 

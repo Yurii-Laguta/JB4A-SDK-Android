@@ -2,7 +2,7 @@
 layout: default
 title: "README"
 ---
-#Journey Builder for Apps Android SDK (Beta)
+#Journey Builder for Apps Android SDK
 
 This is the git repository for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK.<br>
 
@@ -10,10 +10,10 @@ The Java docs for the SDK can be found here:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
 Click the following to download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/blob/beta/JB4A-SDK/etsdk-4.0.0-BETA.jar?raw=true" target="_blank">etsdk-4.0.0-BETA.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.0.jar?raw=true" target="_blank">etsdk-4.0.0.jar</a>
 
 Click the following to download the latest JB4A SDK aar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/blob/beta/JB4A-SDK/etsdk-4.0.0-BETA.aar?raw=true" target="_blank">etsdk-4.0.0-BETA.aar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.0.aar?raw=true" target="_blank">etsdk-4.0.0.aar</a>
 
 ## Release History
 

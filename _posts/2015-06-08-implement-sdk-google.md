@@ -10,7 +10,7 @@ In order to use the SDK in your Mobile app, there are several steps required to 
 
 We have provided examples assuming you are using Android Studio.  To see any Eclipse specific coding required, see [Eclipse]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
 
-Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>.
+Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
 The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or greater.  Your minimum SDK version must be set no less than 10.
 
@@ -21,7 +21,7 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
         repositories {
             jcenter()
             maven {
-                url "http://exacttarget.github.io/JB4A-SDK-Android-Beta/repository" 
+                url "http://exacttarget.github.io/JB4A-SDK-Android/repository" 
             }
         }
     }
@@ -31,7 +31,7 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
     ~~~
     dependencies {
       // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:4.0.0-BETA@aar'
+      compile 'com.exacttarget.etpushsdk:etsdk:4.0.0@aar'
 
       // Google Play Services for Location and Google Cloud Messaging
       compile 'com.google.android.gms:play-services-location:7.5.0'
@@ -168,7 +168,7 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
 
     > Changes, including your initial registration from a device, are propagated by the server every 15 minutes.  Please ensure you have waited an appropriate amount of time before expecting to receive push notifications or for changes to take affect.
 
-1.  Good practice would be to create a Preference Screen that allows a user to opt out of Push messages.   Example code can be found in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>. Call `disablePush()` to allow a user to opt out of Push services.  You can then call `enablePush()` to allow them to opt back into Push services.
+1.  Good practice would be to create a Preference Screen that allows a user to opt out of Push messages.   Example code can be found in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>. Call `disablePush()` to allow a user to opt out of Push services.  You can then call `enablePush()` to allow them to opt back into Push services.
 
 ### CONGRATULATIONS!!!
 

@@ -28,7 +28,7 @@ When a registration is sent to the MarketingCloud, an event is added to the Even
 ~~~
 You may also want to set the Subsciber Key to a specific value provided by your customer as the unique identifier for the contact. You can use a mobile number, email address, or other appropriate value as necessary.
 
-This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/tree/beta/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer (Beta) for Android</a>) uses a PreferenceActivity to allow your users to enter or change the subscriber key in their Contact record.
+This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses a PreferenceActivity to allow your users to enter or change the subscriber key in their Contact record.
 
 The ETPush.getInstance().setSubscriberKey() method will create a new registration record and send it to the Marketing Cloud.  It will take up to 15 minutes for this value to be recorded in the Contact record.  If the internet is not available when the update is made, the SDK will save the update and send whenever the network becomes available.
 
