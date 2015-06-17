@@ -9,8 +9,8 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 
 ## Fully Functional APK
 The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.  Click the following to download this apk to install on your device:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/raw/beta/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2200056.apk" target="_blank">Google APK</a><br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android-Beta/raw/beta/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Amazon-release-2200056.apk" target="_blank">Amazon APK</a><br/>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2210065.apk" target="_blank">Google APK</a><br/>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Amazon-release-2210065.apk" target="_blank">Amazon APK</a><br/>
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
@@ -45,7 +45,7 @@ To create your own version of the SDK Explorer, you will need to have your app d
 2. Create a template (API Triggered) Message for a standard and CloudPage message in order to send messages from your app.
 3. Create messages for your app for each location you'd like to test Geo Fencing.
 
-For more information, see the info on [Beta Documentation](//http://exacttarget.github.io/JB4A-SDK-Android-Beta/).
+For more information, see the info on [Documentation](//http://exacttarget.github.io/JB4A-SDK-Android/).
 
 
 
