@@ -34,7 +34,7 @@ _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 
 * MPUSH-3411 - SDK will no longer set a subscriber key by default.  This change will ensure that any imported contacts will not be overridden by SDK.<br/>
   _`Note:` The subscriber key will be set by the Marketing Cloud instead.  This matches what happens with iOS devices now._ See [Subscriber Key]({{ site.baseurl }}/features/subscriber-key.html).<br/>
 * MPUSH-3396 - Create separate AndroidManifest.xml for Amazon devices.<br/>
-  _`Note:` You can create an Amazon product flavor within Android Studio and include this manifest for Amazon builds. See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).<br/>
+  _`Note:` You can create an Amazon product flavor within Android Studio and include this manifest for Amazon builds._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).<br/>
 * MPUSH-3378 - Improve verification of incorrect AndroidManifest.xml setup for both Amazon and Google devices.<br/>
 * MPUSH-3580 - Change verification of incorrect AndroidManifest.xml setup to throw a RunTimeException to ensure critical errors are fixed early in development process. <br/> 
 * MPUSH-3390 - Post an Event to the EventBus when readyAimFire() finishes with success or failure status.<br/>
