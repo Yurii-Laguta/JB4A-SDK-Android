@@ -10,7 +10,7 @@ If you have trouble receiving messages in your app, there are several trouble sh
 
 1.  If you compiled using debug settings, make sure your machine's SHA key has been added to your Google Cloud Messaging project as described in step 7 of [Google Provisioning]({{ site.baseurl }}/provisioning/google.html).  However, if you compiled with release settings, make sure the production keystore SHA key has also been added.
 
-1.  Make sure to turn on debug logging using setLogLevel() as shown in step 6.2 of the [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).
+1.  Make sure to turn on debug logging using setLogLevel() as shown in step 5.2 of the [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
 
 1.  Check the logcat for errors or warnings and make any necessary corrections.
 
