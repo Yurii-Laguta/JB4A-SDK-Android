@@ -4,7 +4,7 @@ title: "Override Notifications"
 subtitle: "How to Override Notification Intents"
 category: features
 date: 2015-05-14 12:00:00
-order: 11
+order: 10
 ---
 There are three ways to override the default intent that is opened when someone taps on a Push Message received by your Android app:
 
