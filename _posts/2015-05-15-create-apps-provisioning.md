@@ -29,5 +29,5 @@ You should be presented with a _Success!_ message and an application details scr
 
 <img class="img-responsive" src="{{ site.baseurl }}/assets/exampleAppSuccess.png" /><br/>
 
-> Record the **Application ID** and the **Access Token** as they will be used later in readyAimFire() as shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).
+> Record the **Application ID** and the **Access Token** as they will be used later in readyAimFire() as shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
 
