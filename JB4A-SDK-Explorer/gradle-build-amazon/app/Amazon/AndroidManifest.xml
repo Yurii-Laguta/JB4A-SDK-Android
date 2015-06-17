@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:amazon="http://schemas.amazon.com/apk/res/android">
+
+    <!-- JB4A SDK Amazon Permissions -->
+    <permission
+        android:name="${applicationId}.permission.RECEIVE_ADM_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.permission.RECEIVE_ADM_MESSAGE" />
+    <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+    <!-- END JB4A SDK Amazon Permissions -->
+
+    <application>
+        <!-- Required to send notifications to Kindle devices. -->
+        <amazon:enable-feature
+            android:name="com.amazon.device.messaging"/>
+
+        <!-- ETPushReceiver and Service -->
+        <receiver
+            android:exported="true"
+            android:name="com.exacttarget.etpushsdk.ETPushReceiver"
+            android:permission="com.amazon.device.messaging.permission.SEND">
+            <intent-filter>
+                <action android:name="com.amazon.device.messaging.intent.RECEIVE" />
+                <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />   
+                <action android:name="${applicationId}.MESSAGE_OPENED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.exacttarget.etpushsdk.ETPushService"
+            android:enabled="true" />
+        <!-- ETPushReceiver and Service -->
+    </application>
+
+</manifest>

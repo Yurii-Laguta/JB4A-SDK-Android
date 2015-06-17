@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 22
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        versionCode = 2200056
+        versionName = "2.2.0.56"
+        minSdkVersion 15
+        targetSdkVersion 22
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("cert/your_key_store_file")
+            storePassword System.getenv("SDK_EXPLORER_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("SDK_EXPLORER_KEYSTORE_ALIAS")
+            keyPassword System.getenv("SDK_EXPLORER_KEYSTORE_PASSWORD")
+        }
+    }
+
+    productFlavors {
+        Google {
+            resValue "string", "companyName", "Google"
+            resValue "string", "preposition", "a"
+            applicationId "com.exacttarget.jb4a.sdkexplorer.google"
+        }
+
+        Amazon {
+            resValue "string", "companyName", "Amazon"
+            resValue "string", "preposition", "an"
+            applicationId "com.exacttarget.jb4a.sdkexplorer.amazon"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled false
+            signingConfig signingConfigs.debug
+            applicationIdSuffix '.debug'
+            versionNameSuffix 'd'
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFile 'proguard.cfg'
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+            applicationIdSuffix ''
+            versionNameSuffix ''
+        }
+    }
+
+    sourceSets {
+        Google {
+            manifest.srcFile 'Google/AndroidManifest.xml'
+        }
+
+        Amazon {
+            manifest.srcFile 'Amazon/AndroidManifest.xml'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def newApkName = "JB4A-SDK-Explorer-${variantData.variantConfiguration.baseName}-" + defaultConfig.versionCode + ".apk";
+                output.outputFile = new File("${project.buildDir}/APKFiles/", newApkName);
+            }
+        }
+    }
+}
+
+dependencies {
+    // This line implicitely compiles all JAR files in the libs/ folder.
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // SDK
+    compile 'com.exacttarget.etpushsdk:etsdk:4.0.0@aar'
+
+    // 3rd Party Libraries needed for SDK
+    compile 'com.google.android.gms:play-services-location:7.3.0'
+    compile 'com.google.android.gms:play-services-gcm:7.3.0'
+    compile 'com.android.support:support-v4:22.1.1'
+}

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+    package="com.exacttarget.jb4a.sdkexplorer">
+
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21"/>
+
+    <!-- JB4A SDK required permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- END JB4A SDK Required Permissions -->
+
+    <!-- JB4A SDK Amazon Permissions -->
+    <permission
+        android:name="com.exacttarget.jb4a.sdkexplorer.permission.RECEIVE_ADM_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.exacttarget.jb4a.sdkexplorer.permission.RECEIVE_ADM_MESSAGE" />
+    <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+    <!-- END JB4A SDK Amazon Permissions -->
+
+    <!-- Salesforce Marketing Cloud JB4A SDK Explorer Only for testing purposes -->
+    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/> --> 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- END Salesforce Marketing Cloud JB4A SDK Explorer Only for testing purposes -->
+
+    <application
+        android:name=".SDK_ExplorerApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:logo="@drawable/ic_logo"
+        android:theme="@style/AppTheme">
+
+       <!-- Required to send notifications to Kindle devices. -->
+        <amazon:enable-feature
+            android:name="com.amazon.device.messaging"/>
+
+        <!-- ETPushReceiver and Service -->
+        <receiver
+            android:exported="true"
+            android:name="com.exacttarget.etpushsdk.ETPushReceiver"
+            android:permission="com.amazon.device.messaging.permission.SEND">
+            <intent-filter>
+                <action android:name="com.amazon.device.messaging.intent.RECEIVE" />
+                <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
+
+                <category android:name="com.exacttarget.jb4a.sdkexplorer" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.exacttarget.jb4a.sdkexplorer.MESSAGE_OPENED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.exacttarget.etpushsdk.ETPushService"
+            android:enabled="true" />
+        <!-- ETPushReceiver and Service -->
+        
+        <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
+        <activity
+            android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter"
+            android:label="Landing Page" />
+        <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
+
+        <!-- JB4A SDK Explorer Activities -->
+        <activity
+            android:name=".SDK_ExplorerHomeActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SDK_ExplorerSendMessageActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerLocationsActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerDisplayMessageActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerWebContentActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerCloudPageActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerCloudPageInboxActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerDiscountActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerInfoActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerDebugSettingsActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerEulaActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerSettingsActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerViewSimilarActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerViewFavoritesActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SDK_ExplorerViewReviewsActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+            android:screenOrientation="portrait" />
+        <!-- JB4A SDK Explorer Activities -->
+    </application>
+
+</manifest>
