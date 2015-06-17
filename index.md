@@ -4,7 +4,7 @@ title: "README"
 ---
 #Journey Builder for Apps Android SDK
 
-This is the git repository for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK.<br>
+This is documentation for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK which can be found on this gitHub <a href="https://github.com/ExactTarget/JB4A-SDK-Android" target="_blank">repo.</a><br>
 
 The Java docs for the SDK can be found here:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
