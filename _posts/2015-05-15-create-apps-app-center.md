@@ -8,7 +8,7 @@ order: 2
 ---
 In order to connect your Android app to the Marketing Cloud, you must first create a MobilePush app in the App Center.  App Center is the central development console for using Fuel’s APIs and building Marketing Cloud apps.
 
-Each app in App Center represents an application connected to the Marketing Cloud. If you are familiar with connected apps in Force.com, you will find the concept of connected apps in the Marketing Cloud familiar. App Center currently manages three types of connected apps:
+Each app in App Center represents an application connected to the Marketing Cloud. If you are familiar with connected apps in Force.com, you will find the concept of connected apps in the Marketing Cloud familiar. App Center currently manages four types of connected apps:
 
 * *API Integration* allow you to leverage the Marketing Cloud APIs. Create an API Integration app when you want to use Fuel APIs to automate tasks or integrate business systems. API Integration apps utilize an OAuth2 client credentials flow to acquire access tokens directly from the Fuel authentication service.
 * *Marketing Cloud apps* represent apps that live within the Salesforce Marketing Cloud and launch via the Marketing Cloud app menu. Marketing Cloud apps include custom apps built by your organization or apps installed from the Salesforce Marketing Cloud HubExchange. Marketing Cloud apps utilize a JSON Web Token (JWT) to acquire access tokens on behalf of logged in users.
@@ -28,8 +28,8 @@ After you have logged in to the App Center, follow these steps in order to creat
 
     <img class="img-responsive" src="{{ site.baseurl }}/assets/CreateNewMobilePushApp.png" />
  
-    > You must repeat this process for Production and Development instances of your app.
-    
+    > Depending on your setup, repeat this process if you plan on using different instances for production and development.
+     
     Note that following about the required fields:
     
     * The **Name** can be anything you choose.
