@@ -75,7 +75,7 @@ The following are changes that must be made in order to upgrade from previous re
   * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
 * You must update the activityPaused() and activityResumed() calls as static calls in your activities to determine whether app is in foreground or background for CloudPage Inbox, Analytics, and Location messages.<br/>
   * [Analytics]({{ site.baseurl }}/features/analytics.html)
-  * [Rich Push Inbox]({{ site.baseurl }}/rich-push/inbox.html)
+  * [Rich Push Inbox]({{ site.baseurl }}/rich-push/rich-push-inbox.html)
   * [Location]({{ site.baseurl }}/location/geolocation.html)
 * There have been changes in how you can override notifications that are displayed when a Push Message is received.  You can no longer override the ET_GenericReceiver.  See:
   * [Interactive Notifications]({{ site.baseurl }}/features/interactive-notifications.html)
