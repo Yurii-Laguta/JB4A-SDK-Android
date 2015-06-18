@@ -19,7 +19,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 ## Release History
 
 #### Version 4.0.0
-_Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
+<b>(supported)</b> _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
 
 * MPUSH-3377 - Implement multi-threaded support so SDK will not block UI thread.<br/>
   _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targetting earlier than API level 14._ <br/>
@@ -95,7 +95,7 @@ The following are changes that must be made in order to upgrade from previous re
 ___
 
 #### Version 3.5.0 ####
-_Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
+<b>(supported)</b> _Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
 
 * MPUSH-2948 - Development environment and examples converted to Android Studio
 * MPUSH-3076 - fix to prevent crash if meta-data missing from AndroidManifest.xml
@@ -113,14 +113,14 @@ _Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Relea
 ___
 
 #### Version 3.4.1 #### 
-_Released December 11, 2014_
+<b>(supported)</b> _Released December 11, 2014_
 
  * MPUSH-3153 - Fix registration error when Location is false in readyAimFire()
 
 ___
 
 #### Version 3.4.0 ####
-_Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
+<b>(supported)</b> _Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
 
 * MPUSH-2913 - Rename SDK to Journey Builder for Apps SDK (primarily repo and comment changes)
 * MPUSH-2910 - Rename PracticeField to Journey Builder for Apps SDK Explorer (full rename of app)
@@ -138,7 +138,7 @@ ___
 #### Version 3.3.0 #####
 _Released August 25, 2014, correlating to ExactTarget's 2014-06 Release_<br/>
 
-> _This version will no longer be supported as of June 22, 2015._
+> _This version will no longer be supported as of June 24, 2015._
 
 * MPUSH-2053 - Add support for Amazon
 * MPUSH-2371 - iBeacons support for Android 4.3 and later
