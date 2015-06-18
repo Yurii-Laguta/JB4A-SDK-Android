@@ -57,7 +57,7 @@ _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 
  _`Note:` SDK no longer depends on this JAR.  It may be removed if your application does not require it._ <br/>
 * MPUSH-3333 - Change payload to properly send SDK Version and GCM Sender Id which are saved in pushAddressExtension table in the Marketing Cloud.<br/>
 * MPUSH-3322 - Ensure database used in SDK is initialized at beginning of readyAimFire().<br/>
-* MPUSH-3313 - Implement registerLifecycleCallbacks() to handle onResume() and onPause() detection for Activities.<br/>
+* MPUSH-3313 - Implement registerActivityLifecycleCallbacks() to handle onResume() and onPause() detection for Activities.<br/>
  _`Note:` You can remove ETPush.activityResumed() and ETPush.activityPaused() for apps targetting API level 14 or later._ <br/>
 * MPUSH-3256 - Encrypt all data within the SDK SharedPreferences file and all sensitive data in the SDK SQLite database.<br/>
 * MPUSH-3402 - Obfuscate non-public methods and attributes.<br/>

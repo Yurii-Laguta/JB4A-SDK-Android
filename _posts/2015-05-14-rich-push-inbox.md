@@ -162,7 +162,7 @@ Review the [Journey Builder for Apps SDK Explorer app](https://github.com/ExactT
 <br />    
 2. Let the SDK know when your app comes into the foreground as new CloudPage inbox messages are retrieved whenever your app comes into the foreground. 
 
-> The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerLifecycleCallbacks().
+> The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
 
 ~~~ 
     @Override

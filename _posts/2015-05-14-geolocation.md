@@ -51,7 +51,7 @@ order: 2
 
 1.  Notify the SDK when the app comes into the foreground because the SDK will retrieve new Location messages whenever your app comes into the foreground.<br/>  
 
-    > The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerLifecycleCallbacks().
+    > The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
 
     ~~~ 
     @Override

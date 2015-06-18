@@ -21,7 +21,7 @@ Follow the steps below to implement analytics in your mobile app:
     ~~~ 
 1.  Let the SDK know when your app goes into the background as the SDK sends Analytics when the app has been in the background for over 1 minute.
 
-    > The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerLifecycleCallbacks().
+    > The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
 
     ~~~ 
     @Override
@@ -71,7 +71,7 @@ Follow the steps below to implement [Web and Mobile Analytics](http://www.exactt
     ~~~ 
 1.  Let the SDK know when your app goes into the background as the SDK sends Analytics when the app has been in the background for over 1 minute.
 
-    > The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerLifecycleCallbacks().
+    > The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
 
     ~~~ 
     @Override
