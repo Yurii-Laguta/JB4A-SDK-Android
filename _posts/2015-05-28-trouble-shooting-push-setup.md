@@ -14,6 +14,8 @@ If you have trouble receiving messages in your app, there are several trouble sh
 
 1.  Check the logcat for errors or warnings and make any necessary corrections.
 
+> This is an important debugging step.  The SDK is very verbose and many errors and issues can be corrected by reviewing the logcat.
+
 1.  Make sure to get the results of the Registration call and output the System Token to the logcat.  See how to setup the [Event Bus]({{ site.baseurl }}/features/eventbus.html). 
 
     ~~~ 
