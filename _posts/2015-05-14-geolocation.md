@@ -53,6 +53,8 @@ order: 2
     compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6’
     ~~~
 
+   > Failure to add this dependency will result in a crash of your app: `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
+
 1.  If you enable locations readyAimFire(), the SDK will automatically start watching locations.  Good practice would be to call `stopWatchingLocation()` to stop tracking user location and disable the geofence functionality in a Settings screen to allow the user to opt out of location services.  You can then call `startWatchingLocation()` to allow them to opt back into geofence messages.
 
 1.  Notify the SDK when the app comes into the foreground because the SDK will retrieve new Location messages whenever your app comes into the foreground.<br/>  
