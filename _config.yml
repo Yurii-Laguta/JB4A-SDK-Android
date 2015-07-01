@@ -1,4 +1,8 @@
 # Site title and subtitle. This is used in _includes/header.html
+#
+# to create a new page, use this format:
+# ruby bin/jekyll-page "name of page" section
+#
 title: 'Journey Builder for Apps Android SDK (v4.0.0)'
 subtitle: 'For prior releases, see: '
 link: '<a href="https://code.exacttarget.com/apis-sdks/journey-builder-for-apps" target="_blank">Prior Release Documentation</a>'
@@ -34,7 +38,7 @@ sections: [
 
 # Keep as an empty string if served up at the root. If served up at a specific
 # path (e.g. on GitHub pages) leave off the trailing slash, e.g. /my-project
-baseurl: "/JB4A-SDK-Android" # the subpath of your site, e.g. /blog/
+baseurl: "/JB4A-SDK-Android-DocPreview" # the subpath of your site, e.g. /blog/
 url: "http://exacttarget.github.io" # the base hostname & protocol for your site
 
 # Dates are not included in permalinks

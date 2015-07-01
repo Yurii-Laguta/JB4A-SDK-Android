@@ -60,6 +60,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MPUSH-3313 - Implement registerActivityLifecycleCallbacks() to handle onResume() and onPause() detection for Activities.<br/>
  _`Note:` You can remove ETPush.activityResumed() and ETPush.activityPaused() for apps targetting API level 14 or later._ <br/>
 * MPUSH-3256 - Encrypt all data within the SDK SharedPreferences file and all sensitive data in the SDK SQLite database.<br/>
+ _`Note:` If you use ProGuard in your production app, you must not obfuscate the SDK._ See [ProGuard Implementation]({{ site.baseurl }}/sdk-implementation/proguard.html)<br/>
 * MPUSH-3402 - Obfuscate non-public methods and attributes.<br/>
 * MPUSH-3233 - Support Google Play Services v6.5.87 and up. <br/>
 * MPUSH-3150 - Update license for SDK to use Salesforce.com. <br/>
