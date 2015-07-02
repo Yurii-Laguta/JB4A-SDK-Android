@@ -23,6 +23,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
   _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
+* MPUSH-3824 - Throw a RunTimeException if [ProGuard]({{ site.baseurl }}/sdk-implementation/proguard.html) statements obfuscated required classes within the SDK.<br/>
 
 #### Version 4.0.0
 <b>(supported)</b> _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
