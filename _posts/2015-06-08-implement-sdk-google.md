@@ -152,16 +152,29 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
 
         ~~~
         public void onEvent(ReadyAimFireInitCompletedEvent event) {
-            if (event.isReadyAimFireReady()) {
-                try {
-                    ETPush etPush = ETPush.getInstance();
-                } catch (ETException e) {
-                    Log.e(TAG, e.getMessage(), e);
-                }
-            } else {
-                Log.e(TAG, "ETPush readyAimFire() did not initialize due to an Exception.", event.getException());
-            }
-        }        
+           if (ETPush.getLogLevel() <= Log.DEBUG) {
+               Log.i(TAG, "ReadyAimFireInitCompletedEvent started.");
+           }
+        
+           if (event.isReadyAimFireReady()) {
+             // successful bootstrap with SDK  
+        
+        
+           } else {
+              // unsuccessful bootstrap with SDK 
+                if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_FAILURE) {
+                     message = "ETPush readyAimFire() did not initialize due to an Encryption failure.";
+                 } else if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_OPTOUT_FAILURE) {
+                     message = "ETPush readyAimFire() did not initialize encryption failure and unable to opt-out.";
+                 } else if (event.getCode() == ETException.RAF_INITIALIZE_EXCEPTION) {
+                     message = "ETPush readyAimFire() did not initialize due to an Exception.";
+                 } else {
+                     message = "ETPush readyAimFire() did not initialize due to an Exception.";
+                 }
+                 Log.e(TAG, String.format("ETPush readyAimFire() did not initialize due to an Exception with message: %s and code: %d", event.getMessage(), event.getCode()), event.getException());
+                 throw new RuntimeException(message);
+           }
+        }
         ~~~
     
     > 4.0.0 of the SDK eliminates the need to add enablePush() in your launcher activity.  Push will be enabled by default.  If you wish to have Push disabled by default, then you should call `etPush.disablePush()` in the event callback described above.
