@@ -18,6 +18,12 @@ Click the following to download the latest JB4A SDK aar:<br/>
 
 ## Release History
 
+#### Version 4.0.3
+<b>(supported)</b> _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
+
+* MPUSH-3809 - Wipe data from device if encryption fails.<br/>
+  _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ <br/>
+
 #### Version 4.0.0
 <b>(supported)</b> _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
 
