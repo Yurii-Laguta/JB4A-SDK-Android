@@ -4,7 +4,7 @@ title: "Background Pushes"
 subtitle: "Using Background Pushes"
 category: features
 date: 2015-07-02 12:00:00
-order: 9
+order: 13
 ---
 ####Background Push Messages for MobilePush
 This document contains conceptual and procedural information about sending a background push message to a mobile app using the MobilePush app and the REST API.
