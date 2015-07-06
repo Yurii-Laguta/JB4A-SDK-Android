@@ -24,8 +24,8 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
   _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
 * MPUSH-3824 - Throw a RunTimeException if [ProGuard]({{ site.baseurl }}/sdk-implementation/proguard.html) statements obfuscated required classes within the SDK.<br/>
-* MPUSH-3841 - Pushes without an `alert` payload will not result in a notification being shown to the user.<br/>
-* MPUSH-3822 - Make `none` is a valid option for notification sounds.<br/>
+* MPUSH-3841 - Pushes without an `alert` key in the payload will not result in a notification being shown to the user.<br/>
+* MPUSH-3822 - Make sure SDK respects a `sound` key value of `none` which results in a notification without a sound.<br/>
 * MPUSH-3828 - SDK was reporting `locationEnabled` as `true` to the Marketing Cloud even when it was disabled.<br/>
 * MPUSH-3782 - Allow for [Background Push]({{ site.baseurl }}/features/background-push.html) messages via `content-available` flag.<br/>
 
