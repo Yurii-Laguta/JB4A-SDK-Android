@@ -31,3 +31,7 @@ Content-Type: application/json
 ~~~
 
 Once you create the original message, you can pass text to the message using subsequent messages as part of the Override value.
+
+####Receiving Background Push Messages
+Background Push Messages are posted to the EventBus as a 
+[SilentPushReceivedEvent]({{ site.baseurl }}/features/eventbus.html). The payload can be extracted from this event and acted upon.
