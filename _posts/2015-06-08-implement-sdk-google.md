@@ -64,6 +64,13 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
        <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
        <!-- JB4A SDK Google Permissions -->
+
+       <!-- ET SDK required permissions -->
+       <uses-permission android:name="android.permission.INTERNET"/>
+       <uses-permission android:name="android.permission.WAKE\_LOCK"/>
+       <uses-permission android:name="android.permission.ACCESS\_NETWORK\_STATE"/>
+       uses-permission android:name="android.permission.ACCESS\_WIFI\_STATE"/>
+       <!-- END ET SDK Required Permissions -->
           
        <application>
            <!-- ETPushReceiver and Service -->
