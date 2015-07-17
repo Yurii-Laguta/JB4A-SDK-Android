@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p repository/com/exacttarget/etpushsdk/etsdk/4.0.0
+mkdir -p repository/com/exacttarget/etpushsdk/etsdk
 for DIR in $(find ./repository -type d); do
   (
     echo -e "<html>\n<body>\n<h1>Directory listing</h1>\n<hr/>\n<pre>"
