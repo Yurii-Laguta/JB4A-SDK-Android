@@ -11,10 +11,10 @@ The Java docs for the SDK can be found here:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
 Click the following to download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.3.jar?raw=true" target="_blank">etsdk-4.0.3.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.4.jar?raw=true" target="_blank">etsdk-4.0.4.jar</a>
 
 Click the following to download the latest JB4A SDK aar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.3.aar?raw=true" target="_blank">etsdk-4.0.3.aar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.4.aar?raw=true" target="_blank">etsdk-4.0.4.aar</a>
 
 ## Release History
 
