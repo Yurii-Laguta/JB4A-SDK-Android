@@ -8,9 +8,7 @@ This is the Journey Builder for Apps SDK Explorer which servers the following pu
 - Provides a mechanism to collect and send debugging information to learn about the workings of the SDK as you explore.
 
 ## Fully Functional APK
-The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.  Click the following to download this apk to install on your device:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Google-release-2210065.apk" target="_blank">Google APK</a><br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/raw/master/JB4A-SDK-Explorer/APKfiles/JB4A-SDK-Explorer-Amazon-release-2210065.apk" target="_blank">Amazon APK</a><br/>
+The APKFiles folder contains an apk which can be downloaded to experience the Android SDK immediately before writing any code.
 
 This apk file can be installed on your test devices to see the functionality of the Android SDK in action.  Typical features of the SDK are included as well as special features showing how flexible the SDK is.
 
@@ -36,16 +34,12 @@ The following keys are keys you need if you want to initiate messages within you
 3. ET\_STANDARD\_MESSAGE\_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for standard messages.
 3. ET\_CLOUDPAGE\_MESSAGE\_ID - the messageId of the template message (API Triggered) set in the Messaging Center of the Marketing Cloud for CloudPage alert messages.
 
-Three project samples are available to show how to create a project that uses the SDK with [Android Studio](./gradle-build), with [Eclipse for Google Cloud Messaging](./eclipse-build-gcm) and with [Eclipse for Amazon Device Messaging](./eclipse-build-adm).
-
 ## Marketing Cloud
 To create your own version of the SDK Explorer, you will need to have your app defined within the Salesforce Marketing Cloud:
 
 1. Setup a MobilePush and API App in the App Center.
 2. Create a template (API Triggered) Message for a standard and CloudPage message in order to send messages from your app.
 3. Create messages for your app for each location you'd like to test Geo Fencing.
-
-For more information, see the info on [Documentation](//http://exacttarget.github.io/JB4A-SDK-Android/).
 
 
 
