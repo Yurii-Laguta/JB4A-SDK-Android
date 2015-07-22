@@ -18,6 +18,11 @@ Click the following to download the latest JB4A SDK aar:<br/>
 
 ## Release History
 
+#### Version 4.0.4
+<b>(supported)</b> _Released July 22nd 2015_<br/>
+
+* MSDK-11 - Group Registrations that are sent to the SFMC when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
+
 #### Version 4.0.3
 <b>(supported)</b> _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
 

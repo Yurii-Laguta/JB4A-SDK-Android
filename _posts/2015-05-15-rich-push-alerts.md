@@ -7,9 +7,12 @@ date: 2015-05-15 10:24:07
 order: 2
 ---
 
-The Alert+CloudPage customized push message contains a URL to be opened in a web view. By default, the SDK will open the URL in a web view within the ETLandingPage class.  If you would like to customize how the URL is displayed, you can craft your application to react appropriately when the mobile device receives that type of push message.
+<h4>Alert+CloudPage Default SDK Processing</h4>
+The SDK will automatically process an alert that includes a CloudPage.  This Alert+CloudPage customized push message contains a URL to be opened. By default, the SDK will open the URL in a web view within the ETLandingPageActivity class (which must be included in your AndroidManifest.xml file).  If you would like to customize how the URL is displayed, please refer to the next section.
 
-If you choose not to have the SDK use the default ETLandingPage activity to open the CloudPage URL sent with the message payload, then the following call can be used to specify the Activity to be used to open the CloudPage URL sent in the payload of a push message from the Marketing Cloud.
+<h4>Alert+CloudPage Override Default SDK Processing</h4>
+If you choose not to have the SDK use the default ETLandingPageActivity class to open the CloudPage URL sent with the message payload, then the following call can be used to specify the Activity to be used to open the CloudPage URL sent in the payload of a push message from the Marketing Cloud.
+
 `ETPush.getInstanceis().setCloudPageDirectRecipient(Class someActivityClass);`
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the CloudPage URL sent with the message payload.
