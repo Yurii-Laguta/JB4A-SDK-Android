@@ -16,39 +16,13 @@ If you have trouble receiving messages in your app, there are several trouble sh
 
 > This is an important debugging step.  The SDK is very verbose and many errors and issues can be corrected by reviewing the logcat.
 
-1.  Make sure to get the results of the Registration call and output the System Token to the logcat.  See how to setup the [Event Bus]({{ site.baseurl }}/features/eventbus.html). 
+1.  Find your `device\_Token` in the logcat by searching for `createHash`.  The output will be similar to this: 
 
     ~~~ 
-    // onEvent(RegistrationEvent event)
-    //
-    //		This method is one of several methods for getting notified when an event
-    //      occurs in the SDK.
-    //
-    //		They are all called onEvent(), but will have a different parameter to indicate
-    //		the event that has occurred.
-    //
-    //		RegistrationEvent will be triggered when the SDK receives the response from the
-    // 		registration as triggered by the com.google.android.c2dm.intent.REGISTRATION intent.
-    //
-    //		These events are only called if EventBus.getInstance().register() is called
-    //
-    @SuppressWarnings({"unused", "unchecked"})
-    public void onEvent(final RegistrationEvent event) {
-        if (ETPush.getLogLevel() <= Log.DEBUG) {
-            Log.i(TAG, "Marketing Cloud update occurred.  You could now save Marketing Cloud details in your own data stores...");
-            Log.i(TAG, "Device ID:" + event.getDeviceId());
-            Log.i(TAG, "System Token:" + event.getSystemToken());
-            Log.i(TAG, "Subscriber key:" + event.getSubscriberKey());
+D/~!ETPushService﹕ com.example.helloworld.HelloWorldApplication : createHash(final String string) // string = '{"deviceID":"49ce1d9e493af5bf1873628ddcfa3317","device_Token":"APA91bHQoBkqr76Ci72MRLFHNzTjpAHXF8IaehiM2KizEKhty3-8RyNx6wo1W9NO8JqlL-ILy98JZqO6jFtoyKZ6gaY1nb5S8roKGCqz8TLZvsMG8-eQX5ieDuTfAyoto9rXcmBUFX9W","sdk_version":"4.0.4","app_version":"1.4 : 23","gcmSenderId":"{gcm_sender_id}","dST":true,"location_enabled":true,"platform_Version":"5.1.1","push_enabled":true,"timeZone":-18000,"subscriberKey":"bmote@salesforce.com","platform":"Android","hwid":"LGE Nexus 5","etAppId":"{et_app_id}","badge":0,"locale":"en_US","tags":["1.0d","ALL","Android","Debug"],"attributes":[{"key":"FirstName","value":"EtPushHelloWorld"},{"key":"LastName","value":"{gcm_sender_id}"}]}'
 
-            for (Attribute attribute : (ArrayList<Attribute>) event.getAttributes()) {
-                Log.i(TAG, "Attribute " + attribute.getKey() + ": [" + attribute.getValue() + "]");
-            }
-            Log.i(TAG, "Tags: " + event.getTags());
-            Log.i(TAG, "Language: " + event.getLocale());
-        }
-    }
     ~~~ 
-1.  Use the System Token output in the logcat as shown above to send a message directly to your app from Google.  This is documented in <a href="https://developer.android.com/google/gcm/http.html" target="_blank">Google Cloud Messaging (GCM) HTTP connection server</a>
+1.  Use the Device Token output in the logcat as shown above to send a message directly to your app from Google.  This is documented in <a href="https://developer.android.com/google/gcm/http.html" target="_blank">Google Cloud Messaging (GCM) HTTP connection server</a>
 
     > You will also need the Server Key found in your GCM Project that you used to provision the App Center app as documented in [App Center Provisioning]({{ site.baseurl }}/create-apps/create-apps-provisioning.html).
 
@@ -61,7 +35,7 @@ If you have trouble receiving messages in your app, there are several trouble sh
     <img class="img-responsive" src="{{ site.baseurl }}/assets/GCM-rest-url-and-headers.png" />
 1.  Then create the body of the REST message using a simple JSON object.  
 
-    > The registration ID should be the System Token received from Google and sent to the Marketing Cloud in the Registration call which you put into the logcat as described above.<br/><br/>
+    > The registration ID should be the Device Token received from Google and sent to the Marketing Cloud in the Registration call which you put into the logcat as described above.<br/><br/>
 
     > Keep things simple and only add the alert JSON key pair which will be the message displayed in your notification.
 
