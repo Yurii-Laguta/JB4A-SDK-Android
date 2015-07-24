@@ -16,7 +16,7 @@ If you have trouble receiving messages in your app, there are several trouble sh
 
 > This is an important debugging step.  The SDK is very verbose and many errors and issues can be corrected by reviewing the logcat.
 
-1.  Find your `device\_Token` in the logcat by searching for `createHash`.  The output will be similar to this: 
+1.  Find your `device_Token` in the logcat by searching for `createHash`.  The output will be similar to this: 
 
     ~~~ 
 D/~!ETPushService﹕ com.example.helloworld.HelloWorldApplication : createHash(final String string) // string = '{"deviceID":"49ce1d9e493af5bf1873628ddcfa3317","device_Token":"APA91bHQoBkqr76Ci72MRLFHNzTjpAHXF8IaehiM2KizEKhty3-8RyNx6wo1W9NO8JqlL-ILy98JZqO6jFtoyKZ6gaY1nb5S8roKGCqz8TLZvsMG8-eQX5ieDuTfAyoto9rXcmBUFX9W","sdk_version":"4.0.4","app_version":"1.4 : 23","gcmSenderId":"{gcm_sender_id}","dST":true,"location_enabled":true,"platform_Version":"5.1.1","push_enabled":true,"timeZone":-18000,"subscriberKey":"bmote@salesforce.com","platform":"Android","hwid":"LGE Nexus 5","etAppId":"{et_app_id}","badge":0,"locale":"en_US","tags":["1.0d","ALL","Android","Debug"],"attributes":[{"key":"FirstName","value":"EtPushHelloWorld"},{"key":"LastName","value":"{gcm_sender_id}"}]}'
