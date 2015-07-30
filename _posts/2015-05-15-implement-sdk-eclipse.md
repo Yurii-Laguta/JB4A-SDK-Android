@@ -17,7 +17,7 @@ Follow these Eclipse specific techniques to bootstrap the SDK to your Mobile app
 1.  If you enable locations (as described [here]({{ site.baseurl }}/location/geolocation.html)) you must copy the Android Beacon dependency from the SDK Explorer project found <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/eclipse-build-google/libs" target="_blank">HERE</a>. This dependency is required for GeoLocation and will be removed as a requirement in a future release. Your final libs folder should resemble this sample where x.x.x is the version you are using:<br/>
     <img class="img-responsive" src="{{ site.baseurl }}/assets/eclipse-libs-location.png" />
 
-    Failure to add this dependency when enabling GeoLocation in readyAimFire() will result in a crash of your app: 
+    > Failure to add this dependency when enabling GeoLocation in readyAimFire() will result in the following crash of your app: 
 
     `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 

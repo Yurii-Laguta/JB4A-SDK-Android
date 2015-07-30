@@ -16,7 +16,7 @@ order: 2
        compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6'
     }
     ~~~
-    Failure to add this dependency when enabling GeoLocation in readyAimFire() will result in a crash of your app: 
+    > Failure to add this dependency when enabling GeoLocation in readyAimFire() will result in the following crash in your app: 
 
     `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 
