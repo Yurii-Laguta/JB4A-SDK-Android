@@ -7,6 +7,18 @@ date: 2015-05-14 08:43:35
 order: 2
 ---
 
+1.  Add the following dependencies to your application's `app\build.gradle` file.  This dependency is required for GeoLocation and will be removed as a requirement in a future release.
+
+    ~~~
+    dependencies {
+      
+       // 3rd Party Libraries Required for SDK integration
+       compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6'
+    }
+    ~~~
+
+  > Failure to add this dependency if you enable location in readyAimFire() will result in a crash of your app: `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
+
 1.  Add the permissions, receivers, and services necessary for location capabilities and geofences in `ApplicationManifest.xml`.
 
     ~~~
