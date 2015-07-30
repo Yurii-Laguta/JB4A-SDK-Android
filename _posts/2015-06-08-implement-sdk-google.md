@@ -134,8 +134,8 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
 	        		.setGcmSenderId("gcmSenderId")
 	        		.setAnalyticsEnabled(true|false)
 	        		.setPiAnalyticsEnabled(true|false)
-	        		.setLocationEnabled(true|false)
-	        		.setCloudPagesEnabled(true|false)
+	        		.setLocationEnabled(true|false)      // set to true ONLY if you purchased Location as it requires additional overhead
+	        		.setCloudPagesEnabled(true|false)    // set to true ONLY if you purchased RichPush as it requires additional overhead
 	        		.setLogLevel(BuildConfig.DEBUG ? android.util.Log.VERBOSE : android.util.Log.ERROR)
 	        		/* Builder methods to override SDK behavior */
 	        		//.setCloudPageRecipientClass(SomeActivity.class) // Override ETLandingPagePresenter
