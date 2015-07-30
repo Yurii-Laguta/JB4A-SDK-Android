@@ -59,13 +59,6 @@ order: 2
                         true,     // enable Location Manager, if you purchased this feature
                         true);    // enable Cloud Page, if you purchased this feature
     ~~~ 
-1.  If you enable locations you must add the following dependency to your application's `app\build.gradle` file.
-
-    ~~~
-    compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6’
-    ~~~
-
-   > Failure to add this dependency if enable location in readyAimFire() will result in a crash of your app: `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 
 1.  If you enable locations readyAimFire(), the SDK will automatically start watching locations.  Good practice would be to call `stopWatchingLocation()` to stop tracking user location and disable the geofence functionality in a Settings screen to allow the user to opt out of location services.  You can then call `startWatchingLocation()` to allow them to opt back into geofence messages.
 
