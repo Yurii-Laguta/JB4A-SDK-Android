@@ -20,7 +20,7 @@ order: 2
 
     `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 
-1.  Add the permissions, receivers, and services necessary for location capabilities and geofences in `ApplicationManifest.xml`.
+1.  Add the permissions, receivers, and services necessary for location capabilities and geofences in `AndroidManifest.xml`.
 
     ~~~
     <?xml version="1.0" encoding="utf-8"?>
