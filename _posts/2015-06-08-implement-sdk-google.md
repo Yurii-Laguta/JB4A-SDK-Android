@@ -21,7 +21,7 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
         repositories {
             jcenter()
             maven {
-                url "http://exacttarget.github.io/JB4A-SDK-Android/repository" 
+                url "http://salesforcefuel.github.io/JB4A-SDK-Android/repository" 
             }
         }
     }
