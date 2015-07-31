@@ -3,9 +3,7 @@
 # to create a new page, use this format:
 # ruby bin/jekyll-page "name of page" section
 #
-title: 'Journey Builder for Apps Android SDK (v4.0.4)'
-subtitle: 'For releases prior to v4.0.0, see: '
-link: '<a href="https://code.exacttarget.com/apis-sdks/journey-builder-for-apps" target="_blank">Prior Release Documentation</a>'
+title: 'Journey Builder for Apps Android SDK Documentation'
 
 # if you wish to integrate disqus on pages set your shortname here
 disqus_shortname: ''
@@ -17,24 +15,13 @@ google_analytics_id: ''
 #   0 - always hide
 #   1 - always show
 #   2 - show only if posts are present
-navigation: 1
+navigation: 0
 
 # URL to source code, used in _includes/footer.html
-codeurl: 'https://github.com/ExactTarget/JB4A-SDK-Android'
+codeurl: 'https://salesforcefuel.github.io/JB4A-SDK-Android'
 
 # Default categories (in order) to appear in the navigation
-sections: [
-    ['overview', 'Overview'],
-    ['provisioning', 'Provisioning'],
-    ['create-apps', 'Create Cloud Apps'],
-    ['sdk-implementation', 'SDK Implementation'],
-    ['features', 'Feature Implementation'],
-    ['rich-push', 'Rich Push'],
-    ['location', 'Location Services'],
-    ['trouble', 'Trouble Shooting'],
-    ['resources', 'Additional Resources'],
-    ['trouble-shooting', 'Trouble Shooting']
-]
+sections: []
 
 # Keep as an empty string if served up at the root. If served up at a specific
 # path (e.g. on GitHub pages) leave off the trailing slash, e.g. /my-project
