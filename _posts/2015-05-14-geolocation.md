@@ -7,7 +7,7 @@ date: 2015-05-14 08:43:35
 order: 2
 ---
 
-1.  Add the following dependencies to your application's `app\build.gradle` file.  This dependency is required for applications that will run on devices with Android OS < 5.x (Lollipop).
+1.  Add the following dependencies to your application's `app\build.gradle` file.  This dependency is required for applications that will run on devices with Android OS < 5.0 (Lollipop).
 
     ~~~
     dependencies {
@@ -16,7 +16,7 @@ order: 2
        compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6'
     }
     ~~~
-    > Failure to add this dependency when enabling GeoLocation in readyAimFire() will result in the following crash in your app: 
+    > Failure to add this dependency will result in the following crash in your app for devices running Android OS < 5.0 (Lollipop): 
 
     `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 
