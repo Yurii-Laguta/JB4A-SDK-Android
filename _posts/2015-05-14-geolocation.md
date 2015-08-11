@@ -7,7 +7,7 @@ date: 2015-05-14 08:43:35
 order: 2
 ---
 
-1.  Add the following dependencies to your application's `app\build.gradle` file.  This dependency is required for GeoLocation and will be removed as a requirement in a future release.
+1.  Add the following dependencies to your application's `app\build.gradle` file.  This dependency is required for applications that will run on devices with Android OS < 5.x (Lollipop).
 
     ~~~
     dependencies {
