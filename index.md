@@ -21,7 +21,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 #### Version 4.0.6
 <b>(supported)</b> _Released September 9th 2015_<br/>
 
-* MSDK-305 - Fix for RuntimeException thrown during manifest inspection<br/>
+* MSDK-305 - Replace RuntimeException thrown during manifest inspection with LogCat Log.ERROR output<br/>
 
 #### Version 4.0.5
 <b>(supported)</b> _Released August 25th 2015_<br/>
