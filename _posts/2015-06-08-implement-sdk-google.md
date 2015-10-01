@@ -6,7 +6,7 @@ category: sdk-implementation
 date: 2015-05-14 12:00:00
 order: 1
 ---
-In order to use the SDK in your Mobile app, there are several steps required to register a Google device with the Salesforce Marketing Cloud which ultimately connects it to the MobilePush app you created in the [App Center]({{ site.baseurl }}/create-apps/create-apps-overview.html).  To connect an Amazon device refer to [this]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html) document.
+In order to use the SDK in your Mobile app, there are several steps required to register a Google device with the Salesforce Marketing Cloud which ultimately connects it to the MobilePush app you created in the [App Center]({{ site.baseurl }}/create-apps/create-apps-overview.html).
 
 We have provided examples assuming you are using Android Studio.  To see any Eclipse specific coding required, see [Eclipse]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
 

@@ -22,5 +22,3 @@ Follow these Eclipse specific techniques to bootstrap the SDK to your Mobile app
     `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 
 1.  For a Google Build, you need to add Google Play Services as a *Library Project* to your Android Project.  Instructions can be found <a href="http://developer.android.com/google/play-services/setup.html" target="_blank">HERE</a>.<br/>
-
-1.  For an Amazon Build, you should not include Google Play Services.  But you should make sure to adjust the Android Manifest as described here: [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)

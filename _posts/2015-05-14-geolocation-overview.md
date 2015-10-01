@@ -9,6 +9,3 @@ order: 1
 The Journey Builder for Apps SDK uses location capabilities to store end user location data in the ExactTarget database. You can use this information to target messages to a segmented group of contacts. The app pre-downloads geofence messages and triggers those messages when a mobile device crosses a geofence boundary.
 
 Note that the account using this functionality must have access to both MobilePush and Location Services in order to successfully receive location alerts.
-
-> Location Services are not currently available on Amazon devices.
-

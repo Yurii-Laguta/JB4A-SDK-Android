@@ -42,3 +42,10 @@ With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockof
        ~~~
 
 > It is also possible the encryption could fail if your app implements the PRNG fix recommended by Google.  You should remove this PRNG fix and count on the SDK implementing that fix for your app.
+
+> Implementing the PRNG fix requires reflection.  Please ensure your Proguard config contains:
+
+~~~
+   -keepattributes Extends,Exceptions,InnerClasses
+
+~~~
