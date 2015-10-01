@@ -48,6 +48,6 @@ D/~!ETPushService﹕ com.example.helloworld.HelloWorldApplication : createHash(f
 
     1.  Check the logcat after sending the message.  With debug turned on for the LogLevel, you should receive a message in the logcat <b>"Hello from ExactTarget! Push Message received"</b>.
 
-        This is the first log message written to the logcat by the ETPush Broadcast receiver for both com.google.android.c2dm.intent.RECEIVE (Google) and com.amazon.device.messaging.intent.RECEIVE (Amazon).
+        This is the first log message written to the logcat by the ETPush Broadcast receiver for com.google.android.c2dm.intent.RECEIVE.
 
         If you are not receiving this message in the logcat, then the message has not been successfully sent to your device.  So, go back and check the List in the Marketing Cloud and any issues with GCM setup as described above. 

@@ -3,8 +3,8 @@
 # to create a new page, use this format:
 # ruby bin/jekyll-page "name of page" section
 #
-title: 'Journey Builder for Apps Android SDK (v4.0.6)'
-subtitle: 'For releases prior to v4.0.0, see: '
+title: 'Journey Builder for Apps Android SDK (v4.0.7)'
+subtitle: 'For releases prior to v4.0.2, see: '
 link: '<a href="https://code.exacttarget.com/apis-sdks/journey-builder-for-apps" target="_blank">Prior Release Documentation</a>'
 
 # if you wish to integrate disqus on pages set your shortname here
