@@ -11,15 +11,15 @@ The Java docs for the SDK can be found here:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
 Click the following to download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.6.jar?raw=true" target="_blank">etsdk-4.0.6.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.7.jar?raw=true" target="_blank">etsdk-4.0.7.jar</a>
 
 Click the following to download the latest JB4A SDK aar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.6.aar?raw=true" target="_blank">etsdk-4.0.6.aar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.7.aar?raw=true" target="_blank">etsdk-4.0.7.aar</a>
 
 ## Release History
 
 #### Version 4.0.7
-<b>(supported)</b> _Released October 2 2015_<br/>
+<b>(supported)</b> _Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
 
 * MSDK-332 - Disable Proximity (beacons) for API < 18
 * MSDK-243 - Fix for Java ConcurrentModificationException when modifying Attributes
@@ -32,6 +32,8 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MSDK-82 - Only check classes for the SDK's enabled features
 * MSDK-239 - Only require the beacon library if Location is enabled
 * MSDK-322 - Do not send Location History
+
+> Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
 
 #### Version 4.0.6
 <b>(supported)</b> _Released September 9th 2015_<br/>
