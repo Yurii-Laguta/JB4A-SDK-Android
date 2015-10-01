@@ -6,13 +6,11 @@ category: create-apps
 date: 2015-05-14 12:00:00
 order: 4
 ---
-Add the provisioning information created in the [Google]({{ site.baseurl }}/provisioning/google.html) and [Amazon]({{ site.baseurl }}/provisioning/Amazon.html) sections of this documentation to your MobilePush app in order to allow your Mobile app to connect to the correct Marketing Cloud Account..
+Add the provisioning information created in the [Google]({{ site.baseurl }}/provisioning/google.html) section of this documentation to your MobilePush app in order to allow your Mobile app to connect to the correct Marketing Cloud Account..
 
 After connecting your App Center App to your Marketing Cloud account, you can add the provisioning information using the following form:
 
 * For Google apps, enter the **Key for server applications** **API KEY** provided for your app by the <a href="https://console.developers.google.com/" target="_blank">Google Cloud Console</a>.
-
-* For Amazon apps, enter the **Client ID** and the **Client Secret** values for your app.
 
 <img class="img-responsive" src="{{ site.baseurl }}/assets/CreateNewMobilePushAppsClients.png" />
 
