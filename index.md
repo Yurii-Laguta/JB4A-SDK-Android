@@ -21,17 +21,19 @@ Click the following to download the latest JB4A SDK aar:<br/>
 #### Version 4.0.7
 <b>(supported)</b> _Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
 
-* MSDK-332 - Disable Proximity (beacons) for API < 18
-* MSDK-243 - Fix for Java ConcurrentModificationException when modifying Attributes
-* MSDK-272 - Replace StringBuilder() with thread-safe StringBuffer() to resolve IndexOutOfBounds Exception
-* MSDK-253 - Correctly transmit UTF-8 characters in Registration POST REST calls
-* MSDK-328 - Never send "null" as a String in a Registration payload
-* MSDK-324 - Remove GET_ACCOUNTS permission
+* MSDK-82  - Only check classes for the SDK's enabled features
 * MSDK-237 - Display Page Title or URL when showing a CloudPage
-* MSDK-252 - Apply PRNG encryption fix only if it hasn't previously been applied
-* MSDK-82 - Only check classes for the SDK's enabled features
 * MSDK-239 - Only require the beacon library if Location is enabled
+* MSDK-243 - Fix for Java ConcurrentModificationException when modifying Attributes
+* MSDK-252 - Apply PRNG encryption fix only if it hasn't previously been applied
+* MSDK-253 - Correctly transmit UTF-8 characters in Registration POST REST calls
+* MSDK-272 - Replace StringBuilder() with thread-safe StringBuffer() to resolve IndexOutOfBounds Exception
 * MSDK-322 - Do not send Location History
+* MSDK-324 - Remove GET_ACCOUNTS permission
+* MSDK-328 - Never send "null" as a String in a Registration payload
+* MSDK-332 - Disable Proximity (beacons) for API < 18
+* MSDK-334 - Validate PRNG fix required Proguard statements during SDK bootstrap
+* MSDK-336 - Fix for NPE during WakefulBroadcastReceiver.completeWakefulIntent()
 
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
 
