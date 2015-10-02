@@ -112,6 +112,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MPUSH-3320 - Ensure that Location work within the SDK is not executed when location turned off in readyAimFire(). <br/>
 * MPUSH-3293 - Build SDK with latest Android SDK, support, and app compat libraries.<br/>
 * MPUSH-3285 - Make sure CloudPage Inbox downloads occur whether Analytics are turned on or not.<br/>
+* MPUSH-3485 - Fix crash in serialzing/deserialzing blank Attributes.
 
 **Required Coding Changes** 
 
