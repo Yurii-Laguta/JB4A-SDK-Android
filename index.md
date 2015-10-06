@@ -37,6 +37,8 @@ Click the following to download the latest JB4A SDK aar:<br/>
 
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
 
+> At this time, ensure that you use version 7.8 of Google Play Services to enable geolocation for your app. If you complile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases), follow the [troubleshooting steps]({{ site.baseurl }}/location/geolocation-troubleshooting.html) to deal with the error.
+
 #### Version 4.0.6
 <b>(supported)</b> _Released September 9th 2015_<br/>
 
