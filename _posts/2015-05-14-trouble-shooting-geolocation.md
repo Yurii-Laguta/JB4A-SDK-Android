@@ -2,7 +2,7 @@
 layout: page
 title: "Geolocation Troubleshooting"
 subtitle: "Troubleshooting Location Services Errors"
-category: location
+category: trouble-shooting
 date: 2015-05-14 08:44:12
 order: 3
 ---
