@@ -16,7 +16,7 @@ Click the following to download the latest JB4A SDK jar:<br/>
 Click the following to download the latest JB4A SDK aar:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.7.aar?raw=true" target="_blank">etsdk-4.0.7.aar</a>
 
-> Google Play Services Note - At this time, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app. If you compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases), follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html){:target="_blank"} to deal with the error. Check back soon for more information on Google Play Services 8.1 compatibility.
+> Google Play Services Note - At this time, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app. If you compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error. Check back soon for more information on Google Play Services 8.1 compatibility.
 
 ## Release History
 
