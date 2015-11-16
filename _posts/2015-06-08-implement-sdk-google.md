@@ -41,7 +41,7 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
       compile 'com.android.support:support-v4:22.2.0'
 
       // 3rd Party Libraries Required for SDK integration
-      compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6'
+      compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
     }
     ~~~
     > The inclusion of the `AndroidIBeaconLibrary` is required for applications that will be run on Android devices running versions of Android < 5.0 (Lollipop).  This dependency will be isolated to applications implementing Geolocation in a future release.
@@ -79,31 +79,21 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
           
        <application>
            <!-- ETPushReceiver and Service -->
-           <receiver
-               android:exported="true"
-               android:name="com.exacttarget.etpushsdk.ETPushReceiver"
-               android:permission="com.google.android.c2dm.permission.SEND">
-               <intent-filter>
-                   <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                   <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                   <action android:name="android.intent.action.ACTION_SHUTDOWN" />
-
-                   <category android:name="${applicationId}" />
-               </intent-filter>
-               <intent-filter>
-                   <action android:name="android.intent.action.BOOT_COMPLETED" />
-                   <action android:name="android.intent.action.BATTERY_LOW" />
-                   <action android:name="android.intent.action.BATTERY_OKAY" />
-               </intent-filter>
-               <intent-filter>
-                   <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                   <data android:scheme="package" />
-               </intent-filter>
-               <intent-filter>
-                   <action android:name="${applicationId}.MESSAGE_OPENED" />
-                   <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-               </intent-filter>
-           </receiver>
+            <receiver android:name="com.exacttarget.etpushsdk.ETPushReceiver"android:permission="com.google.android.c2dm.permission.SEND">
+              <intent-filter>
+                <action android:name="${applicationId}.MESSAGE_OPENED" />
+                <action android:name="com.exacttarget.etpushsdk.SEND_REGISTRATION" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+                <category android:name="${applicationId}" />
+              </intent-filter>
+              <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+                </intent-filter>
+              </receiver>
    
            <service
                android:name="com.exacttarget.etpushsdk.ETPushService"
@@ -163,30 +153,26 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
     1.  Add an event callback to process any code after readyAimFire() completes.  
 
         ~~~
-        public void onEvent(ReadyAimFireInitCompletedEvent event) {
-           if (ETPush.getLogLevel() <= Log.DEBUG) {
-               Log.i(TAG, "ReadyAimFireInitCompletedEvent started.");
-           }
-        
-           if (event.isReadyAimFireReady()) {
-             // successful bootstrap with SDK  
-        
-        
-           } else {
-              // unsuccessful bootstrap with SDK 
-                if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_FAILURE) {
-                     message = "ETPush readyAimFire() did not initialize due to an Encryption failure.";
-                 } else if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_OPTOUT_FAILURE) {
-                     message = "ETPush readyAimFire() did not initialize encryption failure and unable to opt-out.";
-                 } else if (event.getCode() == ETException.RAF_INITIALIZE_EXCEPTION) {
-                     message = "ETPush readyAimFire() did not initialize due to an Exception.";
-                 } else {
-                     message = "ETPush readyAimFire() did not initialize due to an Exception.";
-                 }
-                 Log.e(TAG, String.format("ETPush readyAimFire() did not initialize due to an Exception with message: %s and code: %d", event.getMessage(), event.getCode()), event.getException());
-                 throw new RuntimeException(message);
-           }
+    /**
+     * EventBus callback listening for a ReadyAimFireInitCompletedEvent.  After we receive this
+     * event we can be certain it's safe to use our ETPush instance.
+     *
+     * @param event the type of event we're listening for.
+     */
+    public void onEvent(final ReadyAimFireInitCompletedEvent event) {
+        ETPush etPush = null;
+        try {
+            etPush = event.getEtPush();
+
+            /*
+                Good practice - add the application version name as a tag you can later use to target push notifications to specific application versions.
+             */
+            etPush.addTag(HelloWorldApplication.VERSION_NAME);
+
+        } catch (ETException e) {
+            Log.e(TAG, e.getMessage(), e);
         }
+    }
         ~~~
     
     > 4.0.0 of the SDK eliminates the need to add enablePush() in your launcher activity.  Push will be enabled by default.  If you wish to have Push disabled by default, then you should call `etPush.disablePush()` in the event callback described above.

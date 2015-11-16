@@ -13,42 +13,33 @@ order: 2
     dependencies {
       
        // 3rd Party Libraries Required for SDK integration
-       compile 'com.radiusnetworks:AndroidIBeaconLibrary:0.7.6'
+       compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
     }
     ~~~
     > Failure to add this dependency will result in the following crash in your app for devices running Android OS < 5.0 (Lollipop): 
 
     `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
 
-1.  Add the permissions, receivers, and services necessary for location capabilities and geofences in `AndroidManifest.xml`.
+1.  Add the following permission to `AndroidManifest.xml`.
+
+    ~~~~
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    ~~~
+
+1.  Add the following intent filters to 'AndroidManifest.xml`.
 
     ~~~
-    <?xml version="1.0" encoding="utf-8"?>
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-      
-        <!-- JB4A SDK Permissions for location and region monitoring -->
-        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-        <!-- END JB4A SDK location and region monitoring Permissions -->
-    
-        <application>
-            <!-- ETLocationReceiver and Service -->
-                <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver">
-                    <intent-filter>
-                        <action android:name="android.location.PROVIDERS_CHANGED" />
-                        <category android:name="android.intent.category.DEFAULT" />
-                    </intent-filter>
-               </receiver>
-        
-                <service
-                    android:name="com.exacttarget.etpushsdk.ETLocationService"
-                    android:enabled="true" />
-            <!-- ETLocationReceiver and Service -->
-    
-        </application>
-    
-    </manifest>
-    ~~~ 
+    <action android:name="android.intent.action.BATTERY_LOW" />
+    <action android:name="android.intent.action.BATTERY_OKAY" />
+    ~~~
+
+1. Add the following entries to 'AndroidManifest.xml`.
+
+    ~~~
+    <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver" />
+    <service android:name="com.exacttarget.etpushsdk.ETLocationService" android:enabled="true" />
+    ~~~
+
 1.  Set the Boolean parameter in the `readyAimFire()` method in the `onCreate()` method for of your Application class to `true`.
 
     ~~~ 

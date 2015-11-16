@@ -53,6 +53,12 @@ Follow the steps below to implement analytics in your mobile app:
         }
     }
     ~~~ 
+1.  To implement page view analytics for your app, call the following method:
+
+    ~~~
+    trackPageView(String url, String title, String item, String searchTerm)
+    ~~~
+    You must provide a URL value for the page in this method. You can provide null values for the optional page title, item, and searchTerm values.
 
 ### Mobile Analytics###
 Follow the steps below to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
@@ -103,6 +109,14 @@ Follow the steps below to implement [Web and Mobile Analytics](http://www.exactt
         }
     }
     ~~~ 
+1.  To implement page view analytics for your app, call the following method:
+
+    ~~~ 
+    trackPageView(String url, String title, String item, String searchTerm)
+    ~~~
+
+    You must provide a URL value for the page in this method. You can provide null values for the optional page title, item, and searchTerm values.
+
 1.  To see your new Web and Mobile Analytics, open the Web and Mobile Analytics app within the Marketing Cloud:
     
     <img class="img-responsive" src="{{ site.baseurl }}/assets/wama_menu.png" />

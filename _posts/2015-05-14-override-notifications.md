@@ -9,8 +9,8 @@ order: 10
 There are three ways to override the default intent that is opened when someone taps on a Push Message received by your Android app:
 
 1.  Use the ETNotifications class to override the launch intent.
-1.  Launch your own activity to handle the notifcation tap
-1.  Specify an action and URI to launch your own activity when the notification receives a tap
+1.  Launch your own activity to handle the notifcation tap.
+1.  Specify an action and URI to launch your own activity when the notification receives a tap. The JB4A Android SDK deprecates this method in version 4.1.0 and removes the functionality entirely in subsequent releases. For all new app development, use the previous two methods. For all existing app development, revise your app to use the previous two methods.
 
 ___
 

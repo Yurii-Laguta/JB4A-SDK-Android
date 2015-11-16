@@ -20,6 +20,19 @@ Click the following to download the latest JB4A SDK aar:<br/>
 
 ## Release History
 
+#### Version 4.1.0
+<b>(supported)</b> _Released November 16 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+
+* MSDK-189 - Update SDK with newest Beacon library
+* MSDK-248 - Add trackPageView() method
+* MSDK-295 - Remove Unnecessary GET_ACCOUNTS Permission
+* MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver
+* MSDK-298 - Return an instance of ETPush in ReadyAimFireCompletedEvent
+* MSDK-307 - ANDROID: Remove ET Logger
+* MSDK-406 - Consolidate Receiver Intent Filters
+* MSDK-407 - Simplify Geolocation Implementation
+* MSDK-431 - Deprecate URL and Action Notification method
+
 #### Version 4.0.8
 <b>(supported)</b> _Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
 
