@@ -118,11 +118,17 @@ Follow the steps below to implement [Web and Mobile Analytics](http://www.exactt
     ~~~ 
 1.  To implement page view analytics for your app, call the following method:
 
-    ~~~ 
-    trackPageView(String url, String title, String item, String searchTerm)
     ~~~
+    ETAnalytics.trackPageView(url)
+    ETAnalytics.trackPageView(url, title)
+    ETAnalytics.trackPageView(url, title, item)
+    ETAnalytics.trackPageView(url, title, item, searchTerms)  
+    ~~~
+    You must provide a URL value for the page in this method. You can provide null values for the other optional string values:
 
-    You must provide a URL value for the page in this method. You can provide null values for the optional page title, item, and searchTerm values.
+    * page title - title of the page
+    * item - item referred to on the page
+    * searchTerm - search terms used to find page
 
 1.  To see your new Web and Mobile Analytics, open the Web and Mobile Analytics app within the Marketing Cloud:
     
