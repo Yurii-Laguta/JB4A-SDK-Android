@@ -24,7 +24,6 @@ Click the following to download the latest JB4A SDK aar:<br/>
 <b>(supported)</b> _Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-189 - Update SDK with newest Beacon library
-* MSDK-248 - Add trackPageView() method to provide page view analytics saved within [Web and Mobile Analytics]({{ site.baseurl }}/features/analytics.html){:target="_blank"}
 * MSDK-295 - Remove Unnecessary GET_ACCOUNTS Permission
 * MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver
 * MSDK-298 - Return an instance of ETPush in ReadyAimFireCompletedEvent
