@@ -116,7 +116,7 @@ Follow the steps below to implement [Web and Mobile Analytics](http://www.exactt
     * page title - title of the page
     * item - item referred to on the page
     * searchTerm - search terms used to find page
-
+    <br/><br/>
 1.  To see your new Web and Mobile Analytics, open the Web and Mobile Analytics app within the Marketing Cloud:
     
     <img class="img-responsive" src="{{ site.baseurl }}/assets/wama_menu.png" />
