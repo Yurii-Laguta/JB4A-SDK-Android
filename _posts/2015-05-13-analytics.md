@@ -53,21 +53,8 @@ Follow the steps below to implement analytics in your mobile app:
         }
     }
     ~~~ 
-1.  To implement page view analytics for your app, call the following method:
 
-    ~~~
-    ETAnalytics.trackPageView(url)
-    ETAnalytics.trackPageView(url, title)
-    ETAnalytics.trackPageView(url, title, item)
-    ETAnalytics.trackPageView(url, title, item, searchTerms)  
-    ~~~
-    You must provide a URL value for the page in this method. You can provide null values for the other optional string values:
-
-    * page title - title of the page
-    * item - item referred to on the page
-    * searchTerm - search terms used to find page
-
-### Mobile Analytics###
+###Web and Mobile Analytics###
 Follow the steps below to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
 
 1.  Set the enableAnalytics parameter to true on the call to readyAimFire() in the Application Class.
