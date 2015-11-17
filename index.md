@@ -23,14 +23,19 @@ Click the following to download the latest JB4A SDK aar:<br/>
 #### Version 4.1.0
 <b>(supported)</b> _Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
-* MSDK-189 - Update SDK with newest Beacon library
-* MSDK-295 - Remove Unnecessary GET_ACCOUNTS Permission
+* MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
+* MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
+* MSDK-292 - Make sure app monitors Location regions after a device reboot.
+* MSDK-295 - Remove unnecessary GET_ACCOUNTS permission.  You may remove this permission from your AndroidManifest.xml file.
 * MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver
-* MSDK-298 - Return an instance of ETPush in ReadyAimFireCompletedEvent
+* MSDK-298 - Return an instance of ETPush in 
+* MSDK-299 - Make sure that if any problems in POSTing analytics data occur, that the local database saves at most 1000 entries so as not to add excessive database content.
 * MSDK-307 - Remove ET Logger
-* MSDK-406 - Consolidate Receiver Intent Filters
-* MSDK-407 - Simplify Geolocation Implementation
-* MSDK-431 - Deprecate URL and Action Notification method
+* MSDK-312 - Throw RuntimeException for configuration errors in debug builds to highlight errors before releasing.
+* MSDK-406 - Consolidate Receiver Intent Filters. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
+* MSDK-407 - Simplify Geolocation Implementation. Update your [AndroidManifest.xml]({{ site.baseurl}}/location/geolocation.html) file.
+* MSDK-431 - Deprecate URL and Action Notification method. If your app uses these methods, [move to the indicated alternates]({{ site.baseurl}}/features/override-notifications.html).
+* MSDK-189 - Update SDK with newest Beacon library.  Companies testing as part of a Beacons Beta test should switch to using this library in your Gradle dependency: org.altbeacon:android-beacon-library:2.5.1@aar
 
 #### Version 4.0.8
 <b>(supported)</b> _Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>

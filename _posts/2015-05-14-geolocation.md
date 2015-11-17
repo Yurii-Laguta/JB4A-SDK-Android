@@ -22,18 +22,18 @@ order: 2
 
 1.  Add the following permission to `AndroidManifest.xml`.
 
-    ~~~~
+    ~~~
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     ~~~
 
-1.  Add the following intent filters to 'AndroidManifest.xml`.
+1.  Add the following intent filters to `AndroidManifest.xml`.
 
     ~~~
     <action android:name="android.intent.action.BATTERY_LOW" />
     <action android:name="android.intent.action.BATTERY_OKAY" />
     ~~~
 
-1. Add the following entries to 'AndroidManifest.xml`.
+1. Add the following entries to `AndroidManifest.xml`.
 
     ~~~
     <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver" />
