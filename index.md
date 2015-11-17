@@ -21,7 +21,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 ## Release History
 
 #### Version 4.1.0
-<b>(supported)</b> _Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+_Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
 * MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
@@ -40,12 +40,12 @@ Click the following to download the latest JB4A SDK aar:<br/>
   Remove requirement for Beacons library when Location is turned on. If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
 
 #### Version 4.0.8
-<b>(supported)</b> _Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
+_Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
 
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
 #### Version 4.0.7
-<b>(supported)</b> _Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
+Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
 
 * MSDK-82  - Only check classes for the SDK's enabled features
 * MSDK-237 - Display Page Title or URL when showing a CloudPage
@@ -64,22 +64,22 @@ Click the following to download the latest JB4A SDK aar:<br/>
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
 
 #### Version 4.0.6
-<b>(supported)</b> _Released September 9th 2015_<br/>
+_Released September 9th 2015_<br/>
 
 * MSDK-305 - Replace RuntimeException thrown during manifest inspection with LogCat Log.ERROR output<br/>
 
 #### Version 4.0.5
-<b>(supported)</b> _Released August 25th 2015_<br/>
+_Released August 25th 2015_<br/>
 
 * MSDK-243 - Fix for Java ConcurrentModificationException<br/>
 
 #### Version 4.0.4
-<b>(supported)</b> _Released July 22nd 2015_<br/>
+_Released July 22nd 2015_<br/>
 
 * MSDK-11 - Group Registrations that are sent to the SFMC when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
 
 #### Version 4.0.3
-<b>(supported)</b> _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
+_Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
 
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
   _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
@@ -90,7 +90,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MPUSH-3782 - Allow for [Background Push]({{ site.baseurl }}/features/background-push.html) messages via `content-available` flag.<br/>
 
 #### Version 4.0.0
-<b>(supported)</b> _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
+_Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
 
 * MPUSH-3377 - Implement multi-threaded support so SDK will not block UI thread.<br/>
   _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targetting earlier than API level 14._ <br/>
@@ -168,7 +168,7 @@ The following are changes that must be made in order to upgrade from previous re
 ___
 
 #### Version 3.5.0 ####
-<b>(supported)</b> _Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
+_Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
 
 * MPUSH-2948 - Development environment and examples converted to Android Studio
 * MPUSH-3076 - fix to prevent crash if meta-data missing from AndroidManifest.xml
@@ -186,14 +186,14 @@ ___
 ___
 
 #### Version 3.4.1 #### 
-<b>(supported)</b> _Released December 11, 2014_
+_Released December 11, 2014_
 
  * MPUSH-3153 - Fix registration error when Location is false in readyAimFire()
 
 ___
 
 #### Version 3.4.0 ####
-<b>(supported)</b> _Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
+Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
 
 * MPUSH-2913 - Rename SDK to Journey Builder for Apps SDK (primarily repo and comment changes)
 * MPUSH-2910 - Rename PracticeField to Journey Builder for Apps SDK Explorer (full rename of app)
