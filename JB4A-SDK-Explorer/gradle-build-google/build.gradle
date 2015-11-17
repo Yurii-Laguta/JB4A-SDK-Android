@@ -3,7 +3,7 @@ allprojects {
     repositories {
         jcenter()
         maven {
-            url "http://salesforcefuel.github.io/JB4A-SDK-Android/repository" 
+            url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" 
         }    
     }
 }
@@ -12,7 +12,7 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            url "http://salesforcefuel.github.io/JB4A-SDK-Android/repository" 
+            url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" 
         }   
     }
     dependencies {
