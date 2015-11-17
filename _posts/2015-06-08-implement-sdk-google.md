@@ -40,11 +40,10 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
       // Google's Support v4 for Notification compatibility
       compile 'com.android.support:support-v4:22.2.0'
 
-      // 3rd Party Libraries Required for SDK integration
-      compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
+      // 3rd Party Libraries Required for SDK integration of Beacons (only for Beacon Beta Testers)
+      // compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
     }
     ~~~
-    > The inclusion of the `AndroidIBeaconLibrary` is required for applications that will be run on Android devices running versions of Android < 5.0 (Lollipop).  This dependency will be isolated to applications implementing Geolocation in a future release.
 
 1.  Also in your application's `app\build.gradle` file it is recommended that you add an `applicationId` to the `defaultConfig{}` block as that will greatly simplify integration.
 

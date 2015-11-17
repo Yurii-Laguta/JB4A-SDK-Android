@@ -27,8 +27,8 @@ _Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-0
 * MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
 * MSDK-292 - Make sure app monitors Location regions after a device reboot.
 * MSDK-295 - Remove unnecessary GET_ACCOUNTS permission.  You may remove this permission from your AndroidManifest.xml file.
-* MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver
-* MSDK-298 - Return an instance of ETPush in 
+* MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
+* MSDK-298 - Return an instance of ETPush in ReadyAimFireCompletedEvent
 * MSDK-299 - Make sure that if any problems in POSTing analytics data occur, that the local database saves at most 1000 entries so as not to add excessive database content.
 * MSDK-307 - Remove ET Logger
 * MSDK-312 - Throw RuntimeException for configuration errors in debug builds to highlight errors before releasing.
