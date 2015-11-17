@@ -35,7 +35,9 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MSDK-406 - Consolidate Receiver Intent Filters. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
 * MSDK-407 - Simplify Geolocation Implementation. Update your [AndroidManifest.xml]({{ site.baseurl}}/location/geolocation.html) file.
 * MSDK-431 - Deprecate URL and Action Notification method. If your app uses these methods, [move to the indicated alternates]({{ site.baseurl}}/features/override-notifications.html).
-* MSDK-189 - Update SDK with newest Beacon library.  Companies testing as part of a Beacons Beta test should switch to using this library in your Gradle dependency: org.altbeacon:android-beacon-library:2.5.1@aar. Remove requirement for Beacons library when Location is turned on.  If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
+* MSDK-189 - Update SDK with newest Beacon library.  Companies testing as part of a Beacons Beta test should switch to using this library in your Gradle dependency: org.altbeacon:android-beacon-library:2.5.1@aar.
+
+  Remove requirement for Beacons library when Location is turned on. If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
 
 #### Version 4.0.8
 <b>(supported)</b> _Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>

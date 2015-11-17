@@ -7,19 +7,6 @@ date: 2015-05-14 08:43:35
 order: 2
 ---
 
-1.  Add the following dependencies to your application's `app\build.gradle` file.  This dependency is required for applications that will run on devices with Android OS < 5.0 (Lollipop).
-
-    ~~~
-    dependencies {
-      
-       // 3rd Party Libraries Required for SDK integration
-       compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
-    }
-    ~~~
-    > Failure to add this dependency will result in the following crash in your app for devices running Android OS < 5.0 (Lollipop): 
-
-    `java.lang.TypeNotPresentException: Type com/radiusnetworks/ibeacon/BleNotAvailableException not present`
-
 1.  Add the following permission to `AndroidManifest.xml`.
 
     ~~~
@@ -33,7 +20,7 @@ order: 2
     <action android:name="android.intent.action.BATTERY_OKAY" />
     ~~~
 
-1. Add the following entries to `AndroidManifest.xml`.
+1.  Add the following entries to `AndroidManifest.xml`.
 
     ~~~
     <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver" />
