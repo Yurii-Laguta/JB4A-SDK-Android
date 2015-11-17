@@ -211,8 +211,6 @@ ___
 #### Version 3.3.0 #####
 _Released August 25, 2014, correlating to ExactTarget's 2014-06 Release_<br/>
 
-> _This version will no longer be supported as of June 24, 2015._
-
 * MPUSH-2053 - Add support for Amazon
 * MPUSH-2371 - iBeacons support for Android 4.3 and later
 * MPUSH-2532 - Event-based Analytics
@@ -222,8 +220,6 @@ ___
 
 #### Version 3.2.0
 _Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_<br/>
-
-> _This version no longer supported as of March 9, 2015._
 
 * MPUSH-2428 - Update PracticeField app to support cloud pages.
 * MPUSH-2327 - Send GCM Sender ID to server for logging/issue resolution purposes
@@ -246,8 +242,6 @@ ___
 #### Version 3.1.2
 _Released April 15, 2014, correlating to ExactTarget's 2014-04 Release_<br/>
 
->_This version no longer supported as of November 10, 2014._
-
 * MPUSH-1941 - Fix expectation of no message per period (geofences)
 * MPUSH-1926 - Sometimes geofences aren't monitored after device reboot
 * MPUSH-1858 - Don't use ORMLite's built-in reference counting so developers can still use it.
@@ -262,8 +256,6 @@ ___
 #### Version 3.1
 _Released April 11, 2014, correlating to ExactTarget's 2014-03 Release_<br/>
 
-> _This version no longer supported as of August 25, 2014._
-
 * Added Support for Geofence messaging
 * Centralized support for how app backgrounding was handled.
 * Add ability to turn on/off features in the call to ETPush.readyAimFire().
@@ -271,8 +263,6 @@ _Released April 11, 2014, correlating to ExactTarget's 2014-03 Release_<br/>
 ___
 
 #### Version 3.0
-
-> _This version no longer supported as of July 21, 2014._
 
 * Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
 * Support for Action/Uri type of Intents when notification is tapped.
@@ -291,15 +281,11 @@ ___
 
 #### Version 2.1
 
->_This version no longer supported as of July 21, 2014._
-
 * Providing a URL in the OpenDirect field through MobilePush will cause the provided URL to load when the notification is selected from the tray. This will *only* work if you have not specified a recipient for OpenDirect payloads. 
 
 ___
 
 #### Version 2.0
-
-> _This version no longer supported as of July 21, 2014._
 
 * Support for Access Tokens in place of Client ID/Secret. Access Token is provided by Code@ExactTarget during app registrations. 
 * Fixed a bug related delivery of payload to notification recipient.
@@ -315,7 +301,5 @@ ___
 ___
 
 #### Version 1.0
-
-> _This version no longer supported as of July 21, 2014._
 
 * First public version
