@@ -54,7 +54,7 @@ Follow the steps below to implement analytics in your mobile app:
     }
     ~~~ 
 
-### Mobile Analytics###
+###Web and Mobile Analytics###
 Follow the steps below to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
 
 1.  Set the enableAnalytics parameter to true on the call to readyAimFire() in the Application Class.

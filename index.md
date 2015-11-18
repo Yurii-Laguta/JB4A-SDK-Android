@@ -11,22 +11,41 @@ The Java docs for the SDK can be found here:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
 Click the following to download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.8.jar?raw=true" target="_blank">etsdk-4.0.8.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.0.jar?raw=true" target="_blank">etsdk-4.1.0.jar</a>
 
 Click the following to download the latest JB4A SDK aar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.0.8.aar?raw=true" target="_blank">etsdk-4.0.8.aar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.0.aar?raw=true" target="_blank">etsdk-4.1.0.aar</a>
 
 > Google Play Services Note - At this time, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app. If you compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error. Check back soon for more information on Google Play Services 8.1 compatibility.
 
 ## Release History
 
+#### Version 4.1.0
+_Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+
+* MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
+* MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
+* MSDK-292 - Make sure app monitors Location regions after a device reboot.
+* MSDK-295 - Remove unnecessary GET_ACCOUNTS permission.  You may remove this permission from your AndroidManifest.xml file.
+* MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
+* MSDK-298 - Return an instance of ETPush in ReadyAimFireCompletedEvent
+* MSDK-299 - Make sure that if any problems in POSTing analytics data occur, that the local database saves at most 1000 entries so as not to add excessive database content.
+* MSDK-307 - Remove ET Logger
+* MSDK-312 - Throw RuntimeException for configuration errors in debug builds to highlight errors before releasing.
+* MSDK-406 - Consolidate Receiver Intent Filters. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
+* MSDK-407 - Simplify Geolocation Implementation. Update your [AndroidManifest.xml]({{ site.baseurl}}/location/geolocation.html) file.
+* MSDK-431 - Deprecate URL and Action Notification method. If your app uses these methods, [move to the indicated alternates]({{ site.baseurl}}/features/override-notifications.html).
+* MSDK-189 - Update SDK with newest Beacon library.  Companies testing as part of a Beacons Beta test should switch to using this library in your Gradle dependency: org.altbeacon:android-beacon-library:2.5.1@aar.
+
+  Remove requirement for Beacons library when Location is turned on. If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
+
 #### Version 4.0.8
-<b>(supported)</b> _Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
+_Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
 
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
 #### Version 4.0.7
-<b>(supported)</b> _Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
+Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
 
 * MSDK-82  - Only check classes for the SDK's enabled features
 * MSDK-237 - Display Page Title or URL when showing a CloudPage
@@ -45,22 +64,22 @@ Click the following to download the latest JB4A SDK aar:<br/>
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
 
 #### Version 4.0.6
-<b>(supported)</b> _Released September 9th 2015_<br/>
+_Released September 9th 2015_<br/>
 
 * MSDK-305 - Replace RuntimeException thrown during manifest inspection with LogCat Log.ERROR output<br/>
 
 #### Version 4.0.5
-<b>(supported)</b> _Released August 25th 2015_<br/>
+_Released August 25th 2015_<br/>
 
 * MSDK-243 - Fix for Java ConcurrentModificationException<br/>
 
 #### Version 4.0.4
-<b>(supported)</b> _Released July 22nd 2015_<br/>
+_Released July 22nd 2015_<br/>
 
 * MSDK-11 - Group Registrations that are sent to the SFMC when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
 
 #### Version 4.0.3
-<b>(supported)</b> _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
+_Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
 
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
   _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
@@ -71,7 +90,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 * MPUSH-3782 - Allow for [Background Push]({{ site.baseurl }}/features/background-push.html) messages via `content-available` flag.<br/>
 
 #### Version 4.0.0
-<b>(supported)</b> _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
+_Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
 
 * MPUSH-3377 - Implement multi-threaded support so SDK will not block UI thread.<br/>
   _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targetting earlier than API level 14._ <br/>
@@ -149,7 +168,7 @@ The following are changes that must be made in order to upgrade from previous re
 ___
 
 #### Version 3.5.0 ####
-<b>(supported)</b> _Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
+_Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
 
 * MPUSH-2948 - Development environment and examples converted to Android Studio
 * MPUSH-3076 - fix to prevent crash if meta-data missing from AndroidManifest.xml
@@ -167,14 +186,14 @@ ___
 ___
 
 #### Version 3.4.1 #### 
-<b>(supported)</b> _Released December 11, 2014_
+_Released December 11, 2014_
 
  * MPUSH-3153 - Fix registration error when Location is false in readyAimFire()
 
 ___
 
 #### Version 3.4.0 ####
-<b>(supported)</b> _Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
+Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
 
 * MPUSH-2913 - Rename SDK to Journey Builder for Apps SDK (primarily repo and comment changes)
 * MPUSH-2910 - Rename PracticeField to Journey Builder for Apps SDK Explorer (full rename of app)
@@ -192,8 +211,6 @@ ___
 #### Version 3.3.0 #####
 _Released August 25, 2014, correlating to ExactTarget's 2014-06 Release_<br/>
 
-> _This version will no longer be supported as of June 24, 2015._
-
 * MPUSH-2053 - Add support for Amazon
 * MPUSH-2371 - iBeacons support for Android 4.3 and later
 * MPUSH-2532 - Event-based Analytics
@@ -203,8 +220,6 @@ ___
 
 #### Version 3.2.0
 _Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_<br/>
-
-> _This version no longer supported as of March 9, 2015._
 
 * MPUSH-2428 - Update PracticeField app to support cloud pages.
 * MPUSH-2327 - Send GCM Sender ID to server for logging/issue resolution purposes
@@ -227,8 +242,6 @@ ___
 #### Version 3.1.2
 _Released April 15, 2014, correlating to ExactTarget's 2014-04 Release_<br/>
 
->_This version no longer supported as of November 10, 2014._
-
 * MPUSH-1941 - Fix expectation of no message per period (geofences)
 * MPUSH-1926 - Sometimes geofences aren't monitored after device reboot
 * MPUSH-1858 - Don't use ORMLite's built-in reference counting so developers can still use it.
@@ -243,8 +256,6 @@ ___
 #### Version 3.1
 _Released April 11, 2014, correlating to ExactTarget's 2014-03 Release_<br/>
 
-> _This version no longer supported as of August 25, 2014._
-
 * Added Support for Geofence messaging
 * Centralized support for how app backgrounding was handled.
 * Add ability to turn on/off features in the call to ETPush.readyAimFire().
@@ -252,8 +263,6 @@ _Released April 11, 2014, correlating to ExactTarget's 2014-03 Release_<br/>
 ___
 
 #### Version 3.0
-
-> _This version no longer supported as of July 21, 2014._
 
 * Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
 * Support for Action/Uri type of Intents when notification is tapped.
@@ -272,15 +281,11 @@ ___
 
 #### Version 2.1
 
->_This version no longer supported as of July 21, 2014._
-
 * Providing a URL in the OpenDirect field through MobilePush will cause the provided URL to load when the notification is selected from the tray. This will *only* work if you have not specified a recipient for OpenDirect payloads. 
 
 ___
 
 #### Version 2.0
-
-> _This version no longer supported as of July 21, 2014._
 
 * Support for Access Tokens in place of Client ID/Secret. Access Token is provided by Code@ExactTarget during app registrations. 
 * Fixed a bug related delivery of payload to notification recipient.
@@ -296,7 +301,5 @@ ___
 ___
 
 #### Version 1.0
-
-> _This version no longer supported as of July 21, 2014._
 
 * First public version
