@@ -31,11 +31,11 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
     ~~~
     dependencies {
       // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:4.0.6@aar'
+      compile 'com.exacttarget.etpushsdk:etsdk:4.1.0@aar'
 
       // Google Play Services for Location and Google Cloud Messaging
-      compile 'com.google.android.gms:play-services-location:7.5.0'
-      compile 'com.google.android.gms:play-services-gcm:7.5.0'
+      compile 'com.google.android.gms:play-services-location:7.8.0'
+      compile 'com.google.android.gms:play-services-gcm:7.8.0'
 
       // Google's Support v4 for Notification compatibility
       compile 'com.android.support:support-v4:22.2.0'
