@@ -44,11 +44,6 @@ _Released November 19 2015_<br/>
 
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
-#### Version 4.0.8
-_Released November 12 2015_<br/>
-
-* MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
-
 #### Version 4.0.7
 Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
 
