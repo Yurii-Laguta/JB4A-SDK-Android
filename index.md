@@ -39,8 +39,13 @@ _Released November 19 2015, correlating to the Salesforce Marketing Cloud 2015-0
 
   Remove requirement for Beacons library when Location is turned on. If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
 
+#### Version 4.0.9
+_Released November 19 2015_<br/>
+
+* MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
+
 #### Version 4.0.8
-_Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
+_Released November 12 2015_<br/>
 
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
