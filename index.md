@@ -21,7 +21,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 ## Release History
 
 #### Version 4.1.0
-_Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+_Released November 19 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
 * MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
