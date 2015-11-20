@@ -21,7 +21,7 @@ Click the following to download the latest JB4A SDK aar:<br/>
 ## Release History
 
 #### Version 4.1.0
-_Released November 19 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+_Released November 20 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
 * MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
@@ -40,7 +40,7 @@ _Released November 19 2015, correlating to the Salesforce Marketing Cloud 2015-0
   Remove requirement for Beacons library when Location is turned on. If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
 
 #### Version 4.0.9
-_Released November 19 2015_<br/>
+_Released November 20 2015_<br/>
 
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
