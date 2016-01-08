@@ -74,7 +74,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // SDK
-    compile 'com.exacttarget.etpushsdk:etsdk:4.1.0@aar'
+    compile 'com.exacttarget.etpushsdk:etsdk:4.1.1@aar'
 
     // 3rd Party Libraries needed for SDK
     compile 'com.google.android.gms:play-services-location:7.5.0'
