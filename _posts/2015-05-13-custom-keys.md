@@ -7,22 +7,22 @@ date: 2015-05-14 12:00:00
 order: 5
 ---
 
-You can include custom keys in the message payload sent with a Push Message. This key can be used by your app to perform a custom function as dictated by the existance and value of the custom key sent in the payload.
+Include custom keys in the message payload sent with a push message. Your app can use this key to perform a custom function as dictated by the existance and value of the custom key sent in the payload.
 
 Access the custom key from the message payload in the Activity that opens when a push notification receives a tap:
 
-This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses the SDK_ExplorerDisplayMessageActivity to show the contents of the payload sent with the Push Message.  CONSTS.KEY_PAYLOAD_DISCOUNT is a static string that contains "discount_code".  This is the custom key that has been defined in the Marketing Cloud.  This Activity searches for this key to determine whether it has been sent with the message payload.
+This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses the SDK_ExplorerDisplayMessageActivity to show the contents of the payload sent with the push message. CONSTS.KEY_PAYLOAD_DISCOUNT includes a static string that contains **discount_code**. This value represents the custom key defined in the Marketing Cloud. The activity searches for this key to determine if the message payload conained the value.
 
-Here is the how this custom key is setup in the SDK Explorer Marketing Cloud account for the SDK Explorer App:
+The following image illustrates the [key creation process](http://help.exacttarget.com/en/documentation/mobilepush/administering_your_mobilepush_account/apps_and_optional_settings_in_your_mobilepush_account/#customkeys):
 <img class="img-responsive" src="{{ site.baseurl }}/assets/custom-key-marketingcloud.png" />
 
-This page is accessible from the Administration section of the MobilePush app in the Marketing Cloud at this link:
+Access this page from the Administration section of the MobilePush app in the Marketing Cloud (shown below):
 <img class="img-responsive" src="{{ site.baseurl }}/assets/administration-link.png" />
 
-The developer and the marketer who sends the message must act in concert for the app to process the custom key as expected.  Here is where the marketer will set the custom key when creating a new outbound push message.
+The developer and the marketer who sends the message must act together for the app to process the custom key as expected. This images shows the location where the marketer will set the custom key when creating a new outbound push message.
 <img class="img-responsive" src="{{ site.baseurl }}/assets/custom-key-outbound-message.png" />
 
-And finally, here is the code that queries the payload sent with the Push Message to determine first if a custom key has been sent (it is optional) and if so, what the value is.  This will then dictate any special processing done within the app as a result of receiving this particular custom key with this particular value.
+The code shown below queries the payload sent with the push message to determine first if the message sent an optional custom key and if so, what value the key contained. This value will dictate any special processing done within the app as a result of receiving the specified custom key value.
 
 ~~~
         public class SDK_ExplorerDisplayMessageActivity extends BaseActivity {

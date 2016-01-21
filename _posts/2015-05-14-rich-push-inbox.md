@@ -6,9 +6,9 @@ category: rich-push
 date: 2015-05-14 12:00:00
 order: 3
 ---
-For CloudPage Only Messages, the Journey Builder for Apps SDK will place all CloudPage messages downloaded from the Salesforce Marketing Cloud in the CloudPageListAdapter class.  The SDK downloads new messages and adds them to this adapter each time your app comes into the foreground.  
+For CloudPage-only Messages, the Journey Builder for Apps SDK will place all CloudPage messages downloaded from the Salesforce Marketing Cloud in the CloudPageListAdapter class.  The SDK downloads new messages and adds them to this adapter each time your app comes into the foreground.  
 
-In order to display these CloudPage-only messages, your app must create an Activity that uses the CloudPageListAdapter.  Review an example of this technique within the Journey Builder for Apps SDK Explorer, which is shown below.
+In order to display these CloudPage-only messages, your app must create an Activity that uses the CloudPageListAdapter. Review an example of this technique within the Journey Builder for Apps SDK Explorer, which is shown below.
 
 You can create an Inbox view with capabilities to delete messages from the Inbox as well as to set messages to read and unread.
 
@@ -160,9 +160,9 @@ Review the [Journey Builder for Apps SDK Explorer app](https://github.com/ExactT
     }
 ~~~ 
 <br />    
-2. Let the SDK know when your app comes into the foreground as new CloudPage inbox messages are retrieved whenever your app comes into the foreground. 
+2. Let the SDK know when your app comes into the foreground as new CloudPage Inbox messages are retrieved whenever your app comes into the foreground. 
 
-> The following is required only if you are targetting **earlier than Android API 14**.  For apps targetting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
+> The SDK requires the following code only if your app targets API versions **earlier than Android API 14**. For apps targeting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
 
 ~~~ 
     @Override
@@ -184,7 +184,7 @@ Review the [Journey Builder for Apps SDK Explorer app](https://github.com/ExactT
     protected void onResume() {
         super.onResume();
         try {
-            // Let JB4A SDK know when each activity resumed(
+            // Let JB4A SDK know when each activity resumed
             ETPush.activityResumed(this);
         }
         catch (ETException e) {

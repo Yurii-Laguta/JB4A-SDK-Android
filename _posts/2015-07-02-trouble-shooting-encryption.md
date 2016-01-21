@@ -6,13 +6,13 @@ category: trouble-shooting
 date: 2015-05-14 12:00:00
 order: 2
 ---
-In the 4.0.3 release of the SDK, we added code to ensure that a device that could not implement encryption would wipe data from the device and inform you that the SDK could not be boot strapped.
+In the 4.0.3 release of the SDK, the Salesforce Marketing Cloud added code to ensure that a device that could not implement encryption would wipe data from the device and inform you that the device could not bootstrap the SDK.
 
-As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus in order to determine if the SDK was successfully bootstrapped.
+As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus to determine a successful SDK bootstrapping.
 
 With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockoff device), you will receive a new code from the ReadyAimFireInitCompletedEvent to determine the reason for the failure:
 
-   1.  event.getCode() will return the reason for the failure. 
+   1. **event.getCode()** will return the reason for the failure. 
    
        ~~~
            public void onEvent(ReadyAimFireInitCompletedEvent event) {
@@ -41,7 +41,7 @@ With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockof
            }
        ~~~
 
-> It is also possible the encryption could fail if your app implements the PRNG fix recommended by Google.  You should remove this PRNG fix and count on the SDK implementing that fix for your app.
+> Encryption could fail if your app implements the PRNG fix recommended by Google. Remove this PRNG fix and count on the SDK implementing that fix for your app.
 
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config contains:
 

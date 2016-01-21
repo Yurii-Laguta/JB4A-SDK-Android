@@ -6,15 +6,15 @@ category: sdk-implementation
 date: 2015-05-14 12:00:00
 order: 1
 ---
-In order to use the SDK in your Mobile app, there are several steps required to register a Google device with the Salesforce Marketing Cloud which ultimately connects it to the MobilePush app you created in the [App Center]({{ site.baseurl }}/create-apps/create-apps-overview.html).
+In order to use the SDK in your Mobile app, complete the steps required to register a device with the Salesforce Marketing Cloud. This process ultimately connects the device to the MobilePush app you created in the [App Center]({{ site.baseurl }}/create-apps/create-apps-overview.html).
 
-We have provided examples assuming you are using Android Studio.  To see any Eclipse specific coding required, see [Eclipse]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
+This document provides examples using Android Studio. To review any Eclipse-specific coding required, see [Eclipse]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
 
-Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
+Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code comes from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
-The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or greater.  Your minimum SDK version must be set no less than 10.
+Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. Set your minimum SDK version to no less than 10.
 
-1.  Add the following repositories to your application's `build.gradle` file.
+1. Add the following repositories to your application's **build.gradle** file.
 
     ~~~
     allprojects {
@@ -26,16 +26,16 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
         }
     }
     ~~~
-1.  Add the following dependencies to your application's `app\build.gradle` file.
+1. Add the following dependencies to your application **app\build.gradle** file.
 
     ~~~
     dependencies {
       // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:4.1.0@aar'
+      compile 'com.exacttarget.etpushsdk:etsdk:4.1.1@aar'
 
       // Google Play Services for Location and Google Cloud Messaging
-      compile 'com.google.android.gms:play-services-location:7.8.0'
-      compile 'com.google.android.gms:play-services-gcm:7.8.0'
+      compile 'com.google.android.gms:play-services-location:8.3.0'
+      compile 'com.google.android.gms:play-services-gcm:8.3.0'
 
       // Google's Support v4 for Notification compatibility
       compile 'com.android.support:support-v4:22.2.0'
@@ -45,7 +45,7 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
     }
     ~~~
 
-1.  Also in your application's `app\build.gradle` file it is recommended that you add an `applicationId` to the `defaultConfig{}` block as that will greatly simplify integration.
+1. In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{}** block to simplify integration.
 
     ~~~
     defaultConfig {
@@ -54,7 +54,31 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
     }
     ~~~
 
-1.  In your application's AndroidManifest.xml file, include the following:
+1. In your **app\build.gradle** file, ensure that you request appropriate permissions if the user enabled Location features for builds targeting Android versions 23 and above.
+
+    ~~~
+    android {
+        compileSdkVersion 23
+    }
+    ~~~
+
+    ~~~
+    onRequestPermissionsResult(int requestCode,
+        String permissions[], int[] grantResults)
+    ~~~
+
+    If PERMISSION_GRANTED==TRUE, then put call to
+    ~~~
+      startWatchingLocation()
+    ~~~
+
+1. Developers using Android Studio with version 4.2 of the JB4A SDK do not need to modify the **AndroidManifest.xml** file unless using geolocation. In that case, add the following line:
+
+    ~~~
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    ~~~
+
+Developers using version 4.1 or earlier of the SDK in an application should include the following code in the **AndroidManifest.xml** file:
 
     ~~~
     <?xml version="1.0" encoding="utf-8"?>
@@ -114,11 +138,11 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
        </application>
        </manifest>
     ~~~
-1.  Update your <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">Application Class</a> to connect your Mobile App with the correct [App Center App]({{ site.baseurl }}/create-apps/create-apps-provisioning.html).
+1. Update your <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">Application Class</a> to connect your Mobile App with the correct [App Center App]({{ site.baseurl }}/create-apps/create-apps-provisioning.html).
 
-    1.  Create a Class that extends <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">android.app.Application</a>. <b>This is not optional.</b>
+    1. Create a Class that extends <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">android.app.Application</a>. <b>You must complete this mandatory step.</b>
 
-    1.  Initialize the ETSDK by calling `readyAimFire()` using an Application Context and from within your Application Class.
+    1. Initialize the ETSDK by calling `readyAimFire()` using an Application Context and from within your Application Class.
 
         ~~~
         try {
@@ -147,14 +171,14 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
 
         > readyAimFire() must be called from your Application class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.
 
-    1.  Register the ET `EventBus` to receive notification of completed registration.  See [Event Bus]({{ site.baseurl }}/features/eventbus.html).
+    1. Register the ET **EventBus** to receive notification of completed registration. See [Event Bus]({{ site.baseurl }}/features/eventbus.html).
 
-    1.  Add an event callback to process any code after readyAimFire() completes.  
+    1. Add an event callback to process any code after readyAimFire() completes.  
 
         ~~~
     /**
      * EventBus callback listening for a ReadyAimFireInitCompletedEvent.  After we receive this
-     * event we can be certain it's safe to use our ETPush instance.
+     * event, we can safely use our ETPush instance.
      *
      * @param event the type of event we're listening for.
      */
@@ -174,12 +198,10 @@ The JB4A Android SDK is compatible with Android API versions 10 (Gingerbread) or
     }
         ~~~
     
-    > 4.0.0 of the SDK eliminates the need to add enablePush() in your launcher activity.  Push will be enabled by default.  If you wish to have Push disabled by default, then you should call `etPush.disablePush()` in the event callback described above.
+    > 4.0.0 of the SDK eliminates the need to add enablePush() in your launcher activity. The SDK will enable push by default. If you wish to disable push by default, call **etPush.disablePush()** in the event callback described above.
 
-    > Changes, including your initial registration from a device, are propagated by the server every 15 minutes.  Please ensure you have waited an appropriate amount of time before expecting to receive push notifications or for changes to take affect.
+    > Changes, including your initial registration from a device, propagate from the server every 15 minutes.  Ensure you wait an appropriate amount of time before expecting to receive push notifications or for changes to take affect.
 
-1.  Good practice would be to create a Preference Screen that allows a user to opt out of Push messages.   Example code can be found in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>. Call `disablePush()` to allow a user to opt out of Push services.  You can then call `enablePush()` to allow them to opt back into Push services.
+1. Create a Preference Screen that allows a user to opt out of push messages. Review example code in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>. Call **disablePush()** to allow a user to opt out of push services. You can then call **enablePush()** to allow user to opt back into push services.
 
-### CONGRATULATIONS!!!
-
-#### At this point you should be able to build your application and send it push notifications from your Marketing Cloud account!
+Once you complete this process, you can build your application and send it push notifications from your Marketing Cloud account.

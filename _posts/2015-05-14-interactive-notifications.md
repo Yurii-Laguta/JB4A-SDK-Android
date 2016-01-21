@@ -6,15 +6,15 @@ category: features
 date: 2015-05-14 12:00:00
 order: 8
 ---
-You can add buttons called *interactive notifications* to push notifications in your Mobile app. The Salesforce Marketing Cloud sends the category name for these interactive notifications in the message payload. 
+You can add buttons called **interactive notifications** to push notifications in your Mobile app. The Salesforce Marketing Cloud sends the category name for these interactive notifications in the message payload. 
 
-This example is taken from <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
+This example comes from <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
-You can view a sample of these interactive notifications in the following image, which includes three buttons that can be tapped, each of which will open a custom intent:<br/>
+You can view a sample of these interactive notifications in the following image, which includes three buttons the user can tap to open a custom intent:<br/>
 
 <img class="img-responsive" src="{{ site.baseurl }}/assets/AndroidInteractiveNotification.png" />
 
-The SDK uses a NotificationCompat.Builder to create the notification to be displayed.  A new class called ETNotifications has been created that will create the notification.  This class contains an interface that allows you to override the functionality provided by the SDK.  In order to override funtionality, call ETNotification.setNotificationBuilder as shown in the following code:
+The SDK uses a NotificationCompat.Builder to create the notification to display. A new class called ETNotifications will create the notification.  This class contains an interface that allows you to override the functionality provided by the SDK.  In order to override this funtionality, call ETNotification.setNotificationBuilder as shown in the following code:
 
 ~~~
     ETNotifications.setNotificationBuilder(new ETNotificationBuilder() {

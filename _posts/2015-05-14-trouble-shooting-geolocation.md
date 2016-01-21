@@ -6,7 +6,7 @@ category: trouble-shooting
 date: 2015-05-14 08:44:12
 order: 3
 ---
-You may receive the following error when using location services with the JB4A SDK:
+Developers using version 4.1 or earlier of the JB4A SDK may receive the following error when using location services with the JB4A SDK:
 
 ~~~
 java.lang.reflect.InvocationTargetException
@@ -21,4 +21,4 @@ java.lang.reflect.InvocationTargetException
     at com.exacttarget.etpushsdk.ETLocationManager.foregroundLocationCheck(SourceFile:448)
 ~~~
 
-To correct this error, ensure that you complile your app with version 7.8.0 or earlier of Google Play Services.
+To correct this error, ensure that you complile your app with version 7.8.0 or earlier of Google Play Services when using version 4.1 or earlier of the JB4A SDK. For versions 4.2 and later, use version 8.1 or later of Google Play Services.

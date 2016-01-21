@@ -7,18 +7,18 @@ date: 2015-05-14 12:00:00
 order: 4
 ---
 
-The OpenDirect customized push message contains a URL to be opened in a web view. By default, the SDK will open the URL in a web view within the ETLandingPage class.  If you would like to customize how the URL is displayed, you can craft your application to react appropriately when the mobile device receives that type of push message.
+The OpenDirect customized push message contains a URL to open in a web view. By default, the SDK will open the URL in a web view within the ETLandingPage class. To customize the display of a URL, craft your application to react appropriately when the mobile device receives that type of push message.
 
-If you choose not to have the SDK use the default ETLandingPage activity to open the OpenDirect URL sent with the message payload, then the following call can be used to specify the Activity to be used to open an Open Direct URL sent in the payload of a push message from the Marketing Cloud.
+If you prevent the SDK from using the default ETLandingPage activity to open the OpenDirect URL sent with the message payload, you can use the following call to specify the activity used to open an OpenDirect URL sent in the payload of a push message from the Marketing Cloud.
 `ETPush.getInstanceis().setOpenDirectRecipient(Class someActivityClass);`
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the OpenDirect URL sent with the message payload.
 
-1.  Create the new Activity Class:
+1. Create the new Activity Class:
     
     ~~~ 
     /**
-     * SDK_ExplorerWebContentActivity is an activity that will display the URL sent with the payload
+     * The SDK_ExplorerWebContentActivity activity will display the URL sent with the payload
      * of the message sent from the Marketing Cloud.
      *
      */
@@ -43,7 +43,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1.  After readyAimFire() completes, let the SDK know that you would like to use your own activity to show the OpenDirect URL sent with the payload. We recommend that you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+1. After readyAimFire() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Salesforce Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
     ~~~ 
     public void onEvent(ReadyAimFireInitCompletedEvent event) {

@@ -8,20 +8,20 @@ order: 2
 ---
 
 <h4>Alert+CloudPage Default SDK Processing</h4>
-The SDK will automatically process an alert that includes a CloudPage.  This Alert+CloudPage customized push message contains a URL to be opened. By default, the SDK will open the URL in a web view within the ETLandingPageActivity class (which must be included in your AndroidManifest.xml file).  If you would like to customize how the URL is displayed, please refer to the next section.
+The SDK will automatically process an alert that includes a CloudPage. This Alert+CloudPage customized push message contains a URL to open. By default, the SDK will open the URL in a web view within the ETLandingPageActivity class (which you must include in your AndroidManifest.xml file).  If you would like to customize how the URL displays, please refer to the next section.
 
 <h4>Alert+CloudPage Override Default SDK Processing</h4>
-If you choose not to have the SDK use the default ETLandingPageActivity class to open the CloudPage URL sent with the message payload, then the following call can be used to specify the Activity to be used to open the CloudPage URL sent in the payload of a push message from the Marketing Cloud.
+If you choose not to make the SDK use the default ETLandingPageActivity class to open the CloudPage URL sent with the message payload, then use the following call to specify the Activity used to open the CloudPage URL sent in the payload of a push message from the Marketing Cloud.
 
 `ETPush.getInstanceis().setCloudPageDirectRecipient(Class someActivityClass);`
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the CloudPage URL sent with the message payload.
 
-1.  Create the new Activity Class:
+1. Create the new Activity Class:
     
     ~~~ 
     /**
-     * SDK_ExplorerWebContentActivity is an activity that will display the URL sent with the payload
+     * The SDK_ExplorerWebContentActivity activity will display the URL sent with the payload
      * of the message sent from the Marketing Cloud.
      *
      */
@@ -46,7 +46,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1.  After readyAimFire() completes, let the SDK know that you would like to use your own activity to show the CloudPage URL sent with the payload. We recommend that you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+1. After readyAimFire() completes, instruct the SDK to use your own activity to show the CloudPage URL sent with the payload. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
     ~~~ 
     public void onEvent(ReadyAimFireInitCompletedEvent event) {
@@ -71,7 +71,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-3.  Modify your AndroidManifest.xml file to include your activity:
+1. Modify your **AndroidManifest.xml** file to include your activity:
 
     ~~~
     …
