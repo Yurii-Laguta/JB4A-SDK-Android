@@ -20,6 +20,9 @@ Download the latest JB4A SDK aar:<br/>
 
 ## Release History
 
+#### Version 4.1.1
+_Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01 Release_<br/>
+
 #### Version 4.1.0
 _Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
