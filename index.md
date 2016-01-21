@@ -20,6 +20,36 @@ Download the latest JB4A SDK aar:<br/>
 
 ## Release History
 
+#### Version 4.2.0
+
+_Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01_<br/>
+
+* MOBILESDK-257 - ANDROID: Remove Deprecated HttpClient from SDK
+* MOBILESDK-329 - ANDROID: Permission Issue w/Marshmallow
+* MOBILESDK-333 - CLOSEME: Update Documentation to Identify SDK 23 Build Incompatibility
+* MOBILESDK-361 - ANDROID SDK Incompatible w/Google Play Services v8.1
+* MOBILESDK-364 - Compile & Test SDK w/Google Play Services v8.1
+* MOBILESDK-408 - ANDROID SDK Integration Simplification 
+* MOBILESDK-410 - Move Manifest Entries into SDK where possible
+* MOBILESDK-411 - Provide default Proguard Config file
+* MOBILESDK-432 - Review and update Javadocs for all other packages within the SDK
+* MOBILESDK-442 - Android: Let's EaT Branding Update
+* MOBILESDK-456 - ESCALATION: ANDROID: NPE in RegistrationSQL Attributes getKey()
+* MOBILESDK-465 - ANDROID: Lint warning regarding unchecked type casts
+* MOBILESDK-467 - ANDROID: Automated Testing
+* MOBILESDK-477 - ANDROID: Permissions Changes
+* MOBILESDK-478 - ANDROID: getAttributes() & getTags() Updates
+* MOBILESDK-479 - ANDROID: Manifest Updates
+* MOBILESDK-480 - ANDROID: Update Google Play Services References
+* MOBILESDK-483 - Replace org.apache.Http
+* MOBILESDK-484 - Android: Implement trackPageView()
+* MOBILESDK-485 - Android: Make the trackPageView() methods public
+* MOBILESDK-487 - ANDROID: Display Google Play Services Version in the Logs
+* MOBILESDK-489 - ANDROID: Allow users to use our SDK w/Android < 23
+* MOBILESDK-491 - Add Crashlytics to Tester
+* MOBILESDK-501 - Format Conversion Error
+* MOBILESDK-522 - Android: SDKX trackPageView
+
 #### Version 4.1.1
 
 _Released January 8 2016, correlating to the Salesforce Marketing Cloud 2015-07.2-HF1 Release_<br/>
