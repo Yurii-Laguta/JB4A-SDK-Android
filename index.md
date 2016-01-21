@@ -11,20 +11,23 @@ Review the Java docs for the SDK:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
 Download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.0.jar?raw=true" target="_blank">etsdk-4.1.0.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.1.jar?raw=true" target="_blank">etsdk-4.1.1.jar</a>
 
 Download the latest JB4A SDK aar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.0.aar?raw=true" target="_blank">etsdk-4.1.0.aar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.1.aar?raw=true" target="_blank">etsdk-4.1.1.aar</a>
 
 > Google Play Services Note - At this time, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app when using version 4.1 or earlier of the JB4A SDK. If you compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error. For versions 4.2 and later, use version 8.1 or later of Google Play Services.
 
 ## Release History
 
 #### Version 4.1.1
-_Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01 Release_<br/>
+
+_Released January 8 2016, correlating to the Salesforce Marketing Cloud 2015-07.2-HF1 Release_<br/>
+
+* MSDK-501 - Fix for format conversion error in ETLocationManager
 
 #### Version 4.1.0
-_Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+_Released November 20 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
 * MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
@@ -42,8 +45,8 @@ _Released November 17 2015, correlating to the Salesforce Marketing Cloud 2015-0
 
   Remove requirement for Beacons library when Location is turned on. If you're not part of the Beacons Beta Test and you use Locations, you can remove the beacons library from your build.
 
-#### Version 4.0.8
-_Released November 12 2015, correlating to the Salesforce Marketing Cloud 2015-06.1 Release_<br/>
+#### Version 4.0.9
+_Released November 20 2015_<br/>
 
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
