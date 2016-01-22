@@ -11,12 +11,12 @@ Review the Java docs for the SDK:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
 Download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.1.jar?raw=true" target="_blank">etsdk-4.1.1.jar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.2.0.jar?raw=true" target="_blank">etsdk-4.1.1.jar</a>
 
 Download the latest JB4A SDK aar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.1.aar?raw=true" target="_blank">etsdk-4.1.1.aar</a>
+<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.2.0.aar?raw=true" target="_blank">etsdk-4.1.1.aar</a>
 
-> Google Play Services Note - At this time, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app when using version 4.1 or earlier of the JB4A SDK. If you compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error. For versions 4.2 and later, use version 8.1 or later of Google Play Services.
+> Google Play Services Note - For versions 4.2 and later of SDK, use version 8.1 or later of Google Play Services. For version 4.1 and earlier of the SDK, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app. If you use SDK versions 4.1 or before and compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error.
 
 ## Release History
 
@@ -26,7 +26,6 @@ _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01
 
 * MOBILESDK-257 - ANDROID: Remove Deprecated HttpClient from SDK
 * MOBILESDK-329 - ANDROID: Permission Issue w/Marshmallow
-* MOBILESDK-333 - CLOSEME: Update Documentation to Identify SDK 23 Build Incompatibility
 * MOBILESDK-361 - ANDROID SDK Incompatible w/Google Play Services v8.1
 * MOBILESDK-364 - Compile & Test SDK w/Google Play Services v8.1
 * MOBILESDK-408 - ANDROID SDK Integration Simplification 
