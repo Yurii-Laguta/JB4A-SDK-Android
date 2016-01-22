@@ -35,17 +35,13 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.exacttarget.etpushsdk.ETPush;
-import com.exacttarget.etpushsdk.util.ETLogger;
 import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
-
-import java.io.File;
 
 /**
  * SDK_ExplorerDebugSettingsActivity is a settings activity to manage debug options within the JB4A SDK Explorer.
@@ -144,9 +140,6 @@ public class SDK_ExplorerDebugSettingsActivity extends BasePreferenceActivity {
                     ETPush.setLogLevel(Log.DEBUG);
                 } else {
                     ETPush.setLogLevel(Log.WARN);
-
-                    // stop capturing log
-                    ETLogger.getInstance().stopCapture();
                 }
                 updatePreferencesForKey(CONSTS.KEY_DEBUG_PREF_ENABLE_DEBUG, new_edPref);
 
@@ -163,9 +156,6 @@ public class SDK_ExplorerDebugSettingsActivity extends BasePreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 String[] emailAddresses = {""};
-
-                ETLogger.getInstance().emailLogFile(SDK_ExplorerDebugSettingsActivity.this, emailAddresses, "Android JB4A SDK Explorer Debug Info", "Here is the logfile from the JB4A SDK.");
-
                 return true;
             }
         });
