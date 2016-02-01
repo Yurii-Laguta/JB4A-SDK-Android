@@ -9,7 +9,7 @@ order: 6
 
 Set the enableAnalytics parameter to true on the call to readyAimFire() in the Application Class to implement ETAnalytics in your mobile app:
 
-    ~~~ 
+~~~ 
     ETPush.readyAimFire(this, 
                         CONSTS_API.getEtAppId(), 
                         CONSTS_API.getAccessToken(), 
@@ -17,13 +17,13 @@ Set the enableAnalytics parameter to true on the call to readyAimFire() in the A
                         true,     // enable ET Analytics 
                         true,     // enable Location Manager, if you purchased this feature
                         true);    // enable Cloud Page, if you purchased this feature
-    ~~~
+~~~
 
 ###Web and Mobile Analytics###
 
 Set the **enableAnalytics** parameter to **true** on the call to **readyAimFire()** in the **Application Class** to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
 
-    ~~~ 
+~~~ 
     ETPush.readyAimFire(this, 
                         CONSTS_API.getEtAppId(), 
                         CONSTS_API.getAccessToken(), 
@@ -32,7 +32,7 @@ Set the **enableAnalytics** parameter to **true** on the call to **readyAimFire(
                         true,     // enable new Web and Mobile Analytics 
                         true,     // enable Location Manager, if you purchased this feature
                         true);    // enable Cloud Page, if you purchased this feature
-    ~~~ 
+~~~ 
 
 ###Track Page View
 
