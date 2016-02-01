@@ -16,7 +16,7 @@ The ETPush.getInstance().addAttribute() method will create a new registration re
 etPush.addAttribute("someKey", "someValue")
 ~~~
 
-###getInstance
+###getAttributes
 
 ~~~ 
 ETPush etPush = ETPush.getInstance();
