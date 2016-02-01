@@ -29,7 +29,7 @@ _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01
 * MOBILESDK-484 - Implemented [trackPageView()]({{ site.baseurl }}/features/analytics.html){:target="_blank"}
 * MOBILESDK-480 - Update Google Play Services references in Documentation
 * MOBILESDK-479 - Completed [Manifest Updates]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html){:target="_blank"}
-* MOBILESDK-478 - Updated [getAttributes() & getTags()]({{ site.baseurl }}/features/attributes.html){:target="_blank"}
+* MOBILESDK-478 - Updated [getAttributes()]({{ site.baseurl }}/features/attributes.html){:target="_blank"} and [getTags()]({{ site.baseurl }}/features/tags.html){:target="_blank"}
 * MOBILESDK-477 - Implement [permissions check for location when using Marshmallow versions 23 or greater]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html){:target="_blank"}
 * MOBILESDK-465 - Resolved Lint warning regarding unchecked type casts
 * MOBILESDK-456 - Resolved NPE in RegistrationSQL Attributes getKey()
