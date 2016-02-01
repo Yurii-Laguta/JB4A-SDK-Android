@@ -19,40 +19,6 @@ Follow the steps below to implement ETAnalytics in your mobile app:
                         true,     // enable Location Manager, if you purchased this feature
                         true);    // enable CloudPage, if you purchased this feature
     ~~~ 
-1. Let the SDK know when your app goes into the background, as the SDK sends Analytics when the app remains in the background for over 1 minute.
-
-    > The SDK requires the following code only if your app targets API versions **earlier than Android API 14**.  For apps targeting **Android 14 or later**, the SDK will implement these calls using registerActivityLifecycleCallbacks().
-
-    ~~~ 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        
-        try {
-            // Let JB4A SDK know when each activity paused
-            ETPush.activityPaused(this);
-        }
-        catch (Exception e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            // Let JB4A SDK know when each activity resumed(
-            ETPush.activityResumed(this);
-        }
-        catch (ETException e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        }
-    }
-    ~~~ 
 
 ###Web and Mobile Analytics###
 Follow the steps below to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
@@ -69,40 +35,9 @@ Follow the steps below to implement [Web and Mobile Analytics](http://www.exactt
                         true,     // enable Location Manager, if you purchased this feature
                         true);    // enable Cloud Page, if you purchased this feature
     ~~~ 
-1.  Let the SDK know when your app goes into the background as the SDK sends Analytics when the app has been in the background for over 1 minute.
 
-    > The SDK requires the following code only if your app targets API versions **earlier than Android API 14**.  For apps targeting **Android 14 or later**, the SDK will implement these calls using  registerActivityLifecycleCallbacks().
+###Track Page View
 
-    ~~~ 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        
-        try {
-            // Let JB4A SDK know when each activity paused
-            ETPush.activityPaused(this);
-        }
-        catch (Exception e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            // Let JB4A SDK know when each activity resumed(
-            ETPush.activityResumed(this);
-        }
-        catch (ETException e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        }
-    }
-    ~~~ 
 1.  To implement page view analytics for your app, call the following method:
 
     ~~~

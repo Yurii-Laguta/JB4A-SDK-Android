@@ -45,7 +45,6 @@ _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01
 * MOBILESDK-485 - Android: Make the trackPageView() methods public
 * MOBILESDK-487 - ANDROID: Display Google Play Services Version in the Logs
 * MOBILESDK-489 - ANDROID: Allow users to use our SDK w/Android < 23
-* MOBILESDK-491 - Add Crashlytics to Tester
 * MOBILESDK-501 - Format Conversion Error
 * MOBILESDK-522 - Android: SDKX trackPageView
 
