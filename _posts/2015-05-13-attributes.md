@@ -12,11 +12,15 @@ The ETPush.getInstance().addAttribute() method will create a new registration re
 
 ###addAttribute
 
+~~~
 etPush.addAttribute("someKey", "someValue")
+~~~
 
 ###addTag
 
+~~~
 etPush.addTag("someTag")
+~~~
 
 ###getInstance
 

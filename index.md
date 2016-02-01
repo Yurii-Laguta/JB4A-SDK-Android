@@ -24,27 +24,21 @@ Download the latest JB4A SDK aar:<br/>
 
 _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01_<br/>
 
-* MOBILESDK-522 - Completed SDKX trackPageView
-* MOBILESDK-501 - Format Conversion Error
-* MOBILESDK-489 - Allow users to use our SDK w/Android > 23
+* MOBILESDK-501 - Resolved "Format Conversion Error" in ETLocation Logging
 * MOBILESDK-487 - Display Google Play Services Version in the Logs
-* MOBILESDK-484 - Implemented trackPageView()
-* MOBILESDK-483 - Replaced org.apache.Http
-* MOBILESDK-480 - Update Google Play Services References
-* MOBILESDK-479 - Completed Manifest Updates
-* MOBILESDK-478 - Updated getAttributes() & getTags()
-* MOBILESDK-477 - Completed Permissions Changes
-* MOBILESDK-467 - Resolved Automated Testing
+* MOBILESDK-484 - Implemented [trackPageView()]({{ site.baseurl }}/features/analytics.html){:target="_blank"}
+* MOBILESDK-480 - Update Google Play Services references in Documentation
+* MOBILESDK-479 - Completed [Manifest Updates]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html){:target="_blank"}
+* MOBILESDK-478 - Updated [getAttributes() & getTags()]({{ site.baseurl }}/features/attributes.html){:target="_blank"}
+* MOBILESDK-477 - Implement [permissions check for location when using Marshmallow versions 23 or greater]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html){:target="_blank"}
 * MOBILESDK-465 - Resolved Lint warning regarding unchecked type casts
 * MOBILESDK-456 - Resolved NPE in RegistrationSQL Attributes getKey()
 * MOBILESDK-432 - Review and update Javadocs for all other packages within the SDK
-* MOBILESDK-411 - Provide default Proguard Config file
-* MOBILESDK-410 - Move Manifest Entries into SDK where possible
 * MOBILESDK-408 - ANDROID SDK Integration Simplification 
 * MOBILESDK-364 - Compile & Test SDK w/Google Play Services v8.1
 * MOBILESDK-361 - Resolved ANDROID SDK Incompatible w/Google Play Services v8.1
 * MOBILESDK-329 - Resolved Permission Issue w/Marshmallow
-* MOBILESDK-257 - Remove Deprecated HttpClient from SDK
+* MOBILESDK-257 - Replace deprecated org.apache.Http with UrlConnection
 
 #### Version 4.1.1
 
