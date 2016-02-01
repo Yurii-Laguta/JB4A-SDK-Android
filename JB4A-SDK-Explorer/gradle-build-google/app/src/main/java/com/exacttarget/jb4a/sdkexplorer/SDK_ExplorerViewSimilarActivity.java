@@ -1,12 +1,13 @@
 package com.exacttarget.jb4a.sdkexplorer;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 
 import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
-public class SDK_ExplorerViewSimilarActivity extends BaseActivity {
-    private static final String TAG = Utils.formatTag(SDK_ExplorerViewSimilarActivity.class.getSimpleName()) ;
+public class SDK_ExplorerViewSimilarActivity extends FragmentActivity {
+    private static final String TAG = Utils.formatTag(SDK_ExplorerViewSimilarActivity.class.getSimpleName());
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

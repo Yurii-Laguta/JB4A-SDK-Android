@@ -10,6 +10,7 @@ android {
         versionName = "2.2.0.56"
         minSdkVersion 15
         targetSdkVersion 22
+        applicationId "com.exacttarget.jb4a.sdkexplorer"
     }
 
     signingConfigs {
@@ -19,15 +20,6 @@ android {
             keyAlias System.getenv("SDK_EXPLORER_KEYSTORE_ALIAS")
             keyPassword System.getenv("SDK_EXPLORER_KEYSTORE_PASSWORD")
         }
-    }
-
-    productFlavors {
-        Google {
-            resValue "string", "companyName", "Google"
-            resValue "string", "preposition", "a"
-            applicationId "com.exacttarget.jb4a.sdkexplorer.google"
-        }
-
     }
 
     buildTypes {
@@ -70,14 +62,14 @@ android {
 }
 
 dependencies {
-    // This line implicitely compiles all JAR files in the libs/ folder.
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
     // SDK
-    compile 'com.exacttarget.etpushsdk:etsdk:4.1.1@aar'
+    compile 'com.exacttarget.etpushsdk:etsdk:4.2.0@aar'
 
     // 3rd Party Libraries needed for SDK
-    compile 'com.google.android.gms:play-services-location:7.5.0'
-    compile 'com.google.android.gms:play-services-gcm:7.5.0'
+    compile 'com.google.android.gms:play-services-location:8.1.0'
+    compile 'com.google.android.gms:play-services-gcm:8.1.0'
     compile 'com.android.support:support-v4:22.1.1'
+
+    // Only required if you're using Beacons
+    compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
 }

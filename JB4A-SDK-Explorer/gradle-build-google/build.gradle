@@ -2,19 +2,15 @@
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" 
-        }    
+        maven { url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" }
     }
 }
 
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" 
-        }   
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
     }

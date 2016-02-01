@@ -4,7 +4,7 @@
 This is a legally binding agreement. Please read it carefully. By clicking "I Accept", or installing or using the Journey Builder for Apps SDK Explorer for Android software and/or any updates to such software provided by salesforce.com, inc. and/or a salesforce.com, inc. affiliate (collectively, "salesforce.com"), you:
 </p>
 <ul>
-<li>agree to the following terms on behalf of the salesforce.com customer with which you are employed, affiliated or associated (the "Customer"),</li> 
+<li>agree to the following terms on behalf of the salesforce.com customer with which you are employed, affiliated or associated (the "Customer"),</li>
 <li>represent that you have the authority to bind the Customer to these terms, and</li>
 <li>represent that you are an authorized User under the master subscription agreement between salesforce.com and the Customer (the "Master Subscription Agreement").</li>
 </ul>
@@ -12,7 +12,7 @@ This is a legally binding agreement. Please read it carefully. By clicking "I Ac
 If you do not have such authority, are not an authorized User, or do not agree to these terms, you may not install or use the Software.
 </p>
 <p>
-$[eulaCompany] Inc. may, at any time and without notice, restrict, interrupt or prevent use of the Software, or delete the Software from your or the Customer's $[eulaCompany] devices, or require salesforce.com to do any of the foregoing, without entitling the Customer or you to any refund, credit or other compensation from salesforce.com or any third party (including, but not limited to, $[eulaCompany] Inc. or your network connectivity provider).
+Google Inc. may, at any time and without notice, restrict, interrupt or prevent use of the Software, or delete the Software from your or the Customer's Google devices, or require salesforce.com to do any of the foregoing, without entitling the Customer or you to any refund, credit or other compensation from salesforce.com or any third party (including, but not limited to, Google Inc. or your network connectivity provider).
 </p>
 <p>
 This Order Form Supplement was last updated on July 22, 2014. It is effective between the Customer and salesforce.com as of the date you first download, install or use the Software, whichever is earliest.
@@ -27,7 +27,7 @@ This Order Form Supplement is a part of each Order Form by which the Customer or
 2. THE SOFTWARE
 </p>
 <p>
-The Software allows Journey Builder for Apps SDK Explorer customers to use the Journey Builder for Apps SDK Explorer service from Supported Devices. A "Supported Device" is a combination of $[preposition] $[eulaCompany] device model and relevant Android software version(s) that is supported by the Software. The Software is provided by salesforce.com as a component of the applicable service described in the Order Form.
+The Software allows Journey Builder for Apps SDK Explorer customers to use the Journey Builder for Apps SDK Explorer service from Supported Devices. A "Supported Device" is a combination of a Google device model and relevant Android software version(s) that is supported by the Software. The Software is provided by salesforce.com as a component of the applicable service described in the Order Form.
 </p>
 <p>
 3. WHO YOU ARE CONTRACTING WITH
@@ -66,7 +66,7 @@ The Software, including software embedded in the Software, is licensed, not sold
 6. TERM AND TERMINATION
 </p>
 <p>
-Salesforce.com may terminate this Order Form Supplement at any time upon 30 days' notice to Customer without cause, or immediately upon notice to the Customer if any third party (including, but not limited to, $[eulaCompany] Inc., or your network connectivity provider) restricts, prevents or ceases to authorize the installation or use of the Software on your Supported Device or over your network. In addition, this Order Form Supplement shall terminate immediately and automatically upon any termination or expiration of the Customer's subscription to the Journey Builder for Apps SDK Explorer service. Upon any such termination or expiration, the Customer (including you) shall no longer be permitted to use the Software, and shall delete or destroy all copies of the Software in its (including your) possession.
+Salesforce.com may terminate this Order Form Supplement at any time upon 30 days' notice to Customer without cause, or immediately upon notice to the Customer if any third party (including, but not limited to, Google Inc., or your network connectivity provider) restricts, prevents or ceases to authorize the installation or use of the Software on your Supported Device or over your network. In addition, this Order Form Supplement shall terminate immediately and automatically upon any termination or expiration of the Customer's subscription to the Journey Builder for Apps SDK Explorer service. Upon any such termination or expiration, the Customer (including you) shall no longer be permitted to use the Software, and shall delete or destroy all copies of the Software in its (including your) possession.
 </p>
 <p>
 Termination of this Order Form Supplement shall not entitle the Customer to any refund, credit, or other compensation from salesforce.com under the Master Subscription Agreement or any other agreement or from any third party.
@@ -84,25 +84,25 @@ Any service level agreement in effect between the Customer and saleforce.com sha
 The Software may obtain information from, or access data stored on, a Supported Device to provide the Journey Builder for Apps SDK Explorer service.  The Software may transmit information to and from your device to provide the Journey Builder for Apps SDK Explorer service.  The Software may provide salesforce.com with information related to your use of the Journey Builder for Apps SDK Explorer service, information regarding your computer system, and information regarding your interaction with the Software, which salesforce.com may use to provide and improve the Journey Builder for Apps SDK Explorer service and related products.  The Software’s access to information through your or the Customer’s device does not cause that information to be Customer Data under the Master Subscription Agreement or the Salesforce Marketing Cloud Privacy Statement.
 </p>
 <p>
-9. TERMS REQUIRED BY $[eulaCompany] INC.
+9. TERMS REQUIRED BY Google INC.
 </p>
 <p>
-(a) This Order Form Supplement is between the Customer and salesforce.com only, and not with $[eulaCompany]. Salesforce.com is solely responsible for the Software.
+(a) This Order Form Supplement is between the Customer and salesforce.com only, and not with Google. Salesforce.com is solely responsible for the Software.
 </p>
 <p>
 (b) Customer's use of the Software must comply with the Usage Rules set forth in the Goole Play Store Terms of Use.
 </p>
 <p>
-(c) Salesforce.com is solely responsible for providing and $[eulaCompany] has no obligation to provide maintenance and support for the Software. Support requests, as well as questions, complaints or claims regarding the Software, may be directed to salesforce.com Customer Support, via http://www.exacttarget.com/services/technical-support .
+(c) Salesforce.com is solely responsible for providing and Google has no obligation to provide maintenance and support for the Software. Support requests, as well as questions, complaints or claims regarding the Software, may be directed to salesforce.com Customer Support, via http://www.exacttarget.com/services/technical-support .
 </p>
 <p>
-(d) In the event of any failure of the Software to comply with the warranty in the Master Subscription Agreement, the Customer may notify $[eulaCompany], and $[eulaCompany] will refund the purchase price for the Software to the Customer. To the maximum extent permitted by applicable law, $[eulaCompany] will have no other warranty obligation whatsoever with respect to the Software, and will not be liable for any other claims, losses, liabilities, damages, costs or expenses attributable to any failure to conform to any warranty. Salesforce.com shall not be required to provide a refund to you or to the Customer under any circumstances.
+(d) In the event of any failure of the Software to comply with the warranty in the Master Subscription Agreement, the Customer may notify Google, and Google will refund the purchase price for the Software to the Customer. To the maximum extent permitted by applicable law, Google will have no other warranty obligation whatsoever with respect to the Software, and will not be liable for any other claims, losses, liabilities, damages, costs or expenses attributable to any failure to conform to any warranty. Salesforce.com shall not be required to provide a refund to you or to the Customer under any circumstances.
 </p>
 <p>
-(e) $[eulaCompany] shall not be responsible for addressing any claims by you, the Customer or any third party relating to the Software or the Customer's possession and/or use of the Software, including but not limited to (i) product liability claims, (ii) any claim that the Software fails to conform to any applicable legal or regulatory requirement, or (iii) claims arising under consumer protection or similar legislation.
+(e) Google shall not be responsible for addressing any claims by you, the Customer or any third party relating to the Software or the Customer's possession and/or use of the Software, including but not limited to (i) product liability claims, (ii) any claim that the Software fails to conform to any applicable legal or regulatory requirement, or (iii) claims arising under consumer protection or similar legislation.
 </p>
 <p>
-(f) $[eulaCompany] shall not be responsible for the investigation, defense, settlement or discharge of any claim that the Software, or your or the Customer's possession and use of the Software, infringes a third party's intellectual property rights.
+(f) Google shall not be responsible for the investigation, defense, settlement or discharge of any claim that the Software, or your or the Customer's possession and use of the Software, infringes a third party's intellectual property rights.
 </p>
 <p>
 (g) The Customer represents and warrants that (i) the Software will not be downloaded or used in, or transported to, a country that is subject to a U.S. Government embargo, or has been designated by the U.S. Government as a "terrorist-supporting" country, and (ii) neither the Customer nor any User is listed on any U.S. Government list of prohibited or restricted parties.
@@ -111,7 +111,7 @@ The Software may obtain information from, or access data stored on, a Supported 
 (h) Salesforce.com's address is The Landmark @ One Market, Suite 300, San Francisco, California 94105, U.S.A.
 </p>
 <p>
-(i) Notwithstanding anything to the contrary in the Master Subscription Agreement, $[eulaCompany] and its subsidiaries are third-party beneficiaries of this Order Form Supplement, and have the right (and shall be deemed to have accepted the right) to enforce this Order Form Supplement against you and the Customer.
+(i) Notwithstanding anything to the contrary in the Master Subscription Agreement, Google and its subsidiaries are third-party beneficiaries of this Order Form Supplement, and have the right (and shall be deemed to have accepted the right) to enforce this Order Form Supplement against you and the Customer.
 Please indicate whether you agree to the terms of this Order Form Supplement.
 </p>
 </font></div>

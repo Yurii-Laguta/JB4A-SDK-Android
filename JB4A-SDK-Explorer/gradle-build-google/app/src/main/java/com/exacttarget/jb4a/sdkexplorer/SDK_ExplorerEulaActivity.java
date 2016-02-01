@@ -1,21 +1,21 @@
 /**
  * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
- *
+ * <p/>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- *
+ * <p/>
  * 1. Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
- *
+ * <p/>
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation and/or
  * other materials provided with the distribution.
- *
+ * <p/>
  * 3. Neither the name of the copyright holder nor the names of its contributors
  * may be used to endorse or promote products derived from this software without
  * specific prior written permission.
- *
+ * <p/>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -31,6 +31,7 @@
 package com.exacttarget.jb4a.sdkexplorer;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,9 +49,9 @@ import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
  * @author pvandyk
  */
 
-public class SDK_ExplorerEulaActivity extends BaseActivity {
+public class SDK_ExplorerEulaActivity extends FragmentActivity {
 
-    private static final String TAG = Utils.formatTag(SDK_ExplorerEulaActivity.class.getSimpleName()) ;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerEulaActivity.class.getSimpleName());
     ScrollPagesAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
@@ -114,7 +115,7 @@ public class SDK_ExplorerEulaActivity extends BaseActivity {
         StringBuilder sb = new StringBuilder();
         sb.append(CONSTS.PAGE_TITLE);
         sb.append(Utils.getRawResourceContents("eula", true));
-        pages[0] = sb.toString().replace("$[eulaCompany]", getString(R.string.companyName)).replace("$[preposition]", getString(R.string.preposition));
+        pages[0] = sb.toString();
 
         mAdapter = new ScrollPagesAdapter(getSupportFragmentManager(), pages, false);
 

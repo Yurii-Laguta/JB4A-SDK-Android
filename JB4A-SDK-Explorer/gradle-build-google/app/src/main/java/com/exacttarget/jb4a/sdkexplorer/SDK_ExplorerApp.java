@@ -219,14 +219,9 @@ public class SDK_ExplorerApp extends Application {
                     .setGcmSenderId(CONSTS_API.getGcmSenderId())
                     .setAnalyticsEnabled(true)
                     .setPiAnalyticsEnabled(true)
-                    .setCloudPagesEnabled(true);
-
-            if (getString(R.string.companyName).equalsIgnoreCase("google")) {
-                pushConfigBuilder.setLocationEnabled(true);
-            } else {
-                pushConfigBuilder.setLocationEnabled(false);
-            }
-
+                    .setCloudPagesEnabled(true)
+                    .setLocationEnabled(true)
+                    .setProximityEnabled(true);
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
             // A production build, which normally doesn't have debugging turned on.

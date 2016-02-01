@@ -30,16 +30,9 @@
 
 package com.exacttarget.jb4a.sdkexplorer;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,17 +43,6 @@ import com.exacttarget.jb4a.sdkexplorer.scrollpages.CirclePageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.PageIndicator;
 import com.exacttarget.jb4a.sdkexplorer.scrollpages.ScrollPagesAdapter;
 import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.regex.Pattern;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * SDK_ExplorerHomeActivity is the primary activity in the JB4A SDK Explorer.
@@ -84,7 +66,7 @@ import javax.net.ssl.HttpsURLConnection;
  * @author pvandyk
  */
 
-public class SDK_ExplorerHomeActivity extends BaseActivity {
+public class SDK_ExplorerHomeActivity extends FragmentActivity {
 
     private static final int currentPage = CONSTS.HOME_ACTIVITY;
     private static final String TAG = Utils.formatTag(SDK_ExplorerHomeActivity.class.getSimpleName());

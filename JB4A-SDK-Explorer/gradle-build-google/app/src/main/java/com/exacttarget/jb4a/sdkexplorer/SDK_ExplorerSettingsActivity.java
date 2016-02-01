@@ -1,21 +1,21 @@
 /**
  * Copyright (c) 2015 Salesforce Marketing Cloud.
  * All rights reserved.
- *
+ * <p/>
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- *
+ * <p/>
  * 1. Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
- *
+ * <p/>
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation and/or
  * other materials provided with the distribution.
- *
+ * <p/>
  * 3. Neither the name of the copyright holder nor the names of its contributors
  * may be used to endorse or promote products derived from this software without
  * specific prior written permission.
- *
+ * <p/>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -31,13 +31,11 @@
 package com.exacttarget.jb4a.sdkexplorer;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
@@ -54,9 +52,6 @@ import com.exacttarget.etpushsdk.ETException;
 import com.exacttarget.etpushsdk.ETLocationManager;
 import com.exacttarget.etpushsdk.ETPush;
 import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * SDK_ExplorerSettingsActivity is the primary settings activity within the JB4A SDK Explorer.
@@ -112,7 +107,7 @@ import java.util.List;
 public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
 
     private static final int currentPage = CONSTS.SETTINGS_ACTIVITY;
-    private static final String TAG = Utils.formatTag(SDK_ExplorerSettingsActivity.class.getSimpleName()) ;
+    private static final String TAG = Utils.formatTag(SDK_ExplorerSettingsActivity.class.getSimpleName());
     private SharedPreferences sp;
 
     @Override
@@ -387,49 +382,40 @@ public class SDK_ExplorerSettingsActivity extends BasePreferenceActivity {
         //
 
         final CheckBoxPreference locationsPref = (CheckBoxPreference) findPreference(CONSTS.KEY_PREF_LOCATION);
-
-        if (getString(R.string.companyName).equalsIgnoreCase("google")) {
-            // allow for Google
-
-            try {
-                locationsPref.setChecked(ETLocationManager.getInstance().isWatchingLocation());
-            } catch (Exception e) {
-                if (ETPush.getLogLevel() <= Log.ERROR) {
-                    Log.e(TAG, e.getMessage(), e);
-                }
-                locationsPref.setChecked(false);
+        try {
+            locationsPref.setChecked(ETLocationManager.getInstance().isWatchingLocation());
+        } catch (Exception e) {
+            if (ETPush.getLogLevel() <= Log.ERROR) {
+                Log.e(TAG, e.getMessage(), e);
             }
+            locationsPref.setChecked(false);
+        }
 
-            locationsPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference pref, Object newValue) {
-                    Boolean newPrefLocation = (Boolean) newValue;
-                    // save the preference to Shared Preferences
-                    updatePreferencesForKey(CONSTS.KEY_PREF_LOCATION, newPrefLocation);
+        locationsPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference pref, Object newValue) {
+                Boolean newPrefLocation = (Boolean) newValue;
+                // save the preference to Shared Preferences
+                updatePreferencesForKey(CONSTS.KEY_PREF_LOCATION, newPrefLocation);
 
-                    try {
-                        if (newPrefLocation) {
-                            // opt in for location messages
-                            ETLocationManager.getInstance().startWatchingLocation();
-                        } else {
-                            // opt out for location messages
-                            ETLocationManager.getInstance().stopWatchingLocation();
-                        }
-
-                        enablePushDependentPrefs();
-                    } catch (ETException e) {
-                        if (ETPush.getLogLevel() <= Log.ERROR) {
-                            Log.e(TAG, e.getMessage(), e);
-                        }
+                try {
+                    if (newPrefLocation) {
+                        // opt in for location messages
+                        ETLocationManager.getInstance().startWatchingLocation();
+                    } else {
+                        // opt out for location messages
+                        ETLocationManager.getInstance().stopWatchingLocation();
                     }
-                    return true;
+
+                    enablePushDependentPrefs();
+                } catch (ETException e) {
+                    if (ETPush.getLogLevel() <= Log.ERROR) {
+                        Log.e(TAG, e.getMessage(), e);
+                    }
                 }
-            });
-        } else {
-            // disable for Amazon
-            PreferenceCategory notifySettings = (PreferenceCategory) findPreference("pref_key_notify_settings");
-            notifySettings.removePreference(locationsPref);
-       }
+                return true;
+            }
+        });
 
         //
         // SPORTS SUBSCRIPTIONS

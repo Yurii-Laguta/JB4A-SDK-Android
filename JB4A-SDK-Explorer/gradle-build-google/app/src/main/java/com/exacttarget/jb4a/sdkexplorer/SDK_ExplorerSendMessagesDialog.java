@@ -80,9 +80,9 @@ import javax.net.ssl.HttpsURLConnection;
 public class SDK_ExplorerSendMessagesDialog extends Dialog {
 
     private static final Handler uiThread = new Handler(Looper.getMainLooper());
-    private final UpdateUIRunnable updateUiRunnable = new UpdateUIRunnable();
     private static final String TAG = Utils.formatTag(SDK_ExplorerSendMessagesDialog.class.getSimpleName());
     private static Activity callingActivity;
+    private final UpdateUIRunnable updateUiRunnable = new UpdateUIRunnable();
 
     public SDK_ExplorerSendMessagesDialog(Activity inActivity) {
         super(inActivity);
@@ -421,15 +421,15 @@ public class SDK_ExplorerSendMessagesDialog extends Dialog {
 
     }
 
-    private enum MessageType {
-        STANDARD,
-        CLOUDPAGE
-    }
-
     private void postToast(String toastMessage) {
         if (toastMessage != null) {
             Toast.makeText(SDK_ExplorerApp.context(), toastMessage, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private enum MessageType {
+        STANDARD,
+        CLOUDPAGE
     }
 
     private class UpdateUIRunnable implements Runnable {

@@ -2,21 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.exacttarget.jb4a.sdkexplorer">
 
-    <!-- JB4A SDK Permissions for location and region monitoring -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- JB4A SDK Permissions for Geofence and Beacon monitoring -->
+    <!-- The following 2 permissions are not required if you are not using Geofences or Beacons within your application -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- END JB4A SDK location and region monitoring Permissions -->
 
-    <!-- JB4A SDK required permissions -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- END JB4A SDK Required Permissions -->
-
     <!-- Salesforce Marketing Cloud JB4A SDK Explorer Only for testing purposes -->
-    <!--<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/> --> 
+    <!-- These are SDK Explorer permissions only and are not required by the JB4A SDK -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -29,12 +22,6 @@
         android:label="@string/app_name"
         android:logo="@drawable/ic_logo"
         android:theme="@style/AppTheme">
-
-         <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
-        <activity
-            android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter"
-            android:label="Landing Page" />
-        <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
 
         <!-- JB4A SDK Explorer Activities -->
         <activity
@@ -105,12 +92,6 @@
             android:screenOrientation="portrait" />
         <!-- JB4A SDK Explorer Activities -->
 
-        <!-- Google Play Services version.  Using the resource file will require your project contain the Google Play services project. -->
-        <!-- See Google documentation for more information -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <!-- Google Play Services version. -->
     </application>
 
 </manifest>

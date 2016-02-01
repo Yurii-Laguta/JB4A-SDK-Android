@@ -170,7 +170,7 @@ public class MessageContact {
 
                 Iterator it = customKeys.entrySet().iterator();
                 while (it.hasNext()) {
-                    Map.Entry pair = (Map.Entry)it.next();
+                    Map.Entry pair = (Map.Entry) it.next();
                     customKeysJson.put((String) pair.getKey(), pair.getValue());
                     it.remove(); // avoids a ConcurrentModificationException
                 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-     <PreferenceCategory
+    <PreferenceCategory
         android:key="pref_personal_info_settings"
         android:title="@string/pref_personal_info_title">
 
