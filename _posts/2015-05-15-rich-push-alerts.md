@@ -17,7 +17,7 @@ If you choose not to make the SDK use the default ETLandingPageActivity class to
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the CloudPage URL sent with the message payload.
 
-1. Create the new Activity Class:
+1.  Create the new Activity Class:
     
     ~~~ 
     /**
@@ -46,7 +46,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1. After readyAimFire() completes, instruct the SDK to use your own activity to show the CloudPage URL sent with the payload. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+1.  After readyAimFire() completes, instruct the SDK to use your own activity to show the CloudPage URL sent with the payload. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
     ~~~ 
     public void onEvent(ReadyAimFireInitCompletedEvent event) {
@@ -71,7 +71,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1. Modify your **AndroidManifest.xml** file to include your activity:
+1.  Modify your **AndroidManifest.xml** file to include your activity:
 
     ~~~
     …

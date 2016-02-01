@@ -6,13 +6,13 @@ category: trouble-shooting
 date: 2015-05-14 12:00:00
 order: 2
 ---
-In the 4.0.3 release of the SDK, the Salesforce Marketing Cloud added code to ensure that a device that could not implement encryption would wipe data from the device and inform you that the device could not bootstrap the SDK.
+In the 4.0.3 release of the SDK, we added code to ensure that a device that could not implement encryption would wipe data from the device and inform you about the SDK bootstrap failure.
 
-As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus to determine a successful SDK bootstrapping.
+As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus in order to determine if the SDK successfully bootstrapped.
 
 With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockoff device), you will receive a new code from the ReadyAimFireInitCompletedEvent to determine the reason for the failure:
 
-   1. **event.getCode()** will return the reason for the failure. 
+   1.  event.getCode() will return the reason for the failure. 
    
        ~~~
            public void onEvent(ReadyAimFireInitCompletedEvent event) {
@@ -21,11 +21,11 @@ With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockof
               }
        
               if (event.isReadyAimFireReady()) {
-        	      // successful bootstrap with SDK	
+                // successful bootstrap with SDK  
        
        
               } else {
-        	       // unsuccessful bootstrap with SDK	
+                 // unsuccessful bootstrap with SDK 
                    if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_FAILURE) {
                         message = "ETPush readyAimFire() did not initialize due to an Encryption failure.";
                     } else if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_OPTOUT_FAILURE) {
@@ -41,7 +41,7 @@ With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockof
            }
        ~~~
 
-> Encryption could fail if your app implements the PRNG fix recommended by Google. Remove this PRNG fix and count on the SDK implementing that fix for your app.
+> It is also possible the encryption could fail if your app implements the PRNG fix recommended by Google.  You should remove this PRNG fix and count on the SDK implementing that fix for your app.
 
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config contains:
 

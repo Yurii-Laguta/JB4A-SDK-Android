@@ -71,7 +71,7 @@ ___
 
 1.  Launch your own activity to handle the notifcation tap.
 
-    1. Set up a notification recipient activity class that launches when the notification receives a tap. This activity launches when your user taps your notification and the intent contains the message payload sent from the Marketing Cloud.
+    1.  Set up a notification recipient activity class that launches when the notification receives a tap. This activity launches when your user taps your notification and the intent contains the message payload sent from the Marketing Cloud.
 
     	~~~
         // YourNotificationActivity
@@ -88,7 +88,7 @@ ___
         …        
     	}
     	~~~  
-    1. Modify your AndroidManifest.xml file to include your activity:
+    1.  Modify your AndroidManifest.xml file to include your activity:
 
         ~~~
         …
@@ -97,17 +97,17 @@ ___
         …
         …   
         ~~~ 
-    1. After readyAimFire() completes, instruct the SDK to use this activity to receive the tap from the notification. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+    1.  After readyAimFire() completes, instruct the SDK to use this activity to receive the tap from the notification. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
         ~~~
         // After readyAimFire() completes.
         ETPush.getInstance().setNotificationRecipientClass(YourNotificationActivity.class);
         ~~~~
-1. Specify an action and URI to launch your own activity when the notification receives a tap.
+1.  Specify an action and URI to launch your own activity when the notification receives a tap.
 
     > The JB4A Android SDK deprecates the final method in version 4.1.0 and removes the functionality entirely in subsequent releases. For all new app development, use the previous two methods. For all existing app development, revise your app to use the previous two methods.
 
-    1. Set up a notification recipient activity class that launches when the notification receives a tap. This activity launches when your user taps your notification and the intent contains the message payload sent from the Marketing Cloud.
+    1.  Set up a notification recipient activity class that launches when the notification receives a tap. This activity launches when your user taps your notification and the intent contains the message payload sent from the Marketing Cloud.
 
     	~~~
         // YourNotificationActivity
@@ -124,7 +124,7 @@ ___
         …        
     	}
     	~~~  
-    1. Modify your ApplicationManifest.xml to contain an intent-filter configured to receive the intent:
+    1.  Modify your ApplicationManifest.xml to contain an intent-filter configured to receive the intent:
 
         ~~~
         <!--ApplicationManifest.xml -->
@@ -135,7 +135,7 @@ ___
                 </intent-filter>
             </activity>
         ~~~
-    1. After readyAimFire() completes, instruct the SDK to use this activity to receive the tap from the notification. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+    1.  After readyAimFire() completes, instruct the SDK to use this activity to receive the tap from the notification. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
         
         ~~~
         // After readyAimFire() completes.

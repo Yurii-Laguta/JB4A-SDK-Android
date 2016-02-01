@@ -6,9 +6,8 @@ category: features
 date: 2015-05-14 12:00:00
 order: 6
 ---
-Follow the steps below to implement ETAnalytics in your mobile app:
 
-1. Set the **enableAnalytics** parameter to **true** on the call to **readyAimFire()** in the **Application Class**.
+Set the enableAnalytics parameter to true on the call to readyAimFire() in the Application Class to implement ETAnalytics in your mobile app:
 
     ~~~ 
     ETPush.readyAimFire(this, 
@@ -17,13 +16,12 @@ Follow the steps below to implement ETAnalytics in your mobile app:
                         CONSTS_API.getGcmSenderId(), 
                         true,     // enable ET Analytics 
                         true,     // enable Location Manager, if you purchased this feature
-                        true);    // enable CloudPage, if you purchased this feature
-    ~~~ 
+                        true);    // enable Cloud Page, if you purchased this feature
+    ~~~
 
 ###Web and Mobile Analytics###
-Follow the steps below to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
 
-1.  Set the **enableAnalytics** parameter to **true** on the call to **readyAimFire()** in the **Application Class**.
+Set the **enableAnalytics** parameter to **true** on the call to **readyAimFire()** in the **Application Class** to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
 
     ~~~ 
     ETPush.readyAimFire(this, 

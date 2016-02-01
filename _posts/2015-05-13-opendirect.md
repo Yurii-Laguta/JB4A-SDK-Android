@@ -14,7 +14,7 @@ If you prevent the SDK from using the default ETLandingPage activity to open the
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the OpenDirect URL sent with the message payload.
 
-1. Create the new Activity Class:
+1.  Create the new Activity Class:
     
     ~~~ 
     /**
@@ -43,7 +43,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1. After readyAimFire() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Salesforce Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+1.  After readyAimFire() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Salesforce Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
     ~~~ 
     public void onEvent(ReadyAimFireInitCompletedEvent event) {

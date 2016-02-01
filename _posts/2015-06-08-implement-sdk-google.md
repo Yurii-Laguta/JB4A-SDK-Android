@@ -6,6 +6,7 @@ category: sdk-implementation
 date: 2015-05-14 12:00:00
 order: 1
 ---
+
 In order to use the SDK in your Mobile app, complete the steps required to register a device with the Salesforce Marketing Cloud. This process ultimately connects the device to the MobilePush app you created in the [App Center]({{ site.baseurl }}/create-apps/create-apps-overview.html).
 
 This document provides examples using Android Studio. To review any Eclipse-specific coding required, see [Eclipse]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
@@ -14,7 +15,7 @@ Follow the steps below to bootstrap the Journey Builder for Apps SDK into your m
 
 Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. Set your minimum SDK version to no less than 10.
 
-1. Add the following repositories to your application's **build.gradle** file.
+1.  Add the following repositories to your application's `build.gradle` file.
 
     ~~~
     allprojects {
@@ -26,7 +27,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
         }
     }
     ~~~
-1. Add the following dependencies to your application **app\build.gradle** file.
+1.  Add the following dependencies to your application **app\build.gradle** file.
 
     ~~~
     dependencies {
@@ -45,7 +46,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     }
     ~~~
 
-1. In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{}** block to simplify integration.
+1.  In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{}** block to simplify integration.
 
     ~~~
     defaultConfig {
@@ -54,7 +55,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     }
     ~~~
 
-1. In your **app\build.gradle** file, ensure that you request appropriate permissions if the user enabled Location features for builds targeting Android versions 23 and above.
+1.  In your **app\build.gradle** file, ensure that you request appropriate permissions if the user enabled Location features for builds targeting Android versions 23 and above.
 
     ~~~
     android {
@@ -72,13 +73,13 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
       startWatchingLocation()
     ~~~
 
-1. Developers using Android Studio with version 4.2 of the JB4A SDK do not need to modify the **AndroidManifest.xml** file unless using geolocation. In that case, add the following line:
+1.  Developers using Android Studio with version 4.2 of the JB4A SDK do not need to modify the **AndroidManifest.xml** file unless using geolocation. In that case, add the following line:
 
     ~~~
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     ~~~
 
-Developers using version 4.1 or earlier of the SDK in an application should include the following code in the **AndroidManifest.xml** file:
+    Developers using version 4.1 or earlier of the SDK in an application should include the following code in the **AndroidManifest.xml** file:
 
     ~~~
     <?xml version="1.0" encoding="utf-8"?>
@@ -138,11 +139,11 @@ Developers using version 4.1 or earlier of the SDK in an application should incl
        </application>
        </manifest>
     ~~~
-1. Update your <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">Application Class</a> to connect your Mobile App with the correct [App Center App]({{ site.baseurl }}/create-apps/create-apps-provisioning.html).
+1.  Update your <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">Application Class</a> to connect your Mobile App with the correct [App Center App]({{ site.baseurl }}/create-apps/create-apps-provisioning.html).
 
-    1. Create a Class that extends <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">android.app.Application</a>. <b>You must complete this mandatory step.</b>
+    1.  Create a Class that extends <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">android.app.Application</a>. <b>You must complete this mandatory step.</b>
 
-    1. Initialize the ETSDK by calling `readyAimFire()` using an Application Context and from within your Application Class.
+    1.  Initialize the ETSDK by calling `readyAimFire()` using an Application Context and from within your Application Class.
 
         ~~~
         try {
@@ -171,9 +172,9 @@ Developers using version 4.1 or earlier of the SDK in an application should incl
 
         > readyAimFire() must be called from your Application class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.
 
-    1. Register the ET **EventBus** to receive notification of completed registration. See [Event Bus]({{ site.baseurl }}/features/eventbus.html).
+    1.  Register the ET **EventBus** to receive notification of completed registration. See [Event Bus]({{ site.baseurl }}/features/eventbus.html).
 
-    1. Add an event callback to process any code after readyAimFire() completes.  
+    1.  Add an event callback to process any code after readyAimFire() completes.  
 
         ~~~
     /**

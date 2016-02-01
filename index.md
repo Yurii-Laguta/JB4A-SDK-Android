@@ -32,7 +32,6 @@ _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01
 * MOBILESDK-410 - Move Manifest Entries into SDK where possible
 * MOBILESDK-411 - Provide default Proguard Config file
 * MOBILESDK-432 - Review and update Javadocs for all other packages within the SDK
-* MOBILESDK-442 - Android: Let's EaT Branding Update
 * MOBILESDK-456 - ESCALATION: ANDROID: NPE in RegistrationSQL Attributes getKey()
 * MOBILESDK-465 - ANDROID: Lint warning regarding unchecked type casts
 * MOBILESDK-467 - ANDROID: Automated Testing
