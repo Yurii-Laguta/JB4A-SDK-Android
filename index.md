@@ -25,27 +25,26 @@ Download the latest JB4A SDK aar:<br/>
 _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01_<br/>
 
 * MOBILESDK-257 - Remove Deprecated HttpClient from SDK
-* MOBILESDK-329 - Permission Issue w/Marshmallow
-* MOBILESDK-361 - ANDROID SDK Incompatible w/Google Play Services v8.1
+* MOBILESDK-329 - Resolved Permission Issue w/Marshmallow
+* MOBILESDK-361 - Resolved ANDROID SDK Incompatible w/Google Play Services v8.1
 * MOBILESDK-364 - Compile & Test SDK w/Google Play Services v8.1
 * MOBILESDK-408 - ANDROID SDK Integration Simplification 
 * MOBILESDK-410 - Move Manifest Entries into SDK where possible
 * MOBILESDK-411 - Provide default Proguard Config file
 * MOBILESDK-432 - Review and update Javadocs for all other packages within the SDK
-* MOBILESDK-456 - NPE in RegistrationSQL Attributes getKey()
-* MOBILESDK-465 - Lint warning regarding unchecked type casts
-* MOBILESDK-467 - Automated Testing
-* MOBILESDK-477 - Permissions Changes
-* MOBILESDK-478 - getAttributes() & getTags() Updates
-* MOBILESDK-479 - Manifest Updates
+* MOBILESDK-456 - Resolved NPE in RegistrationSQL Attributes getKey()
+* MOBILESDK-465 - Resolved Lint warning regarding unchecked type casts
+* MOBILESDK-467 - Resolved Automated Testing
+* MOBILESDK-477 - Completed Permissions Changes
+* MOBILESDK-478 - Updated getAttributes() & getTags()
+* MOBILESDK-479 - Completed Manifest Updates
 * MOBILESDK-480 - Update Google Play Services References
-* MOBILESDK-483 - Replace org.apache.Http
-* MOBILESDK-484 - Implement trackPageView()
-* MOBILESDK-485 - Make the trackPageView() methods public
+* MOBILESDK-483 - Replaced org.apache.Http
+* MOBILESDK-484 - Implemented trackPageView()
 * MOBILESDK-487 - Display Google Play Services Version in the Logs
 * MOBILESDK-489 - Allow users to use our SDK w/Android < 23
 * MOBILESDK-501 - Format Conversion Error
-* MOBILESDK-522 - Android: SDKX trackPageView
+* MOBILESDK-522 - Completed SDKX trackPageView
 
 #### Version 4.1.1
 
