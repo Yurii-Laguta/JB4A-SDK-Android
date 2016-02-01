@@ -51,7 +51,6 @@ import com.exacttarget.etpushsdk.data.Attribute;
 import com.exacttarget.etpushsdk.event.CloudPagesResponse;
 import com.exacttarget.etpushsdk.event.ReadyAimFireInitCompletedEvent;
 import com.exacttarget.etpushsdk.event.RegistrationEvent;
-import com.exacttarget.etpushsdk.util.ETLogger;
 import com.exacttarget.etpushsdk.util.EventBus;
 import com.exacttarget.jb4a.sdkexplorer.utils.Utils;
 
@@ -236,14 +235,6 @@ public class SDK_ExplorerApp extends Application {
             boolean enableDebug = sp.getBoolean(CONSTS.KEY_DEBUG_PREF_ENABLE_DEBUG, true);
             if (enableDebug || Utils.isDebugApp(this)) {
                 pushConfigBuilder.setLogLevel(Log.DEBUG);
-
-                // ETLogger.startCapture(maxMemorySize, maxFileSize)
-                //
-                //		Since we are in debug mode, make sure to capture the log to a file
-                //      We are choosing not to clear the log when we start so that we can get a
-                //      continuous log of our testing.
-                //
-                ETLogger.getInstance().startCapture(this, 100000l, 1000000l, false);
             }
 
             ETPush.readyAimFire(pushConfigBuilder.build());
