@@ -69,6 +69,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     ~~~
 
     If PERMISSION_GRANTED==TRUE, then put call to
+
     ~~~
       startWatchingLocation()
     ~~~
