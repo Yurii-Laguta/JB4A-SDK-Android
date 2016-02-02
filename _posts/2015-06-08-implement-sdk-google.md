@@ -69,10 +69,11 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     ~~~
 
     If PERMISSION_GRANTED==TRUE, then put call to
-
     ~~~
       startWatchingLocation()
     ~~~
+
+1.  This is going in.
 
 1.  Developers using Android Studio with version 4.2 of the JB4A SDK do not need to modify the **AndroidManifest.xml** file unless using geolocation. In that case, add the following line:
 
