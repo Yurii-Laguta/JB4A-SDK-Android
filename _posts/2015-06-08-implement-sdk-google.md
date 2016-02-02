@@ -32,7 +32,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     ~~~
     dependencies {
       // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:4.1.1@aar'
+      compile 'com.exacttarget.etpushsdk:etsdk:4.2.0@aar'
 
       // Google Play Services for Location and Google Cloud Messaging
       compile 'com.google.android.gms:play-services-location:8.3.0'
