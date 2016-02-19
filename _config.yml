@@ -55,3 +55,7 @@ exclude: ['bin', 'README.md']
 
 # Use the kramdown Markdown renderer
 markdown: kramdown
+
+# Current SDK version, use for all mentions
+currentVersion: "4.2.0"
+

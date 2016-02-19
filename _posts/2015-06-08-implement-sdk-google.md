@@ -13,7 +13,7 @@ This document provides examples using Android Studio. To review any Eclipse-spec
 
 Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code comes from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
-Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. Set your minimum SDK version to no less than 10.
+Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or greater. Set your minimum SDK version to no less than 15.
 
 1.  Add the following repositories to your application's `build.gradle` file.
 
@@ -32,17 +32,17 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     ~~~
     dependencies {
       // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:4.2.0@aar'
+      compile 'com.exacttarget.etpushsdk:etsdk:{{ site.currentVersion }}@aar'
 
       // Google Play Services for Location and Google Cloud Messaging
-      compile 'com.google.android.gms:play-services-location:8.3.0'
-      compile 'com.google.android.gms:play-services-gcm:8.3.0'
+      compile 'com.google.android.gms:play-services-location:8.4.0'
+      compile 'com.google.android.gms:play-services-gcm:8.4.0'
 
       // Google's Support v4 for Notification compatibility
       compile 'com.android.support:support-v4:22.2.0'
 
-      // 3rd Party Libraries Required for SDK integration of Beacons (only for Beacon Beta Testers)
-      // compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
+      // 3rd Party Libraries Required for SDK integration of Beacons
+      compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
     }
     ~~~
 
@@ -99,17 +99,16 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
        <uses-permission android:name="android.permission.INTERNET"/>
        <uses-permission android:name="android.permission.WAKE_LOCK"/>
        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-       uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+       <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
        <!-- END ET SDK Required Permissions -->
           
        <application>
            <!-- ETPushReceiver and Service -->
-            <receiver android:name="com.exacttarget.etpushsdk.ETPushReceiver"android:permission="com.google.android.c2dm.permission.SEND">
+            <receiver android:name="com.exacttarget.etpushsdk.ETPushReceiver" android:permission="com.google.android.c2dm.permission.SEND">
               <intent-filter>
                 <action android:name="${applicationId}.MESSAGE_OPENED" />
                 <action android:name="com.exacttarget.etpushsdk.SEND_REGISTRATION" />
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
                 <action android:name="android.intent.action.AIRPLANE_MODE" />
                 <category android:name="${applicationId}" />
@@ -125,7 +124,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
                android:enabled="true" />
            <!-- ETPushReceiver and Service -->
 
-           <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
+           <!-- JB4A SDK Activity required for CloudPage or OpenDirect URLs sent from Marketing Cloud -->
            <activity
               android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter"
               android:label="Landing Page" />
@@ -149,9 +148,9 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
         ~~~
         try {
 	        ETPush.readyAimFire(new ETPushConfig.Builder(this)
-	        		.setEtAppId("etAppId")
-	        		.setAccessToken("accessToken")
-	        		.setGcmSenderId("gcmSenderId")
+	        		.setEtAppId("INSERT_YOUR_ETAPPID_HERE")
+	        		.setAccessToken("INSERT_YOUR_ACCESS_TOKEN_HERE")
+	        		.setGcmSenderId("INSERT_YOUR_GCMSENDERID_HERE")
 	        		.setAnalyticsEnabled(true|false)
 	        		.setPiAnalyticsEnabled(true|false)
 	        		.setLocationEnabled(true|false)      // set to true ONLY if you purchased Location as it requires additional overhead
@@ -179,7 +178,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
 
         ~~~
     /**
-     * EventBus callback listening for a ReadyAimFireInitCompletedEvent.  After we receive this
+     * EventBus callback listening for a ReadyAimFireInitCompletedEvent. After we receive this
      * event, we can safely use our ETPush instance.
      *
      * @param event the type of event we're listening for.
