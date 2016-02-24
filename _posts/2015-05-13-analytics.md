@@ -9,7 +9,7 @@ order: 6
 
 You can enable analytics by setting the appropriate parameter in the ETPushConfig.Builder(). Before implementing this call, ensure you update your [ETPushConfig.Builder()]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) as described in step 6. Set the **enableAnalytics** parameter to **true** to implement ETAnalytics in your mobile app. Set the **enableAnalytics** parameter to **true** to implement [Web and Mobile Analytics](https://help.exacttarget.com/en/documentation/web_and_mobile_analytics/){:target="_blank"} in your mobile app.
 
-<script src="https://gist.github.com/androidfu/af61cb502cb39cd5d086.js"></script>
+<script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
 ###Track Page View
 
