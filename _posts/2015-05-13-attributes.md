@@ -13,6 +13,7 @@ The ETPush.getInstance().addAttribute() method will create a new registration re
 ###addAttribute
 
 ~~~
+// Add an attribute - will return a true or false value indicating success of call
 etPush.addAttribute("someKey", "someValue")
 ~~~
 
