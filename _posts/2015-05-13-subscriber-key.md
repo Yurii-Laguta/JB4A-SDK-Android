@@ -26,7 +26,7 @@ When the mobile app sends a registration to the Marketing Cloud, the app adds an
     …
     …
 ~~~
-You can also set the subsciber key to a specific value provided by your customer as the unique identifier for the contact. You can use a mobile number, email address, or other appropriate value as necessary.
+You can also set the subsciber key to a specific value provided by your customer as the unique identifier for the contact. You can use a mobile number, email address, or other appropriate value as necessary. Subscriber keys cannot include a null value.
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses a PreferenceActivity to allow your users to enter or change the subscriber key in their Contact record.
 

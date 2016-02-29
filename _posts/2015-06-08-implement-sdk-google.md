@@ -99,7 +99,6 @@ Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or gr
        <uses-permission android:name="android.permission.INTERNET"/>
        <uses-permission android:name="android.permission.WAKE_LOCK"/>
        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-       <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
        <!-- END ET SDK Required Permissions -->
           
        <application>

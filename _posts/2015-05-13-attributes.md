@@ -25,3 +25,52 @@ for (Attribute attribute : etPush.getAttributes()) {
     // use "attribute" here
 }
 ~~~ 
+
+###Reserved Attributes
+
+The JB4A SDK ignores calls to modify values associated with the following attributes, as these attributes represent reserved internal attributes:
+
+* addressId
+* alias
+* apId
+* backgroundRefreshEnabled
+* badge
+* channel
+* contactId
+* contactKey
+* createdBy
+* createdDate
+* customObjectKey
+* device
+* deviceId
+* deviceType
+* gcmSenderId
+* hardwareId
+* isHonorDst
+* lastAppOpen
+* lastMessageOpen
+* lastSend
+* locationEnabled
+* messageOpenCount
+* modifiedBy
+* modifiedDate
+* optInDate
+* optInMethodId
+* optInStatusId
+* optOutDate
+* optOutMethodId
+* optOutStatusId
+* platform
+* platformVersion
+* providerToken
+* proximityEnabled
+* pushAddressExtensionId
+* pushApplicationId
+* sdkVersion
+* sendCount
+* source
+* sourceObjectId
+* status
+* systemToken
+* timezone
+* utcOffset
