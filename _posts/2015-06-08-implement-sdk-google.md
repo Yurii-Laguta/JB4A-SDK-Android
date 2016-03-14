@@ -17,43 +17,15 @@ Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or gr
 
 1.  Add the following repositories to your application's `build.gradle` file.
 
-    ~~~
-    allprojects {
-        repositories {
-            jcenter()
-            maven {
-                url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" 
-            }
-        }
-    }
-    ~~~
+    <script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script>
+
 1.  Add the following dependencies to your application **app\build.gradle** file.
 
-    ~~~
-    dependencies {
-      // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:{{ site.currentVersion }}@aar'
-
-      // Google Play Services for Location and Google Cloud Messaging
-      compile 'com.google.android.gms:play-services-location:8.4.0'
-      compile 'com.google.android.gms:play-services-gcm:8.4.0'
-
-      // Google's Support v4 for Notification compatibility
-      compile 'com.android.support:support-v4:22.2.0'
-
-      // 3rd Party Libraries Required for SDK integration of Beacons
-      compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
-    }
-    ~~~
+    <script src="https://gist.github.com/sfmc-mobilepushsdk/086bd8b65afc8d99c222.js"></script>
 
 1.  In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{}** block to simplify integration.
 
-    ~~~
-    defaultConfig {
-        // TODO Replace with your applicationId
-        applicationId "com.example.package"
-    }
-    ~~~
+    <script src="https://gist.github.com/sfmc-mobilepushsdk/f67cb31c44328870f6e1.js"></script>
 
 1.  In your **app\build.gradle** file, ensure that you request appropriate permissions if the user enabled Location features for builds targeting Android versions 23 and above.
 
