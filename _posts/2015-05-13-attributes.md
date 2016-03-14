@@ -10,6 +10,8 @@ To implement segmentation by attributes, include code to reference attributes in
 
 The ETPush.getInstance().addAttribute() method will create a new registration record and send it to the Marketing Cloud. This value will take up to 15 minutes to appear in the contact record. If the app makes the update without current Internet connectivity, the SDK will save the update and send whenever a network becomes available.
 
+The SDK trims all leading and trailings blanks from attribute values.
+
 ###addAttribute
 
 ~~~
