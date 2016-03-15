@@ -30,7 +30,7 @@ Add the following dependencies to your application `app\build.gradle` file.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/086bd8b65afc8d99c222.js"></script><br/>
 
 ### Update Your Project's `AndroidManifest.xml`
-Your manifest must contain a named application and have a class that extends Android Application.  This is accomplished by adding an `android:name` field to the `\<application\>` tag.
+Your manifest must contain a named application and have a class that extends Android Application.  This is accomplished by adding an `android:name` field to the `<application>` tag.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/8b3d059b5382f40c92a8.js"></script>
 
 > NOTE: As of v4.2 of the Salesforce Marketing Cloud MobilePush Android SDK, you no longer have to explicitely declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
@@ -45,9 +45,11 @@ From this class's `onCreate()` method you will need to bootstrap the SDK with a 
 
 ## Success!
 You should now be able to send a push notification from the Salesforce Marketing Cloud to your application!<br/><br/>
+
 ---
+
 ## For Versions Prior to SFMC MobilePush Android SDK v4.2
 
-### Update Your Manifest
-Your `AndroidManifext.xml` must contain the appropriate permissions, activies, receivers and services in order to successfully bootstrap the SDK.  Also, you must include a class that extends Android Application and that class must be added as the `android:name` field to the manifest's `\<application\>` tag.
+### Update Your Project's `AndroidManifest.xml`
+Your `AndroidManifext.xml` must contain the appropriate permissions, activies, receivers and services in order to successfully bootstrap the SDK.  Also, you must include a class that extends Android Application and that class must be added as the `android:name` field to the manifest's `<application>` tag.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/e2b900bb655e09e8b67b.js"></script><br/>
