@@ -15,12 +15,12 @@ In order to use the Salesforce Marketing Cloud MobilePush Android SDK in your Mo
 
 This document provides examples using Android Studio.
 
-### Add a Repository
+1. ### Add a Repository
 
 Add the following repositories to your application's `build.gradle` file.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script>
 
-### Add an Application ID
+1. ### Add an Application ID
 In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{ }** block.  This is required for the manifest merger process to work and have the appropriate permissions assigned to your application.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/f67cb31c44328870f6e1.js"></script>
 
