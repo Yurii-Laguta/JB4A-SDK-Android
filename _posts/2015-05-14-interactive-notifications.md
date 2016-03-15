@@ -6,7 +6,7 @@ category: features
 date: 2015-05-14 12:00:00
 order: 8
 ---
-You can add buttons called **interactive notifications** to push notifications in your Mobile app. The Salesforce Marketing Cloud sends the category name for these interactive notifications in the message payload. 
+You can add buttons called **interactive notifications** to push notifications in your Mobile app. These notifications allow the mobile app user to take action directly from notifications, such as going to specific locations within the app or initiating a purchase. The Salesforce Marketing Cloud sends the category name for these interactive notifications in the message payload. 
 
 This example comes from <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 

@@ -13,47 +13,19 @@ This document provides examples using Android Studio. To review any Eclipse-spec
 
 Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code comes from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
-Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. Set your minimum SDK version to no less than 10.
+Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or greater. Set your minimum SDK version to no less than 15.
 
 1.  Add the following repositories to your application's `build.gradle` file.
 
-    ~~~
-    allprojects {
-        repositories {
-            jcenter()
-            maven {
-                url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" 
-            }
-        }
-    }
-    ~~~
+    <script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script>
+
 1.  Add the following dependencies to your application **app\build.gradle** file.
 
-    ~~~
-    dependencies {
-      // ET SDK
-      compile 'com.exacttarget.etpushsdk:etsdk:4.1.1@aar'
-
-      // Google Play Services for Location and Google Cloud Messaging
-      compile 'com.google.android.gms:play-services-location:8.3.0'
-      compile 'com.google.android.gms:play-services-gcm:8.3.0'
-
-      // Google's Support v4 for Notification compatibility
-      compile 'com.android.support:support-v4:22.2.0'
-
-      // 3rd Party Libraries Required for SDK integration of Beacons (only for Beacon Beta Testers)
-      // compile 'org.altbeacon:android-beacon-library:2.5.1@aar'
-    }
-    ~~~
+    <script src="https://gist.github.com/sfmc-mobilepushsdk/086bd8b65afc8d99c222.js"></script>
 
 1.  In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{}** block to simplify integration.
 
-    ~~~
-    defaultConfig {
-        // TODO Replace with your applicationId
-        applicationId "com.example.package"
-    }
-    ~~~
+    <script src="https://gist.github.com/sfmc-mobilepushsdk/f67cb31c44328870f6e1.js"></script>
 
 1.  In your **app\build.gradle** file, ensure that you request appropriate permissions if the user enabled Location features for builds targeting Android versions 23 and above.
 
@@ -69,8 +41,9 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
     ~~~
 
     If PERMISSION_GRANTED==TRUE, then put call to
+
     ~~~
-      startWatchingLocation()
+    startWatchingLocation()
     ~~~
 
 1.  Developers using Android Studio with version 4.2 of the JB4A SDK do not need to modify the **AndroidManifest.xml** file unless using geolocation. In that case, add the following line:
@@ -98,17 +71,15 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
        <uses-permission android:name="android.permission.INTERNET"/>
        <uses-permission android:name="android.permission.WAKE_LOCK"/>
        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-       uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
        <!-- END ET SDK Required Permissions -->
           
        <application>
            <!-- ETPushReceiver and Service -->
-            <receiver android:name="com.exacttarget.etpushsdk.ETPushReceiver"android:permission="com.google.android.c2dm.permission.SEND">
+            <receiver android:name="com.exacttarget.etpushsdk.ETPushReceiver" android:permission="com.google.android.c2dm.permission.SEND">
               <intent-filter>
                 <action android:name="${applicationId}.MESSAGE_OPENED" />
                 <action android:name="com.exacttarget.etpushsdk.SEND_REGISTRATION" />
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
                 <action android:name="android.intent.action.AIRPLANE_MODE" />
                 <category android:name="${applicationId}" />
@@ -124,7 +95,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
                android:enabled="true" />
            <!-- ETPushReceiver and Service -->
 
-           <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
+           <!-- JB4A SDK Activity required for CloudPage or OpenDirect URLs sent from Marketing Cloud -->
            <activity
               android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter"
               android:label="Landing Page" />
@@ -148,9 +119,9 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
         ~~~
         try {
 	        ETPush.readyAimFire(new ETPushConfig.Builder(this)
-	        		.setEtAppId("etAppId")
-	        		.setAccessToken("accessToken")
-	        		.setGcmSenderId("gcmSenderId")
+	        		.setEtAppId("INSERT_YOUR_ETAPPID_HERE")
+	        		.setAccessToken("INSERT_YOUR_ACCESS_TOKEN_HERE")
+	        		.setGcmSenderId("INSERT_YOUR_GCMSENDERID_HERE")
 	        		.setAnalyticsEnabled(true|false)
 	        		.setPiAnalyticsEnabled(true|false)
 	        		.setLocationEnabled(true|false)      // set to true ONLY if you purchased Location as it requires additional overhead
@@ -178,7 +149,7 @@ Use the JB4A Android SDK with Android API versions 10 (Gingerbread) or greater. 
 
         ~~~
     /**
-     * EventBus callback listening for a ReadyAimFireInitCompletedEvent.  After we receive this
+     * EventBus callback listening for a ReadyAimFireInitCompletedEvent. After we receive this
      * event, we can safely use our ETPush instance.
      *
      * @param event the type of event we're listening for.

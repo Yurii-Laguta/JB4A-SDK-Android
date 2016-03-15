@@ -7,32 +7,9 @@ date: 2015-05-14 12:00:00
 order: 6
 ---
 
-Set the enableAnalytics parameter to true on the call to readyAimFire() in the Application Class to implement ETAnalytics in your mobile app:
+You can enable analytics by setting the appropriate parameter in the ETPushConfig.Builder(). Before implementing this call, ensure you update your [ETPushConfig.Builder()]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) as described in step 6. Set the **enableAnalytics** parameter to **true** to implement ETAnalytics in your mobile app. Set the **enableAnalytics** parameter to **true** to implement [Web and Mobile Analytics](https://help.exacttarget.com/en/documentation/web_and_mobile_analytics/){:target="_blank"} in your mobile app.
 
-~~~ 
-    ETPush.readyAimFire(this, 
-                        CONSTS_API.getEtAppId(), 
-                        CONSTS_API.getAccessToken(), 
-                        CONSTS_API.getGcmSenderId(), 
-                        true,     // enable ET Analytics 
-                        true,     // enable Location Manager, if you purchased this feature
-                        true);    // enable Cloud Page, if you purchased this feature
-~~~
-
-###Web and Mobile Analytics###
-
-Set the **enableAnalytics** parameter to **true** on the call to **readyAimFire()** in the **Application Class** to implement [Web and Mobile Analytics](http://www.exacttarget.com/products/customer-data-platform/web-mobile-analytics){:target="_blank"} in your mobile app:
-
-~~~ 
-    ETPush.readyAimFire(this, 
-                        CONSTS_API.getEtAppId(), 
-                        CONSTS_API.getAccessToken(), 
-                        CONSTS_API.getGcmSenderId(), 
-                        true,     // enable ET Analytics
-                        true,     // enable new Web and Mobile Analytics 
-                        true,     // enable Location Manager, if you purchased this feature
-                        true);    // enable Cloud Page, if you purchased this feature
-~~~ 
+<script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
 ###Track Page View
 

@@ -17,7 +17,7 @@ order: 2
 
     ~~~
     <action android:name="android.intent.action.BATTERY_LOW" />
-    <action android:name="android.intent.action.BATTERY_OKAY" />
+    <action android:name="android.intent.action.POWER_CONNECTED" />
     ~~~
 
 1.  Add the following entries to **AndroidManifest.xml**.

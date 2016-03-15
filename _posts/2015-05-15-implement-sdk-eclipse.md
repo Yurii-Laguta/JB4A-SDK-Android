@@ -9,7 +9,7 @@ order: 3
 
 Follow these Eclipse specific techniques to bootstrap the SDK to your Mobile app using the Eclipse IDE.
 
-1. Copy the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-4.1.1.jar?raw=true" target="_blank">etsdk-4.1.1.jar</a> into the **{project root}/libs** folder for your project.
+1. Copy the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.jar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.jar</a> into the **{project root}/libs** folder for your project.
 
 1. Copy additional dependency jars from the SDK Explorer project found <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer/eclipse-build-google/libs" target="_blank">HERE</a>. Your final libs folder should resemble this sample where x.x.x is the version you use:<br/>
     <img class="img-responsive" src="{{ site.baseurl }}/assets/eclipse-libs.png" />

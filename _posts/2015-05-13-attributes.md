@@ -10,9 +10,12 @@ To implement segmentation by attributes, include code to reference attributes in
 
 The ETPush.getInstance().addAttribute() method will create a new registration record and send it to the Marketing Cloud. This value will take up to 15 minutes to appear in the contact record. If the app makes the update without current Internet connectivity, the SDK will save the update and send whenever a network becomes available.
 
+The SDK trims all leading and trailings blanks from attribute values.
+
 ###addAttribute
 
 ~~~
+// Add an attribute - will return a true or false value indicating success of call
 etPush.addAttribute("someKey", "someValue")
 ~~~
 
@@ -24,3 +27,52 @@ for (Attribute attribute : etPush.getAttributes()) {
     // use "attribute" here
 }
 ~~~ 
+
+###Reserved Attributes
+
+The JB4A SDK ignores calls to modify values associated with the following attributes, as these attributes represent reserved internal attributes:
+
+* addressId
+* alias
+* apId
+* backgroundRefreshEnabled
+* badge
+* channel
+* contactId
+* contactKey
+* createdBy
+* createdDate
+* customObjectKey
+* device
+* deviceId
+* deviceType
+* gcmSenderId
+* hardwareId
+* isHonorDst
+* lastAppOpen
+* lastMessageOpen
+* lastSend
+* locationEnabled
+* messageOpenCount
+* modifiedBy
+* modifiedDate
+* optInDate
+* optInMethodId
+* optInStatusId
+* optOutDate
+* optOutMethodId
+* optOutStatusId
+* platform
+* platformVersion
+* providerToken
+* proximityEnabled
+* pushAddressExtensionId
+* pushApplicationId
+* sdkVersion
+* sendCount
+* source
+* sourceObjectId
+* status
+* systemToken
+* timezone
+* utcOffset
