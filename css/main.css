@@ -82,7 +82,7 @@ blockquote {
   border-left: 4px solid #FF0000;
   padding: 0 15px;
   color: #777777;
-  font-size: 0.85em; }
+  font-size: inherit; }
   blockquote > :first-child {
     margin-top: 20; }
   blockquote > :last-child {
