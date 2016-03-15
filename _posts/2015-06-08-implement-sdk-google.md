@@ -12,7 +12,8 @@ In order to use the Salesforce Marketing Cloud MobilePush Android SDK in your Mo
 > NOTE: The Salesforce Marketing Cloud Android SDK requires Android API 15 (aka _Ice Cream Sandwich v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow v6.0_) and the new Android Permissions model is supported.
 
 > NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Sales Force Marketing Cloud.  Support for Eclipse will soon be discontinued by the SFMC, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
-<br/><br/>
+
+
 This document provides examples using Android Studio.
 <br/><br/>
 ### Add a Repository
