@@ -13,23 +13,23 @@ In order to use the Salesforce Marketing Cloud MobilePush Android SDK in your Mo
 
 > NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Sales Force Marketing Cloud.  Support for Eclipse will soon be discontinued by the SFMC, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html).<br/>
 
-This document provides examples using Android Studio.<br/>
+This document provides examples using Android Studio.<br/><br/>
 
-### Add a Repository to `build.gradle`
+### Update Your Project's `build.gradle`
 Add the following repositories to your application's `build.gradle` file.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script><br/>
 
-### Update Your `app\build.gradle`
+### Update Your Project's `app\build.gradle`
 
 #### Add an Application ID
 Add an `applicationId` to the `defaultConfig{ }` block.  This is required for the manifest merger process to work and have the appropriate permissions assigned to your application.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/f67cb31c44328870f6e1.js"></script><br/>
 
-#### Update Your Dependencies
+#### Add the SDK's Dependencies
 Add the following dependencies to your application `app\build.gradle` file.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/086bd8b65afc8d99c222.js"></script><br/>
 
-### Update Your `AndroidManifest.xml`
+### Update Your Project's `AndroidManifest.xml`
 Your manifest must contain a named application and have a class that extends Android Application.  This is accomplished by adding an `android:name` field to the `\<application\>` tag.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/8b3d059b5382f40c92a8.js"></script>
 
@@ -45,7 +45,7 @@ From this class's `onCreate()` method you will need to bootstrap the SDK with a 
 
 ## Success!
 You should now be able to send a push notification from the Salesforce Marketing Cloud to your application!<br/><br/>
-
+---
 ## For Versions Prior to SFMC MobilePush Android SDK v4.2
 
 ### Update Your Manifest
