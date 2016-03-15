@@ -9,7 +9,7 @@ order: 1
 
 In order to use the Salesforce Marketing Cloud Android SDK in your Mobile app, you will need to register a device with the Salesforce Marketing Cloud. This process connects the device to the MobilePush app you created previously in the [APP CENTER]({{ site.baseurl }}/create-apps/create-apps-overview.html).
 
-> NOTE: The Salesforce Marketing Cloud Android SDK requires Android API 15 (aka _Ice Cream Sandwich v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow_) and the new Android Permissions model is supported.
+> NOTE: The Salesforce Marketing Cloud Android SDK requires Android API 15 (aka _Ice Cream Sandwich v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow v6.0_) and the new Android Permissions model is supported.
 
 > NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Sales Force Marketing Cloud.  Support for Eclipse will soon be discontinued by the SFMC, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
 
