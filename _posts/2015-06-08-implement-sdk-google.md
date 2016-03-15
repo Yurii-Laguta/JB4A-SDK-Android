@@ -11,7 +11,7 @@ In order to use the Salesforce Marketing Cloud MobilePush Android SDK in your Mo
 
 > NOTE: The Salesforce Marketing Cloud Android SDK requires Android API 15 (aka _Ice Cream Sandwich v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow v6.0_) and the new Android Permissions model is supported.
 
-> NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Sales Force Marketing Cloud.  Support for Eclipse will soon be discontinued by the SFMC, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
+> NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Sales Force Marketing Cloud.  Support for Eclipse will soon be discontinued by the SFMC, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html).
 
 
 This document provides examples using Android Studio.
@@ -43,8 +43,7 @@ From this class's **onCreate()** method you will need to bootstrap the SDK with 
 > NOTE: Changes, including your initial registration from a device, propagate from the server every 5 minutes.  Ensure you wait an appropriate amount of time before expecting to receive push notifications or for changes to take affect.
 
 ## Success!
-
-### You should now be able to send a push notification from the Salesforce Marketing Cloud to your application!
+You should now be able to send a push notification from the Salesforce Marketing Cloud to your application!
 
 ## For Versions Prior to SFMC MobilePush Android SDK v4.2
 
