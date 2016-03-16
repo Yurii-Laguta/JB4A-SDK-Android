@@ -70,3 +70,6 @@ Full Documentation for v4.0.x can be found [HERE](http://salesforce-marketingclo
 
 * Replace receiver's `CONNECTIVITY_CHANGE` intent-filter with `AIRPLANE_MODE`.
 * Remove unnecessary `GET_ACCOUNTS` permission.
+
+### Documentation for Older Versions
+The Documentation for releases prior to 4.x can be found on Code@ [HERE](https://code.exacttarget.com/apis-sdks/journey-builder-for-apps)
