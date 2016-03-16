@@ -48,15 +48,23 @@ You should now be able to send a push notification from the Salesforce Marketing
 
 ---
 
-## Upgrading
+## Upgrading From Previous Versions
 
 ### From v4.2 to v4.3
-Full Documentation for v4.2 can be found HERE.
+Full Documentation for v4.2 can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.2.0/).
 
 * Remove all manifest entries related to receivers and services.
 * Remove any reference to `ETLandingPagePresenter`.
 * Remove all permissions _*except*_ for `ACCESS_FINE_LOCATION` if your application uses Geofences or Beacons.
 * You must leave the `android:name` field in your `<application>` tag.
 
-<script src="https://gist.github.com/sfmc-mobilepushsdk/68477bb9c521a550d7af.js"></script>
-<script src="https://gist.github.com/sfmc-mobilepushsdk/8b3d059b5382f40c92a8.js"></script>
+### From v4.1.x to v4.2
+Full Documentation for v4.1.x can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.1.0/).
+
+* Update Google Play Services dependencies to v8.x or higher.
+
+### From v4.0.x to v4.1
+Full Documentation for v4.0.x can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.0.0/).
+
+* Replace receiver's `CONNECTIVITY_CHANGE` intent-filter with `AIRPLANE_MODE`.
+* Remove unnecessary `GET_ACCOUNTS` permission.
