@@ -48,8 +48,15 @@ You should now be able to send a push notification from the Salesforce Marketing
 
 ---
 
-## For Versions Prior to SFMC MobilePush Android SDK v4.2
+## Upgrading
 
-### Update Your Project's `AndroidManifest.xml`
-Your `AndroidManifext.xml` must contain the appropriate permissions, activies, receivers and services in order to successfully bootstrap the SDK.  Also, you must include a class that extends Android Application and that class must be added as the `android:name` field to the manifest's `<application>` tag.
-<script src="https://gist.github.com/sfmc-mobilepushsdk/e2b900bb655e09e8b67b.js"></script><br/>
+### From v4.2 to v4.3
+Full Documentation for v4.2 can be found HERE.
+
+* Remove all manifest entries related to receivers and services.
+* Remove any reference to `ETLandingPagePresenter`.
+* Remove all permissions _*except*_ for `ACCESS_FINE_LOCATION` if your application uses Geofences or Beacons.
+* You must leave the `android:name` field in your `<application>` tag.
+
+<script src="https://gist.github.com/sfmc-mobilepushsdk/68477bb9c521a550d7af.js"></script>
+<script src="https://gist.github.com/sfmc-mobilepushsdk/8b3d059b5382f40c92a8.js"></script>
