@@ -59,3 +59,6 @@ markdown: kramdown
 # Current SDK version, use for all mentions
 currentVersion: "4.3.0"
 
+# Marketing Cloud Dealy
+propagationDelay: "5 minutes"
+
