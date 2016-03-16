@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Google"
-subtitle: "Implement SDK on Google Devices"
+subtitle: "Integrating the SDK"
 category: sdk-implementation
 date: 2015-05-14 12:00:00
 order: 1
