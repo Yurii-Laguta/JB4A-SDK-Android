@@ -16,11 +16,11 @@ Download the latest JB4A SDK jar:<br/>
 Download the latest JB4A SDK aar:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.aar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.aar</a>
 
-> Google Play Services Note - For versions 4.2 and later of SDK, use version 8.1 or later of Google Play Services. For version 4.1 and earlier of the SDK, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app. If you use SDK versions 4.1 or before and compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error.
+> NOTE: Versions 4.2 and newer of the JB4A Mobile Push Android SDK must be compiled with Google Play Services v8.x or newer. Older versions of the SDK must be compiled with Google Play Services v7.8 or older. Failing to follow these guidelines will result in an internal error and geolocation will not to function. See the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) for details and a resolution regarding this issue.
 
-## Android API Version
+## SDK Compatibility
 
-Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or greater. Set your minimum SDK version to no less than 15.
+The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream Sandwich_ or _Android 4.0.3_) or newer and has dependencies on Google Play Services and the Android Support v4 library.
 
 ## Release History
 
