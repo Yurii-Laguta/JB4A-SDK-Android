@@ -22,7 +22,9 @@ order: 3
 
 ### Update Your AndroidManifest.xml
 
-Eclipse users cannot benefit from Android Studio's manifest merger process and must add the required permissions, activities, receivers and services to their project's manifest.
+Eclipse users cannot benefit from Android Studio's manifest merger process and must add the required permissions, activities, receivers and services to their project's manifest. Also, you must replace `${applicationId}` throughout the manifest with your application's package name.
+
+> NOTE: You will not receive push notifications if you do not replace `${applicationId}` with your application's package name.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/e2b900bb655e09e8b67b.js"></script><br/>
 
 ### Bootstrap the SDK
