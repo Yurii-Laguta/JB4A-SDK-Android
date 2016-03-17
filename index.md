@@ -16,7 +16,7 @@ Download the latest JB4A SDK jar:<br/>
 Download the latest JB4A SDK aar:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.aar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.aar</a>
 
-> NOTE: Versions 4.2 and newer of the JB4A Mobile Push Android SDK must be compiled with Google Play Services v8.x or newer. Older versions of the SDK must be compiled with Google Play Services v7.8 or older. Failing to follow these guidelines will result in an internal error and geolocation will not to function. See the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) for details and a resolution regarding this issue.
+> NOTE: Versions 4.2 and newer of the JB4A Mobile Push Android SDK must be compiled with Google Play Services v8.x or newer. Older versions of the SDK must be compiled with Google Play Services v7.8 or older. Failing to follow these guidelines will result in an internal error and geolocation will not function. See the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) for details and a resolution regarding this issue.<br/>
 
 ## SDK Compatibility
 
@@ -39,7 +39,7 @@ _Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<
 * MOBILESDK-634 - Added a Logging interface.
 * MOBILESDK-594 - Updated Google Play Services dependency to version 8.4, Support-v4 to version 23.1.1 and the Android Beacon Library to version 2.7.
 * MOBILESDK-669 - Do not send null Tags to the Marketing Cloud
-* MOBILESDK-719 - Remove BATTERY_LOW and BATTERY_OKAY intent-filters from our receivers and let Android handle the location services on/off in those states.
+* MOBILESDK-719 - Remove `BATTERY_LOW` and `BATTERY_OKAY` intent-filters from our receivers and let Android handle the location services on/off in those states.
 * MOBILESDK-721 - Deprecate `activityPaused()` and `activityResumed()` as those are only required by Android Gingerbread which is no longer supported.
 * MOBILESDK-642 - Failed GCM Registrations now implement an exponential backoff retry.
 * MOBILESDK-666 - Resolved NPE and IllegalState errors in `ETLocationManager`.
