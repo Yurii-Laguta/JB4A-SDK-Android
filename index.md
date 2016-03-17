@@ -24,6 +24,31 @@ Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or gr
 
 ## Release History
 
+#### Version 4.3.0
+
+_Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<br/>
+
+* MOBILESDK-601 - Beacon messages, if enabled, will update at least every 24 hours while the application is in the background.
+* MOBILESDK-559 - Ensure inter-platform consistency and predictiability for location analytics.
+* MOBILESDK-580 - Implement `getSdkState()` developer convenience method.
+* MOBILESDK-659 - Add a MagicFence exit trigger in 20% from the actual boundary to ensure we update messages in time to be applicable for fast travel.
+* MOBILESDK-509 - Never send a null Subscriber Key to the Marketing Cloud.
+* MOBILESDK-481 - Restrict Reserved Words from being used as Attribute Keys.
+* MOBILESDK-397 - Replace legacy `GCM.register()` with `InstanceId.getToken()` for GCM registration.
+* MOBILESDK-531 - Remove Amazon's ADM support.
+* MOBILESDK-634 - Added a Logging interface.
+* MOBILESDK-594 - Updated Google Play Services dependency to version 8.4, Support-v4 to version 23.1.1 and the Android Beacon Library to version 2.7.
+* MOBILESDK-669 - Do not send null Tags to the Marketing Cloud
+* MOBILESDK-719 - Remove BATTERY_LOW and BATTERY_OKAY intent-filters from our receivers and let Android handle the location services on/off in those states.
+* MOBILESDK-721 - Deprecate `activityPaused()` and `activityResumed()` as those are only required by Android Gingerbread which is no longer supported.
+* MOBILESDK-642 - Failed GCM Registrations now implement an exponential backoff retry.
+* MOBILESDK-666 - Resolved NPE and IllegalState errors in `ETLocationManager`.
+* MOBILESDK-632 - Remove unnecessary `ACCESS_WIFI_STATE` permission.
+* MOBILESDK-330 - Verify Google Play Services Location library, if required, during SDK bootstrap.
+* MOBILESDK-437 - Verify Android Beacon Library, if required, during SDK bootstrap.
+* MOBILESDK-639 - Location messages with OpenDirect URLs now correctly launch the `ETLandingPagePresenter` Class.
+
+
 #### Version 4.2.0
 
 _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01_<br/>
