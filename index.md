@@ -23,6 +23,8 @@ Download the latest JB4A SDK aar:<br/>
 The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream Sandwich_ or _Android 4.0.3_) or newer and has dependencies on Google Play Services and the Android Support v4 library.<br/><br/>
 
 ## Release History
+For releases prior to {{ site.currentVersion }}, see: '
+link: '<a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a>'
 
 #### Version 4.3.0
 

@@ -57,6 +57,9 @@ markdown: kramdown
 # Current SDK version, use for all mentions
 currentVersion: "4.3.0"
 
+# Current SDK version, use for all mentions
+previousVersion: "4.2.0"
+
 # Marketing Cloud Delay
 propagationDelay: "5 minutes"
 
