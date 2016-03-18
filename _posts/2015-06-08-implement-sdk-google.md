@@ -17,7 +17,7 @@ This process connects the device to the MobilePush app you created previously in
 
 ## Integrating via Android Studio<br/><br/>
 
-### Update Your Project's `build.gradle`
+### <a name="updategradle"></a>Update Your Project's `build.gradle`
 Add the following repositories to your application's `build.gradle` file.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script><br/>
 
