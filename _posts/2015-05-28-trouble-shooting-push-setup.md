@@ -21,9 +21,9 @@ If you encounter issues receiving messages in your app, consider these troublesh
 
 1.  Use the Device Token output in the logcat as shown above to send a message directly to your app from Google. (as documented in <a href="https://developer.android.com/google/gcm/http.html" target="_blank">Google Cloud Messaging (GCM) HTTP connection server</a>).
 
- > NOTE: Device Token and System Token are the same thing and you may see them used in the documentation or logging interchangably.
- 
- > You will also need the Server Key found in your GCM Project that you used to provision the App Center app (as documented in [App Center Provisioning]({{ site.baseurl }}/create-apps/create-apps-provisioning.html)).
+	> NOTE: Device Token and System Token are the same thing and you may see them used in the documentation or logging interchangably.
+	
+	> You will also need the Server Key found in your GCM Project that you used to provision the App Center app (as documented in [App Center Provisioning]({{ site.baseurl }}/create-apps/create-apps-provisioning.html)).
 
 1.  Review the following screenshots of sending a message directly to your app using PAW. However, any REST client will work.
 
