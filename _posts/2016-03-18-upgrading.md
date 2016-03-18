@@ -6,7 +6,7 @@ category: overview
 date: 2015-05-14 12:00:00
 order: 3
 ---
-Below you will find the required changes to upgrade from an older SDK release to a newer SDK release.
+Below you will find the required changes to upgrade from an older SDK release to a newer SDK release.  These instructions assume Android Studio is the IDE.
 
 ### From v4.2 to v4.3
 Full Documentation for v4.2 can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.2.0/).
