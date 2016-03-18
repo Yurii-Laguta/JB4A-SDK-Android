@@ -1,16 +1,31 @@
 ---
 layout: page
-title: "Background"
-subtitle: "MobilePush Background"
+title: "Upgrading"
+subtitle: "Upgrading From a Previous Release"
 category: overview
 date: 2015-05-14 12:00:00
-order: 1
+order: 3
 ---
-MobilePush allows you to create and send targeted push messages based on cross-channel consumer data to encourage app usage and deliver increased ROI. With MobilePush, you view how users navigate through your app. From the products they view to the amount of time spent on each page, you gain a window into how users interact with your app across their smartphones and tablets. Because MobilePush is built on the Salesforce Marketing Cloud, you can easily integrate push message campaigns with any email, SMS, or social campaigns. The message wizard and preview features make it simple to create, deliver, and track push notifications to smartphones and tablets on iOS and Android operating systems.
+Below you will find the required changes to upgrade from an older SDK release to a newer SDK release.
 
-MobilePush allows you to:
+### From v4.2 to v4.3
+Full Documentation for v4.2 can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.2.0/).
 
-* Drive engagement and mCommerce
-* Gain valuable user insight
-* Easily build cross-channel campaigns
-* Segment and schedule messages
+* Remove all manifest entries related to receivers and services.
+* Remove any reference to `ETLandingPagePresenter`.
+* Remove all permissions _*except*_ for `ACCESS_FINE_LOCATION` and `RECEIVE_BOOT_COMPLETED` if your application uses Geofences or Beacons.
+* You must leave the `android:name` field in your `<application>` tag.
+
+### From v4.1 to v4.2
+Full Documentation for v4.1.x can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.1.0/).
+
+* Update Google Play Services dependencies to v8.x or higher.
+
+### From v4.0 to v4.1
+Full Documentation for v4.0.x can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.0.0/).
+
+* Replace receiver's `CONNECTIVITY_CHANGE` intent-filter with `AIRPLANE_MODE`.
+* Remove unnecessary `GET_ACCOUNTS` permission.
+
+### Documentation for Older Versions
+The Documentation for releases prior to 4.x can be found on Code@ [HERE](https://code.exacttarget.com/apis-sdks/journey-builder-for-apps)
