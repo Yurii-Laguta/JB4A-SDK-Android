@@ -28,6 +28,6 @@ Eclipse users cannot benefit from Android Studio's manifest merger process and m
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/e2b900bb655e09e8b67b.js"></script><br/>
 
-### Bootstrap the SDK
+### Configure the SDK
 
-Follow the instructions found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html#bootstrap)
+Follow the instructions found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html#configure)

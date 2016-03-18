@@ -6,9 +6,9 @@ category: trouble-shooting
 date: 2015-05-14 12:00:00
 order: 2
 ---
-In the 4.0.3 release of the SDK, we added code to ensure that a device that could not implement encryption would wipe data from the device and inform you about the SDK bootstrap failure.
+In the 4.0.3 release of the SDK, we added code to ensure that a device that could not implement encryption would wipe data from the device and inform you about the SDK configure failure.
 
-As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus in order to determine if the SDK successfully bootstrapped.
+As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus in order to determine if the SDK successfully configureped.
 
 With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockoff device), you will receive a new code from the ReadyAimFireInitCompletedEvent to determine the reason for the failure:
 
@@ -21,11 +21,11 @@ With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockof
               }
        
               if (event.isReadyAimFireReady()) {
-                // successful bootstrap with SDK  
+                // successful configure with SDK  
        
        
               } else {
-                 // unsuccessful bootstrap with SDK 
+                 // unsuccessful configure with SDK 
                    if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_FAILURE) {
                         message = "ETPush readyAimFire() did not initialize due to an Encryption failure.";
                     } else if (event.getCode() == ETException.RAF_INITIALIZE_ENCRYPTION_OPTOUT_FAILURE) {

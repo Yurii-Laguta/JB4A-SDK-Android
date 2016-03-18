@@ -99,7 +99,7 @@
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">JB4A SDK main class for MobilePush actions.
  <p/>
- Use <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a> to bootstrap your app with the SDK.</div>
+ Use <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a> to configure your app with the SDK.</div>
 </li>
 </ul>
 </div>
@@ -447,7 +447,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>readyAimFire</h4>
 <pre>public static&nbsp;void&nbsp;readyAimFire(<a href="../../../com/exacttarget/etpushsdk/ETPushConfig.html" title="class in com.exacttarget.etpushsdk">ETPushConfig</a>&nbsp;pushConfig)
                          throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Call this from your Application's <code>Application.onCreate()</code> method. This method initializes ETPush and bootstraps it to your app.
+<div class="block">Call this from your Application's <code>Application.onCreate()</code> method. This method initializes ETPush and configures it to your app.
  <br/><br/>
  Use <a href="../../../com/exacttarget/etpushsdk/ETPushConfig.Builder.html" title="class in com.exacttarget.etpushsdk"><code>ETPushConfig.Builder</code></a> to provide details of the Marketing Cloud MobilePush app you want to connect with as well
  as which features to enable within the SDK.
@@ -459,7 +459,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  readyAimFire() must be the first call before calling any other SDK methods or using any other classes.
  <br/><br/>
  The reason we ask that you call this within your Application class is to ensure that background activities performed to display messages
- will be able to bootstrap to your app.</div>
+ will be able to configure to your app.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>pushConfig</code> - <a href="../../../com/exacttarget/etpushsdk/ETPushConfig.html" title="class in com.exacttarget.etpushsdk"><code>ETPushConfig</code></a></dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></code></dd></dl>
@@ -585,7 +585,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
  into the foreground, or when the app is put into the background.
  <br/><br/>
  Failure to call these methods within your Activities will disable functionality you might have been expecting when you
- bootstrapped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
+ configureped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>activity</code> - The paused <code>Activity</code>.</dd></dl>
 </li>
 </ul>
@@ -606,7 +606,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
  into the foreground, or when the app is put into the background.
  <br/><br/>
  Failure to call these methods within your Activities will disable functionality you might have been expecting when you
- bootstrapped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
+ configureped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>activity</code> - The paused <code>Activity</code>.</dd></dl>
 </li>
 </ul>

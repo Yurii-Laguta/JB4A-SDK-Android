@@ -37,8 +37,8 @@ Your manifest must contain a named application and have a class that extends And
 
 > NOTE: As of v4.2 of the Salesforce Marketing Cloud Mobile Push Android SDK, you no longer have to explicitely declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
 
-### <a name="bootstrap"></a>Bootstrap the SDK
-In your Android Application Class' `onCreate()` method you will need to bootstrap the SDK with a call to `readyAimFire()`:
+### <a name="configure"></a>Configure the SDK
+In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `readyAimFire()`:
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
 > NOTE: `readyAimFire()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>

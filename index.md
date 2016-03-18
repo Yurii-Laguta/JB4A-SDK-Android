@@ -44,8 +44,8 @@ _Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<
 * MOBILESDK-642 - Failed GCM Registrations now implement an exponential backoff retry.
 * MOBILESDK-666 - Resolved NPE and IllegalState errors in `ETLocationManager`.
 * MOBILESDK-632 - Remove unnecessary `ACCESS_WIFI_STATE` permission.
-* MOBILESDK-330 - Verify Google Play Services Location library, if required, during SDK bootstrap.
-* MOBILESDK-437 - Verify Android Beacon Library, if required, during SDK bootstrap.
+* MOBILESDK-330 - Verify Google Play Services Location library, if required, during SDK configure.
+* MOBILESDK-437 - Verify Android Beacon Library, if required, during SDK configure.
 * MOBILESDK-639 - Location messages with OpenDirect URLs now correctly launch the `ETLandingPagePresenter` Class.
 
 
@@ -113,7 +113,7 @@ Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 R
 * MSDK-324 - Remove GET_ACCOUNTS permission
 * MSDK-328 - Never send "null" as a String in a Registration payload
 * MSDK-332 - Disable Proximity (beacons) for API < 18
-* MSDK-334 - Validate PRNG fix required Proguard statements during SDK bootstrap
+* MSDK-334 - Validate PRNG fix required Proguard statements during SDK configure
 * MSDK-336 - Fix for NPE during WakefulBroadcastReceiver.completeWakefulIntent()
 
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
@@ -137,7 +137,7 @@ _Released July 22nd 2015_<br/>
 _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
 
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
-  _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
+  _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from integrating with the SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
 * MPUSH-3824 - Throw a RunTimeException if [ProGuard]({{ site.baseurl }}/sdk-implementation/proguard.html) statements obfuscated required classes within the SDK.<br/>
 * MPUSH-3841 - Pushes without an `alert` key in the payload will not result in a notification being shown to the user.<br/>
 * MPUSH-3822 - Make sure SDK respects a `sound` key value of `none` which results in a notification without a sound.<br/>
@@ -319,7 +319,7 @@ ___
 
 #### Version 3.0
 
-* Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
+* Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to configure.
 * Support for Action/Uri type of Intents when notification is tapped.
 * Ability to customize the notification and Intent by extending ET_GenericReceiver.
 * ETAnalytics changes to use onPause() and onResume() for more accurate time tracking.
@@ -329,7 +329,7 @@ ___
 ##### Deprecations
 
 * **AnalyticsActivity** - Use ETAnalytics directly from each of your Activity's onPause() and onResume()
-* **PushEnabledApplication** - Call ETPush.readyAimFire(this) from your Application's onCreate() to bootstrap instead of extending PushEnabledApplication.
+* **PushEnabledApplication** - Call ETPush.readyAimFire(this) from your Application's onCreate() to configure instead of extending PushEnabledApplication.
 * **gcm.jar** - Instead of gcm.jar, include GooglePlayServices support in your application. see: http://developer.android.com/google/play-services/setup.html
 
 ___
