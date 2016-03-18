@@ -79,7 +79,7 @@ _Released January 8 2016, correlating to the Salesforce Marketing Cloud 2015-07.
 _Released November 20 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
-* MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
+* MSDK-248 - Add Retry logic for all data POSTed to the Marketing Cloud including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
 * MSDK-292 - Make sure app monitors Location regions after a device reboot.
 * MSDK-295 - Remove unnecessary GET_ACCOUNTS permission.  You may remove this permission from your AndroidManifest.xml file.
 * MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
@@ -131,7 +131,7 @@ _Released August 25th 2015_<br/>
 #### Version 4.0.4
 _Released July 22nd 2015_<br/>
 
-* MSDK-11 - Group Registrations that are sent to the SFMC when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
+* MSDK-11 - Group Registrations that are sent to the Marketing Cloud when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
 
 #### Version 4.0.3
 _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
