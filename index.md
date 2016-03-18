@@ -34,15 +34,15 @@ _Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<
 * MOBILESDK-719 - Remove `BATTERY_LOW` and `BATTERY_OKAY` intent-filters from our receivers and let Android handle the location services on/off in those states.
 * MOBILESDK-669 - Do not send null Tags to the Marketing Cloud
 * MOBILESDK-666 - Resolved NPE and IllegalState errors in `ETLocationManager`.
-* MOBILESDK-659 - Add a MagicFence exit trigger in 20% from the actual boundary to ensure we update messages in time to be applicable for fast travel.
-* MOBILESDK-642 - Failed GCM Registrations now implement an exponential backoff retry.
+* MOBILESDK-659 - Improve timeliness of downloading of Geofence and Beacon messages.
+* MOBILESDK-642 - Failed GCM Registrations now implement an exponential back-off retry.
 * MOBILESDK-639 - Location messages with OpenDirect URLs now correctly launch the `ETLandingPagePresenter` Class.
 * MOBILESDK-634 - Added a Logging interface.
 * MOBILESDK-632 - Remove unnecessary `ACCESS_WIFI_STATE` permission.
 * MOBILESDK-601 - Beacon messages, if enabled, will update at least every 24 hours while the application is in the background.
 * MOBILESDK-594 - Updated Google Play Services dependency to version 8.4, Support-v4 to version 23.1.1 and the Android Beacon Library to version 2.7.
 * MOBILESDK-580 - Implement `getSdkState()` developer convenience method.
-* MOBILESDK-559 - Ensure inter-platform consistency and predictiability for location analytics.
+* MOBILESDK-559 - Ensure inter-platform consistency and predictability for location analytics.
 * MOBILESDK-531 - Remove Amazon's ADM support.
 * MOBILESDK-509 - Never send a null Subscriber Key to the Marketing Cloud.
 * MOBILESDK-481 - Restrict Reserved Words from being used as Attribute Keys.
@@ -149,7 +149,7 @@ _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3
 _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
 
 * MPUSH-3377 - Implement multi-threaded support so SDK will not block UI thread.<br/>
-  _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targetting earlier than API level 14._ <br/>
+  _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targeting earlier than API level 14._ <br/>
 * MPUSH-3379 - Ensure push and location (if turned on in readyAimFire()) is enabled by default and any updated registration data is sent each time readyAimFire() is called.<br/>
    _`Note:` Code should be changed to remove the call for enablePush() and startWatchingLocation() in your home launcher Activity._
 * MPUSH-3380 - Publish AAR to SDK's gh-pages branch.<br/>
@@ -185,22 +185,22 @@ _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 
 * MPUSH-3333 - Change payload to properly send SDK Version and GCM Sender Id which are saved in pushAddressExtension table in the Marketing Cloud.<br/>
 * MPUSH-3322 - Ensure database used in SDK is initialized at beginning of readyAimFire().<br/>
 * MPUSH-3313 - Implement registerActivityLifecycleCallbacks() to handle onResume() and onPause() detection for Activities.<br/>
- _`Note:` You can remove ETPush.activityResumed() and ETPush.activityPaused() for apps targetting API level 14 or later._ <br/>
+ _`Note:` You can remove ETPush.activityResumed() and ETPush.activityPaused() for apps targeting API level 14 or later._ <br/>
 * MPUSH-3256 - Encrypt all data within the SDK SharedPreferences file and all sensitive data in the SDK SQLite database.<br/>
  _`Note:` If you use ProGuard in your production app, you must not obfuscate the SDK._ See [ProGuard Implementation]({{ site.baseurl }}/sdk-implementation/proguard.html)<br/>
 * MPUSH-3402 - Obfuscate non-public methods and attributes.<br/>
 * MPUSH-3233 - Support Google Play Services v6.5.87 and up. <br/>
 * MPUSH-3150 - Update license for SDK to use Salesforce.com. <br/>
 * MPUSH-3320 - Ensure that Location work within the SDK is not executed when location turned off in readyAimFire(). <br/>
-* MPUSH-3293 - Build SDK with latest Android SDK, support, and app compat libraries.<br/>
+* MPUSH-3293 - Build SDK with latest Android SDK, support, and appcompat libraries.<br/>
 * MPUSH-3285 - Make sure CloudPage Inbox downloads occur whether Analytics are turned on or not.<br/>
-* MPUSH-3485 - Fix crash in serialzing/deserialzing blank Attributes.
+* MPUSH-3485 - Fix crash in serializing/deserializing blank Attributes.
 
 **Required Coding Changes** 
 
 The following are changes that must be made in order to upgrade from previous releases of the SDK:<br/>
 
-* You must change your AndroidManfestFile.xml in order to use the new ET Receivers and Services.  We have simplified and renamed to more easily add the SDK to your mobile apps.
+* You must change your AndroidManifest.xml in order to use the new ET Receivers and Services.  We have simplified and renamed to more easily add the SDK to your mobile apps.
   * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
 * You must update the activityPaused() and activityResumed() calls as static calls in your activities to determine whether app is in foreground or background for CloudPage Inbox, Analytics, and Location messages.<br/>
   * [Analytics]({{ site.baseurl }}/features/analytics.html)
@@ -215,7 +215,7 @@ The following are changes that must be made in order to upgrade from previous re
 * You do not need to call ETPush.getInstance().enablePush() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
   * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
 * New Events have been added to the EventBus.
-  * [ReadyAimFireInitCompletedEvent]({{ site.baseurl }}/features/eventbus.html) - Use this Event to complete any processing once readyAimFire() has completed.  readyAimFire() runs on a background thread and rather than block the UI thread, you can be nofified when readyAimFire() has completed.
+  * [ReadyAimFireInitCompletedEvent]({{ site.baseurl }}/features/eventbus.html) - Use this Event to complete any processing once readyAimFire() has completed.  readyAimFire() runs on a background thread and rather than block the UI thread, you can be notified when readyAimFire() has completed.
 * The SDK has been changed so that it does **not** set the subscriber key to the Device Id.  If you would like to continue to set the subscriber key to the SDK DeviceId, please see the following section:
   * [Subscriber Key]({{ site.baseurl }}/features/subscriber-key.html)
 * You do not need to call ETLocationManager.getInstance().startWatchingLocation() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
@@ -283,7 +283,7 @@ _Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_<br/>
 * MPUSH-2306 - Send deviceName with Registration
 * MPUSH-2238 - push_Enabled flag not sent with registration call
 * MPUSH-2223 - Fix issue with calling enable/disable push too quickly
-* MPUSH-2204 - Use consistent payload throughout workflow for opendirect handlers
+* MPUSH-2204 - Use consistent payload throughout workflow for OpenDirect handlers
 * MPUSH-2193 - Add public getter methods for Attributes and Tags
 * MPUSH-2158 - Add "debug" tag to any app running as a debug build
 * MPUSH-2118 - Geofence re-downloading when device wakes up sometimes triggers 2nd fence message
@@ -347,7 +347,7 @@ ___
 * Fixed a bug related delivery of payload to notification recipient.
 * Added support for setting Subscriber ID to the record
 * Reworked persistent store internally to better handle pushState
-* Signficant rework of sample app to better demonstrate and comment code.
+* Significant rework of sample app to better demonstrate and comment code.
 
 ##### Deprecations
 
