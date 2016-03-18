@@ -57,7 +57,7 @@ Full Documentation for v4.2 can be found [HERE](http://salesforce-marketingcloud
 
 * Remove all manifest entries related to receivers and services.
 * Remove any reference to `ETLandingPagePresenter`.
-* Remove all permissions _*except*_ for `ACCESS_FINE_LOCATION` if your application uses Geofences or Beacons.
+* Remove all permissions _*except*_ for `ACCESS_FINE_LOCATION` and `RECEIVE_BOOT_COMPLETED` if your application uses Geofences or Beacons.
 * You must leave the `android:name` field in your `<application>` tag.
 
 ### From v4.1.x to v4.2
