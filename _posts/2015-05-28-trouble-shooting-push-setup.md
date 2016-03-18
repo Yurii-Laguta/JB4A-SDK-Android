@@ -18,8 +18,7 @@ If you encounter issues receiving messages in your app, consider these troublesh
 
 1.  You may also find your **device_Token** in the logcat by searching for **createHash**.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/429809ab848791867379.js"></script>
-
- > NOTE: Device Token and System Token are the same thing and you may see them used in the documentation or logging interchangably.
+> NOTE: Device Token and System Token are the same thing and you may see them used in the documentation or logging interchangably.
 
 1.  Use the Device Token output in the logcat as shown above to send a message directly to your app from Google. (as documented in <a href="https://developer.android.com/google/gcm/http.html" target="_blank">Google Cloud Messaging (GCM) HTTP connection server</a>).
 
