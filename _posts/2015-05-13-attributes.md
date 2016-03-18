@@ -10,15 +10,19 @@ To implement segmentation by attributes, include code to reference attributes in
 
 The `ETPush.getInstance().addAttribute()` method will create a new `Registration` record and send it to the Marketing Cloud. This value will take up to {{ site.propagationDelay }} to appear in the contact record. If the app makes the update without current Internet connectivity, the SDK will save the update and send whenever a network becomes available.
 
-### addAttribute
+### Add Attribute
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/bcca3dd22e40c43af42d.js"></script>
 
 > NOTE: Neither the key nor the value may be null or an empty string. Also, leading and/or trailing whitespace will be trimmed from the input.<br/>
 
-### getAttributes
+### Get Attributes
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/449f7dc8f44ea217cb1d.js"></script>
+
+### Remove Attribute
+
+<script src="https://gist.github.com/sfmc-mobilepushsdk/10a4fdb234b6de0d0b8e.js"></script>
 
 ### Reserved Word Restrictions
 
