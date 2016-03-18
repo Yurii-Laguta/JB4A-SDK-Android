@@ -37,15 +37,15 @@ _Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<
 * MOBILESDK-659 - Improve timeliness of downloading of Geofence and Beacon messages.
 * MOBILESDK-642 - Failed GCM Registrations now implement an exponential back-off retry.
 * MOBILESDK-639 - Location messages with OpenDirect URLs now correctly launch the `ETLandingPagePresenter` Class.
-* MOBILESDK-634 - Added a Logging interface.
+* MOBILESDK-634 - [Added a Logging interface]({{ site.baseurl }}/features/loginterface.html).
 * MOBILESDK-632 - Remove unnecessary `ACCESS_WIFI_STATE` permission.
 * MOBILESDK-601 - Beacon messages, if enabled, will update at least every 24 hours while the application is in the background.
 * MOBILESDK-594 - Updated Google Play Services dependency to version 8.4, Support-v4 to version 23.1.1 and the Android Beacon Library to version 2.7.
-* MOBILESDK-580 - Implement `getSdkState()` developer convenience method.
+* MOBILESDK-580 - Implement [`getSdkState()`]({{ site.baseurl }}/trouble-shooting/trouble-shooting-push-setup.html#getsdkstate) developer convenience method.
 * MOBILESDK-559 - Ensure inter-platform consistency and predictability for location analytics.
 * MOBILESDK-531 - Remove Amazon's ADM support.
 * MOBILESDK-509 - Never send a null Subscriber Key to the Marketing Cloud.
-* MOBILESDK-481 - Restrict Reserved Words from being used as Attribute Keys.
+* MOBILESDK-481 - Restrict [Reserved Words]({{ site.baseurl }}/features/attributes.html#reservedwords) from being used as Attribute Keys.
 * MOBILESDK-437 - Verify Android Beacon Library, if required, during SDK configure.
 * MOBILESDK-397 - Replace legacy `GCM.register()` with `InstanceId.getToken()` for GCM registration.
 * MOBILESDK-330 - Verify Google Play Services Location library, if required, during SDK configure.

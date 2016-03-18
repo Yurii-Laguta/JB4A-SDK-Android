@@ -13,7 +13,7 @@ If you encounter issues receiving messages in your app, consider these troublesh
 1. Check the logcat for errors or warnings and make any necessary corrections.
  > Ensure you attempt this important debugging step. The SDK provides very verbose messages, and you can correct many errors and issues by reviewing the logcat.
 
-1. `getSdkState()` has been added to ETPush which will display the current state of the SDK and the associated configuration values.
+1. <a name="getsdkstate"></a>`getSdkState()` has been added to ETPush which will display the current state of the SDK and the associated configuration values.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/968a564ffde3e80ba15f.js"></script>
 
 1.  You may also find your **device_Token** in the logcat by searching for **createHash**.
@@ -21,7 +21,7 @@ If you encounter issues receiving messages in your app, consider these troublesh
 
 1.  Use the Device Token output in the logcat as shown above to send a message directly to your app from Google. (as documented in <a href="https://developer.android.com/google/gcm/http.html" target="_blank">Google Cloud Messaging (GCM) HTTP connection server</a>).
 
-	> NOTE: Device Token and System Token are the same thing and you may see them used in the documentation or logging interchangably.
+	> NOTE: Device Token and System Token are the same thing and you may see them used in the documentation or logging interchangeably.
 	
 	> You will also need the Server Key found in your GCM Project that you used to provision the App Center app (as documented in [App Center Provisioning]({{ site.baseurl }}/create-apps/create-apps-provisioning.html)).
 

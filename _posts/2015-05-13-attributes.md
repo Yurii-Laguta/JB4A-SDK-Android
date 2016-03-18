@@ -24,7 +24,7 @@ The `ETPush.getInstance().addAttribute()` method will create a new `Registration
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/10a4fdb234b6de0d0b8e.js"></script>
 
-### Reserved Word Restrictions
+### <a name="reservedwords"></a>Reserved Word Restrictions
 
 The JB4A SDK ignores calls to modify values associated with the following attributes, as these attributes represent reserved internal attributes:
 
