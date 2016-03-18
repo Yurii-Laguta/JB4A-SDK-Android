@@ -14,7 +14,7 @@ You can view a sample of these interactive notifications in the following image,
 
 <img class="img-responsive" src="{{ site.baseurl }}/assets/AndroidInteractiveNotification.png" />
 
-The SDK uses a NotificationCompat.Builder to create the notification to display. A new class called ETNotifications will create the notification.  This class contains an interface that allows you to override the functionality provided by the SDK.  In order to override this funtionality, call ETNotification.setNotificationBuilder as shown in the following code:
+The SDK uses a NotificationCompat.Builder to create the notification to display. A new class called ETNotifications will create the notification.  This class contains an interface that allows you to override the functionality provided by the SDK.  In order to override this functionality, call ETNotification.setNotificationBuilder as shown in the following code:
 
 ~~~
     ETNotifications.setNotificationBuilder(new ETNotificationBuilder() {

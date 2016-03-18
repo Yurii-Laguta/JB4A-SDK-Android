@@ -7,7 +7,7 @@ date: 2015-05-14 12:00:00
 order: 1
 ---
 
-Set the Subsciber Key to a specific value provided by your customer or some other unique identifier for the Contact like mobile number, e-mail address, customer number, etc.
+Set the Subscriber Key to a specific value provided by your customer or some other unique identifier for the Contact like mobile number, e-mail address, customer number, etc.
 
 The `ETPush.getInstance().setSubscriberKey()` method will create a new `Registration` record and send it to the Marketing Cloud. The contact record may take up to {{ site.propagationDelay }} to record this value.  If the internet is not available when the update is made, or an error occurs, the SDK will save the update and retry until the update is successful.
 

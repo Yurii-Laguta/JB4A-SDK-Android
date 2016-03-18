@@ -10,7 +10,7 @@ order: 4
 The OpenDirect customized push message contains a URL to open in a web view. By default, the SDK will open the URL in a web view within the ETLandingPage class. To customize the display of a URL, craft your application to react appropriately when the mobile device receives that type of push message.
 
 If you prevent the SDK from using the default ETLandingPage activity to open the OpenDirect URL sent with the message payload, you can use the following call to specify the activity used to open an OpenDirect URL sent in the payload of a push message from the Marketing Cloud.
-`ETPush.getInstanceis().setOpenDirectRecipient(Class someActivityClass);`
+`ETPush.getInstance().setOpenDirectRecipient(Class someActivityClass);`
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the OpenDirect URL sent with the message payload.
 

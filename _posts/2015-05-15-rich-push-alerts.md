@@ -13,7 +13,7 @@ The SDK will automatically process an alert that includes a CloudPage. This Aler
 <h4>Alert+CloudPage Override Default SDK Processing</h4>
 If you choose not to make the SDK use the default ETLandingPageActivity class to open the CloudPage URL sent with the message payload, then use the following call to specify the Activity used to open the CloudPage URL sent in the payload of a push message from the Marketing Cloud.
 
-`ETPush.getInstanceis().setCloudPageDirectRecipient(Class someActivityClass);`
+`ETPush.getInstance().setCloudPageDirectRecipient(Class someActivityClass);`
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the CloudPage URL sent with the message payload.
 

@@ -14,7 +14,7 @@ Integrate MobilePush into your mobile app using the Journey Builder for Apps SDK
 * Add [additional features]({{ site.baseurl }}/features/subscriber-key.html) included in the SDK for all accounts.
 * Add optional purchased features such as [Rich Push]({{ site.baseurl }}/rich-push/rich-push-overview.html) and [Location Services]({{ site.baseurl }}/location/geolocation-overview.html).
 
-Thsi documentation contains all of the information required to integrate the Journey Builder for Apps SDK in your mobile apps.
+This documentation contains all of the information required to integrate the Journey Builder for Apps SDK in your mobile apps.
 
 ##Source Code and Other Information
 

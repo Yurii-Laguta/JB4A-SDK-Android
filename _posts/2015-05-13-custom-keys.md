@@ -7,11 +7,11 @@ date: 2015-05-14 12:00:00
 order: 5
 ---
 
-Include custom keys in the message payload sent with a push message. Your app can use this key to perform a custom function as dictated by the existance and value of the custom key sent in the payload.
+Include custom keys in the message payload sent with a push message. Your app can use this key to perform a custom function as dictated by the existence and value of the custom key sent in the payload.
 
 Access the custom key from the message payload in the Activity that opens when a push notification receives a tap:
 
-This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses the SDK_ExplorerDisplayMessageActivity to show the contents of the payload sent with the push message. CONSTS.KEY_PAYLOAD_DISCOUNT includes a static string that contains **discount_code**. This value represents the custom key defined in the Marketing Cloud. The activity searches for this key to determine if the message payload conained the value.
+This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) uses the SDK_ExplorerDisplayMessageActivity to show the contents of the payload sent with the push message. CONSTS.KEY_PAYLOAD_DISCOUNT includes a static string that contains **discount_code**. This value represents the custom key defined in the Marketing Cloud. The activity searches for this key to determine if the message payload contained the value.
 
 The following image illustrates the [key creation process](http://help.exacttarget.com/en/documentation/mobilepush/administering_your_mobilepush_account/apps_and_optional_settings_in_your_mobilepush_account/#customkeys):
 <img class="img-responsive" src="{{ site.baseurl }}/assets/custom-key-marketingcloud.png" />

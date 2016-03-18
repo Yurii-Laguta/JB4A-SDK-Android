@@ -35,7 +35,7 @@ Add the following dependencies to your application `app\build.gradle` file.
 Your manifest must contain a named application and have a class that extends Android Application.  This is accomplished by adding an `android:name` field to the `<application>` tag.
 <script src="https://gist.github.com/sfmc-mobilepushsdk/8b3d059b5382f40c92a8.js"></script>
 
-> NOTE: As of v4.2 of the Salesforce Marketing Cloud Mobile Push Android SDK, you no longer have to explicitely declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
+> NOTE: As of v4.2 of the Salesforce Marketing Cloud Mobile Push Android SDK, you no longer have to explicitly declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
 
 ### <a name="configure"></a>Configure the SDK
 In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `readyAimFire()`:

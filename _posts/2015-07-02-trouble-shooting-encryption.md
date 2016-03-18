@@ -8,7 +8,7 @@ order: 2
 ---
 In the 4.0.3 release of the SDK, we added code to ensure that a device that could not implement encryption would wipe data from the device and inform you about the SDK configure failure.
 
-As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus in order to determine if the SDK successfully configureped.
+As shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html), you should implement the ReadyAimFireInitCompletedEvent from the EventBus in order to determine if the SDK successfully configured.
 
 With the 4.0.3 version of the SDK, if encryption fails (usually due to a knockoff device), you will receive a new code from the ReadyAimFireInitCompletedEvent to determine the reason for the failure:
 
