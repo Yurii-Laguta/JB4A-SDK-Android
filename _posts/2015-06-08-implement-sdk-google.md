@@ -13,7 +13,7 @@ This process connects the device to the MobilePush app you created previously in
 
 > NOTE: The Salesforce Marketing Cloud Mobile Push Android SDK requires Android API 15 (aka _Ice Cream Sandwich or Android v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow or Android v6.0_) and the new Android Permissions model is supported.<br/>
 
-> NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Sales Force Marketing Cloud.  Support for Eclipse will soon be discontinued by the Marketing Cloud, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html). Please move to Android Studio as soon as possible to ensure compatibility with future releases.<br/>
+> NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Salesforce Marketing Cloud.  Support for Eclipse will soon be discontinued by the Marketing Cloud, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html). Please move to Android Studio as soon as possible to ensure compatibility with future releases.<br/>
 
 ## Integrating via Android Studio<br/><br/>
 
