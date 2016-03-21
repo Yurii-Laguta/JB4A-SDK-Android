@@ -5,11 +5,12 @@ subtitle: "Updating Subscriber Key"
 category: features
 date: 2015-05-14 12:00:00
 order: 1
+feature: "Subscriber Key"
 ---
 
 Set the Subscriber Key to a specific value provided by your customer or some other unique identifier for the Contact like mobile number, e-mail address, customer number, etc.
 
-The `ETPush.getInstance().setSubscriberKey()` method will create a new `Registration` record and send it to the Marketing Cloud. The contact record may take up to {{ site.propagationDelay }} to record this value.  If the internet is not available when the update is made, or an error occurs, the SDK will save the update and retry until the update is successful.
+> NOTE: The SDK will send changes to {{ page.feature }} to the Marketing Cloud with a REST call one minute after the first change to any Marketing Cloud data. If the REST call fails (no network for example), then it will retry in one minute intervals until the app is suspended. If the send is unsuccessful before the app is suspended, the data will be sent the next time the app is opened. It will take up to {{ site.propagationDelay }} for this value to be recorded in the Contact record once the REST call is made by the SDK."
 
 ### setSubscriberKey()
 <script src="https://gist.github.com/sfmc-mobilepushsdk/bd21fa6afc45a417618e.js"></script>

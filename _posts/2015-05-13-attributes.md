@@ -9,7 +9,7 @@ feature: "Attributes"
 ---
 To implement segmentation by attributes, include code to reference attributes in the app. Add any attributes you save with the SDK to your Marketing Cloud contact record in advance so that the Marketing Cloud can connect the values sent by the SDK to the correct contact fields.
 
-> NOTE: {{ site.propagationDelayText }}
+> NOTE: The SDK will send changes to {{ page.feature }} to the Marketing Cloud with a REST call one minute after the first change to any Marketing Cloud data. If the REST call fails (no network for example), then it will retry in one minute intervals until the app is suspended. If the send is unsuccessful before the app is suspended, the data will be sent the next time the app is opened. It will take up to {{ site.propagationDelay }} for this value to be recorded in the Contact record once the REST call is made by the SDK."
 
 ### Add Attribute
 
