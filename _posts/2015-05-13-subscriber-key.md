@@ -18,7 +18,7 @@ The `ETPush.getInstance().setSubscriberKey()` method will create a new `Registra
 
 > NOTE: Subscriber Key may not be null or an empty string.  Also, leading and/or trailing whitespace will be removed.
 
-> NOTE: By default, if your app does not set the subscriber key using setSubscriberKey(), the Marketing Cloud will match the registration sent with a Contact Record that matches the System Token included in the registration payload. If the Marketing Cloud does not find a match, the Marketing Cloud will set a new subscriber key will be set and will not send the value back to the SDK.
+> NOTE: By default, if your app does not set the subscriber key using setSubscriberKey(), the Marketing Cloud will match the registration sent with a Contact Record that matches the System Token included in the registration payload. If the Marketing Cloud does not find a match, the Marketing Cloud will set a new subscriber key and will not send the value back to the SDK.
 
 ### getSubscriberKey()
 <script src="https://gist.github.com/sfmc-mobilepushsdk/0bd43c062bed12184d06.js"></script>

@@ -7,9 +7,9 @@ date: 2015-05-14 12:00:00
 order: 4
 ---
 
-The OpenDirect customized push message contains a URL to open in a web view. By default, the SDK will open the URL in a web view within the ETLandingPage class. To customize the display of a URL, craft your application to react appropriately when the mobile device receives that type of push message.
+The OpenDirect customized push message contains a URL to open in a web view. By default, the SDK will open the URL in a web view within the ETLandingPage class.
 
-If you prevent the SDK from using the default ETLandingPage activity to open the OpenDirect URL sent with the message payload, you can use the following call to specify the activity used to open an OpenDirect URL sent in the payload of a push message from the Marketing Cloud.
+If you want to prevent the SDK from using the default ETLandingPage activity to open the OpenDirect URL sent with the message payload, you can use the following call to specify the activity used to open an OpenDirect URL sent in the payload of a push message from the Marketing Cloud.
 `ETPush.getInstance().setOpenDirectRecipient(Class someActivityClass);`
 
 This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>) shows how to create your own Activity to show the OpenDirect URL sent with the message payload.
@@ -43,7 +43,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1.  After readyAimFire() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Salesforce Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+1.  After readyAimFire() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
     ~~~ 
     public void onEvent(ReadyAimFireInitCompletedEvent event) {

@@ -11,7 +11,8 @@ Below you will find the required changes to upgrade from an older SDK release to
 ### From v4.2 to v4.3
 Full Documentation for v4.2 can be found [HERE](http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v4.2.0/).
 
-* Remove all manifest entries related to receivers and services.
+#### Required Manifest Changes
+* Remove all entries related to receivers and services.
 * Remove any reference to `ETLandingPagePresenter`.
 * Remove all permissions _*except*_ for `ACCESS_FINE_LOCATION` and `RECEIVE_BOOT_COMPLETED` if your application uses Geofences or Beacons.
 * You must leave the `android:name` field in your `<application>` tag.
@@ -26,6 +27,3 @@ Full Documentation for v4.0.x can be found [HERE](http://salesforce-marketingclo
 
 * Replace receiver's `CONNECTIVITY_CHANGE` intent-filter with `AIRPLANE_MODE`.
 * Remove unnecessary `GET_ACCOUNTS` permission.
-
-### Documentation for Older Versions
-The Documentation for releases prior to 4.x can be found on Code@ [HERE](https://code.exacttarget.com/apis-sdks/journey-builder-for-apps)

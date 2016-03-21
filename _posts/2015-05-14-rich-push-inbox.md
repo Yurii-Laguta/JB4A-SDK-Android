@@ -6,7 +6,7 @@ category: rich-push
 date: 2015-05-14 12:00:00
 order: 3
 ---
-For CloudPage-only Messages, the Journey Builder for Apps SDK will place all CloudPage messages downloaded from the Salesforce Marketing Cloud in the CloudPageListAdapter class.  The SDK downloads new messages and adds them to this adapter each time your app comes into the foreground.  
+For CloudPage-only Messages, the Journey Builder for Apps SDK will place all CloudPage messages downloaded from the Marketing Cloud in the CloudPageListAdapter class.  The SDK downloads new messages and adds them to this adapter each time your app comes into the foreground.  
 
 In order to display these CloudPage-only messages, your app must create an Activity that uses the CloudPageListAdapter. Review an example of this technique within the Journey Builder for Apps SDK Explorer, which is shown below.
 

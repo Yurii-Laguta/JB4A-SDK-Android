@@ -4,7 +4,7 @@ title: "README"
 ---
 # Journey Builder for Apps Android SDK
 
-This documentation includes information for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK:<br/>
+This documentation includes information for the Marketing Cloud Journey Builder for Apps Android SDK:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android" target="_blank">JB4A Android SDK GitHub Repository</a><br>
 
 Review the Java docs for the SDK:<br/>
@@ -23,12 +23,11 @@ Download the latest JB4A SDK aar:<br/>
 The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream Sandwich_ or _Android 4.0.3_) or newer and has dependencies on Google Play Services and the Android Support v4 library.<br/><br/>
 
 ## Release History
-For releases prior to {{ site.currentVersion }}, see: '
-link: '<a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a>'<br/><br/>
+For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
 
 #### Version 4.3.0
 
-_Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<br/>
+_Released March 21 2016, correlating to the Marketing Cloud 2016-02_<br/>
 
 * MOBILESDK-721 - Deprecate `activityPaused()` and `activityResumed()` as those are only required by Android Gingerbread which is no longer supported.
 * MOBILESDK-719 - Remove `BATTERY_LOW` and `BATTERY_OKAY` intent-filters from our receivers and let Android handle the location services on/off in those states.
@@ -39,7 +38,7 @@ _Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<
 * MOBILESDK-639 - Location messages with OpenDirect URLs now correctly launch the `ETLandingPagePresenter` Class.
 * MOBILESDK-634 - [Added a Logging interface]({{ site.baseurl }}/features/loginterface.html).
 * MOBILESDK-632 - Remove unnecessary `ACCESS_WIFI_STATE` permission.
-* MOBILESDK-601 - Beacon messages, if enabled, will update at least every 24 hours while the application is in the background.
+* MOBILESDK-601 - For those in the Beacon Beta Test Group: Beacon messages, if enabled, will update at least every 24 hours while the application is in the background.
 * MOBILESDK-594 - Updated Google Play Services dependency to version 8.4, Support-v4 to version 23.1.1 and the Android Beacon Library to version 2.7.
 * MOBILESDK-580 - Implement [`getSdkState()`]({{ site.baseurl }}/trouble-shooting/trouble-shooting-push-setup.html#getsdkstate) developer convenience method.
 * MOBILESDK-559 - Ensure inter-platform consistency and predictability for location analytics.
@@ -52,7 +51,7 @@ _Released March 21 2016, correlating to the Salesforce Marketing Cloud 2016-02_<
 
 #### Version 4.2.0
 
-_Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01_<br/>
+_Released February 2 2016, correlating to the Marketing Cloud 2016-01_<br/>
 
 * MOBILESDK-501 - Resolved "Format Conversion Error" in ETLocation Logging
 * MOBILESDK-487 - Display Google Play Services Version in the Logs
@@ -72,12 +71,12 @@ _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01
 
 #### Version 4.1.1
 
-_Released January 8 2016, correlating to the Salesforce Marketing Cloud 2015-07.2-HF1 Release_<br/>
+_Released January 8 2016, correlating to the Marketing Cloud 2015-07.2-HF1 Release_<br/>
 
 * MSDK-501 - Fix for format conversion error in ETLocationManager
 
 #### Version 4.1.0
-_Released November 20 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+_Released November 20 2015, correlating to the Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
 * MSDK-248 - Add Retry logic for all data POSTed to the Marketing Cloud including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
@@ -101,7 +100,7 @@ _Released November 20 2015_<br/>
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
 #### Version 4.0.7
-Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
+Released October 2 2015, correlating to the Marketing Cloud 2015-06 Release_<br/>
 
 * MSDK-82  - Only check classes for the SDK's enabled features
 * MSDK-237 - Display Page Title or URL when showing a CloudPage
@@ -135,7 +134,7 @@ _Released July 22nd 2015_<br/>
 * MSDK-11 - Group Registrations that are sent to the Marketing Cloud when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
 
 #### Version 4.0.3
-_Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
+_Released July 9th 2015, correlating to the Marketing Cloud 2015-04.3 Release_<br/>
 
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
   _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from integrating with the SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
@@ -146,7 +145,7 @@ _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3
 * MPUSH-3782 - Allow for [Background Push]({{ site.baseurl }}/features/background-push.html) messages via `content-available` flag.<br/>
 
 #### Version 4.0.0
-_Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
+_Released June 24th 2015, correlating to the Marketing Cloud 2015-04 Release_<br/>
 
 * MPUSH-3377 - Implement multi-threaded support so SDK will not block UI thread.<br/>
   _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targeting earlier than API level 14._ <br/>
@@ -224,7 +223,7 @@ The following are changes that must be made in order to upgrade from previous re
 ___
 
 #### Version 3.5.0 ####
-_Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
+_Released March 9, 2015, correlating to Marketing Cloud 2015-02 Release_
 
 * MPUSH-2948 - Development environment and examples converted to Android Studio
 * MPUSH-3076 - fix to prevent crash if meta-data missing from AndroidManifest.xml
@@ -249,7 +248,7 @@ _Released December 11, 2014_
 ___
 
 #### Version 3.4.0 ####
-Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
+Released November 17, 2014, correlating to Marketing Cloud 2014-08 Release_
 
 * MPUSH-2913 - Rename SDK to Journey Builder for Apps SDK (primarily repo and comment changes)
 * MPUSH-2910 - Rename PracticeField to Journey Builder for Apps SDK Explorer (full rename of app)
