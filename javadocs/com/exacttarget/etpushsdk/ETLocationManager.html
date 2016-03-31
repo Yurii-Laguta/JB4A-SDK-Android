@@ -97,13 +97,13 @@
 <br>
 <pre>public class <span class="strong">ETLocationManager</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
-<div class="block">ETLocationManager is responsible for finding an accurate location and retrieving a list of Geofence regions and their associated messages from your MobilePush account in the SFMC.
+<div class="block">ETLocationManager is responsible for finding an accurate location and retrieving a list of Geofence regions and their associated messages from your MobilePush account in the Marketing Cloud.
  <p/>
  <br/><br/>
- These regions are monitored for entry and exit and will trigger the notification messages you setup in your MobilePush SFMC account when the Geofence boundaries are crossed.
+ These regions are monitored for entry and exit and will trigger the notification messages you setup in your MobilePush Marketing Cloud account when the Geofence boundaries are crossed.
  <br/><br/>
  You can only use the methods in this class if you enabled Location when you called <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>ETPush.readyAimFire(ETPushConfig)</code></a> and set locationEnabled to true.  Remember that you
- should only enable Locations if you have purchased this feature in your SFMC account and wish to add the overhead associated with your app to monitor the regions that are downloaded
+ should only enable Locations if you have purchased this feature in your Marketing Cloud account and wish to add the overhead associated with your app to monitor the regions that are downloaded
  by the SDK.</div>
 </li>
 </ul>
@@ -287,7 +287,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETLocationManager
 <li class="blockList">
 <h4>startWatchingProximity</h4>
 <pre>public&nbsp;boolean&nbsp;startWatchingProximity()</pre>
-<div class="block">Enables Beacon ranging in the SDK.  This is currently in BETA testing only and should not be used without explicit directions from your SFMC account manager.  Note
+<div class="block">Enables Beacon ranging in the SDK.  This is currently in BETA testing only and should not be used without explicit directions from your Marketing Cloud account manager.  Note
  that you must enable location monitoring both in <a href="../../../com/exacttarget/etpushsdk/ETLocationManager.html#readyAimFire(android.content.Context)"><code>readyAimFire(Context)</code></a> and with <a href="../../../com/exacttarget/etpushsdk/ETLocationManager.html#startWatchingLocation()"><code>startWatchingLocation()</code></a> in order to range for Beacons.
  <br/><br/>
  This method should be called when explicit permission for ranging for Beacons has been given by your customer.</div>
@@ -390,7 +390,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETLocationManager
 <pre>public&nbsp;void&nbsp;onEvent(<a href="../../../com/exacttarget/etpushsdk/event/GeofenceResponseEvent.html" title="class in com.exacttarget.etpushsdk.event">GeofenceResponseEvent</a>&nbsp;event)</pre>
 <div class="block">Internal use only.  Do not call directly.
  <p/>
- Internal <a href="../../../com/exacttarget/etpushsdk/util/EventBus.html" title="class in com.exacttarget.etpushsdk.util"><code>EventBus</code></a> handler for new Geofence regions and messages downloaded from your MobilePush account in the SFMC.</div>
+ Internal <a href="../../../com/exacttarget/etpushsdk/util/EventBus.html" title="class in com.exacttarget.etpushsdk.util"><code>EventBus</code></a> handler for new Geofence regions and messages downloaded from your MobilePush account in the Marketing Cloud.</div>
 </li>
 </ul>
 <a name="onEvent(com.exacttarget.etpushsdk.event.BeaconResponseEvent)">
@@ -402,7 +402,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETLocationManager
 <pre>public&nbsp;void&nbsp;onEvent(<a href="../../../com/exacttarget/etpushsdk/event/BeaconResponseEvent.html" title="class in com.exacttarget.etpushsdk.event">BeaconResponseEvent</a>&nbsp;event)</pre>
 <div class="block">Internal use only.  Do not call directly.
  <p/>
- Internal <a href="../../../com/exacttarget/etpushsdk/util/EventBus.html" title="class in com.exacttarget.etpushsdk.util"><code>EventBus</code></a> handler for new Beacons and messages downloaded from your MobilePush account in the SFMC.</div>
+ Internal <a href="../../../com/exacttarget/etpushsdk/util/EventBus.html" title="class in com.exacttarget.etpushsdk.util"><code>EventBus</code></a> handler for new Beacons and messages downloaded from your MobilePush account in the Marketing Cloud.</div>
 </li>
 </ul>
 <a name="onConnectionFailed(ConnectionResult)">

@@ -10,10 +10,6 @@ pre, code {
     font-size: 0.85em;
 }
 
-pre {
-    font-size: 1em;
-}
-
 code {
     color: inherit;
 }
@@ -87,3 +83,8 @@ blockquote {
     margin-top: 20; }
   blockquote > :last-child {
     margin-bottom: 20; }
+
+blockquote p {
+	font-size: inherit;	
+}
+

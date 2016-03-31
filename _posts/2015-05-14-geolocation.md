@@ -7,71 +7,15 @@ date: 2015-05-14 08:43:35
 order: 2
 ---
 
-1.  Add the following permission to **AndroidManifest.xml**.
+1. Add the following permissions to **AndroidManifest.xml**:
+<script src="https://gist.github.com/sfmc-mobilepushsdk/68477bb9c521a550d7af.js"></script>
 
-    ~~~
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    ~~~
+1. Set the Boolean parameter for `setLocationEnabled()` in you `ETPushConfig.Builder()`:
+<script src="https://gist.github.com/sfmc-mobilepushsdk/472545d620983be6d8d7.js"></script>
 
-1.  Add the following intent filters to **AndroidManifest.xml**.
+1. When SDK initialization has completed you must call `startWatchingLocation()` in order for the user to receive Geofence notifications:
+<script src="https://gist.github.com/sfmc-mobilepushsdk/9102e0af94a15ceb7efa.js"></script>
 
-    ~~~
-    <action android:name="android.intent.action.BATTERY_LOW" />
-    <action android:name="android.intent.action.POWER_CONNECTED" />
-    ~~~
+	> NOTE: You may disable Geofence notifications by calling `stopWatchingLocation()`:
 
-1.  Add the following entries to **AndroidManifest.xml**.
-
-    ~~~
-    <receiver android:name="com.exacttarget.etpushsdk.ETLocationReceiver" />
-    <service android:name="com.exacttarget.etpushsdk.ETLocationService" android:enabled="true" />
-    ~~~
-
-1.  Set the Boolean parameter in the **readyAimFire()** method in the **onCreate()** method for of your Application class to **true**.
-
-    ~~~ 
-    ETPush.readyAimFire(this, 
-                        CONSTS_API.getEtAppId(), 
-                        CONSTS_API.getAccessToken(), 
-                        CONSTS_API.getGcmSenderId(), 
-                        true,     // enable ET Analytics 
-                        true,     // enable Location Manager, if you purchased this feature
-                        true);    // enable Cloud Page, if you purchased this feature
-    ~~~ 
-
-1.  If you enable locations readyAimFire(), the SDK will automatically start watching locations. Call `stopWatchingLocation()` to stop tracking user location and disable the geofence functionality in a Settings screen to allow the user to opt out of location services.  You can then call `startWatchingLocation()` to allow them to opt back into geofence messages.
-
-1.  Notify the SDK when the app comes into the foreground because the SDK will retrieve new Location messages whenever your app comes into the foreground.<br/>  
-
-    > The SDK requires the following code only if your app targets API versions **earlier than Android API 14**.  For apps targeting **Android 14 or later**, the SDK will implement these calls using  registerActivityLifecycleCallbacks().
-
-    ~~~ 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        
-        try {
-            // Let JB4A SDK know when each activity paused
-            ETPush.activityPaused(this);
-        }
-        catch (Exception e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            // Let JB4A SDK know when each activity resumed(
-            ETPush.activityResumed(this);
-        }
-        catch (ETException e) {
-            if (ETPush.getLogLevel() <= Log.ERROR) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        }
-    }
-    ~~~ 
+	<script src="https://gist.github.com/sfmc-mobilepushsdk/ea08a3981609479ffc7c.js"></script>

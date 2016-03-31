@@ -99,7 +99,7 @@
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">JB4A SDK main class for MobilePush actions.
  <p/>
- Use <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a> to bootstrap your app with the SDK.</div>
+ Use <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a> to configure your app with the SDK.</div>
 </li>
 </ul>
 </div>
@@ -134,13 +134,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)">addAttribute</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;attribute,
             <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value)</code>
-<div class="block">Adds a value to a defined attribute within the SFMC Contact model for your customer.</div>
+<div class="block">Adds a value to a defined attribute within the Marketing Cloud Contact model for your customer.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/exacttarget/etpushsdk/ETPush.html#addTag(java.lang.String)">addTag</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tag)</code>
-<div class="block">Adds a tag to the SFMC Contact model for your customer.</div>
+<div class="block">Adds a tag to the Marketing Cloud Contact model for your customer.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -318,7 +318,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/exacttarget/etpushsdk/ETPush.html#removeAttribute(java.lang.String)">removeAttribute</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;attribute)</code>
-<div class="block">Removes an attribute from the list of attributes created with <a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)"><code>addAttribute(String, String)</code></a> from being be sent to the SFMC.</div>
+<div class="block">Removes an attribute from the list of attributes created with <a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)"><code>addAttribute(String, String)</code></a> from being be sent to the Marketing Cloud.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -337,7 +337,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/exacttarget/etpushsdk/ETPush.html#removeTag(java.lang.String)">removeTag</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tag)</code>
-<div class="block">Removes a tag from the SFMC Contact model for your customer.</div>
+<div class="block">Removes a tag from the Marketing Cloud Contact model for your customer.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -374,7 +374,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../com/exacttarget/etpushsdk/ETPush.html#setLogListener(ETLogListener)">setLogListener</a></strong>(ETLogListener&nbsp;logListener)</code>
-<div class="block">Set a <code>ETLogListener</code> and provide your own interface for the SFMC logging output.</div>
+<div class="block">Set a <code>ETLogListener</code> and provide your own interface for the Marketing Cloud logging output.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -414,7 +414,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../com/exacttarget/etpushsdk/ETPush.html#setSubscriberKey(java.lang.String)">setSubscriberKey</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;subscriberKey)</code>
-<div class="block">Adds a value for the Subscriber Key attribute within the SFMC Contact model for your customer.</div>
+<div class="block">Adds a value for the Subscriber Key attribute within the Marketing Cloud Contact model for your customer.</div>
 </td>
 </tr>
 </table>
@@ -447,9 +447,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>readyAimFire</h4>
 <pre>public static&nbsp;void&nbsp;readyAimFire(<a href="../../../com/exacttarget/etpushsdk/ETPushConfig.html" title="class in com.exacttarget.etpushsdk">ETPushConfig</a>&nbsp;pushConfig)
                          throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Call this from your Application's <code>Application.onCreate()</code> method. This method initializes ETPush and bootstraps it to your app.
+<div class="block">Call this from your Application's <code>Application.onCreate()</code> method. This method initializes ETPush and configures it to your app.
  <br/><br/>
- Use <a href="../../../com/exacttarget/etpushsdk/ETPushConfig.Builder.html" title="class in com.exacttarget.etpushsdk"><code>ETPushConfig.Builder</code></a> to provide details of the SFMC MobilePush app you want to connect with as well
+ Use <a href="../../../com/exacttarget/etpushsdk/ETPushConfig.Builder.html" title="class in com.exacttarget.etpushsdk"><code>ETPushConfig.Builder</code></a> to provide details of the Marketing Cloud MobilePush app you want to connect with as well
  as which features to enable within the SDK.
  <br/><br/>
  This method will perform all activities on a background thread and will return immediately.  We recommend that you use the <a href="../../../com/exacttarget/etpushsdk/event/ReadyAimFireInitCompletedEvent.html" title="class in com.exacttarget.etpushsdk.event"><code>ReadyAimFireInitCompletedEvent</code></a>
@@ -459,7 +459,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  readyAimFire() must be the first call before calling any other SDK methods or using any other classes.
  <br/><br/>
  The reason we ask that you call this within your Application class is to ensure that background activities performed to display messages
- will be able to bootstrap to your app.</div>
+ will be able to configure to your app.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>pushConfig</code> - <a href="../../../com/exacttarget/etpushsdk/ETPushConfig.html" title="class in com.exacttarget.etpushsdk"><code>ETPushConfig</code></a></dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></code></dd></dl>
@@ -585,7 +585,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
  into the foreground, or when the app is put into the background.
  <br/><br/>
  Failure to call these methods within your Activities will disable functionality you might have been expecting when you
- bootstrapped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
+ configureped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>activity</code> - The paused <code>Activity</code>.</dd></dl>
 </li>
 </ul>
@@ -606,7 +606,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
  into the foreground, or when the app is put into the background.
  <br/><br/>
  Failure to call these methods within your Activities will disable functionality you might have been expecting when you
- bootstrapped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
+ configureped your app using <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a>.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>activity</code> - The paused <code>Activity</code>.</dd></dl>
 </li>
 </ul>
@@ -728,7 +728,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <div class="block">Convenience method to return your predefined Predictive Intelligence Queries.  The <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util"><code>Set</code></a> of
  listeners is synchronized. Your listener will be automatically removed upon successful
  completion of the request.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - <code>Context</code></dd><dd><code>mid</code> - Your SFMC MID</dd><dd><code>page</code> - The Predictive Intelligence Query you wish to execute</dd><dd><code>listener</code> - <code>ETPredictiveIntelligenceListener</code></dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - <code>Context</code></dd><dd><code>mid</code> - Your Marketing Cloud MID</dd><dd><code>page</code> - The Predictive Intelligence Query you wish to execute</dd><dd><code>listener</code> - <code>ETPredictiveIntelligenceListener</code></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if the method arguments are not null nor empty and if your listener was added to the set of listeners</dd></dl>
 </li>
 </ul>
@@ -746,7 +746,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <div class="block">Convenience method to return your predefined Predictive Intelligence Queries.  The <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util"><code>Set</code></a> of
  listeners is synchronized. Your listener will be automatically removed upon successful
  completion of the request.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - <code>Context</code></dd><dd><code>mid</code> - Your SFMC MID</dd><dd><code>page</code> - The Predictive Intelligence Query you wish to execute</dd><dd><code>retailer</code> - Your PI Retailer Name</dd><dd><code>listener</code> - <code>ETPredictiveIntelligenceListener</code></dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - <code>Context</code></dd><dd><code>mid</code> - Your Marketing Cloud MID</dd><dd><code>page</code> - The Predictive Intelligence Query you wish to execute</dd><dd><code>retailer</code> - Your PI Retailer Name</dd><dd><code>listener</code> - <code>ETPredictiveIntelligenceListener</code></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if the method arguments are not null nor empty and if your listener was added to the set of listeners</dd></dl>
 </li>
 </ul>
@@ -757,7 +757,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <li class="blockList">
 <h4>setLogListener</h4>
 <pre>public static&nbsp;void&nbsp;setLogListener(ETLogListener&nbsp;logListener)</pre>
-<div class="block">Set a <code>ETLogListener</code> and provide your own interface for the SFMC logging output. You may also add your
+<div class="block">Set a <code>ETLogListener</code> and provide your own interface for the Marketing Cloud logging output. You may also add your
  <code>ETLogListener</code> in your <a href="../../../com/exacttarget/etpushsdk/ETPushConfig.Builder.html#setLogListener(ETLogListener)"><code>ETPushConfig.Builder.setLogListener(ETLogListener)</code></a> as a part of
  your <a href="../../../com/exacttarget/etpushsdk/ETPush.html#readyAimFire(com.exacttarget.etpushsdk.ETPushConfig)"><code>readyAimFire(ETPushConfig)</code></a> call.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>logListener</code> - Your class that implements <code>ETLogListener</code></dd></dl>
@@ -832,18 +832,18 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <pre>public&nbsp;boolean&nbsp;addAttribute(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;attribute,
                    <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value)
                      throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Adds a value to a defined attribute within the SFMC Contact model for your customer.
+<div class="block">Adds a value to a defined attribute within the Marketing Cloud Contact model for your customer.
  <br/><br/>
- The attribute must be defined within the SFMC Contact model prior to adding a value.  If the attribute does not exist within the
- SFMC Contact model, then this attribute will be ignored within the SFMC.
+ The attribute must be defined within the Marketing Cloud Contact model prior to adding a value.  If the attribute does not exist within the
+ Marketing Cloud Contact model, then this attribute will be ignored within the Marketing Cloud.
  <br/><br/>
  If you previously called addAttribute(String, String) for this attribute, then the value will be updated with the new value
- and sent to the SFMC.
+ and sent to the Marketing Cloud.
  <br/><br/>
  All attribute values set with this method persist through the installation of the app on your customer device.
  <br/><br/>
- Note that attribute mapping is case sensitive, and spaces should be avoided when setting up new attributes in the SFMC Contact model.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>attribute</code> - Attribute name as currently defined within the SFMC Contact Model.</dd><dd><code>value</code> - Value to assign to that attribute for your customer</dd>
+ Note that attribute mapping is case sensitive, and spaces should be avoided when setting up new attributes in the Marketing Cloud Contact model.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>attribute</code> - Attribute name as currently defined within the Marketing Cloud Contact Model.</dd><dd><code>value</code> - Value to assign to that attribute for your customer</dd>
 <dt><span class="strong">Returns:</span></dt><dd>True if getsuccessfully added</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></code></dd></dl>
@@ -857,18 +857,18 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <h4>removeAttribute</h4>
 <pre>public&nbsp;void&nbsp;removeAttribute(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;attribute)
                      throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Removes an attribute from the list of attributes created with <a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)"><code>addAttribute(String, String)</code></a> from being be sent to the SFMC.
+<div class="block">Removes an attribute from the list of attributes created with <a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)"><code>addAttribute(String, String)</code></a> from being be sent to the Marketing Cloud.
  <br/><br/>
  <b>Note: this method removes the attribute from future sends.  It does not change the actual value, nor does it remove it from the
- SFMC Contact model.  It simply means that the last value for this attribute will no longer be sent.</b>
+ Marketing Cloud Contact model.  It simply means that the last value for this attribute will no longer be sent.</b>
  <br/><br/>
- If you want to set the value within the SFMC Contact model for this attribute to blanks, then you should call <a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)"><code>addAttribute(String, String)</code></a>
+ If you want to set the value within the Marketing Cloud Contact model for this attribute to blanks, then you should call <a href="../../../com/exacttarget/etpushsdk/ETPush.html#addAttribute(java.lang.String,%20java.lang.String)"><code>addAttribute(String, String)</code></a>
  with a blank value.  Example:
  <br/><br/>
  addAttribute("First_Name", "");
  <br/><br/>
- Note that attribute mapping is case sensitive, and spaces should be avoided when setting up new attributes in the SFMC Contact model.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>attribute</code> - Attribute name as currently defined within the SFMC Contact Model.</dd>
+ Note that attribute mapping is case sensitive, and spaces should be avoided when setting up new attributes in the Marketing Cloud Contact model.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>attribute</code> - Attribute name as currently defined within the Marketing Cloud Contact Model.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></code></dd></dl>
 </li>
@@ -895,7 +895,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <h4>addTag</h4>
 <pre>public&nbsp;boolean&nbsp;addTag(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tag)
                throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Adds a tag to the SFMC Contact model for your customer.
+<div class="block">Adds a tag to the Marketing Cloud Contact model for your customer.
  <p/>
  All tags set with this method persist through the installation of the app on your customer device.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>tag</code> - Name of the tag to be set</dd>
@@ -912,7 +912,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <h4>removeTag</h4>
 <pre>public&nbsp;void&nbsp;removeTag(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tag)
                throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Removes a tag from the SFMC Contact model for your customer.</div>
+<div class="block">Removes a tag from the Marketing Cloud Contact model for your customer.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>tag</code> - Name of the tag to remove</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></code></dd></dl>
@@ -954,7 +954,7 @@ public static&nbsp;<a href="../../../com/exacttarget/etpushsdk/ETPush.html" titl
 <h4>setSubscriberKey</h4>
 <pre>public&nbsp;boolean&nbsp;setSubscriberKey(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;subscriberKey)
                          throws <a href="../../../com/exacttarget/etpushsdk/ETException.html" title="class in com.exacttarget.etpushsdk">ETException</a></pre>
-<div class="block">Adds a value for the Subscriber Key attribute within the SFMC Contact model for your customer.</div>
+<div class="block">Adds a value for the Subscriber Key attribute within the Marketing Cloud Contact model for your customer.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>subscriberKey</code> - Value of the SubscriberKey.  SubscriberKey may not be empty or NULL and
                       input will be trimmed of leading and trailing whitespace.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>True if SubscriberKey was successfully set.</dd>

@@ -1,179 +1,55 @@
 ---
 layout: page
 title: "Google"
-subtitle: "Implement SDK on Google Devices"
+subtitle: "Integrating the SDK"
 category: sdk-implementation
 date: 2015-05-14 12:00:00
 order: 1
 ---
 
-In order to use the SDK in your Mobile app, complete the steps required to register a device with the Salesforce Marketing Cloud. This process ultimately connects the device to the MobilePush app you created in the [App Center]({{ site.baseurl }}/create-apps/create-apps-overview.html).
+To integrate the Marketing Cloud Mobile Push Android SDK with your Mobile Android App, you will need to register a device with the Marketing Cloud. To do this you must add the SDK and its dependencies to your application.  The following steps will guide you through the process.
 
-This document provides examples using Android Studio. To review any Eclipse-specific coding required, see [Eclipse]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html)
+This process connects the device to the MobilePush app you created previously in the [APP CENTER]({{ site.baseurl }}/create-apps/create-apps-overview.html). If you have not completed these steps please do so now.<br/>
 
-Follow the steps below to bootstrap the Journey Builder for Apps SDK into your mobile Android app. Example code comes from the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
+> NOTE: The Marketing Cloud Mobile Push Android SDK requires Android API 15 (aka _Ice Cream Sandwich or Android v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow or Android v6.0_) and the new Android Permissions model is supported.<br/>
 
-Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or greater. Set your minimum SDK version to no less than 15.
+> NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Marketing Cloud.  Support for Eclipse will soon be discontinued by the Marketing Cloud, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html). Please move to Android Studio as soon as possible to ensure compatibility with future releases.<br/>
 
-1.  Add the following repositories to your application's `build.gradle` file.
+## Integrating via Android Studio<br/><br/>
 
-    <script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script>
+### <a name="updategradle"></a>Update Your Project's `build.gradle`
+Add the following repositories to your application's `build.gradle` file.
+<script src="https://gist.github.com/sfmc-mobilepushsdk/83bd7b645aeaf4c586cd.js"></script><br/>
 
-1.  Add the following dependencies to your application **app\build.gradle** file.
+### Update Your Project's `app\build.gradle`
 
-    <script src="https://gist.github.com/sfmc-mobilepushsdk/086bd8b65afc8d99c222.js"></script>
+#### Add an Application ID
+Add an `applicationId` to the `defaultConfig{ }` section.  This is required for the manifest merger process to work and have the appropriate permissions and intent-filters assigned to your application.
+<script src="https://gist.github.com/sfmc-mobilepushsdk/f67cb31c44328870f6e1.js"></script><br/>
 
-1.  In your **app\build.gradle** file, add an **applicationId** to the **defaultConfig{}** block to simplify integration.
+#### Add the SDK's Dependencies
+Add the following dependencies to your application `app\build.gradle` file.
+<script src="https://gist.github.com/sfmc-mobilepushsdk/086bd8b65afc8d99c222.js"></script><br/>
 
-    <script src="https://gist.github.com/sfmc-mobilepushsdk/f67cb31c44328870f6e1.js"></script>
+### Update Your Project's `AndroidManifest.xml`
+Your manifest must contain a named application and have a class that extends Android Application.  This is accomplished by adding an `android:name` field to the `<application>` tag.
+<script src="https://gist.github.com/sfmc-mobilepushsdk/8b3d059b5382f40c92a8.js"></script>
 
-1.  In your **app\build.gradle** file, ensure that you request appropriate permissions if the user enabled Location features for builds targeting Android versions 23 and above.
+> NOTE: As of v4.2 of the Marketing Cloud Mobile Push Android SDK, you no longer have to explicitly declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
 
-    ~~~
-    android {
-        compileSdkVersion 23
-    }
-    ~~~
+### <a name="configure"></a>Configure the SDK
+In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `readyAimFire()`:
+<script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
-    ~~~
-    onRequestPermissionsResult(int requestCode,
-        String permissions[], int[] grantResults)
-    ~~~
+> NOTE: `readyAimFire()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>
 
-    If PERMISSION_GRANTED==TRUE, then put call to
+> NOTE: Changes, including your initial registration from a device, propagate from the server every 5 minutes.  Ensure you wait an appropriate amount of time before expecting to receive push notifications or for changes to take affect.<br/>
 
-    ~~~
-    startWatchingLocation()
-    ~~~
+## Success!
+You should now be able to send a push notification from the Marketing Cloud to your application!<br/><br/>
 
-1.  Developers using Android Studio with version 4.2 of the JB4A SDK do not need to modify the **AndroidManifest.xml** file unless using geolocation. In that case, add the following line:
+---
 
-    ~~~
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    ~~~
+## Upgrading From Previous Versions
 
-    Developers using version 4.1 or earlier of the SDK in an application should include the following code in the **AndroidManifest.xml** file:
-
-    ~~~
-    <?xml version="1.0" encoding="utf-8"?>
-       <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-       <!-- JB4A SDK Google Permissions -->
-       <permission
-           android:name="${applicationId}.permission.C2D_MESSAGE"
-           android:protectionLevel="signature" />
-       <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
-       <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-       <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-       <!-- JB4A SDK Google Permissions -->
-
-       <!-- ET SDK required permissions -->
-       <uses-permission android:name="android.permission.INTERNET"/>
-       <uses-permission android:name="android.permission.WAKE_LOCK"/>
-       <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-       <!-- END ET SDK Required Permissions -->
-          
-       <application>
-           <!-- ETPushReceiver and Service -->
-            <receiver android:name="com.exacttarget.etpushsdk.ETPushReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-              <intent-filter>
-                <action android:name="${applicationId}.MESSAGE_OPENED" />
-                <action android:name="com.exacttarget.etpushsdk.SEND_REGISTRATION" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
-                <action android:name="android.intent.action.AIRPLANE_MODE" />
-                <category android:name="${applicationId}" />
-              </intent-filter>
-              <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" />
-                </intent-filter>
-              </receiver>
-   
-           <service
-               android:name="com.exacttarget.etpushsdk.ETPushService"
-               android:enabled="true" />
-           <!-- ETPushReceiver and Service -->
-
-           <!-- JB4A SDK Activity required for CloudPage or OpenDirect URLs sent from Marketing Cloud -->
-           <activity
-              android:name="com.exacttarget.etpushsdk.ETLandingPagePresenter"
-              android:label="Landing Page" />
-           <!-- JB4A SDK Activity required for Cloud Page or Open Direct URLs sent from Marketing Cloud -->
-
-           <!-- Google Play Services version.  Using the resource file will require your project contain the Google Play services project. -->
-           <!-- See Google documentation for more information -->
-           <meta-data
-               android:name="com.google.android.gms.version"
-               android:value="@integer/google_play_services_version" />
-           <!-- Google Play Services version. -->
-       </application>
-       </manifest>
-    ~~~
-1.  Update your <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">Application Class</a> to connect your Mobile App with the correct [App Center App]({{ site.baseurl }}/create-apps/create-apps-provisioning.html).
-
-    1.  Create a Class that extends <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank">android.app.Application</a>. <b>You must complete this mandatory step.</b>
-
-    1.  Initialize the ETSDK by calling `readyAimFire()` using an Application Context and from within your Application Class.
-
-        ~~~
-        try {
-	        ETPush.readyAimFire(new ETPushConfig.Builder(this)
-	        		.setEtAppId("INSERT_YOUR_ETAPPID_HERE")
-	        		.setAccessToken("INSERT_YOUR_ACCESS_TOKEN_HERE")
-	        		.setGcmSenderId("INSERT_YOUR_GCMSENDERID_HERE")
-	        		.setAnalyticsEnabled(true|false)
-	        		.setPiAnalyticsEnabled(true|false)
-	        		.setLocationEnabled(true|false)      // set to true ONLY if you purchased Location as it requires additional overhead
-	        		.setCloudPagesEnabled(true|false)    // set to true ONLY if you purchased RichPush as it requires additional overhead
-	        		.setLogLevel(BuildConfig.DEBUG ? android.util.Log.VERBOSE : android.util.Log.ERROR)
-	        		/* Builder methods to override SDK behavior */
-	        		//.setCloudPageRecipientClass(SomeActivity.class) // Override ETLandingPagePresenter
-	        		//.setOpenDirectRecipientClass(SomeActivity.class) // Override ETLandingPagePresenter
-	        		//.setNotificationRecipientClass(SomeActivity.class) // Override Notification Handling
-	        		//.setNotificationAction("some_string")
-	        		//.setNotificationActionUri(Uri.parse("some_uri"))
-	        		//.setNotificationResourceId(R.drawable.some_drawable)
-	        		.build()
-            );
-        catch (ETException e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
-        ~~~
-
-        > readyAimFire() must be called from your Application class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.
-
-    1.  Register the ET **EventBus** to receive notification of completed registration. See [Event Bus]({{ site.baseurl }}/features/eventbus.html).
-
-    1.  Add an event callback to process any code after readyAimFire() completes.  
-
-        ~~~
-    /**
-     * EventBus callback listening for a ReadyAimFireInitCompletedEvent. After we receive this
-     * event, we can safely use our ETPush instance.
-     *
-     * @param event the type of event we're listening for.
-     */
-    public void onEvent(final ReadyAimFireInitCompletedEvent event) {
-        ETPush etPush = null;
-        try {
-            etPush = event.getEtPush();
-
-            /*
-                Good practice - add the application version name as a tag you can later use to target push notifications to specific application versions.
-             */
-            etPush.addTag(HelloWorldApplication.VERSION_NAME);
-
-        } catch (ETException e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
-    }
-        ~~~
-    
-    > 4.0.0 of the SDK eliminates the need to add enablePush() in your launcher activity. The SDK will enable push by default. If you wish to disable push by default, call **etPush.disablePush()** in the event callback described above.
-
-    > Changes, including your initial registration from a device, propagate from the server every 15 minutes.  Ensure you wait an appropriate amount of time before expecting to receive push notifications or for changes to take affect.
-
-1. Create a Preference Screen that allows a user to opt out of push messages. Review example code in the <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>. Call **disablePush()** to allow a user to opt out of push services. You can then call **enablePush()** to allow user to opt back into push services.
-
-Once you complete this process, you can build your application and send it push notifications from your Marketing Cloud account.
+Please see the Upgrading section [HERE]({{ site.baseurl }}/overview/upgrading.html)

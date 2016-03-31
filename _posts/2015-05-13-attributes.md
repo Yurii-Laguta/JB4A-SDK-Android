@@ -5,30 +5,29 @@ subtitle: "Using Attributes"
 category: features
 date: 2015-05-14 12:00:00
 order: 2
+feature: "Attributes"
 ---
 To implement segmentation by attributes, include code to reference attributes in the app. Add any attributes you save with the SDK to your Marketing Cloud contact record in advance so that the Marketing Cloud can connect the values sent by the SDK to the correct contact fields.
 
-The ETPush.getInstance().addAttribute() method will create a new registration record and send it to the Marketing Cloud. This value will take up to 15 minutes to appear in the contact record. If the app makes the update without current Internet connectivity, the SDK will save the update and send whenever a network becomes available.
+> NOTE: The SDK will send changes to {{ page.feature }} to the Marketing Cloud with a REST call one minute after the first change to any Marketing Cloud data. If the REST call fails (no network for example), then it will retry in one minute intervals until the app is suspended. If the send is unsuccessful before the app is suspended, the data will be sent the next time the app is opened. It will take up to {{ site.propagationDelay }} for this value to be recorded in the Contact record once the REST call is made by the SDK."
 
-The SDK trims all leading and trailings blanks from attribute values.
+### Add Attribute
 
-###addAttribute
+<script src="https://gist.github.com/sfmc-mobilepushsdk/bcca3dd22e40c43af42d.js"></script>
 
-~~~
-// Add an attribute - will return a true or false value indicating success of call
-etPush.addAttribute("someKey", "someValue")
-~~~
+> NOTE: Neither the key nor the value may be null or an empty string. Also, leading and/or trailing whitespace will be trimmed from the input.<br/>
 
-###getAttributes
+### Get Attributes
 
-~~~ 
-ETPush etPush = ETPush.getInstance();
-for (Attribute attribute : etPush.getAttributes()) {
-    // use "attribute" here
-}
-~~~ 
+<script src="https://gist.github.com/sfmc-mobilepushsdk/449f7dc8f44ea217cb1d.js"></script>
 
-###Reserved Attributes
+### Remove Attribute
+
+<script src="https://gist.github.com/sfmc-mobilepushsdk/10a4fdb234b6de0d0b8e.js"></script>
+
+> NOTE: `removeAttribute()` _ONLY_ removes the attribute from the SDK and does not communicate this change to the Marketing Cloud Servers. If you wish to clear a value stored in the Marketing Cloud please call `addAttribute()` with an empty string as the value.
+
+### <a name="reservedwords"></a>Reserved Word Restrictions
 
 The JB4A SDK ignores calls to modify values associated with the following attributes, as these attributes represent reserved internal attributes:
 

@@ -7,19 +7,19 @@ date: 2015-05-14 12:00:00
 order: 6
 ---
 
-You can enable analytics by setting the appropriate parameter in the ETPushConfig.Builder(). Before implementing this call, ensure you update your [ETPushConfig.Builder()]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) as described in step 6. Set the **enableAnalytics** parameter to **true** to implement ETAnalytics in your mobile app. Set the **enableAnalytics** parameter to **true** to implement [Web and Mobile Analytics](https://help.exacttarget.com/en/documentation/web_and_mobile_analytics/){:target="_blank"} in your mobile app.
+You can enable analytics by setting the appropriate parameter in the ETPushConfig.Builder(). Before implementing this call, ensure you update your [ETPushConfig.Builder()]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) as described in step 6. Set the **enableAnalytics** parameter to **true** to implement Analytics in your mobile app. Set the **enableAnalytics** parameter to **true** to implement [Web and Mobile Analytics](https://help.exacttarget.com/en/documentation/web_and_mobile_analytics/){:target="_blank"} in your mobile app.
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
-###Track Page View
+### Track Page View
 
 1.  To implement page view analytics for your app, call the following method:
 
     ~~~
-    ETAnalytics.trackPageView(url)
-    ETAnalytics.trackPageView(url, title)
-    ETAnalytics.trackPageView(url, title, item)
-    ETAnalytics.trackPageView(url, title, item, searchTerms)  
+    Analytics.trackPageView(url)
+    Analytics.trackPageView(url, title)
+    Analytics.trackPageView(url, title, item)
+    Analytics.trackPageView(url, title, item, searchTerms)  
     ~~~
     You must provide a URL value for the page in this method. You can provide null values for the other optional string values:
 

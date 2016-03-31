@@ -6,7 +6,7 @@ category: features
 date: 2015-05-14 12:00:00
 order: 8
 ---
-You can add buttons called **interactive notifications** to push notifications in your Mobile app. These notifications allow the mobile app user to take action directly from notifications, such as going to specific locations within the app or initiating a purchase. The Salesforce Marketing Cloud sends the category name for these interactive notifications in the message payload. 
+You can add buttons called **interactive notifications** to push notifications in your Mobile app. These notifications allow the mobile app user to take action directly from notifications, such as going to specific locations within the app or initiating a purchase. The Marketing Cloud sends the category name for these interactive notifications in the message payload. 
 
 This example comes from <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>.
 
@@ -14,7 +14,7 @@ You can view a sample of these interactive notifications in the following image,
 
 <img class="img-responsive" src="{{ site.baseurl }}/assets/AndroidInteractiveNotification.png" />
 
-The SDK uses a NotificationCompat.Builder to create the notification to display. A new class called ETNotifications will create the notification.  This class contains an interface that allows you to override the functionality provided by the SDK.  In order to override this funtionality, call ETNotification.setNotificationBuilder as shown in the following code:
+The SDK uses a NotificationCompat.Builder to create the notification to display. A new class called ETNotifications will create the notification.  This class contains an interface that allows you to override the functionality provided by the SDK.  In order to override this functionality, call ETNotification.setNotificationBuilder as shown in the following code:
 
 ~~~
     ETNotifications.setNotificationBuilder(new ETNotificationBuilder() {

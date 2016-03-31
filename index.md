@@ -4,7 +4,7 @@ title: "README"
 ---
 # Journey Builder for Apps Android SDK
 
-This documentation includes information for the Salesforce Marketing Cloud Journey Builder for Apps Android SDK:<br/>
+This documentation includes information for the Marketing Cloud Journey Builder for Apps Android SDK:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android" target="_blank">JB4A Android SDK GitHub Repository</a><br>
 
 Review the Java docs for the SDK:<br/>
@@ -16,17 +16,42 @@ Download the latest JB4A SDK jar:<br/>
 Download the latest JB4A SDK aar:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.aar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.aar</a>
 
-> Google Play Services Note - For versions 4.2 and later of SDK, use version 8.1 or later of Google Play Services. For version 4.1 and earlier of the SDK, ensure that you use version 7.8.0 or earlier of Google Play Services to enable geolocation for your app. If you use SDK versions 4.1 or before and compile your app using Google Play Services version 8 or later, you will receive an error and geolocation will fail to function. Unless you must use one of the features outlined in the [September 2015 section of the Google APIs](https://developers.google.com/android/guides/releases){:target="_blank"}, follow the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) to deal with the error.
+> NOTE: Versions 4.2 and newer of the JB4A Mobile Push Android SDK must be compiled with Google Play Services v8.x or newer. Older versions of the SDK must be compiled with Google Play Services v7.8 or older. Failing to follow these guidelines will result in an internal error and geolocation will not function. See the [troubleshooting steps]({{ site.baseurl }}/trouble-shooting/trouble-shooting-geolocation.html) for details and a resolution regarding this issue.<br/><br/>
 
-## Android API Version
+## SDK Compatibility
 
-Use the JB4A Android SDK with Android API versions 15 (Ice Cream Sandwich) or greater. Set your minimum SDK version to no less than 15.
+The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream Sandwich_ or _Android 4.0.3_) or newer and has dependencies on Google Play Services and the Android Support v4 library.<br/><br/>
 
 ## Release History
+For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
+
+#### Version 4.3.0
+
+_Released March 21 2016, correlating to the Marketing Cloud 2016-02_<br/>
+
+* MOBILESDK-721 - Deprecate `activityPaused()` and `activityResumed()` as those are only required by Android Gingerbread which is no longer supported.
+* MOBILESDK-719 - Remove `BATTERY_LOW` and `BATTERY_OKAY` intent-filters from our receivers and let Android handle the location services on/off in those states.
+* MOBILESDK-669 - Do not send null Tags to the Marketing Cloud
+* MOBILESDK-666 - Resolved NPE and IllegalState errors in `ETLocationManager`.
+* MOBILESDK-659 - Improve timeliness of downloading of Geofence and Beacon messages.
+* MOBILESDK-642 - Failed GCM Registrations now implement an exponential back-off retry.
+* MOBILESDK-639 - Location messages with OpenDirect URLs now correctly launch the `ETLandingPagePresenter` Class.
+* MOBILESDK-634 - [Added a Logging interface]({{ site.baseurl }}/features/loginterface.html).
+* MOBILESDK-632 - Remove unnecessary `ACCESS_WIFI_STATE` permission.
+* MOBILESDK-601 - For those in the Beacon Beta Test Group: Beacon messages, if enabled, will update at least every 24 hours while the application is in the background.
+* MOBILESDK-594 - Updated Google Play Services dependency to version 8.4, Support-v4 to version 23.1.1 and the Android Beacon Library to version 2.7.
+* MOBILESDK-580 - Implement [`getSdkState()`]({{ site.baseurl }}/trouble-shooting/trouble-shooting-push-setup.html#getsdkstate) developer convenience method.
+* MOBILESDK-559 - Ensure inter-platform consistency and predictability for location analytics.
+* MOBILESDK-531 - Remove Amazon's ADM support.
+* MOBILESDK-509 - Never send a null Subscriber Key to the Marketing Cloud.
+* MOBILESDK-481 - Restrict [Reserved Words]({{ site.baseurl }}/features/attributes.html#reservedwords) from being used as Attribute Keys.
+* MOBILESDK-437 - Verify Android Beacon Library, if required, during SDK configure.
+* MOBILESDK-397 - Replace legacy `GCM.register()` with `InstanceId.getToken()` for GCM registration.
+* MOBILESDK-330 - Verify Google Play Services Location library, if required, during SDK configure.
 
 #### Version 4.2.0
 
-_Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01_<br/>
+_Released February 2 2016, correlating to the Marketing Cloud 2016-01_<br/>
 
 * MOBILESDK-501 - Resolved "Format Conversion Error" in ETLocation Logging
 * MOBILESDK-487 - Display Google Play Services Version in the Logs
@@ -46,15 +71,15 @@ _Released February 2 2016, correlating to the Salesforce Marketing Cloud 2016-01
 
 #### Version 4.1.1
 
-_Released January 8 2016, correlating to the Salesforce Marketing Cloud 2015-07.2-HF1 Release_<br/>
+_Released January 8 2016, correlating to the Marketing Cloud 2015-07.2-HF1 Release_<br/>
 
 * MSDK-501 - Fix for format conversion error in ETLocationManager
 
 #### Version 4.1.0
-_Released November 20 2015, correlating to the Salesforce Marketing Cloud 2015-07.2 Release_<br/>
+_Released November 20 2015, correlating to the Marketing Cloud 2015-07.2 Release_<br/>
 
 * MSDK-238 - Make sure latitude/longitude values send with proper formatting regardless of the device language.
-* MSDK-248 - Add Retry logic for all data POSTed to the SFMC including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
+* MSDK-248 - Add Retry logic for all data POSTed to the Marketing Cloud including Registrations and Analytics.  If the initial POST fails, then the POST REST call will be retried in a logarithmic fashion.
 * MSDK-292 - Make sure app monitors Location regions after a device reboot.
 * MSDK-295 - Remove unnecessary GET_ACCOUNTS permission.  You may remove this permission from your AndroidManifest.xml file.
 * MSDK-297 - Replace CONNECTIVITY_CHANGE Receiver with AIRPLANE_MODE Receiver. Update your [AndroidManifest.xml]({{ site.baseurl}}/sdk-implementation/implement-sdk-google.html) file.
@@ -75,7 +100,7 @@ _Released November 20 2015_<br/>
 * MSDK-453  - Fix for Java ConcurrentModificationException when modifying Tags & Attributes
 
 #### Version 4.0.7
-Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 Release_<br/>
+Released October 2 2015, correlating to the Marketing Cloud 2015-06 Release_<br/>
 
 * MSDK-82  - Only check classes for the SDK's enabled features
 * MSDK-237 - Display Page Title or URL when showing a CloudPage
@@ -88,7 +113,7 @@ Released October 2 2015, correlating to the Salesforce Marketing Cloud 2015-06 R
 * MSDK-324 - Remove GET_ACCOUNTS permission
 * MSDK-328 - Never send "null" as a String in a Registration payload
 * MSDK-332 - Disable Proximity (beacons) for API < 18
-* MSDK-334 - Validate PRNG fix required Proguard statements during SDK bootstrap
+* MSDK-334 - Validate PRNG fix required Proguard statements during SDK configure
 * MSDK-336 - Fix for NPE during WakefulBroadcastReceiver.completeWakefulIntent()
 
 > Implementing the PRNG fix requires reflection.  Please ensure your Proguard config file contains the correct statements found [here]({{ site.baseurl }}/sdk-implementation/proguard.html).
@@ -106,13 +131,13 @@ _Released August 25th 2015_<br/>
 #### Version 4.0.4
 _Released July 22nd 2015_<br/>
 
-* MSDK-11 - Group Registrations that are sent to the SFMC when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
+* MSDK-11 - Group Registrations that are sent to the Marketing Cloud when updating Tags, Attributes, and other contact data to reduce traffic and improve throughput.<br/>
 
 #### Version 4.0.3
-_Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3 Release_<br/>
+_Released July 9th 2015, correlating to the Marketing Cloud 2015-04.3 Release_<br/>
 
 * MPUSH-3809 - Wipe data from device if encryption fails.<br/>
-  _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from bootstrapping with SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
+  _`Note:` Encryption of data was added in 4.0.0.  This change will prevent a device from integrating with the SDK if encryption fails._ See [Encryption Trouble Shooting]({{ site.baseurl }}/trouble-shooting/trouble-shooting-encryption.html) for more information.<br/>
 * MPUSH-3824 - Throw a RunTimeException if [ProGuard]({{ site.baseurl }}/sdk-implementation/proguard.html) statements obfuscated required classes within the SDK.<br/>
 * MPUSH-3841 - Pushes without an `alert` key in the payload will not result in a notification being shown to the user.<br/>
 * MPUSH-3822 - Make sure SDK respects a `sound` key value of `none` which results in a notification without a sound.<br/>
@@ -120,10 +145,10 @@ _Released July 9th 2015, correlating to the Salesforce Marketing Cloud 2015-04.3
 * MPUSH-3782 - Allow for [Background Push]({{ site.baseurl }}/features/background-push.html) messages via `content-available` flag.<br/>
 
 #### Version 4.0.0
-_Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 Release_<br/>
+_Released June 24th 2015, correlating to the Marketing Cloud 2015-04 Release_<br/>
 
 * MPUSH-3377 - Implement multi-threaded support so SDK will not block UI thread.<br/>
-  _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targetting earlier than API level 14._ <br/>
+  _`Note:` Code changes required for ETPush.activityResumed() and ETPush.activityPaused() for apps targeting earlier than API level 14._ <br/>
 * MPUSH-3379 - Ensure push and location (if turned on in readyAimFire()) is enabled by default and any updated registration data is sent each time readyAimFire() is called.<br/>
    _`Note:` Code should be changed to remove the call for enablePush() and startWatchingLocation() in your home launcher Activity._
 * MPUSH-3380 - Publish AAR to SDK's gh-pages branch.<br/>
@@ -159,22 +184,22 @@ _Released June 24th 2015, correlating to the Salesforce Marketing Cloud 2015-04 
 * MPUSH-3333 - Change payload to properly send SDK Version and GCM Sender Id which are saved in pushAddressExtension table in the Marketing Cloud.<br/>
 * MPUSH-3322 - Ensure database used in SDK is initialized at beginning of readyAimFire().<br/>
 * MPUSH-3313 - Implement registerActivityLifecycleCallbacks() to handle onResume() and onPause() detection for Activities.<br/>
- _`Note:` You can remove ETPush.activityResumed() and ETPush.activityPaused() for apps targetting API level 14 or later._ <br/>
+ _`Note:` You can remove ETPush.activityResumed() and ETPush.activityPaused() for apps targeting API level 14 or later._ <br/>
 * MPUSH-3256 - Encrypt all data within the SDK SharedPreferences file and all sensitive data in the SDK SQLite database.<br/>
  _`Note:` If you use ProGuard in your production app, you must not obfuscate the SDK._ See [ProGuard Implementation]({{ site.baseurl }}/sdk-implementation/proguard.html)<br/>
 * MPUSH-3402 - Obfuscate non-public methods and attributes.<br/>
 * MPUSH-3233 - Support Google Play Services v6.5.87 and up. <br/>
 * MPUSH-3150 - Update license for SDK to use Salesforce.com. <br/>
 * MPUSH-3320 - Ensure that Location work within the SDK is not executed when location turned off in readyAimFire(). <br/>
-* MPUSH-3293 - Build SDK with latest Android SDK, support, and app compat libraries.<br/>
+* MPUSH-3293 - Build SDK with latest Android SDK, support, and appcompat libraries.<br/>
 * MPUSH-3285 - Make sure CloudPage Inbox downloads occur whether Analytics are turned on or not.<br/>
-* MPUSH-3485 - Fix crash in serialzing/deserialzing blank Attributes.
+* MPUSH-3485 - Fix crash in serializing/deserializing blank Attributes.
 
 **Required Coding Changes** 
 
 The following are changes that must be made in order to upgrade from previous releases of the SDK:<br/>
 
-* You must change your AndroidManfestFile.xml in order to use the new ET Receivers and Services.  We have simplified and renamed to more easily add the SDK to your mobile apps.
+* You must change your AndroidManifest.xml in order to use the new ET Receivers and Services.  We have simplified and renamed to more easily add the SDK to your mobile apps.
   * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
 * You must update the activityPaused() and activityResumed() calls as static calls in your activities to determine whether app is in foreground or background for CloudPage Inbox, Analytics, and Location messages.<br/>
   * [Analytics]({{ site.baseurl }}/features/analytics.html)
@@ -189,7 +214,7 @@ The following are changes that must be made in order to upgrade from previous re
 * You do not need to call ETPush.getInstance().enablePush() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
   * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
 * New Events have been added to the EventBus.
-  * [ReadyAimFireInitCompletedEvent]({{ site.baseurl }}/features/eventbus.html) - Use this Event to complete any processing once readyAimFire() has completed.  readyAimFire() runs on a background thread and rather than block the UI thread, you can be nofified when readyAimFire() has completed.
+  * [ReadyAimFireInitCompletedEvent]({{ site.baseurl }}/features/eventbus.html) - Use this Event to complete any processing once readyAimFire() has completed.  readyAimFire() runs on a background thread and rather than block the UI thread, you can be notified when readyAimFire() has completed.
 * The SDK has been changed so that it does **not** set the subscriber key to the Device Id.  If you would like to continue to set the subscriber key to the SDK DeviceId, please see the following section:
   * [Subscriber Key]({{ site.baseurl }}/features/subscriber-key.html)
 * You do not need to call ETLocationManager.getInstance().startWatchingLocation() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
@@ -198,7 +223,7 @@ The following are changes that must be made in order to upgrade from previous re
 ___
 
 #### Version 3.5.0 ####
-_Released March 9, 2015, correlating to Salesforce Marketing Cloud 2015-02 Release_
+_Released March 9, 2015, correlating to Marketing Cloud 2015-02 Release_
 
 * MPUSH-2948 - Development environment and examples converted to Android Studio
 * MPUSH-3076 - fix to prevent crash if meta-data missing from AndroidManifest.xml
@@ -223,7 +248,7 @@ _Released December 11, 2014_
 ___
 
 #### Version 3.4.0 ####
-Released November 17, 2014, correlating to Salesforce Marketing Cloud 2014-08 Release_
+Released November 17, 2014, correlating to Marketing Cloud 2014-08 Release_
 
 * MPUSH-2913 - Rename SDK to Journey Builder for Apps SDK (primarily repo and comment changes)
 * MPUSH-2910 - Rename PracticeField to Journey Builder for Apps SDK Explorer (full rename of app)
@@ -257,7 +282,7 @@ _Released July 21, 2014, correlating to ExactTarget's 2014-05 Release_<br/>
 * MPUSH-2306 - Send deviceName with Registration
 * MPUSH-2238 - push_Enabled flag not sent with registration call
 * MPUSH-2223 - Fix issue with calling enable/disable push too quickly
-* MPUSH-2204 - Use consistent payload throughout workflow for opendirect handlers
+* MPUSH-2204 - Use consistent payload throughout workflow for OpenDirect handlers
 * MPUSH-2193 - Add public getter methods for Attributes and Tags
 * MPUSH-2158 - Add "debug" tag to any app running as a debug build
 * MPUSH-2118 - Geofence re-downloading when device wakes up sometimes triggers 2nd fence message
@@ -294,7 +319,7 @@ ___
 
 #### Version 3.0
 
-* Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to bootstrap.
+* Code refactoring so you no longer need to extend any ExactTarget classes. Use ETPush.readyAimFire() to configure.
 * Support for Action/Uri type of Intents when notification is tapped.
 * Ability to customize the notification and Intent by extending ET_GenericReceiver.
 * ETAnalytics changes to use onPause() and onResume() for more accurate time tracking.
@@ -304,7 +329,7 @@ ___
 ##### Deprecations
 
 * **AnalyticsActivity** - Use ETAnalytics directly from each of your Activity's onPause() and onResume()
-* **PushEnabledApplication** - Call ETPush.readyAimFire(this) from your Application's onCreate() to bootstrap instead of extending PushEnabledApplication.
+* **PushEnabledApplication** - Call ETPush.readyAimFire(this) from your Application's onCreate() to configure instead of extending PushEnabledApplication.
 * **gcm.jar** - Instead of gcm.jar, include GooglePlayServices support in your application. see: http://developer.android.com/google/play-services/setup.html
 
 ___
@@ -321,7 +346,7 @@ ___
 * Fixed a bug related delivery of payload to notification recipient.
 * Added support for setting Subscriber ID to the record
 * Reworked persistent store internally to better handle pushState
-* Signficant rework of sample app to better demonstrate and comment code.
+* Significant rework of sample app to better demonstrate and comment code.
 
 ##### Deprecations
 
