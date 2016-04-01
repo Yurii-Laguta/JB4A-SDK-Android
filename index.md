@@ -10,9 +10,6 @@ This documentation includes information for the Marketing Cloud Journey Builder 
 Review the Java docs for the SDK:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
-Download the latest JB4A SDK jar:<br/>
-<a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.jar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.jar</a>
-
 Download the latest JB4A SDK aar:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.aar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.aar</a>
 
