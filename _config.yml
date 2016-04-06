@@ -3,7 +3,7 @@
 # to create a new page, use this format:
 # ruby bin/jekyll-page "name of page" section
 #
-title: 'Journey Builder for Apps Android SDK (v4.3.0)'
+title: 'Journey Builder for Apps Android SDK (v4.3.1)'
 
 # if you wish to integrate disqus on pages set your shortname here
 disqus_shortname: ''
@@ -55,9 +55,9 @@ exclude: ['bin', 'README.md']
 markdown: kramdown
 
 # Current SDK version, use for all mentions
-currentVersion: "4.3.0"
+currentVersion: "4.3.1"
 
-# Current SDK version, use for all mentions
+# Previous SDK version, use for all mentions
 previousVersion: "4.2.0"
 
 # Marketing Cloud Delay
