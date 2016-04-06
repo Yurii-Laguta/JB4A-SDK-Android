@@ -22,6 +22,14 @@ The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream 
 ## Release History
 For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
 
+#### Version 4.3.1
+
+_Released April 6 2016, correlating to the Marketing Cloud 2016-02 MR1_<br/>
+
+* MOBILESDK-797 - Fix app transfer to new Android devices.  Unable to decrypt Android Device ID.
+* MOBILESDK-794 - Validate "Location" and "Proximity" are enabled before calling state variables in `getSdkState()`.
+* MOBILESDK-761 - Ensure the data adapter for SDK Cloud Pages only returns active Marketing Cloud messages
+
 #### Version 4.3.0
 
 _Released March 21 2016, correlating to the Marketing Cloud 2016-02_<br/>
