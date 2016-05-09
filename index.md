@@ -29,7 +29,7 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 _Released May 9 2016, correlating to the Marketing Cloud 2016-02 MR2_<br/>
 
-* MOBILESDK-893 - Google Play Services compatibility alert suppression.
+* MOBILESDK-893 - [Google Play Services compatibility alert suppression]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html#configure).
 
 #### Version 4.3.1
 
