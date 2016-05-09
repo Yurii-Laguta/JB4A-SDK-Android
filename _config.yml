@@ -36,7 +36,7 @@ sections: [
 
 # Keep as an empty string if served up at the root. If served up at a specific
 # path (e.g. on GitHub pages0) leave off the trailing slash, e.g. /my-project
-baseurl: "/JB4A-SDK-Android" # the subpath of your site, e.g. /blog/
+baseurl: "/JB4A-SDK-Android-Preview" # the subpath of your site, e.g. /blog/
 url: "http://exacttarget.github.io" # the base hostname & protocol for your site
 
 # Dates are not included in permalinks
@@ -55,7 +55,7 @@ exclude: ['bin', 'README.md']
 markdown: kramdown
 
 # Current SDK version, use for all mentions
-currentVersion: "4.3.1"
+currentVersion: "4.3.2"
 
 # Previous SDK version, use for all mentions
 previousVersion: "4.2.0"
