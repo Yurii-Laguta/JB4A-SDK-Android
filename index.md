@@ -29,7 +29,7 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 _Released May 9 2016, correlating to the Marketing Cloud 2016-02 MR2_<br/>
 
-* MOBILESDK-233 - Allow Google Play Services Warnings to be suppressed by adding a flag to the `ETPushConfig.Builder()`.
+* PUSHESC-233 - Allow Google Play Services Warnings to be suppressed by adding a flag to the `ETPushConfig.Builder()`.
 
 #### Version 4.3.1
 
