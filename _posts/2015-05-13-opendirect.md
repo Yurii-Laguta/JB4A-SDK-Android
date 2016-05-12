@@ -43,7 +43,7 @@ This example (taken from the <a href="https://github.com/ExactTarget/JB4A-SDK-An
         …
         …   
     ~~~ 
-1.  After readyAimFire() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+1.  After configureSdk() completes, direct the SDK to use your own activity to show the OpenDirect URL sent with the payload. The Marketing Cloud recommends you add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
     ~~~ 
     public void onEvent(ReadyAimFireInitCompletedEvent event) {

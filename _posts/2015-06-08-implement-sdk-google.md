@@ -38,10 +38,10 @@ Your manifest must contain a named application and have a class that extends And
 > NOTE: As of v4.2 of the Marketing Cloud Mobile Push Android SDK, you no longer have to explicitly declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
 
 ### <a name="configure"></a>Configure the SDK
-In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `readyAimFire()`:
+In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `configureSdk()`:
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
-> NOTE: `readyAimFire()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>
+> NOTE: `configureSdk()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>
 
 > NOTE: Changes, including your initial registration from a device, propagate from the server every 5 minutes.  Ensure you wait an appropriate amount of time before expecting to receive push notifications or for changes to take affect.<br/>
 
