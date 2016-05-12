@@ -40,7 +40,6 @@ Your manifest must contain a named application and have a class that extends And
 ### <a name="configure"></a>Configure the SDK
 
 In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `configureSdk()`:
-<script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 <script src="https://gist.github.com/sfmc-mobilepushsdk/1029c2e7905a0626bcc751795f4d389f.js"></script>
 
 > NOTE: `configureSdk()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>
