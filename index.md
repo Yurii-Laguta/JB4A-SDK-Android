@@ -22,6 +22,8 @@ The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream 
 ## Release History
 For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
 
+> As of the current SDK release (2016-03, Version 4.3 of the JB4A SDK), we no longer support apps built using Eclipse. This end-of-life activity includes removal of JAR files, documentation, and all other forms of support. Ensure you can continue your development activities by switching to the Google development platform. For additional information on Google’s support of Android Eclipse tools, please view the Google official announcement http://android-developers.blogspot.com/2015/06/an-update-on-eclipse-android-developer.html.
+
 #### Version 4.3.2
 
 _Released May 9 2016, correlating to the Marketing Cloud 2016-02 MR2_<br/>
