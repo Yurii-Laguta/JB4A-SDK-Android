@@ -20,4 +20,4 @@ order: 2
 
 	<script src="https://gist.github.com/sfmc-mobilepushsdk/ea08a3981609479ffc7c.js"></script>
 
-> MobilePush prevents the app from displaying a geofence or beacon message with an empty alert. If you include AMPscript in your message that returns no content, the mobile app will not display that message. 
+> MobilePush prevents the app from displaying a geofence or beacon message with an empty alert. If you include AMPscript in your message that returns no content or an empty string, the mobile app will not display that message. 
