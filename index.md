@@ -24,7 +24,7 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 #### Version 4.4.0
 
-> As of the current SDK release (2016-03, Version 4.4.0 of the JB4A SDK), we no longer support apps built using Eclipse. This end-of-life activity includes removal of JAR files, documentation, and all other forms of support. Ensure you can continue your development activities by switching to the Google development platform. For additional information on Google’s support of Android Eclipse tools, please view the Google official announcement http://android-developers.blogspot.com/2015/06/an-update-on-eclipse-android-developer.html.
+> As of the current SDK release (2016-03, Version 4.4.0 of the JB4A SDK), we no longer support apps built using Eclipse. This end-of-life activity includes removal of JAR files, documentation, and all other forms of support. Ensure you can continue your development activities by switching to the Google development platform. For additional information on Google’s support of Android Eclipse tools, please view the [Google official announcement](http://android-developers.blogspot.com/2015/06/an-update-on-eclipse-android-developer.html).
 
 #### Version 4.3.2
 
