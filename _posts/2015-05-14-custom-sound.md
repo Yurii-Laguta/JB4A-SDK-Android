@@ -12,9 +12,6 @@ When a contact receives a push message on the mobile app, the SDK will create a 
 	
 	<img class="img-responsive" src="{{ site.baseurl }}/assets/custom-notification-sound-gradle.png" />
 
-	or Eclipse:
-
-    <img class="img-responsive" src="{{ site.baseurl }}/assets/custom-notification-sound-eclipse.jpg" />
 2.  When creating a push message, the marketer can request the particular message plays this custom sound file. If the app finds no custom sound in the payload, the app will use the default notification sound when displaying the message.
     
     <img class="img-responsive" src="{{ site.baseurl }}/assets/custom-notification-sound.png" />
