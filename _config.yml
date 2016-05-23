@@ -1,9 +1,28 @@
+# Keep as an empty string if served up at the root. If served up at a specific
+# path (e.g. on GitHub pages0) leave off the trailing slash, e.g. /my-project
+baseurl: "/JB4A-SDK-Android" # the subpath of your site, e.g. /blog/
+#baseurl: "/JB4A-SDK-Android-DocPreview" # the subpath of your site, e.g. /blog/
+
+url: "http://salesforce-marketingcloud.github.io" # the base hostname & protocol for your site
+
+# URL to source code, used in _includes/footer.html
+codeurl: 'https://github.com/ExactTarget/JB4A-SDK-Android'
+
 # Site title and subtitle. This is used in _includes/header.html
 #
 # to create a new page, use this format:
 # ruby bin/jekyll-page "name of page" section
 #
-title: 'Journey Builder for Apps Android SDK (v4.3.2)'
+title: 'Journey Builder for Apps Android SDK (v4.4.0)'
+
+# Current SDK version, use for all mentions
+currentVersion: "4.4.0"
+
+# Previous SDK version, use for all mentions
+previousVersion: "4.3.2"
+
+# Marketing Cloud Delay
+propagationDelay: "5 minutes"
 
 # if you wish to integrate disqus on pages set your shortname here
 disqus_shortname: ''
@@ -16,9 +35,6 @@ google_analytics_id: ''
 #   1 - always show
 #   2 - show only if posts are present
 navigation: 1
-
-# URL to source code, used in _includes/footer.html
-codeurl: 'https://github.com/ExactTarget/JB4A-SDK-Android'
 
 # Default categories (in order) to appear in the navigation
 sections: [
@@ -34,11 +50,6 @@ sections: [
     ['trouble-shooting', 'Trouble Shooting']
 ]
 
-# Keep as an empty string if served up at the root. If served up at a specific
-# path (e.g. on GitHub pages0) leave off the trailing slash, e.g. /my-project
-baseurl: "/JB4A-SDK-Android" # the subpath of your site, e.g. /blog/
-url: "http://exacttarget.github.io" # the base hostname & protocol for your site
-
 # Dates are not included in permalinks
 permalink: none
 
@@ -53,12 +64,3 @@ exclude: ['bin', 'README.md']
 
 # Use the kramdown Markdown renderer
 markdown: kramdown
-
-# Current SDK version, use for all mentions
-currentVersion: "4.3.2"
-
-# Previous SDK version, use for all mentions
-previousVersion: "4.2.0"
-
-# Marketing Cloud Delay
-propagationDelay: "5 minutes"
