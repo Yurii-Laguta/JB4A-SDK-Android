@@ -20,7 +20,7 @@ ___
     
     This example is taken from <a href="https://github.com/ExactTarget/JB4A-SDK-Android/tree/master/JB4A-SDK-Explorer" target="_blank">Journey Builder for Apps SDK Explorer for Android</a>
 
-    After readyAimFire() completes, provide the SDK with the code you would like to execute when the Notification pending intent is setup.
+    After configureSdk() completes, provide the SDK with the code you would like to execute when the Notification pending intent is setup.
 
     ~~~
     ETNotifications.setNotificationLaunchIntent(new ETNotificationLaunchIntent() {
@@ -97,10 +97,10 @@ ___
         …
         …   
         ~~~ 
-    1.  After readyAimFire() completes, instruct the SDK to use this activity to receive the tap from the notification. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
+    1.  After configureSdk() completes, instruct the SDK to use this activity to receive the tap from the notification. Add this code in the ReadyAimFireInitCompletedEvent sent from the [EventBus](eventbus.html) 
 
         ~~~
-        // After readyAimFire() completes.
+        // After configureSdk() completes.
         ETPush.getInstance().setNotificationRecipientClass(YourNotificationActivity.class);
         ~~~~
 1.  Specify an action and URI to launch your own activity when the notification receives a tap.

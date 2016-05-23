@@ -27,5 +27,5 @@ You will see a _Success!_ message and an application details screen. Edit any of
 
 <img class="img-responsive" src="{{ site.baseurl }}/assets/exampleAppSuccess.png" /><br/>
 
-> Record the **Application ID** and the **Access Token**, as you will use them later in readyAimFire() as shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
+> Record the **Application ID** and the **Access Token**, as you will use them later in configureSdk() as shown in [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
 

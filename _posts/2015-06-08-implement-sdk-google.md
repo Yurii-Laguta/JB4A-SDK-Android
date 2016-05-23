@@ -13,7 +13,7 @@ This process connects the device to the MobilePush app you created previously in
 
 > NOTE: The Marketing Cloud Mobile Push Android SDK requires Android API 15 (aka _Ice Cream Sandwich or Android v4.0.3_) or greater and has dependencies on the Android Support v4 and Google Play Services libraries.  Android API 23 (aka _Marshmallow or Android v6.0_) and the new Android Permissions model is supported.<br/>
 
-> NOTE: Eclipse support has been discontinued by Google and is being deprecated by the Marketing Cloud.  Support for Eclipse will soon be discontinued by the Marketing Cloud, but until then the documentation for Eclipse implementations can be found [HERE]({{ site.baseurl }}/sdk-implementation/implement-sdk-eclipse.html). Please move to Android Studio as soon as possible to ensure compatibility with future releases.<br/>
+> NOTE: Google discontinued Eclipse support, and the Marketing Cloud deprecated Eclipse usage in the Journey Builder for Apps SDK. Move to Android Studio as soon as possible to ensure compatibility with future releases.<br/>
 
 ## Integrating via Android Studio<br/><br/>
 
@@ -38,10 +38,11 @@ Your manifest must contain a named application and have a class that extends And
 > NOTE: As of v4.2 of the Marketing Cloud Mobile Push Android SDK, you no longer have to explicitly declare the permissions, activities, receivers and services required by the SDK.  A manifest is provided in the AAR and Android's build tools will automatically merge the manifests. You should remove any previously included statements in your manifest to avoid conflicts.<br/><br/>
 
 ### <a name="configure"></a>Configure the SDK
-In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `readyAimFire()`:
+
+In your Android Application Class' `onCreate()` method you will need to configure the SDK with a call to `configureSdk()`:
 <script src="https://gist.github.com/sfmc-mobilepushsdk/1029c2e7905a0626bcc751795f4d389f.js"></script>
 
-> NOTE: `readyAimFire()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>
+> NOTE: `configureSdk()` must be called from your Application Class to ensure that background receivers and services can be initialized properly.  Failing to do so will result in 1) your application failing to receive background push notifications, location updates, etc. and 2) potentially crashes.<br/>
 
 > NOTE: Changes, including your initial registration from a device, propagate from the server every 5 minutes.  Ensure you wait an appropriate amount of time before expecting to receive push notifications or for changes to take affect.<br/>
 
