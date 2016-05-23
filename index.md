@@ -24,7 +24,18 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 #### Version 4.4.0
 
+_Released May 23 2016, correlating to the Marketing Cloud 2016-03_<br/>
+
 > As of the current SDK release (2016-03, Version 4.4.0 of the JB4A SDK), we no longer support apps built using Eclipse. This end-of-life activity includes removal of JAR files, documentation, and all other forms of support. Ensure you can continue your development activities by switching to the Google development platform. For additional information on Google’s support of Android Eclipse tools, please view the [Google official announcement](http://android-developers.blogspot.com/2015/06/an-update-on-eclipse-android-developer.html).
+
+* MOBILESDK-707 - Add developer convenience method for `getDeviceId()`.
+* MOBILESDK-712 - Ensure proper expiry of CloudPage messages.
+* MOBILESDK-713 - Replace `readyAimFire()` with `configureSdk()`.
+* MOBILESDK-826 - Do not show a notification for a message with an empty alert.
+* MOBILESDK-833 - Send Subscriber Key in PI Analytics Payload.
+* MOBILESDK-839 - Allow Application Label to be set in PushConfig.Builder().
+* MOBILESDK-845 - Retry for failed GET REST requests.
+* MOBILESDK-894 - Provide Google Play Services status in `configureSdk()` callback.
 
 #### Version 4.3.2
 
