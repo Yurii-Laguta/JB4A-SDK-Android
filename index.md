@@ -22,6 +22,12 @@ The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream 
 ## Release History
 For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
 
+#### Version 4.4.1
+
+_Released June 1 2016, correlating to the Marketing Cloud 2016-03.1_<br/>
+
+* MOBILESDK-938 - Gracefully handle devices without Google Play Services installed.
+
 #### Version 4.4.0
 
 _Released May 23 2016, correlating to the Marketing Cloud 2016-03_<br/>
@@ -36,6 +42,12 @@ _Released May 23 2016, correlating to the Marketing Cloud 2016-03_<br/>
 * MOBILESDK-839 - Allow Application Label to be set in PushConfig.Builder().
 * MOBILESDK-845 - Retry for failed GET REST requests.
 * MOBILESDK-894 - Provide Google Play Services status in `configureSdk()` callback.
+
+#### Version 4.3.3
+
+_Released June 1 2016, correlating to the Marketing Cloud 2016-02.3_<br/>
+
+* MOBILESDK-938 - Gracefully handle devices without Google Play Services installed.
 
 #### Version 4.3.2
 
