@@ -11,6 +11,11 @@ You can enable analytics by setting the appropriate parameter in the ETPushConfi
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
+### Track Cart<a href="track_cart"></a>
+
+### Track Conversion<a href="track_conversion"></a>
+
+
 ### Track Page View
 
 1.  To implement page view analytics for your app, call the following method:
