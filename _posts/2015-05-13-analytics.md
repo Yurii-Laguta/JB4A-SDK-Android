@@ -12,9 +12,10 @@ You can enable analytics by setting the appropriate parameter in the ETPushConfi
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
 ### Track Cart<a href="track_cart"></a>
+<script src="https://gist.github.com/sfmc-mobilepushsdk/2cb3447b64500b02c8ca51dce6efc290.js"></script>
 
 ### Track Conversion<a href="track_conversion"></a>
-
+<script src="https://gist.github.com/sfmc-mobilepushsdk/1989b6d8e2e7a64e3787fd0e6f11946b.js"></script>
 
 ### Track Page View
 
