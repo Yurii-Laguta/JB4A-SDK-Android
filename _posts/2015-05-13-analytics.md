@@ -11,7 +11,9 @@ You can enable analytics by setting the appropriate parameter in the ETPushConfi
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
+
 ## PI/Web & Mobile Analytics Convenience Methods
+
 ### Track Cart<a name="track_cart"></a>
 Use to track the contents of an in-app shopping cart.
 
