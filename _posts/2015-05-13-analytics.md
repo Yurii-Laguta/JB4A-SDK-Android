@@ -11,28 +11,23 @@ You can enable analytics by setting the appropriate parameter in the ETPushConfi
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
-### Track Cart<a href="track_cart"></a>
+## PI/Web & Mobile Analytics Convenience Methods
+### Track Cart<a name="track_cart"></a>
+Use to track the contents of an in-app shopping cart.
+
 <script src="https://gist.github.com/sfmc-mobilepushsdk/2cb3447b64500b02c8ca51dce6efc290.js"></script>
 
-### Track Conversion<a href="track_conversion"></a>
+### Track Conversion<a name="track_conversion"></a>
+Use to track a purchase made through your mobile application.
+
 <script src="https://gist.github.com/sfmc-mobilepushsdk/1989b6d8e2e7a64e3787fd0e6f11946b.js"></script>
 
 ### Track Page View
+Use to track page views in your mobile app.
 
-1.  To implement page view analytics for your app, call the following method:
+<script src="https://gist.github.com/sfmc-mobilepushsdk/da02ce55ea76aa826a28cb74988b40e4.js"></script>
 
-    ~~~
-    Analytics.trackPageView(url)
-    Analytics.trackPageView(url, title)
-    Analytics.trackPageView(url, title, item)
-    Analytics.trackPageView(url, title, item, searchTerms)  
-    ~~~
-    You must provide a URL value for the page in this method. You can provide null values for the other optional string values:
-
-    * page title - title of the page
-    * item - item referred to on the page
-    * searchTerm - search terms used to find page
-    <br/><br/>
+## Accessing PI/Web & Mobile Analytics
 1.  To see your new Web and Mobile Analytics, open the Web and Mobile Analytics app within the Marketing Cloud:
     
     <img class="img-responsive" src="{{ site.baseurl }}/assets/wama_menu.png" />
