@@ -1,7 +1,7 @@
 # Keep as an empty string if served up at the root. If served up at a specific
 # path (e.g. on GitHub pages0) leave off the trailing slash, e.g. /my-project
-baseurl: "/JB4A-SDK-Android" # the subpath of your site, e.g. /blog/
-#baseurl: "/JB4A-SDK-Android-DocPreview" # the subpath of your site, e.g. /blog/
+#baseurl: "/JB4A-SDK-Android" # the subpath of your site, e.g. /blog/
+baseurl: "/JB4A-SDK-Android-DocPreview" # the subpath of your site, e.g. /blog/
 
 url: "http://salesforce-marketingcloud.github.io" # the base hostname & protocol for your site
 
@@ -13,13 +13,13 @@ codeurl: 'https://github.com/ExactTarget/JB4A-SDK-Android'
 # to create a new page, use this format:
 # ruby bin/jekyll-page "name of page" section
 #
-title: 'Journey Builder for Apps Android SDK (v4.4.1)'
+title: 'Journey Builder for Apps Android SDK (v4.5.0)'
 
 # Current SDK version, use for all mentions
-currentVersion: "4.4.1"
+currentVersion: "4.5.0"
 
 # Previous SDK version, use for all mentions
-previousVersion: "4.3.2"
+previousVersion: "4.4.1"
 
 # Marketing Cloud Delay
 propagationDelay: "5 minutes"
