@@ -28,7 +28,6 @@ _Released July 18, 2016, correlating to the Marketing Cloud 2016-04 release_<br/
 
 * MOBILESDK-494 - Added updateEt() method to force a middle tier registration call.
 * MOBILESDK-907 - Implemented Predictive Intelligence integration methods for tracking eCommerce [cart contents]({{ site.baseurl }}/features/analytics.html#track_cart) and [cart conversions]({{ site.baseurl }}/features/analytics.html#track_conversion).
-* MOBILESDK-938 - Gracefully handle devices lacking Google Play Services
 
 #### Version 4.4.1
 
