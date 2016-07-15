@@ -14,6 +14,8 @@ You can enable analytics by setting the appropriate parameter in the ETPushConfi
 
 ## Predictive Intelligence and Collect API Integration
 
+The following methods integrate your mobile app with the Marketing Cloud Predictive Intelligence application. You must have an existing Predictive Intelligence deployment in order to use these. Also, you must enable the "PIAnalytics" option when you configure your SDK.
+
 <a name="track_cart"></a>
 
 ### Track Cart
