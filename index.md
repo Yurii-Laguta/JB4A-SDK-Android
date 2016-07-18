@@ -24,9 +24,10 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 #### Version 4.5.0
 
-_Released June IDK 2016, correlating to the Marketing Cloud 2016-03.1_<br/>
+_Released July 18 2016, correlating to the Marketing Cloud 2016-04_<br/>
 
 * MOBILESDK-907 - Add PI Analytics [track_cart]({{ site.baseurl }}/features/analytics.html#track_cart) and [track_conversion]({{ site.baseurl }}/features/analytics.html#track_conversion) convenience methods.
+* MOBILESDK-494 - Force an immediate Marketing Cloud Registration call.
 
 #### Version 4.4.1
 
