@@ -29,8 +29,8 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 _Released September 9, 2016, correlating with the Marketing Cloud 2016-05 release._
 
-* **MobilePush Beacons Support** - The SDK supports MobilePush Beacons.
-* **Adjust Beacons Logging** - You can control the amount of logging for MobilePush beacons by setting the log level.
+* **MobilePush Beacons Support** - The SDK supports [MobilePush Beacons]({{ site.baseurl }}/location/add-beacons.html).
+* **Adjust Beacons Logging** - You can control the amount of logging for MobilePush beacons by [setting the log level]({{ site.baseurl }}/location/add-beacons.html#log_level).
 * **Use Multiple Push Providers Cautiously** - If you use multiple push proviers, there are several things you should be aware of: [Troubleshooting]({{ site.baseurl }}/trouble-shooting/multiple-push-sdks.html).
 
 #### Version 4.5.0
