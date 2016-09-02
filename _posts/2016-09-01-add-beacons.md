@@ -6,7 +6,7 @@ category: location
 date: 2016-09-01 12:00:00
 order: 3
 ---
-1. Add geolocation. Follow the steps for [Add Geolocation]({{ site.baseurl }}/location/geolocation.html).
+1. Add geolocation. Beacons messages require a geolocation fix, so you must implement geolocation in your SDK. Follow the steps for [Add Geolocation]({{ site.baseurl }}/location/geolocation.html) before continuing.
 1. Set the Boolean parameter for `setProximityEnabled()` in your `ETPushConfig.Builder`:
 <script src="https://gist.github.com/sfmc-mobilepushsdk/06f47c53aca02c3dad2ef1d750c6f4ac.js"></script>
 1. Add the <a href="http://altbeacon.org/" target="_blank">AltBeacon Library</a> dependency to the `app/build.gradle` file:
@@ -16,4 +16,4 @@ order: 3
 
 > MobilePush prevents the app from displaying a beacon message with an empty alert. If you include AMPscript in your message that returns no content or an empty string, the mobile app will not display that message. 
 
-> To understand how beacons behave in different situations, see Beacon Behavior.
+> To understand how beacons behave in different situations, see the MobilePush beacons help documentation.
