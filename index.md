@@ -32,7 +32,6 @@ _Released September 9, 2016, correlating with the Marketing Cloud 2016-05 releas
 * **MobilePush Beacons Support** - The SDK supports MobilePush Beacons.
 * **Adjust Beacons Logging** - You can control the amount of logging for MobilePush beacons by setting the log level.
 * **Use Multiple Push Providers Cautiously** - If you use multiple push proviers, there are several things you should be aware of: [Troubleshooting]({{ site.baseurl }}/trouble-shooting/multiple-push-sdks.html).
-* **MessageID Recorded for App Open Events** - MessageID is now collected when users open the app from a push notification. This includes direct and indirect opens.
 
 #### Version 4.5.0
 
@@ -251,31 +250,6 @@ _Released June 24th 2015, correlating to the Marketing Cloud 2015-04 Release_<br
 * MPUSH-3293 - Build SDK with latest Android SDK, support, and appcompat libraries.<br/>
 * MPUSH-3285 - Make sure CloudPage Inbox downloads occur whether Analytics are turned on or not.<br/>
 * MPUSH-3485 - Fix crash in serializing/deserializing blank Attributes.
-
-**Required Coding Changes** 
-
-The following are changes that must be made in order to upgrade from previous releases of the SDK:<br/>
-
-* You must change your AndroidManifest.xml in order to use the new ET Receivers and Services.  We have simplified and renamed to more easily add the SDK to your mobile apps.
-  * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
-* You must update the activityPaused() and activityResumed() calls as static calls in your activities to determine whether app is in foreground or background for CloudPage Inbox, Analytics, and Location messages.<br/>
-  * [Analytics]({{ site.baseurl }}/features/analytics.html)
-  * [Rich Push Inbox]({{ site.baseurl }}/rich-push/rich-push-inbox.html)
-  * [Location]({{ site.baseurl }}/location/geolocation.html)
-* There have been changes in how you can override notifications that are displayed when a Push Message is received.  You can no longer override the ET_GenericReceiver.  See:
-  * [Interactive Notifications]({{ site.baseurl }}/features/interactive-notifications.html)
-  * [Override Notifications]({{ site.baseurl }}/features/override-notifications.html)
-
-**Recommended Coding Changes** 
-
-* You do not need to call ETPush.getInstance().enablePush() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
-  * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
-* New Events have been added to the EventBus.
-  * [ReadyAimFireInitCompletedEvent]({{ site.baseurl }}/features/eventbus.html) - Use this Event to complete any processing once readyAimFire() has completed.  readyAimFire() runs on a background thread and rather than block the UI thread, you can be notified when readyAimFire() has completed.
-* The SDK has been changed so that it does **not** set the subscriber key to the Device Id.  If you would like to continue to set the subscriber key to the SDK DeviceId, please see the following section:
-  * [Subscriber Key]({{ site.baseurl }}/features/subscriber-key.html)
-* You do not need to call ETLocationManager.getInstance().startWatchingLocation() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
-  * [Location]({{ site.baseurl }}/location/geolocation.html)
 
 ___
 
