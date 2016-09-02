@@ -10,6 +10,9 @@ This documentation includes information for the Marketing Cloud Journey Builder 
 Review the Java docs for the SDK:<br/>
 <a href="{{ site.baseurl }}/javadocs/index.html" target="_blank">Android SDK Java Docs</a>
 
+Learn how to use the SDK with the Marketing Cloud Learning App:<br/>
+<a href="https://github.com/salesforce-marketingcloud/LearningAppAndroid" target="_blank">Android Learning App</a>
+
 Download the latest JB4A SDK aar:<br/>
 <a href="https://github.com/ExactTarget/JB4A-SDK-Android/blob/master/JB4A-SDK/etsdk-{{ site.currentVersion }}.aar?raw=true" target="_blank">etsdk-{{ site.currentVersion }}.aar</a>
 
@@ -21,6 +24,15 @@ The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream 
 
 ## Release History
 For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
+
+#### Version 4.6.0
+
+_Released September 9, 2016, correlating with the Marketing Cloud 2016-05 release._
+
+* **MobilePush Beacons Support** - The SDK supports MobilePush Beacons.
+* **Adjust Beacons Logging** - You can control the amount of logging for MobilePush beacons by setting the log level.
+* **Use Multiple Push Providers Cautiously** - If you use multiple push proviers, there are several things you should be aware of: [Troubleshooting]({{ site.baseurl }}/trouble-shooting/multiple-push-sdks.html).
+* **MessageID Recorded for App Open Events** - MessageID is now collected when users open the app from a push notification. This includes direct and indirect opens.
 
 #### Version 4.5.0
 
