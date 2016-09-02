@@ -209,24 +209,24 @@ _Released June 24th 2015, correlating to the Marketing Cloud 2015-04 Release_<br
 * MPUSH-3379 - Ensure push and location (if turned on in readyAimFire()) is enabled by default and any updated registration data is sent each time readyAimFire() is called.<br/>
    _`Note:` Code should be changed to remove the call for enablePush() and startWatchingLocation() in your home launcher Activity._
 * MPUSH-3380 - Publish AAR to SDK's gh-pages branch.<br/>
-  _`Note:` Change app/build.gradle to use com.exacttarget.etpushsdk:etsdk:4.0.0@aar._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).<br/>
+  _`Note:` Change app/build.gradle to use com.exacttarget.etpushsdk:etsdk:4.0.0@aar._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).<br/>
 * MPUSH-3441 - Remove Access Token from payload and add to REST header.<br/>
 * MPUSH-3444 - Implement Builder Pattern for ETPush Initialization.<br/>
-  _`Note:` Change call to readyAimFire() to use this builder pattern._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).<br/>
+  _`Note:` Change call to readyAimFire() to use this builder pattern._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).<br/>
 * MPUSH-3445 - Add industry accepted standard getInstance() and deprecate getDefault().<br/>
   _`Note:` Change code to use getInstance()_<br/>
 * MPUSH-3411 - SDK will no longer set a subscriber key by default.  This change will ensure that any imported contacts will not be overridden by SDK.<br/>
   _`Note:` The subscriber key will be set by the Marketing Cloud instead.  This matches what happens with iOS devices now._ See [Subscriber Key]({{ site.baseurl }}/features/subscriber-key.html).<br/>
 * MPUSH-3396 - Create separate AndroidManifest.xml for Amazon devices.<br/>
-  _`Note:` You can create an Amazon product flavor within Android Studio and include this manifest for Amazon builds._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html).<br/>
+  _`Note:` You can create an Amazon product flavor within Android Studio and include this manifest for Amazon builds._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).<br/>
 * MPUSH-3378 - Improve verification of incorrect AndroidManifest.xml setup for both Amazon and Google devices.<br/>
 * MPUSH-3580 - Change verification of incorrect AndroidManifest.xml setup to throw a RunTimeException to ensure critical errors are fixed early in development process. <br/> 
 * MPUSH-3390 - Post an Event to the EventBus when readyAimFire() finishes with success or failure status.<br/>
-  _`Note:` You can implement the ReadyAimFireInitCompletedEvent in your code to execute code after readyAimFire() has completed in order to avoid UI blocks in your app._ [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)<br/>
+  _`Note:` You can implement the ReadyAimFireInitCompletedEvent in your code to execute code after readyAimFire() has completed in order to avoid UI blocks in your app._ [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).<br/>
 * MPUSH-3374 - Add information about the SDK, app version and other pertinent information to error logging in ADB logcat.<br/>
 * MPUSH-3356 - Send registration data when network becomes available including changes to tags/attributes that were made when network was unavailable.<br/>
 * MPUSH-3321 - Consolidate broadcast receivers and ensure proper use of Wakeful services.<br/>
- _`Note:` Code changes required to implement ETPushReceiver and ETPushService._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)<br/>
+ _`Note:` Code changes required to implement ETPushReceiver and ETPushService._ See [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).<br/>
  _`Note:` Code changes may be required if you use location to use ETLocationReceiver and ETLocationService._ See [Location Services]({{ site.baseurl }}/location/geolocation-overview.html)<br/>
  _`Note:` In order to change how notifications are overridden, you must now use interfaces within ETNotifications class._ See [Override Notifications]({{ site.baseurl }}/features/override-notifications.html)<br/>
 * MPUSH-3330 - Obfuscate sensitive data such as App Id, Access Token, and GCM Sender Id from ADB logcat.<br/>
@@ -257,7 +257,7 @@ _Released June 24th 2015, correlating to the Marketing Cloud 2015-04 Release_<br
 The following are changes that must be made in order to upgrade from previous releases of the SDK:<br/>
 
 * You must change your AndroidManifest.xml in order to use the new ET Receivers and Services.  We have simplified and renamed to more easily add the SDK to your mobile apps.
-  * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
+  * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
 * You must update the activityPaused() and activityResumed() calls as static calls in your activities to determine whether app is in foreground or background for CloudPage Inbox, Analytics, and Location messages.<br/>
   * [Analytics]({{ site.baseurl }}/features/analytics.html)
   * [Rich Push Inbox]({{ site.baseurl }}/rich-push/rich-push-inbox.html)
@@ -269,7 +269,7 @@ The following are changes that must be made in order to upgrade from previous re
 **Recommended Coding Changes** 
 
 * You do not need to call ETPush.getInstance().enablePush() in your home launcher activity as readyAimFire() will call this method automatically if you have Location turned on.
-  * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html) or [Implement the SDK for Amazon]({{ site.baseurl }}/sdk-implementation/implement-sdk-amazon.html)
+  * [Implement the SDK for Google]({{ site.baseurl }}/sdk-implementation/implement-sdk-google.html).
 * New Events have been added to the EventBus.
   * [ReadyAimFireInitCompletedEvent]({{ site.baseurl }}/features/eventbus.html) - Use this Event to complete any processing once readyAimFire() has completed.  readyAimFire() runs on a background thread and rather than block the UI thread, you can be notified when readyAimFire() has completed.
 * The SDK has been changed so that it does **not** set the subscriber key to the Device Id.  If you would like to continue to set the subscriber key to the SDK DeviceId, please see the following section:
