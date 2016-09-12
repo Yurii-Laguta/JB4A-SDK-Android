@@ -27,7 +27,7 @@ For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce
 
 #### Version 4.6.0
 
-_Released September 9, 2016, correlating with the Marketing Cloud 2016-05 release._
+_Released September 12, 2016, correlating with the Marketing Cloud 2016-05 release._
 
 * **MobilePush Beacons Support** - The SDK supports [MobilePush Beacons]({{ site.baseurl }}/location/add-beacons.html).
 * **Adjust Beacons Logging** - You can control the amount of logging for MobilePush beacons by [setting the log level]({{ site.baseurl }}/location/add-beacons.html#log_level).
