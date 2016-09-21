@@ -25,6 +25,13 @@ The JB4A Android SDK is compatible with Android API versions 15 (aka _Ice Cream 
 ## Release History
 For releases prior to {{ site.currentVersion }}, see: <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android-v{{ site.previousVersion }}/" target="_blank">Prior Release Documentation</a><br/><br/>
 
+#### Version 4.6.1
+
+_Released September 21, 2016, correlating with the Marketing Cloud 2016-05.2 release._
+
+* **JB4A SDK takes action only when your app is updated** - We replaced the `PACKAGE_REPLACED` intent filter in the manifest with a `MY_PACKAGE_REPLACED` intent filter. This ensures that the JB4A SDK takes action only when **your** application is updated.
+* **Use Subscriber Key for any info** - If SubscriberKey contains information, it is included in the Collect API payload, whether or not it's in the format of an email address.
+
 #### Version 4.6.0
 
 _Released September 12, 2016, correlating with the Marketing Cloud 2016-05 release._

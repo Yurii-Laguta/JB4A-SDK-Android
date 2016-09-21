@@ -37,6 +37,10 @@ Call the following method to implement page view analytics in your app. For more
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/da02ce55ea76aa826a28cb74988b40e4.js"></script>
 
+### Subscriber Key
+
+Using Subscriber Key, you can link track cart, track conversion, and other Collect API analytic events with a specific user. Subscriber Key is included in the Collect API payload and can contain information such as email address, mobile number, customer number, etc. See <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/features/subscriber-key.html" target="_blank">Updating Subscriber Key</a> for more information.
+
 ## Accessing PI/Web & Mobile Analytics
 1.  To see your new Web and Mobile Analytics, open the Web and Mobile Analytics app within the Marketing Cloud:
     
