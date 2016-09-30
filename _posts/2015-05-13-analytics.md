@@ -12,15 +12,15 @@ You can enable analytics by setting the appropriate parameter in the ETPushConfi
 <script src="https://gist.github.com/sfmc-mobilepushsdk/a1f32591efa5fcfb6943.js"></script>
 
 
-## Predictive Intelligence and Collect API Integration
+## Personalization Builder and Collect API Integration
 
-The following methods integrate your mobile app with the Marketing Cloud Predictive Intelligence application. You must have an existing Predictive Intelligence deployment in order to use these. Also, you must enable the "PIAnalytics" option when you configure your SDK.
+The following methods integrate your mobile app with Personalization Builder. You must have an existing Personalization Builder deployment in order to use these. Also, you must enable the "PIAnalytics" option when you configure your SDK.
 
 <a name="track_cart"></a>
 
 ### Track Cart
 
-Use to track the contents of an in-app shopping cart. For more information about this method's general use with the Predictive Intelligence system, see <a href="http://help.marketingcloud.com/en/documentation/collect_code/install_collect_code/track_cart/" target="_blank">Track Items in Shopping Cart.</a> Sample code for use in your mobile app is below.
+Use to track the contents of an in-app shopping cart. For more information about this method's general use with Personalization Builder, see <a href="http://help.marketingcloud.com/en/documentation/collect_code/install_collect_code/track_cart/" target="_blank">Track Items in Shopping Cart.</a> Sample code for use in your mobile app is below.
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/2cb3447b64500b02c8ca51dce6efc290.js"></script>
 
@@ -28,12 +28,12 @@ Use to track the contents of an in-app shopping cart. For more information about
 
 ### Track Conversion
 
-Use to track a purchase made through your mobile application. For more information about this method's general use with the Predictive Intelligence app, see <a href="http://help.marketingcloud.com/en/documentation/collect_code/install_collect_code/track_conversion/" target="_blank">Track Purchase Details</a>. Sample code for use in your mobile app is below.
+Use to track a purchase made through your mobile application. For more information about this method's general use with Personalization Builder, see <a href="http://help.marketingcloud.com/en/documentation/collect_code/install_collect_code/track_conversion/" target="_blank">Track Purchase Details</a>. Sample code for use in your mobile app is below.
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/1989b6d8e2e7a64e3787fd0e6f11946b.js"></script>
 
 ### Track Page View
-Call the following method to implement page view analytics in your app. For more information about this method's general use with the Predictive Intelligence app, see <a href="http://help.marketingcloud.com/en/documentation/collect_code/install_collect_code/track_page_view/" target="_blank">Track Items Viewed</a>. Sample code for use in your mobile app is below.
+Call the following method to implement page view analytics in your app. For more information about this method's general use with Personalization Builder, see <a href="http://help.marketingcloud.com/en/documentation/collect_code/install_collect_code/track_page_view/" target="_blank">Track Items Viewed</a>. Sample code for use in your mobile app is below.
 
 <script src="https://gist.github.com/sfmc-mobilepushsdk/da02ce55ea76aa826a28cb74988b40e4.js"></script>
 
@@ -41,7 +41,7 @@ Call the following method to implement page view analytics in your app. For more
 
 Using Subscriber Key, you can link track cart, track conversion, and other Collect API analytic events with a specific user. Subscriber Key is included in the Collect API payload and can contain information such as email address, mobile number, customer number, etc. See <a href="http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/features/subscriber-key.html" target="_blank">Updating Subscriber Key</a> for more information.
 
-## Accessing PI/Web & Mobile Analytics
+## Accessing Web & Mobile Analytics
 1.  To see your new Web and Mobile Analytics, open the Web and Mobile Analytics app within the Marketing Cloud:
     
     <img class="img-responsive" src="{{ site.baseurl }}/assets/wama_menu.png" />
